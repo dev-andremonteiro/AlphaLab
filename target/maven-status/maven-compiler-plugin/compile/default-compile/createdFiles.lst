@@ -1,0 +1,11 @@
+br\edu\ifmt\cba\alphalab\entity\laboratorio\Requisito.class
+br\edu\ifmt\cba\alphalab\entity\laboratorio\Departamento.class
+br\edu\ifmt\cba\alphalab\entity\pessoa\Servidor.class
+br\edu\ifmt\cba\alphalab\entity\equipamentos\Emprestimo.class
+br\edu\ifmt\cba\alphalab\entity\laboratorio\Laboratorio.class
+br\edu\ifmt\cba\alphalab\entity\laboratorio\Reserva.class
+br\edu\ifmt\cba\alphalab\gui\javafx\Main.class
+br\edu\ifmt\cba\alphalab\entity\laboratorio\Problema.class
+br\edu\ifmt\cba\alphalab\entity\software\Software.class
+br\edu\ifmt\cba\alphalab\entity\equipamentos\Equipamento.class
+br\edu\ifmt\cba\alphalab\entity\equipamentos\Recurso.class
