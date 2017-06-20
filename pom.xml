@@ -37,7 +37,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>br.edu.ifmt.cba.sislab.gui.javafx.Main</mainClass>
+					<mainClass>br.edu.ifmt.cba.alphalab.gui.javafx.Main</mainClass>
 				</configuration>
 			</plugin>
 
