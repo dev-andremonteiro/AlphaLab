@@ -10,7 +10,7 @@ import br.edu.ifmt.cba.alphalab.dao.mock.MockDAOFactory;
 public interface DAOFactory {
 	public static Properties props = new Properties();
         public abstract IDepartamentoDAO getDepartamentoDAO();
-
+        public abstract IClienteDAO getClienteDAO();
 	public static DAOFactory getDAOFactory() {
 		if (props.isEmpty()) {
 			try {

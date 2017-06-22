@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="bdpPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.exemplo.FrmPrincipal">
+   <top>
+      <VBox maxHeight="40.0" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar fx:id="mnbPrincipal">
+              <menus>
+                <Menu fx:id="mnuCadastro" mnemonicParsing="false" text="_Cadastro">
+                  <items>
+                    <MenuItem fx:id="mniCliente" mnemonicParsing="false" onAction="#mniCliente_onAction" text="Cliente" />
+                  </items>
+                </Menu>
+                <Menu fx:id="mnuOperacoes" mnemonicParsing="false" text="_Operações">
+                  <items>
+                    <MenuItem fx:id="mniVenda" mnemonicParsing="false" text="Venda" />
+                  </items>
+                </Menu>
+                <Menu fx:id="mnuAjuda" mnemonicParsing="false" text="_Ajuda">
+                  <items>
+                    <MenuItem fx:id="mniSobre" mnemonicParsing="false" onAction="#mniSobre_onAction" text="Sobre" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="mniSair" mnemonicParsing="false" onAction="#mniSair_onAction" text="Sair" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>

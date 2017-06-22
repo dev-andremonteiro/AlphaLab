@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.exemplo.FrmCliente">
+   <top>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="10.0" minHeight="20.0" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lblPesqNome" text="%label.name" />
+            <TextField fx:id="txtPesqNome" onKeyPressed="#txtPesqNome_onKeyPressed" prefWidth="350.0" promptText="Digite o nome ou parte dele para realizar a pesquisa." />
+            <Button fx:id="btnProcurar" mnemonicParsing="false" onAction="#btnProcurar_onAction" text="%button.search" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </FlowPane>
+   </top>
+   <bottom>
+      <VBox fx:id="vbxBottom" alignment="CENTER" prefHeight="60.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="hbxEditButtons" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Button fx:id="btnNovo" mnemonicParsing="false" onAction="#btnNovo_onAction" text="%button.new">
+                     <tooltip>
+                        <Tooltip text="Abre o formulário para cadastrar um novo cliente." wrapText="true" />
+                     </tooltip></Button>
+                  <Button fx:id="btnConfirmar" disable="true" mnemonicParsing="false" onAction="#btnConfirmar_onAction" text="%button.confirm">
+                     <tooltip>
+                        <Tooltip text="Realiza a inclusão de um novo cliente ou a alteração dos dados de um cliente já existente." wrapText="true" />
+                     </tooltip></Button>
+                  <Button fx:id="btnAlterar" disable="true" mnemonicParsing="false" onAction="#btnAlterar_onAction" text="%button.edit">
+                     <tooltip>
+                        <Tooltip text="Abre o formulário de edição já preenchido com os dados do cliente selecionado na tabela." />
+                     </tooltip></Button>
+                  <Button fx:id="btnCancelar" disable="true" mnemonicParsing="false" onAction="#btnCancelar_onAction" text="%button.cancel">
+                     <tooltip>
+                        <Tooltip text="Cancela a operação (Novo ou Alterar) em aberto." wrapText="true" />
+                     </tooltip></Button>
+                  <Button fx:id="btnExcluir" disable="true" mnemonicParsing="false" onAction="#btnExcluir_onAction" text="%button.delete">
+                     <tooltip>
+                        <Tooltip text="Exclui o cliente que estiver selecionado na tabela." wrapText="true" />
+                     </tooltip></Button>
+               </children>
+            </HBox>
+            <Label fx:id="lblStatus" alignment="CENTER" contentDisplay="CENTER">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </bottom>
+   <center>
+      <StackPane fx:id="stkDialog" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="vbxDialog" alignment="CENTER" maxHeight="200.0" maxWidth="400.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: lightblue; -fx-border-color: black; -fx-border-width: 3px;">
+               <children>
+                  <Text fx:id="lblMensagem" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="btnOk" mnemonicParsing="false" onAction="#btnOk_onAction" text="OK" />
+               </children>
+            </VBox>
+            <TabPane fx:id="tbpCliente" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="tabClientes" text="Clientes">
+                     <content>
+                        <TableView fx:id="tblClientes" onMouseClicked="#tblClientes_mouseClicked" prefHeight="200.0" prefWidth="200.0">
+                           <contextMenu>
+                              <ContextMenu fx:id="ctxMenu">
+                                <items>
+                                  <MenuItem fx:id="mniEditar" mnemonicParsing="false" onAction="#mniEditar_onAction" text="Editar" />
+                                    <MenuItem fx:id="mniExcluir" mnemonicParsing="false" onAction="#mniExcluir_onAction" text="Excluir" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu></TableView>
+                     </content>
+                  </Tab>
+                <Tab fx:id="tabEdicao" text="Edição">
+                     <content>
+                        <GridPane fx:id="grdEdicao" alignment="CENTER" hgap="10.0" maxHeight="150.0" minHeight="200.0" minWidth="400.0" prefHeight="200.0" vgap="10.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0" minWidth="10.0" prefWidth="73.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="727.0" minWidth="10.0" prefWidth="727.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="185.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="89.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" maxHeight="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <TextField fx:id="txtNome" disable="true" prefWidth="350.0" />
+                                 </children>
+                              </FlowPane>
+                              <Label fx:id="lblCodigo" text="%label.id" />
+                              <Label fx:id="lblNome" text="%label.name" GridPane.rowIndex="1" />
+                              <Label fx:id="lblEmail" text="%label.email" GridPane.rowIndex="2" />
+                              <Label fx:id="lblTelefone" text="%label.phone" GridPane.rowIndex="3" />
+                              <Label fx:id="lblCodigoValue" GridPane.columnIndex="1" />
+                              <FlowPane alignment="CENTER_LEFT" maxHeight="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <TextField fx:id="txtEmail" disable="true" prefWidth="300.0" />
+                                 </children>
+                              </FlowPane>
+                              <FlowPane alignment="CENTER_LEFT" maxHeight="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <TextField fx:id="txtTelefone" disable="true" prefWidth="100.0" />
+                                 </children>
+                              </FlowPane>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </GridPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fx:id="texSystem" strokeType="OUTSIDE" strokeWidth="0.0" text="%about.system">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alphacosmetics 1.0 - SNAPSHOT da Compdevbooks" />
+      <Text fx:id="texDevelopers" strokeType="OUTSIDE" strokeWidth="0.0" text="%about.developers">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Evandro César Freiberger" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="João Paulo Delgado Preti" />
+      <Text fx:id="texLicense" strokeType="OUTSIDE" strokeWidth="0.0" text="%about.license">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MIT License" />
+   </children>
+</VBox>

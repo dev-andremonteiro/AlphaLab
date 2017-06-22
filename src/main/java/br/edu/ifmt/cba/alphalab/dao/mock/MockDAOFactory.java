@@ -1,6 +1,7 @@
 package br.edu.ifmt.cba.alphalab.dao.mock;
 
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
+import br.edu.ifmt.cba.alphalab.dao.IClienteDAO;
 import br.edu.ifmt.cba.alphalab.dao.IDepartamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockDepartamentoDAO;
 
@@ -20,6 +21,10 @@ public class MockDAOFactory implements DAOFactory {
         public IDepartamentoDAO getDepartamentoDAO(){
             return MockDepartamentoDAO.getInstance();
         }
+        @Override
+	public IClienteDAO getClienteDAO() {
+		return MockClienteDAO.getInstance();
+	}
 /*
 	@Override
 	public boolean isSessionClosed() {
