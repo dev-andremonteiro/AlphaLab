@@ -10,7 +10,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
     private Long id;
 
-    private Enum status;
+    private EnumReserva status;
 
     private Date dataSolicitacao;
 
@@ -45,11 +45,6 @@ public class ReservaEntity implements IEntity<ReservaException> {
         return id;
     }
 
-    @Override
-    public ReservaException validar() {
-        return null;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -58,7 +53,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
         return status;
     }
 
-    public void setStatus(Enum status) {
+    public void setStatus(EnumReserva status) {
         this.status = status;
     }
 
@@ -173,4 +168,11 @@ public class ReservaEntity implements IEntity<ReservaException> {
     public void setRequisitos(ArrayList<RequisitoEntity> requisitos) {
         this.requisitos = requisitos;
     }
+    
+    
+    @Override
+    public ReservaException validar() {
+        return null;
+    }
+    
 }

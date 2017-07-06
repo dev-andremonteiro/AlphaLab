@@ -9,6 +9,8 @@ import static org.junit.Assert.*;
 
 public class RecursoEntityTest {
     
+   RecursoEntity recurso;
+    
     public RecursoEntityTest() {
     }
     
@@ -22,15 +24,15 @@ public class RecursoEntityTest {
     
     @Before
     public void setUp() {
+        
     }
     
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void verificarCamposObrigatorios() {
+        //assertNotNull(other.get)
+    }
 }
