@@ -5,6 +5,7 @@
  */
 package br.edu.ifmt.cba.alphalab.entity.software;
 
+import br.edu.ifmt.cba.alphalab.entity.exception.SoftwareException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,7 +40,7 @@ public class SoftwareEntityTest {
     @Before
     public void setUp() {        
         link  = "http://preti.compdevbooks.com/p/junit.html";
-        descricao = "NetBens 4.8";
+        descricao = " ";
     }
 
     @After
@@ -49,9 +50,15 @@ public class SoftwareEntityTest {
     }
     
     @Test
-    public void TestarLinkDoSoftware(){
-        assertEquals("NetBens", softwareTeste.validar());
+    public void TestarDescricaoSoftware(){
+        
+        softwareTeste.setDescricao(descricao);
+        assertNotNull(softwareTeste.validar());
+        assertTrue(softwareTeste.validar() instanceof SoftwareException);
     }
+    
+    
+    
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

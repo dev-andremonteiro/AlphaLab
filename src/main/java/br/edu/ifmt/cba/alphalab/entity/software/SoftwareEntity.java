@@ -1,6 +1,7 @@
 package br.edu.ifmt.cba.alphalab.entity.software;
 
 import br.edu.ifmt.cba.alphalab.entity.IEntity;
+import br.edu.ifmt.cba.alphalab.entity.exception.ClienteException;
 import br.edu.ifmt.cba.alphalab.entity.exception.SoftwareException;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 
@@ -31,7 +32,15 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
 
     @Override
     public SoftwareException validar() {
-        return null;
+       StringBuilder msg = new StringBuilder();
+        if(descricao.equals(" ")) msg.append("Descricao nao pode ser vazio\n");
+        
+        if( msg.length() >0) {
+            return new SoftwareException(msg.toString());
+        }
+        else{
+            return null;
+        }
     }
 
     public void setId(Long id) {
