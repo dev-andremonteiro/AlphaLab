@@ -17,20 +17,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pedidos de reserva" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Text>
-   </top>
    <center>
-      <TabPane prefHeight="600.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane prefHeight="729.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab fx:id="TABPedidos" closable="false" text="Pedidos">
                <content>
@@ -38,7 +32,7 @@
                      <top>
                         <HBox prefHeight="30.0" prefWidth="719.0" spacing="80.0" BorderPane.alignment="CENTER">
                            <children>
-                              <ChoiceBox fx:id="CHBData" prefWidth="150.0" />
+                              <DatePicker fx:id="DTPData" />
                               <ChoiceBox fx:id="CHBTipo" prefWidth="147.0" />
                               <ChoiceBox fx:id="CHBProfessor" prefWidth="150.0" />
                            </children>
@@ -77,12 +71,12 @@
                            <children>
                               <HBox alignment="BASELINE_LEFT" prefHeight="100.0" prefWidth="340.0" spacing="10.0">
                                  <children>
-                                    <Label text="ID:">
+                                    <Label text="%label.ID">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Text fx:id="TXTID" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="60.826171875">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="151.13671875">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -94,7 +88,7 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="340.0" spacing="10.0">
                                  <children>
-                                    <Label text="Data do Pedido:">
+                                    <Label text="%label.dataPedido">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -111,14 +105,14 @@
                               </HBox>
                               <VBox prefHeight="200.0" prefWidth="340.0">
                                  <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <HBox fx:id="HBX" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <children>
-                                          <Label text="Laboratório:">
+                                          <Label text="%label.laboratorio">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <DatePicker fx:id="DTPLaboratorio" />
+                                          <ChoiceBox fx:id="CHBLaboratorio" prefWidth="150.0" />
                                        </children>
                                        <padding>
                                           <Insets left="30.0" top="30.0" />
@@ -126,7 +120,7 @@
                                     </HBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <children>
-                                          <Label text="Requisitos:">
+                                          <Label text="%label.requisitos">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -149,14 +143,14 @@
                      <bottom>
                         <HBox prefHeight="500.0" prefWidth="1024.0" spacing="50.0" BorderPane.alignment="CENTER">
                            <children>
-                              <VBox prefHeight="400.0" prefWidth="512.0">
+                              <VBox prefHeight="500.0" prefWidth="317.0">
                                  <children>
-                                    <BorderPane prefHeight="400.0" prefWidth="512.0">
+                                    <BorderPane prefHeight="400.0" prefWidth="311.0">
                                        <center>
                                           <GridPane prefHeight="284.0" prefWidth="382.0" BorderPane.alignment="CENTER">
                                             <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="122.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="210.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="119.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="198.0" />
                                             </columnConstraints>
                                             <rowConstraints>
                                                 <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
@@ -166,52 +160,52 @@
                                               <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="175.0" text="Professor:" GridPane.valignment="CENTER">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="175.0" text="%label.professor" GridPane.valignment="CENTER">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="59.0" prefWidth="235.0" text="Disciplina:" GridPane.rowIndex="1">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="59.0" prefWidth="235.0" text="%label.disciplina" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="222.0" text="Departamento:" GridPane.rowIndex="2">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="222.0" text="%label.departamento" GridPane.rowIndex="2">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="171.0" text="Turma:" GridPane.rowIndex="3">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="171.0" text="%label.turma" GridPane.rowIndex="3">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="193.0" text="Descrição:" GridPane.rowIndex="4">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="193.0" text="%label.descricao" GridPane.rowIndex="4">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Text fx:id="TXTProfessor" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1">
+                                                <Text fx:id="TXTProfessor" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Text>
-                                                <Text fx:id="TXTDepartamento" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                <Text fx:id="TXTDepartamento" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Text>
-                                                <Text fx:id="TXTTurma" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                <Text fx:id="TXTTurma" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Text>
-                                                <Text fx:id="TXTDescricao" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                <Text fx:id="TXTDescricao" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Text>
-                                                <Text fx:id="TXTDisciplina" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                <Text fx:id="TXTDisciplina" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -219,38 +213,18 @@
                                              </children>
                                           </GridPane>
                                        </center>
-                                       <left>
-                                          <HBox prefHeight="400.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-                                       </left>
                                     </BorderPane>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="400.0" prefWidth="460.0" spacing="20.0">
+                              <VBox prefHeight="500.0" prefWidth="600.0" spacing="20.0">
                                  <children>
-                                    <HBox prefHeight="130.0" prefWidth="512.0" spacing="10.0">
+                                    <HBox prefHeight="130.0" prefWidth="544.0" spacing="10.0">
                                        <children>
-                                          <Label text="Horários:">
+                                          <Label text="%label.horarios">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <VBox prefHeight="100.0" prefWidth="240.0" spacing="10.0" style="-fx-border-color: black;">
-                                             <children>
-                                                <Text fx:id="TXTHorariosData" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="230.13671875">
-                                                   <font>
-                                                      <Font name="System Bold" size="14.0" />
-                                                   </font>
-                                                </Text>
-                                                <Text fx:id="TXTHorariosHorarios" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="230.13671875">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Text>
-                                             </children>
-                                             <padding>
-                                                <Insets left="5.0" />
-                                             </padding>
-                                          </VBox>
                                        </children>
                                     </HBox>
                                     <VBox prefHeight="80.0" prefWidth="460.0">
@@ -270,7 +244,7 @@
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Label text="Reserva a cada:" GridPane.rowIndex="1">
+                                                <Label text="%label.reservaACada" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -292,11 +266,11 @@
                                     </VBox>
                                     <Pane prefHeight="89.0" prefWidth="460.0">
                                        <children>
-                                          <Group layoutX="36.0" layoutY="14.0">
+                                          <Group layoutX="6.0" layoutY="32.0">
                                              <children>
-                                                <Button fx:id="BTNCancelar" mnemonicParsing="false" prefWidth="70.0" text="%button.cancel" />
-                                                <Button fx:id="BTNNegar" layoutX="100.0" mnemonicParsing="false" prefWidth="70.0" text="%button.deny" />
-                                                <Button fx:id="BTNPermitir" layoutX="200.0" mnemonicParsing="false" prefWidth="70.0" text="%button.allow" />
+                                                <Button fx:id="BTNCancelar" mnemonicParsing="false" prefWidth="70.0" text="%button.cancelar" />
+                                                <Button fx:id="BTNNegar" layoutX="100.0" mnemonicParsing="false" prefWidth="70.0" text="%button.negar" />
+                                                <Button fx:id="BTNPermitir" layoutX="200.0" mnemonicParsing="false" prefWidth="70.0" text="%button.permitir" />
                                              </children>
                                           </Group>
                                        </children>
@@ -317,4 +291,15 @@
         </tabs>
       </TabPane>
    </center>
+   <top>
+      <StackPane prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%text.pedidoReserva" wrappingWidth="207.69140625">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </StackPane>
+   </top>
 </BorderPane>
