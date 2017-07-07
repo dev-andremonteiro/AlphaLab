@@ -11,7 +11,6 @@ import org.junit.runners.Parameterized;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 
-@RunWith(value=Parameterized.class)
 public class ReservaEntityTest {
     
     static ReservaEntity reserva;
