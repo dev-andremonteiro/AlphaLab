@@ -26,7 +26,7 @@
    <center>
       <TabPane prefHeight="729.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab fx:id="TABPedidos" closable="false" text="Pedidos">
+          <Tab fx:id="TABPedidos" closable="false" text="%tab.pedidos">
                <content>
                   <BorderPane>
                      <top>
@@ -63,7 +63,7 @@
                   </BorderPane>
                </content>
           </Tab>
-          <Tab fx:id="TABDados" closable="false" text="Visualizar Dados">
+          <Tab fx:id="TABDados" closable="false" text="%tab.visualizarDados">
                <content>
                   <BorderPane prefHeight="768.0" prefWidth="1024.0">
                      <top>
@@ -76,7 +76,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="151.13671875">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="90.13671875">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -105,7 +105,7 @@
                               </HBox>
                               <VBox prefHeight="200.0" prefWidth="340.0">
                                  <children>
-                                    <HBox fx:id="HBX" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <HBox fx:id="HBXLaboratorio" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <children>
                                           <Label text="%label.laboratorio">
                                              <font>
@@ -118,7 +118,7 @@
                                           <Insets left="30.0" top="30.0" />
                                        </padding>
                                     </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <HBox fx:id="HBXRequisitos" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <children>
                                           <Label text="%label.requisitos">
                                              <font>
@@ -239,7 +239,7 @@
                                               <RowConstraints minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <Label text="Tipo de Reserva:">
+                                                <Label text="%label.tipoReserva">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -282,7 +282,7 @@
                      <center>
                         <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Separator layoutX="25.0" prefHeight="58.0" prefWidth="950.0" />
+                              <Separator layoutX="25.0" prefHeight="39.0" prefWidth="950.0" />
                            </children>
                         </Pane>
                      </center>
