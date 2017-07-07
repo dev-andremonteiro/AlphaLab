@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane prefHeight="50.0" prefWidth="1024.0">
+         <children>
+            <Label text="%label.consultarHorario">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font></Label>
+         </children>
+      </StackPane>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1024.0" spacing="125.0" VBox.vgrow="ALWAYS">
+         <children>
+            <ChoiceBox prefWidth="150.0" />
+            <ChoiceBox prefWidth="150.0" />
+            <ChoiceBox prefWidth="150.0" />
+         </children>
+      </HBox>
+      <Pane prefHeight="600.0" prefWidth="980.0" VBox.vgrow="ALWAYS">
+         <children>
+            <TableView prefHeight="600.0" prefWidth="980.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="%label.horario" />
+                <TableColumn prefWidth="75.0" text="%label.segunda" />
+                  <TableColumn prefWidth="75.0" text="%label.terca" />
+                  <TableColumn prefWidth="75.0" text="%label.quarta" />
+                  <TableColumn prefWidth="75.0" text="%label.quinta" />
+                  <TableColumn prefWidth="75.0" text="%label.sexta" />
+                  <TableColumn prefWidth="75.0" text="%label.sabado" />
+                  <TableColumn prefWidth="75.0" text="%label.domingo" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Pane>
+   </children>
+   <padding>
+      <Insets bottom="18.0" left="22.0" right="22.0" />
+   </padding>
+</VBox>
