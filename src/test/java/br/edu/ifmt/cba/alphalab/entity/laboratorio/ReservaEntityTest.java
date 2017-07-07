@@ -36,7 +36,7 @@ public class ReservaEntityTest {
         reserva.setStatus(EnumReserva.Pedido);
         reserva.setDataSolicitacao(new java.util.Date());
         reserva.setDisciplina("Eng Software");
-        reserva.setTurma("Eng da Computação");
+        reserva.setTurma("Eng da Computaï¿½ï¿½o");
         reserva.setObservacao("Aula 15");
         reserva.setFixo(false);
         reserva.setDataInicio(new java.util.Date());
@@ -90,7 +90,7 @@ public class ReservaEntityTest {
     
     
     @AfterClass
-    public void finallize() {
+    public static void finallize() {
         
         reserva = null;
         departamentoReserva = null;
