@@ -29,7 +29,7 @@ public class ReservaEntityTest {
     }
     
     @Before
-    public static void setUp() {
+    public void setUp() {
         
         reserva.setId(Long.MIN_VALUE);
         reserva.setStatus(EnumReserva.Pedido);
