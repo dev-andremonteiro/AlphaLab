@@ -23,23 +23,23 @@
       </StackPane>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1024.0" spacing="125.0" VBox.vgrow="ALWAYS">
          <children>
-            <ChoiceBox prefWidth="150.0" />
-            <ChoiceBox prefWidth="150.0" />
-            <ChoiceBox prefWidth="150.0" />
+            <ChoiceBox fx:id="chbLaboratorio" prefWidth="150.0" />
+            <ChoiceBox fx:id="chbProfessor" prefWidth="150.0" />
+            <ChoiceBox fx:id="chbDisciplina" prefWidth="150.0" />
          </children>
       </HBox>
       <Pane prefHeight="600.0" prefWidth="980.0" VBox.vgrow="ALWAYS">
          <children>
             <TableView prefHeight="600.0" prefWidth="980.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="%label.horario" />
-                <TableColumn prefWidth="75.0" text="%label.segunda" />
-                  <TableColumn prefWidth="75.0" text="%label.terca" />
-                  <TableColumn prefWidth="75.0" text="%label.quarta" />
-                  <TableColumn prefWidth="75.0" text="%label.quinta" />
-                  <TableColumn prefWidth="75.0" text="%label.sexta" />
-                  <TableColumn prefWidth="75.0" text="%label.sabado" />
-                  <TableColumn prefWidth="75.0" text="%label.domingo" />
+                <TableColumn fx:id="tbcHorario" prefWidth="75.0" text="%column.horario" />
+                <TableColumn fx:id="tbcSegunda" prefWidth="75.0" text="%column.segunda" />
+                  <TableColumn fx:id="tbcTerca" prefWidth="75.0" text="%column.terca" />
+                  <TableColumn fx:id="tbcQuarta" prefWidth="75.0" text="%column.quarta" />
+                  <TableColumn fx:id="tbcQuinta" prefWidth="75.0" text="%column.quinta" />
+                  <TableColumn fx:id="tbcSexta" prefWidth="75.0" text="%column.sexta" />
+                  <TableColumn fx:id="tbcSabado" prefWidth="75.0" text="%column.sabado" />
+                  <TableColumn fx:id="tbcDomingo" prefWidth="75.0" text="%column.domingo" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
