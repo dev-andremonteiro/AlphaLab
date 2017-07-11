@@ -4,10 +4,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -70,12 +72,88 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <left>
-                        <VBox prefHeight="689.0" prefWidth="252.0" BorderPane.alignment="CENTER">
+                        <VBox prefHeight="689.0" prefWidth="310.0" BorderPane.alignment="CENTER">
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0" />
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="250.0" spacing="15.0">
+                                       <children>
+                                          <Label text="%label.dataDoisPontos">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <DatePicker />
+                                       </children>
+                                    </HBox>
+                                 </children></HBox>
+                              <TableView>
+                                <columns>
+                                  <TableColumn prefWidth="100.0" text="%tableColumn.horario" />
+                                  <TableColumn prefWidth="130.0" text="Dia da Semana" />
+                                </columns>
+                              </TableView>
                            </children>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding>
                         </VBox>
                      </left>
+                     <right>
+                        <VBox prefHeight="689.0" prefWidth="613.0" spacing="10.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="503.0">
+                                 <children>
+                                    <Label alignment="BOTTOM_CENTER" text="%label.softwares">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="49.0" prefWidth="503.0" spacing="8.0">
+                                 <children>
+                                    <TextField prefHeight="25.0" prefWidth="424.0" />
+                                    <Button mnemonicParsing="false" prefWidth="70.0" text="%button.buscar" />
+                                 </children>
+                              </HBox>
+                              <TableView prefHeight="400.0" prefWidth="503.0">
+                                <columns>
+                                  <TableColumn prefWidth="45.0" />
+                                  <TableColumn prefWidth="200.0" text="%tableColumn.nome" />
+                                    <TableColumn minWidth="0.0" prefWidth="200.0" text="%tableColumn.tipo" />
+                                </columns>
+                              </TableView>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <Label text="%label.numMaxAlunos">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField prefHeight="25.0" prefWidth="35.0" />
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="298.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" text="%button.proximo" />
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </HBox>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                           </children>
+                           <opaqueInsets>
+                              <Insets left="20.0" />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets right="110.0" />
+                           </padding>
+                        </VBox>
+                     </right>
                   </BorderPane>
                </content>
           </Tab>
