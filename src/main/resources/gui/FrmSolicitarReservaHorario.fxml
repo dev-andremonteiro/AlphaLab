@@ -49,7 +49,7 @@
                         </HBox>
                      </top>
                      <center>
-                        <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="TBLHorarios" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                           <columns>
                             <TableColumn maxWidth="125.0" prefWidth="134.0" resizable="false" text="%tableColumn.horario" />
                             <TableColumn maxWidth="125.0" prefWidth="134.0" resizable="false" text="%tableColumn.segunda" />
@@ -83,11 +83,11 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <DatePicker />
+                                          <DatePicker fx:id="DTPData" />
                                        </children>
                                     </HBox>
                                  </children></HBox>
-                              <TableView>
+                              <TableView fx:id="TBLHorarioRequisitos" prefHeight="540.0" prefWidth="270.0">
                                 <columns>
                                   <TableColumn prefWidth="100.0" text="%tableColumn.horario" />
                                   <TableColumn prefWidth="130.0" text="Dia da Semana" />
@@ -102,7 +102,7 @@
                      <right>
                         <VBox prefHeight="689.0" prefWidth="613.0" spacing="10.0" BorderPane.alignment="CENTER">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="503.0">
+                              <HBox alignment="BOTTOM_LEFT" prefHeight="60.0" prefWidth="503.0">
                                  <children>
                                     <Label alignment="BOTTOM_CENTER" text="%label.softwares">
                                        <font>
@@ -111,30 +111,30 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <HBox prefHeight="49.0" prefWidth="503.0" spacing="8.0">
+                              <HBox prefHeight="32.0" prefWidth="503.0" spacing="8.0">
                                  <children>
-                                    <TextField prefHeight="25.0" prefWidth="424.0" />
-                                    <Button mnemonicParsing="false" prefWidth="70.0" text="%button.buscar" />
+                                    <TextField fx:id="TXTNomeSoftware" prefHeight="25.0" prefWidth="424.0" />
+                                    <Button fx:id="BTNBuscar" mnemonicParsing="false" prefWidth="70.0" text="%button.buscar" />
                                  </children>
                               </HBox>
-                              <TableView prefHeight="400.0" prefWidth="503.0">
+                              <TableView fx:id="TBLRequisitos" prefHeight="400.0" prefWidth="503.0">
                                 <columns>
                                   <TableColumn prefWidth="45.0" />
                                   <TableColumn prefWidth="200.0" text="%tableColumn.nome" />
                                     <TableColumn minWidth="0.0" prefWidth="200.0" text="%tableColumn.tipo" />
                                 </columns>
                               </TableView>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="503.0" spacing="10.0">
                                  <children>
                                     <Label text="%label.numMaxAlunos">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField prefHeight="25.0" prefWidth="35.0" />
+                                    <TextField fx:id="TXTNumMaxAlunos" prefHeight="25.0" prefWidth="35.0" />
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="298.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text="%button.proximo" />
+                                          <Button fx:id="BTNProximo" mnemonicParsing="false" text="%button.proximo" />
                                        </children>
                                        <opaqueInsets>
                                           <Insets />
