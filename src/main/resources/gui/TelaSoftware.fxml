@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<GridPane alignment="CENTER" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="213.0" minHeight="10.0" prefHeight="213.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="416.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Text fx:id="textTitulo" strokeType="OUTSIDE" strokeWidth="0.0" text="%text.tituloGerenciaSoftware" wrappingWidth="200.423828125" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="1024.0" spacing="15.0" GridPane.rowIndex="1">
+         <children>
+            <Label fx:id="lblLaboratorio" text="%label.laboratorio" />
+            <ChoiceBox fx:id="chbLaboratorio" maxWidth="1.7976931348623157E308" prefWidth="150.0" />
+         </children>
+      </HBox>
+      <GridPane hgap="10.0" maxWidth="1.7976931348623157E308" vgap="10.0" GridPane.rowIndex="2">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="250.0" prefWidth="250.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="215.0" prefWidth="215.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="lblDescricao" text="%lbl.descricao" GridPane.halignment="RIGHT" />
+            <Label fx:id="lblObservacao" text="%lbl.observacaoInstalacao" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <TextField fx:id="txtDescricao" GridPane.columnIndex="1" />
+            <TextArea fx:id="txaObservacao" prefHeight="73.0" prefWidth="251.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+            <Label fx:id="lblLink" text="%lbl.link" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+            <Label fx:id="lblTipo" text="%lbl.tipo" GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
+            <Label fx:id="lblVersao" text="%lbl.versao" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <ChoiceBox fx:id="chbTipo" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="5" />
+            <TextField fx:id="txtLink" prefHeight="26.0" prefWidth="191.0" GridPane.columnIndex="3" />
+            <TextField fx:id="txtVersao" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+              <buttons>
+                <Button fx:id="btnAdd" mnemonicParsing="false" text="add" />
+                  <Button fx:id="btnRemove" mnemonicParsing="false" text="del" />
+              </buttons>
+            </ButtonBar>
+         </children>
+         <GridPane.margin>
+            <Insets bottom="20.0" right="20.0" />
+         </GridPane.margin>
+      </GridPane>
+      <TableView fx:id="tblSoftware" prefHeight="282.0" prefWidth="984.0" GridPane.rowIndex="3">
+        <columns>
+          <TableColumn fx:id="tbcDescricao" prefWidth="268.0" text="%lbl.descricao" />
+          <TableColumn fx:id="tbcVersao" prefWidth="249.0" text="%lbl.versao" />
+            <TableColumn fx:id="tbcTipo" prefWidth="230.0" text="%lbl.tipo" />
+            <TableColumn fx:id="tbcObservacaoInstalacao" prefWidth="274.0" text="%lbl.observacaoInstalacao" />
+        </columns>
+      </TableView>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="4">
+         <children>
+            <Button fx:id="btnSalvar" mnemonicParsing="false" text="%btn.salvar" />
+            <Button fx:id="btnCancelar" mnemonicParsing="false" text="%btn.cancelar" />
+         </children>
+      </HBox>
+   </children>
+</GridPane>
