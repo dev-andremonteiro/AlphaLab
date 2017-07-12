@@ -2,17 +2,23 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <top>
@@ -92,25 +98,108 @@
                      </top>
                      <center>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                           <bottom>
-                              <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="1024.0" spacing="20.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Button fx:id="BTNCancelar" mnemonicParsing="false" prefWidth="70.0" text="%button.cancelar" />
-                                    <Button fx:id="BTNConfirmar" mnemonicParsing="false" prefWidth="70.0" text="%button.confirmar" />
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets right="80.0" />
-                                 </padding>
-                              </HBox>
-                           </bottom>
                            <left>
-                              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+                              <VBox prefHeight="389.0" prefWidth="470.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <GridPane prefHeight="213.0" prefWidth="312.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="88.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="376.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label alignment="CENTER" prefHeight="119.0" prefWidth="223.0" text="%label.disciplina" />
+                                          <Label alignment="CENTER" prefHeight="104.0" prefWidth="195.0" text="%label.departamento" GridPane.rowIndex="1" />
+                                          <Label alignment="CENTER" prefHeight="91.0" prefWidth="201.0" text="%label.turma" GridPane.rowIndex="2" />
+                                          <Label alignment="TOP_CENTER" prefHeight="103.0" prefWidth="227.0" text="%label.observacao" GridPane.rowIndex="3" />
+                                          <Pane prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <children>
+                                                <TextArea fx:id="TXAObservacao" prefHeight="74.0" prefWidth="250.0" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <children>
+                                                <TextField fx:id="TXTTurma" layoutY="8.0" prefWidth="250.0" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <children>
+                                                <ChoiceBox fx:id="CHBDepartamento" layoutY="8.0" prefWidth="250.0" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                             <children>
+                                                <TextField fx:id="TXTDisciplina" layoutY="8.0" prefHeight="25.0" prefWidth="250.0" />
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                                 <BorderPane.margin>
+                                    <Insets left="60.0" />
+                                 </BorderPane.margin></VBox>
                            </left>
                            <right>
-                              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+                              <VBox prefHeight="389.0" prefWidth="284.0" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets right="200.0" />
+                                 </BorderPane.margin>
+                                 <children>
+                                    <GridPane prefHeight="143.0" prefWidth="470.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="115.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="388.0" minWidth="10.0" prefWidth="216.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label alignment="CENTER_RIGHT" prefHeight="119.0" prefWidth="223.0" text="%label.repeticao" />
+                                          <Label alignment="CENTER_RIGHT" prefHeight="104.0" prefWidth="195.0" text="%label.reservaACada" GridPane.rowIndex="1" />
+                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="376.0" spacing="10.0">
+                                                   <children>
+                                                      <ChoiceBox fx:id="CHBReserva" prefHeight="25.0" prefWidth="50.0" />
+                                                      <Text fx:id="TEXReserva" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="130.13671875" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="5.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="378.0">
+                                                   <children>
+                                                      <ChoiceBox fx:id="CHBRepeticao" prefHeight="25.0" prefWidth="188.0" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="5.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </GridPane>
+                                    <BorderPane prefHeight="300.0" prefWidth="284.0">
+                                       <bottom>
+                                          <HBox alignment="TOP_RIGHT" prefHeight="144.0" prefWidth="235.0" spacing="20.0" BorderPane.alignment="CENTER_RIGHT">
+                                             <children>
+                                                <Button fx:id="BTNCancelar" mnemonicParsing="false" prefWidth="70.0" text="%button.cancelar" />
+                                                <Button fx:id="BTNConfirmar" mnemonicParsing="false" prefWidth="70.0" text="%button.confirmar" />
+                                             </children>
+                                          </HBox>
+                                       </bottom>
+                                    </BorderPane>
+                                 </children></VBox>
                            </right>
                         </BorderPane>
                      </center>
