@@ -32,7 +32,6 @@
                     <mainClass>br.edu.ifmt.cba.alphalab.gui.javafx.Main</mainClass>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
@@ -64,13 +63,34 @@
                     <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                 </configuration>
             </plugin>
-
-
+           
             <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-javadoc-plugin</artifactId> 
             <version>2.10.3</version> </plugin> -->
+            
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <!-- select non-aggregate reports -->
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            
+          
         </plugins>
-    </reporting>
+    </reporting>    
     <dependencies>
+        
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.7.9</version>
+        </dependency>
+        
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
