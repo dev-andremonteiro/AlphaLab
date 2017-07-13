@@ -1,23 +1,13 @@
 package br.edu.ifmt.cba.alphalab.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 import br.edu.ifmt.cba.alphalab.entity.exception.ClienteException;
 
 //@Entity
-@Table(name="cliente")
+
 public class ClienteEntity implements IEntity<ClienteException> {
 	
-	@Id
-    @SequenceGenerator(name="idcliente_seq", sequenceName="idcliente_seq", allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="idcliente_seq")
-    @Column(updatable=false)	
+
 	private Long id;
 	private String nome;
 	private String email;
