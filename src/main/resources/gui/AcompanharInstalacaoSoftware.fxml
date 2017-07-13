@@ -32,7 +32,7 @@
             <DatePicker fx:id="dtpDataPedido" prefHeight="26.0" prefWidth="142.0" />
             <Label fx:id="lblLaboratorio" text="%lbl.laboratorio" />
             <ChoiceBox fx:id="chbLaboratorio" prefHeight="26.0" prefWidth="210.0" />
-            <Button fx:id="btnPesquisar" mnemonicParsing="false" text="%btn.pesquisar" />
+            <Button fx:id="btnPesquisar" mnemonicParsing="false" text="%button.pesquisar" />
          </children>
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

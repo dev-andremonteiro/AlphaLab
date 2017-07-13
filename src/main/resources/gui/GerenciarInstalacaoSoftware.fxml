@@ -52,8 +52,8 @@
             <Label fx:id="lblSituacao" text="%lbl.situacao" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Label fx:id="lblDataPedido" text="%lbl.dataPedido" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
             <Label fx:id="lblLaboratorio" text="%lbl.laboratorio" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Button fx:id="btnBuscar" mnemonicParsing="false" text="%btn.buscar" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-            <Button fx:id="btnInstalacao" mnemonicParsing="false" text="%btn.instalcao" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Button fx:id="btnBuscar" mnemonicParsing="false" text="%button.buscar" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+            <Button fx:id="btnInstalacao" mnemonicParsing="false" text="%button.instalcao" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <TextField fx:id="txtProfessor" GridPane.columnIndex="1" />
             <DatePicker fx:id="dtpDataPedido" maxWidth="1.7976931348623157E308" GridPane.columnIndex="3" />
             <ChoiceBox fx:id="chbSituacao" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
