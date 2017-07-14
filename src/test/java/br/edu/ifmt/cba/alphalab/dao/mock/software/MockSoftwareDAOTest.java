@@ -28,7 +28,7 @@ public class MockSoftwareDAOTest {
         SoftwareEntity entity = new SoftwareEntity();
         entity.setDescricao("teste");
         entity.setId(1L);
-        MockSoftwareDAO instance = new MockSoftwareDAO();
+        MockSoftwareDAO instance = MockSoftwareDAO.getInstance();
         instance.save(entity);
     }
 
@@ -39,7 +39,7 @@ public class MockSoftwareDAOTest {
     public void testGetById() {
         System.out.println("getById");
         Long id = 1L;
-        MockSoftwareDAO instance = new MockSoftwareDAO();
+        MockSoftwareDAO instance = MockSoftwareDAO.getInstance();
         SoftwareEntity expResult = null;
         SoftwareEntity result = instance.getById(id);
         assertEquals(id, result.getId());
@@ -52,7 +52,7 @@ public class MockSoftwareDAOTest {
     @Test
     public void testBuscarTodos() {
         System.out.println("buscarTodos");
-        MockSoftwareDAO instance = new MockSoftwareDAO();
+        MockSoftwareDAO instance = MockSoftwareDAO.getInstance();
         List<SoftwareEntity> expResult = null;
         List<SoftwareEntity> result = instance.buscarTodos();
         result.forEach(action->System.out.println(action.getDescricao()));
@@ -67,7 +67,7 @@ public class MockSoftwareDAOTest {
     public void testDelete() {
         System.out.println("delete");
         SoftwareEntity entity = null;
-        MockSoftwareDAO instance = new MockSoftwareDAO();
+        MockSoftwareDAO instance = MockSoftwareDAO.getInstance();
         instance.delete(entity);
         // TODO review the generated test code and remove the default call to fail.
     }

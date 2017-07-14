@@ -7,8 +7,11 @@ package br.edu.ifmt.cba.alphalab.dao.mock.software;
 
 import br.edu.ifmt.cba.alphalab.dao.ISoftwareDAO;
 import br.edu.ifmt.cba.alphalab.entity.exception.SoftwareException;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -16,11 +19,23 @@ import java.util.List;
  * @author tcloss
  */
 public class MockSoftwareDAO implements ISoftwareDAO{
-    
+    private static MockSoftwareDAO instance;
     private static final ArrayList<SoftwareEntity> listaSoftware = new ArrayList<>();
+    
     {
      //listaSoftware.add(new SoftwareEntity());
     }
+    
+    private MockSoftwareDAO(){
+    }
+    
+    public static MockSoftwareDAO getInstance(){
+        if(instance!=null)
+            return instance;
+        else
+            return new MockSoftwareDAO();
+    }
+    
 
     @Override
     public void save(SoftwareEntity entity) {
@@ -48,5 +63,7 @@ public class MockSoftwareDAO implements ISoftwareDAO{
     public List<SoftwareEntity> buscarTodos() {
           return listaSoftware;
     }
+
+
     
 }

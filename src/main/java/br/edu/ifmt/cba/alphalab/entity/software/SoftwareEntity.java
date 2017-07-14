@@ -33,7 +33,7 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
     @Override
     public SoftwareException validar() {
        StringBuilder msg = new StringBuilder();
-        if(descricao.equals(" ")) msg.append("Descricao nao pode ser vazio\n");
+        if(descricao.trim().length()==0) msg.append("Descricao nao pode ser vazio\n");
         
         if( msg.length() >0) {
             return new SoftwareException(msg.toString());
