@@ -134,7 +134,7 @@
                   </BorderPane>
                </content>
             </Tab>
-          <Tab fx:id="tabPreencherDados" text="%tab.preencherDados">
+          <Tab fx:id="tabPreencherDados" closable="false" text="%tab.preencherDados">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <top>

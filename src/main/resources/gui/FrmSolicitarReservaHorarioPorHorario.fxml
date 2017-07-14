@@ -77,7 +77,7 @@
                   </BorderPane>
                </content>
           </Tab>
-            <Tab fx:id="tabPreencherDados" text="%tab.preencherDados">
+            <Tab fx:id="tabPreencherDados" closable="false" text="%tab.preencherDados">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <top>
@@ -208,7 +208,7 @@
                                              <children>
                                                 <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="378.0">
                                                    <children>
-                                                      <ComboBox fx:id="cmbRepeticao" onAction="#cmbRepeticao_onAction" prefWidth="150.0" />
+                                                      <ComboBox fx:id="cmbRepeticao" prefWidth="150.0" />
                                                    </children>
                                                    <padding>
                                                       <Insets left="5.0" />
