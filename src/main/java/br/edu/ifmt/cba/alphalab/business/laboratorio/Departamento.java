@@ -7,7 +7,7 @@ import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 import java.util.List;
 
 
-public class Departamento extends ABusiness<DepartamentoEntity,Exception, IDepartamentoDAO>{
+public class Departamento extends ABusiness<DepartamentoEntity, Exception, IDepartamentoDAO>{
     
      public Departamento(IDAO<DepartamentoEntity> dao) {
         super(dao);
