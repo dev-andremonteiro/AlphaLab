@@ -51,7 +51,7 @@
                               <TableColumn fx:id="tblTipo" editable="false" prefWidth="130.0" resizable="false" text="Tipo" />
                               <TableColumn fx:id="tblFixo" editable="false" prefWidth="70.0" resizable="false" text="Fixo" />
                               <TableColumn fx:id="tblDados" editable="false" minWidth="0.0" prefWidth="222.0" resizable="false" text="Dados" />
-                              <TableColumn fx:id="tblDescricao" editable="false" prefWidth="190.0" resizable="false" text="Descrição" />
+                              <TableColumn fx:id="tblDescricao" editable="false" prefWidth="231.0" resizable="false" text="Descrição" />
                           </columns>
                            <BorderPane.margin>
                               <Insets left="20.0" right="20.0" />
@@ -113,13 +113,13 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cmbLaboratorio" prefWidth="150.0" promptText="%cmb.laboratorio" />
+                                          <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" prefWidth="150.0" promptText="%cmb.laboratorio" />
                                        </children>
                                        <padding>
                                           <Insets left="30.0" top="30.0" />
                                        </padding>
                                     </HBox>
-                                    <HBox fx:id="HBXRequisitos" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <HBox fx:id="hbxRequisitos" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <children>
                                           <Label text="%label.requisitos">
                                              <font>
@@ -219,7 +219,7 @@
                               </VBox>
                               <VBox prefHeight="500.0" prefWidth="600.0" spacing="20.0">
                                  <children>
-                                    <HBox prefHeight="130.0" prefWidth="544.0" spacing="10.0">
+                                    <HBox fx:id="hbxHorarios" prefHeight="130.0" prefWidth="544.0" spacing="10.0">
                                        <children>
                                           <Label text="%label.horarios">
                                              <font>
@@ -230,10 +230,10 @@
                                     </HBox>
                                     <VBox prefHeight="80.0" prefWidth="460.0">
                                        <children>
-                                          <GridPane prefHeight="130.0" prefWidth="460.0">
+                                          <GridPane prefHeight="63.0" prefWidth="600.0">
                                             <columnConstraints>
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="119.0" />
-                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="402.0" minWidth="10.0" prefWidth="341.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="126.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="474.0" />
                                             </columnConstraints>
                                             <rowConstraints>
                                               <RowConstraints minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
@@ -244,19 +244,18 @@
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <CheckBox fx:id="ckbFixo" mnemonicParsing="false" onMouseClicked="#ckbFixo_onMouseClicked" text="Fixo" GridPane.columnIndex="1" />
+                                                <CheckBox fx:id="ckbFixo" mnemonicParsing="false" onAction="#cbkFixo_onAction" onMouseClicked="#ckbFixo_onMouseClicked" text="Fixo" GridPane.columnIndex="1" />
                                              </children>
                                           </GridPane>
-                                          <Pane prefHeight="55.0" prefWidth="460.0" />
                                        </children>
                                     </VBox>
                                     <Pane prefHeight="89.0" prefWidth="460.0">
                                        <children>
                                           <Group layoutX="6.0" layoutY="32.0">
                                              <children>
-                                                <Button fx:id="btnCancelar" mnemonicParsing="false" prefWidth="70.0" text="%button.cancelar" />
-                                                <Button fx:id="btnNegar" layoutX="100.0" mnemonicParsing="false" prefWidth="70.0" text="%button.negar" />
-                                                <Button fx:id="btnPermitir" layoutX="200.0" mnemonicParsing="false" prefWidth="70.0" text="%button.permitir" />
+                                                <Button fx:id="btnCancelar" mnemonicParsing="false" onKeyPressed="#btnCancelar_onAction" onMouseClicked="#btnCancelar_onAction" prefWidth="70.0" text="%button.cancelar" />
+                                                <Button fx:id="btnNegar" layoutX="100.0" mnemonicParsing="false" onKeyPressed="#btnNegar_onAction" onMouseClicked="#btnNegar_onAction" prefWidth="70.0" text="%button.negar" />
+                                                <Button fx:id="btnPermitir" layoutX="200.0" mnemonicParsing="false" onKeyPressed="#btnPermitir_onAction" onMouseClicked="#btnPermitir_onAction" prefWidth="70.0" text="%button.permitir" />
                                              </children>
                                           </Group>
                                        </children>
