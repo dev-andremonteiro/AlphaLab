@@ -1,9 +1,10 @@
 package br.edu.ifmt.cba.alphalab.entity.laboratorio;
 
 import br.edu.ifmt.cba.alphalab.entity.IEntity;
+import br.edu.ifmt.cba.alphalab.entity.exception.DepartamentoException;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 
-public class DepartamentoEntity implements IEntity {
+public class DepartamentoEntity implements IEntity<DepartamentoException> {
 
     private Long id;
 
@@ -21,7 +22,7 @@ public class DepartamentoEntity implements IEntity {
     }
 
     @Override
-    public Object validar() {
+    public DepartamentoException validar() {
         return null;
     }
 
