@@ -1,5 +1,6 @@
 package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IRequisitoDAO;
@@ -7,6 +8,17 @@ import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 
 public class MockRequisitoDAO implements IRequisitoDAO {
 
+	private static List<RequisitoEntity> requisitos = new ArrayList<>();
+	
+	static {
+		//List<SoftwareEntity> softwares = new ArrayList<>();
+		//requisitos.add(new RequisitoEntity(1L, 15, ));
+		//requisitos.add(new RequisitoEntity(2L, 40));
+		//requisitos.add(new RequisitoEntity(3L, 10));
+		//requisitos.add(new RequisitoEntity(4L, 25));
+		//requisitos.add(new RequisitoEntity(5L, 40));
+	}
+	
 	private static MockRequisitoDAO singleton = null;
 
 	private MockRequisitoDAO(){	}
@@ -20,19 +32,21 @@ public class MockRequisitoDAO implements IRequisitoDAO {
 
 	@Override
 	public void save(RequisitoEntity entity) {
-		// TODO Auto-generated method stub
-
+		if (requisitos.indexOf(entity) < 0) {
+			requisitos.add(entity);
+		}
 	}
 
 	@Override
 	public void delete(RequisitoEntity entity) {
-		// TODO Auto-generated method stub
-
+		requisitos.remove(entity);
 	}
 
 	@Override
 	public RequisitoEntity getById(Long id) {
-		// TODO Auto-generated method stub
+		for (RequisitoEntity vo : requisitos)
+			if (vo.getId().equals(id))
+				return vo;
 		return null;
 	}
 

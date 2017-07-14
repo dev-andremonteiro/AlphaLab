@@ -13,7 +13,14 @@ public class RequisitoEntity implements IEntity<RequisitoException> {
 
     private ArrayList<SoftwareEntity> softwares;
 
-    @Override
+    public RequisitoEntity(Long id, int qtdAlunos, ArrayList<SoftwareEntity> softwares) {
+		super();
+		this.id = id;
+		this.qtdAlunos = qtdAlunos;
+		this.softwares = softwares;
+	}
+
+	@Override
     public Long getId() {
         return id;
     }
