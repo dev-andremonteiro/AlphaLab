@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label prefHeight="65.0" prefWidth="243.0" text="%label.equipamentos" textAlignment="CENTER" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+   </top>
+   <left>
+      <TabPane prefHeight="645.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="%tab.equipamento">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="50.0" right="10.0" top="50.0" />
+                           </padding>
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin>
+                           <children>
+                              <TextField prefHeight="27.0" prefWidth="145.0" promptText="%txt.descricao">
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </TextField>
+                              <TextField prefHeight="27.0" prefWidth="145.0" promptText="%txt.patrimonio">
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </TextField>
+                              <ChoiceBox prefHeight="3.0" prefWidth="150.0">
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </ChoiceBox>
+                              <ChoiceBox prefHeight="3.0" prefWidth="150.0">
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </ChoiceBox>
+                           </children>
+                        </HBox>
+                     </top>
+                     <center>
+                        <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn prefWidth="180.0" text="%tab.descricao" />
+                            <TableColumn prefWidth="198.0" text="%tab.patrimonio" />
+                              <TableColumn prefWidth="234.0" text="%tab.tipo" />
+                              <TableColumn prefWidth="255.0" text="%tab.lotacao" />
+                              <TableColumn prefWidth="156.0" text="%tab.quantidade" />
+                          </columns>
+                        </TableView>
+                     </center>
+                     <bottom>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="BOTTOM_RIGHT">
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                           <children>
+                              <Button mnemonicParsing="false" text="%button.novo">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" text="%button.baixa">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" text="%button.cancelar" />
+                           </children>
+                        </HBox>
+                     </bottom>
+                  </BorderPane>
+               </content>
+          </Tab>
+          <Tab text="%tab..geranciarEquipamento">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <VBox prefHeight="578.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" text="%ckb.bemConsumo">
+                                       <HBox.margin>
+                                          <Insets left="50.0" top="30.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="120.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefWidth="100.0" text="%label.descricao">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField prefHeight="20.0" prefWidth="200.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="120.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefWidth="100.0" text="%label.patrimonio">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField prefWidth="200.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="120.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefWidth="100.0" text="%label.quantidade">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField prefHeight="20.0" prefWidth="200.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="120.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefWidth="100.0" text="%label.lotacao">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <ChoiceBox prefHeight="20.0" prefWidth="200.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="120.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefWidth="100.0" text="%label.tipo">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <ChoiceBox prefHeight="20.0" prefWidth="200.0">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </ChoiceBox>
+                                    <Button mnemonicParsing="false" text="%button.plus" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="120.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="100.0" text="%label.dataAquisicao">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField prefHeight="20.0" prefWidth="200.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="120.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefWidth="100.0" text="%label.observacao">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField prefHeight="20.0" prefWidth="200.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="120.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </top>
+                     <bottom>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button mnemonicParsing="false" text="%button.salvar" />
+                              <Button mnemonicParsing="false" text="%button.baixa" />
+                              <Button mnemonicParsing="false" text="%button.cancelar" />
+                           </children>
+                           <padding>
+                              <Insets left="200.0" />
+                           </padding>
+                        </HBox>
+                     </bottom>
+                  </BorderPane>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </left>
+</BorderPane>
