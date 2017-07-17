@@ -84,7 +84,7 @@
                               <ChoiceBox fx:id="chbManutencaoTipoSoftware" prefWidth="150.0" />
                               <Label fx:id="lblManutencaoNome" text="%lbl.SoftwareNome" />
                               <TextField fx:id="txtManutencaoSoftware" />
-                              <Button fx:id="btnManutencaoPesquisar" mnemonicParsing="false" text="%btn.pesquisar" />
+                              <Button fx:id="btnManutencaoPesquisar" mnemonicParsing="false" text="%button.pesquisar" />
                            </children>
                         </HBox>
                         <TableView fx:id="tblManutencaoSoftware" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -94,7 +94,7 @@
                               <TableColumn fx:id="tbcVersao" minWidth="0.0" prefWidth="97.0" text="%lbl.versao" />
                               <TableColumn fx:id="tbcLink" prefWidth="248.0" text="%lbl.link" />
                               <TableColumn fx:id="tbcTipo" prefWidth="113.0" text="%lbl.tipo" />
-                              <TableColumn fx:id="tbcObservacao" prefHeight="200.0" prefWidth="268.0" text="%lbl.observacaoSoftware" />
+                              <TableColumn fx:id="tbcObservacao" prefWidth="268.0" text="%lbl.observacaoSoftware" />
                           </columns>
                         </TableView>
                      </children>
