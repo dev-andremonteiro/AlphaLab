@@ -32,6 +32,27 @@
                     <mainClass>br.edu.ifmt.cba.alphalab.gui.javafx.Main</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.9</version>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+           
         </plugins>
     </build>
 
@@ -66,10 +87,10 @@
            
             <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-javadoc-plugin</artifactId> 
             <version>2.10.3</version> </plugin> -->
-            
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.9</version>
                 <reportSets>
                     <reportSet>
                         <reports>
@@ -79,8 +100,8 @@
                     </reportSet>
                 </reportSets>
             </plugin>
-            
-          
+
+
         </plugins>
     </reporting>    
     <dependencies>
