@@ -42,23 +42,19 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <left>
-                        <VBox prefHeight="689.0" prefWidth="310.0" BorderPane.alignment="CENTER">
+                        <VBox prefHeight="689.0" prefWidth="400.0" BorderPane.alignment="CENTER">
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0" spacing="15.0">
                                  <children>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="250.0" spacing="15.0">
-                                       <children>
-                                          <Label text="%label.dataDoisPontos">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <DatePicker fx:id="dtpData" onAction="#dtpData_onAction" />
-                                       </children>
-                                    </HBox>
+                                    <Label text="%label.dataDoisPontos">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker fx:id="dtpData" onAction="#dtpData_onAction" />
                                  </children>
                               </HBox>
-                              <TableView fx:id="tblHorarioRequisitos" prefHeight="540.0" prefWidth="270.0">
+                              <TableView fx:id="tblHorarioRequisitos" prefHeight="450.0" prefWidth="350.0">
                                  <columns>
                                     <TableColumn fx:id="tbcHorario" prefWidth="100.0" text="%column.horario" />
                                     <TableColumn fx:id="tbcDiaSemana" prefWidth="130.0" text="Dia da Semana" />
@@ -69,14 +65,14 @@
                               </TableView>
                            </children>
                            <padding>
-                              <Insets left="40.0" />
+                              <Insets left="50.0" />
                            </padding>
                         </VBox>
                      </left>
                      <right>
-                        <VBox prefHeight="689.0" prefWidth="613.0" spacing="10.0" BorderPane.alignment="CENTER">
+                        <VBox prefHeight="689.0" prefWidth="551.0" spacing="10.0" BorderPane.alignment="CENTER">
                            <children>
-                              <HBox alignment="BOTTOM_LEFT" prefHeight="60.0" prefWidth="503.0">
+                              <HBox alignment="BOTTOM_LEFT" prefHeight="58.0" prefWidth="501.0">
                                  <children>
                                     <Label alignment="BOTTOM_CENTER" text="%label.softwares">
                                        <font>
@@ -91,7 +87,7 @@
                                     <Button fx:id="btnBuscar" mnemonicParsing="false" onKeyPressed="#btnBuscar_onKeyPressed" onMouseClicked="#btnBuscar_onMouseClicked" prefWidth="70.0" text="%button.buscar" />
                                  </children>
                               </HBox>
-                              <TableView fx:id="tblRequisitos" prefHeight="400.0" prefWidth="503.0">
+                              <TableView fx:id="tblRequisitos" prefHeight="439.0" prefWidth="503.0">
                                  <columns>
                                     <TableColumn fx:id="tbcSelecionado" maxWidth="50.0" prefWidth="200.0" />
                                     <TableColumn fx:id="tbcNome" maxWidth="250.0" prefWidth="287.0" text="%column.nome" />
@@ -101,7 +97,7 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="503.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="475.0" spacing="10.0">
                                  <children>
                                     <Label text="%label.numMaxAlunos">
                                        <font>
@@ -109,9 +105,9 @@
                                        </font>
                                     </Label>
                                     <TextField fx:id="txtNumMaxAlunos" prefHeight="25.0" prefWidth="35.0" />
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="298.0">
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="296.0">
                                        <children>
-                                          <Button fx:id="btnProximoRequisitos" mnemonicParsing="false" onKeyPressed="#btnProximoRequisitos_onKeyPressed" onMouseClicked="#btnProximoRequisitos_onMouseClicked" prefWidth="70.0" text="%button.proximo" />
+                                          <Button fx:id="btnProximoRequisitos" mnemonicParsing="false" onAction="#btnProximoRequisitos_onAction" onKeyPressed="#btnProximoRequisitos_onKeyPressed" onMouseClicked="#btnProximoRequisitos_onMouseClicked" prefWidth="70.0" text="%button.proximo" />
                                        </children>
                                        <opaqueInsets>
                                           <Insets />
@@ -127,7 +123,7 @@
                               <Insets left="20.0" />
                            </opaqueInsets>
                            <padding>
-                              <Insets right="110.0" />
+                              <Insets right="50.0" />
                            </padding>
                         </VBox>
                      </right>
@@ -149,14 +145,14 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Text fx:id="txtRequisitos" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                          <Text fx:id="texRequisitos" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Text>
                                        </children>
                                     </HBox>
-                                    <HBox fx:id="hbxHorarios" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="475.0">
+                                    <HBox fx:id="hbxHorarios" alignment="CENTER_LEFT" prefHeight="190.0" prefWidth="710.0" spacing="20.0">
                                        <children>
                                           <Label text="%label.horarios">
                                              <font>
@@ -202,14 +198,9 @@
                                           <Label alignment="CENTER" prefHeight="104.0" prefWidth="195.0" text="%label.departamento" GridPane.rowIndex="1" />
                                           <Label alignment="CENTER" prefHeight="91.0" prefWidth="201.0" text="%label.turma" GridPane.rowIndex="2" />
                                           <Label alignment="TOP_CENTER" prefHeight="103.0" prefWidth="227.0" text="%label.observacao" GridPane.rowIndex="3" />
-                                          <Pane prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1">
                                              <children>
-                                                <TextArea fx:id="txaObservacao" prefHeight="74.0" prefWidth="250.0" />
-                                             </children>
-                                          </Pane>
-                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                             <children>
-                                                <TextField fx:id="txtTurma" layoutY="8.0" prefWidth="250.0" />
+                                                <TextField fx:id="txtDisciplina" layoutY="8.0" prefHeight="25.0" prefWidth="250.0" />
                                              </children>
                                           </Pane>
                                           <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -217,9 +208,14 @@
                                                 <ComboBox fx:id="cmbDepartamento" layoutY="8.0" prefHeight="25.0" prefWidth="250.0" />
                                              </children>
                                           </Pane>
-                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                              <children>
-                                                <TextField fx:id="txtDisciplina" layoutY="8.0" prefHeight="25.0" prefWidth="250.0" />
+                                                <TextField fx:id="txtTurma" layoutY="8.0" prefWidth="250.0" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <children>
+                                                <TextArea fx:id="txaObservacao" prefHeight="74.0" prefWidth="250.0" />
                                              </children>
                                           </Pane>
                                        </children>
@@ -247,12 +243,11 @@
                                        <children>
                                           <Label alignment="CENTER_RIGHT" prefHeight="119.0" prefWidth="223.0" text="%label.repeticao" />
                                           <Label alignment="CENTER_RIGHT" prefHeight="104.0" prefWidth="195.0" text="%label.reservaACada" GridPane.rowIndex="1" />
-                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1">
                                              <children>
-                                                <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="376.0" spacing="10.0">
+                                                <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="378.0">
                                                    <children>
-                                                      <ComboBox fx:id="cmbReserva" prefHeight="25.0" prefWidth="60.0" />
-                                                      <Text fx:id="texReserva" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="130.13671875" />
+                                                      <ComboBox fx:id="cmbRepeticao" prefWidth="150.0" />
                                                    </children>
                                                    <padding>
                                                       <Insets left="5.0" />
@@ -260,11 +255,12 @@
                                                 </HBox>
                                              </children>
                                           </Pane>
-                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <children>
-                                                <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="378.0">
+                                                <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="376.0" spacing="10.0">
                                                    <children>
-                                                      <ComboBox fx:id="cmbRepeticao" onAction="#cmbRepeticao_onAction" prefWidth="150.0" />
+                                                      <ComboBox fx:id="cmbReserva" prefHeight="25.0" prefWidth="60.0" />
+                                                      <Text fx:id="texReserva" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="130.13671875" />
                                                    </children>
                                                    <padding>
                                                       <Insets left="5.0" />
