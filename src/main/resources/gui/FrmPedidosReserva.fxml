@@ -43,7 +43,7 @@
                         </HBox>
                      </top>
                      <center>
-                        <TableView fx:id="tblPedidos" onMouseClicked="#tblPedidos_onMouseClicked" prefHeight="537.0" prefWidth="965.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="tblPedidos" onKeyPressed="#tblPedidos_onKeyPressed" onMouseClicked="#tblPedidos_onMouseClicked" prefHeight="537.0" prefWidth="965.0" BorderPane.alignment="CENTER">
                           <columns>
                             <TableColumn fx:id="tbcID" editable="false" maxWidth="70.0" prefWidth="70.0" resizable="false" text="ID" />
                             <TableColumn fx:id="tbcHorario" editable="false" maxWidth="130.0" prefWidth="130.0" resizable="false" text="Horário" />
