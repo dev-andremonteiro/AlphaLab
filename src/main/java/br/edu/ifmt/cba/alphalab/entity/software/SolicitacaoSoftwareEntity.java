@@ -7,6 +7,7 @@ package br.edu.ifmt.cba.alphalab.entity.software;
 
 import br.edu.ifmt.cba.alphalab.entity.IEntity;
 import br.edu.ifmt.cba.alphalab.entity.exception.SoftwareException;
+import br.edu.ifmt.cba.alphalab.entity.exception.SolicitacaoSoftwareException;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.Calendar;
  *
  * @author tcloss
  */
-public class SolicitacaoSoftwareEntity implements IEntity<SoftwareException>{
+public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareException>{
     private long id;
     private ArrayList<SoftwareEntity> softwares;
     private LaboratorioEntity laboratorio;
@@ -76,7 +77,7 @@ public class SolicitacaoSoftwareEntity implements IEntity<SoftwareException>{
         
 
     @Override
-    public SoftwareException validar() {
+    public SolicitacaoSoftwareException validar() {
         return null;
     }
 
