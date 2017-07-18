@@ -44,9 +44,9 @@
                      <top>
                         <HBox prefHeight="82.0" prefWidth="1024.0" spacing="20.0" BorderPane.alignment="CENTER">
                            <children>
-                              <ComboBox fx:id="cmbLaboratorio" onAction="#cmLaboratorio_onAction" prefWidth="150.0" promptText="%cmb.laboratorio" />
+                              <ComboBox fx:id="cmbLaboratorio" prefWidth="150.0" promptText="%cmb.laboratorio" />
                               <StackPane prefHeight="52.0" prefWidth="470.0" />
-                              <DatePicker fx:id="dtpData" onAction="#dtpData_onAction" promptText="%dtp.data" />
+                              <DatePicker fx:id="dtpData" onAction="#dtpData_onAction" onKeyPressed="#dtpData_onKeyPressed" promptText="%dtp.data" />
                               <Button fx:id="btnProximoHorarios" mnemonicParsing="false" onKeyPressed="#btnProximoHorarios_onKeyPressed" onMouseClicked="#btnProximoHorarios_onMouseClicked" prefWidth="70.0" text="%button.proximo" />
                            </children>
                            <padding>
@@ -58,7 +58,7 @@
                         </HBox>
                      </top>
                      <center>
-                        <TableView fx:id="tblHorarios" prefHeight="607.0" prefWidth="916.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="tblHorarios" onKeyPressed="#tblHorarios_onKeyPressed" onMouseClicked="#tblHorarios_onKeyPressed" prefHeight="607.0" prefWidth="916.0" BorderPane.alignment="CENTER">
                           <columns>
                             <TableColumn fx:id="tbcHorario" maxWidth="115.0" prefWidth="115.0" resizable="false" text="%column.horario" />
                             <TableColumn fx:id="tbcSegunda" maxWidth="115.0" prefWidth="115.0" resizable="false" text="%column.segunda" />
@@ -150,22 +150,22 @@
                                           <Label alignment="TOP_CENTER" prefHeight="103.0" prefWidth="227.0" text="%label.observacao" GridPane.rowIndex="3" />
                                           <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1">
                                              <children>
-                                                <TextField fx:id="txtDisciplina" layoutY="8.0" prefHeight="25.0" prefWidth="250.0" />
+                                                <TextField fx:id="txtDisciplina" layoutY="8.0" onKeyPressed="#txtDisciplina_onKeyPressed" prefHeight="25.0" prefWidth="250.0" />
                                              </children>
                                           </Pane>
                                           <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <children>
-                                                <ComboBox fx:id="cmbDepartamento" layoutY="8.0" prefHeight="25.0" prefWidth="250.0" />
+                                                <ComboBox fx:id="cmbDepartamento" layoutY="8.0" onAction="#cmbDepartamento_onAction" prefHeight="25.0" prefWidth="250.0" />
                                              </children>
                                           </Pane>
                                           <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                              <children>
-                                                <TextField fx:id="txtTurma" layoutY="8.0" prefWidth="250.0" />
+                                                <TextField fx:id="txtTurma" layoutY="8.0" onKeyPressed="#txtTurma_onKeyPressed" prefWidth="250.0" />
                                              </children>
                                           </Pane>
                                           <Pane prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <children>
-                                                <TextArea fx:id="txaObservacao" prefHeight="74.0" prefWidth="250.0" />
+                                                <TextArea fx:id="txaObservacao" onKeyPressed="#txaObservacao_onKeyPressed" prefHeight="74.0" prefWidth="250.0" />
                                              </children>
                                           </Pane>
                                        </children>
@@ -198,7 +198,7 @@
                                              <children>
                                                 <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="378.0">
                                                    <children>
-                                                      <ComboBox fx:id="cmbRepeticao" prefWidth="150.0" />
+                                                      <ComboBox fx:id="cmbRepeticao" onAction="#cmbRepeticao_onAction" prefWidth="150.0" />
                                                    </children>
                                                    <padding>
                                                       <Insets left="5.0" />
@@ -210,7 +210,7 @@
                                              <children>
                                                 <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="376.0" spacing="10.0">
                                                    <children>
-                                                      <ComboBox fx:id="cmbReserva" prefHeight="25.0" prefWidth="60.0" />
+                                                      <ComboBox fx:id="cmbReserva" onAction="#cmbReserva_onAction" prefHeight="25.0" prefWidth="60.0" />
                                                       <Text fx:id="texReserva" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="130.13671875" />
                                                    </children>
                                                    <padding>
