@@ -50,4 +50,10 @@ public class MockRequisitoDAO implements IRequisitoDAO {
 		return null;
 	}
 
+	@Override
+	public List<RequisitoEntity> buscarTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
