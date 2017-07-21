@@ -57,7 +57,7 @@ public class MockRequisitoDAO implements IRequisitoDAO {
 	}
 
 	@Override
-	public List<RequisitoEntity> buscarTodos() {
+	public List<RequisitoEntity> buscarTodos() {		
 		return requisitos;
 	}
 }
