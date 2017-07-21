@@ -54,7 +54,7 @@
                               <TableColumn fx:id="tbcDescricao" editable="false" maxWidth="200.0" prefWidth="200.0" resizable="false" text="Descrição" />
                           </columns>
                            <BorderPane.margin>
-                              <Insets left="50.0" right="50.0" />
+                              <Insets bottom="50.0" left="50.0" right="50.0" />
                            </BorderPane.margin>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -113,7 +113,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" prefWidth="150.0" promptText="%cmb.laboratorio" />
+                                          <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" onKeyPressed="#cmdLaboratorio_onKeyPressed" onMouseClicked="#cmbLaboratorio_onMouseClicked" prefWidth="150.0" promptText="%cmb.laboratorio" />
                                        </children>
                                        <padding>
                                           <Insets left="30.0" top="30.0" />
