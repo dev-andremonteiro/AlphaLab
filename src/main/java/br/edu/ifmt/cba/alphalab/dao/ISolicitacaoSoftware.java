@@ -5,14 +5,15 @@
  */
 package br.edu.ifmt.cba.alphalab.dao;
 
-import br.edu.ifmt.cba.alphalab.entity.software.SolicitacaoSoftwareEntity;
+import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
+import br.edu.ifmt.cba.alphalab.entity.software.SolicitacaoInstalacaoEntity;
 
 /**
  *
  * @author tcloss
  */
-public interface ISolicitacaoSoftware extends IDAO<SolicitacaoSoftwareEntity>{
+public interface ISolicitacaoSoftware extends IDAO<SolicitacaoInstalacaoEntity>{
     
-    
+    public void confirmarInstalacaoDeSoftware(SolicitacaoInstalacaoEntity solicitacaoSoftwareEntity, SoftwareEntity softwareEntity);
     
 }

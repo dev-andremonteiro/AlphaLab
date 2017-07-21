@@ -9,12 +9,12 @@ package br.edu.ifmt.cba.alphalab.entity.software;
  *
  * @author tcloss
  */
-public enum situacaoInstalacaoEnum {
+public enum SituacaoInstalacaoEnum {
     EM_ANDAMENTO("Em andamento");
     
 
     private String descricao;
-    private situacaoInstalacaoEnum(String descricao) {
+    private SituacaoInstalacaoEnum(String descricao) {
         this.descricao = descricao;
     }
 

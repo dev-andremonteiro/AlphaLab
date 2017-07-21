@@ -1,30 +1,33 @@
 package br.edu.ifmt.cba.alphalab.entity.software;
 
 import br.edu.ifmt.cba.alphalab.entity.IEntity;
-import br.edu.ifmt.cba.alphalab.entity.exception.ClienteException;
 import br.edu.ifmt.cba.alphalab.entity.exception.SoftwareException;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
+import java.util.Objects;
 
 public class SoftwareEntity implements IEntity<SoftwareException> {
 
     private Long id;
-
-    private Enum status;
-
     private String descricao;
-
-    private String link;
-
     private Enum tipo;
-
-    private String observacao_Instalacao;
-
     private String versao;
-
+    private String link;
+    private String observacao_Instalacao;
+    private Enum status;
     private ServidorEntity solicitante;
-
     private ServidorEntity concluinte;
 
+    public SoftwareEntity(String descricao, Enum tipo, String versao, String link, String observacao_Instalacao, Enum status, ServidorEntity solicitante) {
+        this.descricao = descricao;
+        this.tipo = tipo;
+        this.versao = versao;
+        this.link = link;
+        this.observacao_Instalacao = observacao_Instalacao;
+        this.solicitante = solicitante;
+    }
+    
+    
+    
     @Override
     public Long getId() {
         return id;
@@ -109,5 +112,42 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
 
     public void setConcluinte(ServidorEntity concluinte) {
         this.concluinte = concluinte;
+    }
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.descricao);
+        hash = 53 * hash + Objects.hashCode(this.link);
+        hash = 53 * hash + Objects.hashCode(this.tipo);
+        hash = 53 * hash + Objects.hashCode(this.versao);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SoftwareEntity other = (SoftwareEntity) obj;
+        if (!Objects.equals(this.descricao, other.descricao)) {
+            return false;
+        }
+        if (!Objects.equals(this.link, other.link)) {
+            return false;
+        }
+        if (!Objects.equals(this.versao, other.versao)) {
+            return false;
+        }
+        if (this.tipo != other.tipo) {
+            return false;
+        }
+        return true;
     }
 }
