@@ -25,12 +25,8 @@ public class MockReservaDAO implements IReservaDAO {
 	private static List<ReservaEntity> reservas = new ArrayList<>();
 	private static MockReservaDAO singleton = null;
 
-	/*private static final ReservaEntity reserva1 = new ReservaEntity();	
+	private static final ReservaEntity reserva1 = new ReservaEntity();	
 
-	private static final ServidorEntity servidor1 = new ServidorEntity();	
-
-	private static final DepartamentoEntity departamento1 = new DepartamentoEntity();	
-	
 	private static final LaboratorioEntity laboratorio1 = new LaboratorioEntity();
 	
 	private static final EquipamentoEntity equipamento1 = new EquipamentoEntity(1L, "Projetor");
@@ -38,7 +34,7 @@ public class MockReservaDAO implements IReservaDAO {
 	private static final SoftwareEntity software1 = new SoftwareEntity();
 
 	static {
-		software1.setId(1L);
+		/*software1.setId(1L);
 		
 		
 		departamento1.setId(1L);
@@ -92,9 +88,9 @@ public class MockReservaDAO implements IReservaDAO {
 		}
 		reserva1.setJustificativa("Não há laboratório disponível para extrema urgência!");
 		reserva1.setLaboratorio(laboratorio);
-	
-	}
 	*/
+	}
+	
 
 	private MockReservaDAO() {
 

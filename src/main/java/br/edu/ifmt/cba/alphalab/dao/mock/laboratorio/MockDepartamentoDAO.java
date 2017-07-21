@@ -19,7 +19,7 @@ public class MockDepartamentoDAO implements IDepartamentoDAO {
 		departamento1.setNome("Departamento da Área de Informática");
 		departamento1.setObservacao("Informática");
 		departamento1.setChefe(
-				(ServidorEntity) MockServidorDAO.getInstance().buscarTodos("Augusto César de Oliveira").toArray()[0]);
+				(ServidorEntity) MockServidorDAO.getInstance().getByNome("Augusto César de Oliveira").toArray()[0]);
 
 		listaDepartamentos.add(departamento1);
 	}

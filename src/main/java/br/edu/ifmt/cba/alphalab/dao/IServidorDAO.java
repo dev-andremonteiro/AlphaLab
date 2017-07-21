@@ -10,5 +10,5 @@ import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
  *
  */
 public interface IServidorDAO extends IDAO<ServidorEntity> {
-	public List<ServidorEntity> buscarTodos(String nome);
+	public List<ServidorEntity> getByNome(String nome);
 }

@@ -63,7 +63,7 @@ public class MockServidorDAO implements IServidorDAO {
 	}
 
 	@Override
-	public List<ServidorEntity> buscarTodos(String nome) {
+	public List<ServidorEntity> getByNome(String nome) {
 		ArrayList<ServidorEntity> resultado = new ArrayList<>();
 		for (ServidorEntity vo : servidores)
 			if (vo.getNome().toUpperCase().contains(nome.toUpperCase()))
