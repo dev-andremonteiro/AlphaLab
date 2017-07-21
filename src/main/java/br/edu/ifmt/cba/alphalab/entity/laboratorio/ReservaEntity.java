@@ -198,11 +198,29 @@ public class ReservaEntity implements IEntity<ReservaException> {
 		if (dataFim == null)
 			msg.append("Data final da reserva deve ser informada!\n");
 
+		if (dataInicio != null && dataFim != null) {
+			if (dataInicio.before(dataFim)) {
+				msg.append("Data de início precisa ser menor que a data de final da reserva");
+			}
+		}
+
 		if (dataAprovacaoRecusa == null)
 			msg.append("Data de Aprovação ou Recusa deve ser informada!\n");
 
 		if (justificativa != null || justificativa.trim().length() < 10)
 			msg.append("Justificativa deve possuir pelo menos 10 caracteres!\n");
+
+		if (laboratorio == null)
+			msg.append("Laboratório precisa ser informado!\n");
+
+		if (departamentoAula == null)
+			msg.append("Departamento precisa ser informado!\n");
+
+		if (solicitante == null)
+			msg.append("Servidor solicitante da reserva precisa ser informado!\n");
+
+		if (aprovador == null)
+			msg.append("Servidor aprovador da reserva precisa ser informado!\n");
 
 		if (msg.length() > 0)
 			return new ReservaException(msg.toString());
