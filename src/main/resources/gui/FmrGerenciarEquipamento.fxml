@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <Label prefHeight="65.0" prefWidth="243.0" text="%label.equipamentos" textAlignment="CENTER" BorderPane.alignment="CENTER">
+      <Label prefHeight="65.0" prefWidth="202.0" text="%label.equipamentos" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
    </top>
-   <left>
+   <center>
       <TabPane prefHeight="645.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab text="%tab.equipamento">
@@ -73,17 +81,17 @@
                               <Insets left="10.0" right="10.0" />
                            </padding>
                            <children>
-                              <Button mnemonicParsing="false" text="%button.novo">
+                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="%button.novo">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" text="%button.baixa">
+                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="%button.baixa">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" text="%button.cancelar" />
+                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="%button.cancelar" />
                            </children>
                         </HBox>
                      </bottom>
@@ -222,9 +230,9 @@
                      <bottom>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Button mnemonicParsing="false" text="%button.salvar" />
-                              <Button mnemonicParsing="false" text="%button.baixa" />
-                              <Button mnemonicParsing="false" text="%button.cancelar" />
+                              <Button mnemonicParsing="false" onAction="#btn_salvarOnAction" prefHeight="25.0" prefWidth="93.0" text="%button.salvar" />
+                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="%button.baixa" />
+                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="%button.cancelar" />
                            </children>
                            <padding>
                               <Insets left="200.0" />
@@ -236,5 +244,5 @@
           </Tab>
         </tabs>
       </TabPane>
-   </left>
+   </center>
 </BorderPane>
