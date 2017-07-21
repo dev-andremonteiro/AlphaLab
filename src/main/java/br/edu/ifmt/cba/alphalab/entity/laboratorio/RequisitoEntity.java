@@ -1,19 +1,20 @@
 package br.edu.ifmt.cba.alphalab.entity.laboratorio;
 
+import java.util.ArrayList;
+
 import br.edu.ifmt.cba.alphalab.entity.IEntity;
 import br.edu.ifmt.cba.alphalab.entity.exception.RequisitoException;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
-import java.util.ArrayList;
 
 public class RequisitoEntity implements IEntity<RequisitoException> {
 
-    private Long id;
+	private Long id;
 
-    private int qtdAlunos;
+	private int qtdAlunos;
 
-    private ArrayList<SoftwareEntity> softwares;
+	private ArrayList<SoftwareEntity> softwares;
 
-    public RequisitoEntity(Long id, int qtdAlunos, ArrayList<SoftwareEntity> softwares) {
+	public RequisitoEntity(Long id, int qtdAlunos, ArrayList<SoftwareEntity> softwares) {
 		super();
 		this.id = id;
 		this.qtdAlunos = qtdAlunos;
@@ -21,32 +22,39 @@ public class RequisitoEntity implements IEntity<RequisitoException> {
 	}
 
 	@Override
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    @Override
-    public RequisitoException validar() {
-        return null;
-    }
+	@Override
+	public RequisitoException validar() {
+		StringBuilder msg = new StringBuilder();
+		if (qtdAlunos <= 0)
+			msg.append("Quantidade de alunos inválida!\n");
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+		if (msg.length() > 0)
+			return new RequisitoException(msg.toString());
+		else
+			return null;
+	}
 
-    public int getQtdAlunos() {
-        return qtdAlunos;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setQtdAlunos(int qtdAlunos) {
-        this.qtdAlunos = qtdAlunos;
-    }
+	public int getQtdAlunos() {
+		return qtdAlunos;
+	}
 
-    public ArrayList<SoftwareEntity> getSoftwares() {
-        return softwares;
-    }
+	public void setQtdAlunos(int qtdAlunos) {
+		this.qtdAlunos = qtdAlunos;
+	}
 
-    public void setSoftwares(ArrayList<SoftwareEntity> softwares) {
-        this.softwares = softwares;
-    }
+	public ArrayList<SoftwareEntity> getSoftwares() {
+		return softwares;
+	}
+
+	public void setSoftwares(ArrayList<SoftwareEntity> softwares) {
+		this.softwares = softwares;
+	}
 }
