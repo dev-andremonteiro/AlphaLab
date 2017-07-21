@@ -173,6 +173,5 @@ public class ReservaEntity implements IEntity<ReservaException> {
     @Override
     public ReservaException validar() {
         return null;
-    }
-    
+    }   
 }
