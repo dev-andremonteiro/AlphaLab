@@ -28,7 +28,6 @@ public class MockLaboratorioDAO implements ILaboratorioDAO {
 		/*
 		 * Esperando criação MockEquipamento...
 		 */
-
 	}
 
 	public MockLaboratorioDAO() {
