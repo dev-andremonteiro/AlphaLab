@@ -6,22 +6,28 @@ import java.util.List;
 import br.edu.ifmt.cba.alphalab.dao.IRequisitoDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 
+/**
+ * 
+ * @author Stévillis Sousa
+ *
+ */
+
 public class MockRequisitoDAO implements IRequisitoDAO {
 
 	private static List<RequisitoEntity> requisitos = new ArrayList<>();
-	
-	static {
-		//List<SoftwareEntity> softwares = new ArrayList<>();
-		//requisitos.add(new RequisitoEntity(1L, 15, ));
-		//requisitos.add(new RequisitoEntity(2L, 40));
-		//requisitos.add(new RequisitoEntity(3L, 10));
-		//requisitos.add(new RequisitoEntity(4L, 25));
-		//requisitos.add(new RequisitoEntity(5L, 40));
-	}
-	
 	private static MockRequisitoDAO singleton = null;
 
-	private MockRequisitoDAO(){	}
+	static {
+		// List<SoftwareEntity> softwares = new ArrayList<>();
+		// requisitos.add(new RequisitoEntity(1L, 15, ));
+		// requisitos.add(new RequisitoEntity(2L, 40));
+		// requisitos.add(new RequisitoEntity(3L, 10));
+		// requisitos.add(new RequisitoEntity(4L, 25));
+		// requisitos.add(new RequisitoEntity(5L, 40));
+	}
+
+	private MockRequisitoDAO() {
+	}
 
 	public static MockRequisitoDAO getInstance() {
 		if (singleton == null)
@@ -50,4 +56,8 @@ public class MockRequisitoDAO implements IRequisitoDAO {
 		return null;
 	}
 
+	@Override
+	public List<RequisitoEntity> buscarTodos() {		
+		return requisitos;
+	}
 }

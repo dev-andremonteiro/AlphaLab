@@ -62,4 +62,13 @@ public class DepartamentoEntity implements IEntity<DepartamentoException> {
         this.chefe = chefe;
     }
 
+	/*public DepartamentoEntity(Long id, String sigla, String nome, String observacao, ServidorEntity chefe) {
+		super();
+		this.id = id;
+		this.sigla = sigla;
+		this.nome = nome;
+		this.observacao = observacao;
+		this.chefe = chefe;
+	}*/
+
 }

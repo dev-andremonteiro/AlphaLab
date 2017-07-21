@@ -38,23 +38,23 @@
                               <ComboBox fx:id="cmbProfessor" onAction="#cmbProfessor_onAction" prefWidth="150.0" promptText="%cmb.professor" />
                            </children>
                            <BorderPane.margin>
-                              <Insets bottom="20.0" left="20.0" top="20.0" />
+                              <Insets bottom="20.0" left="50.0" top="20.0" />
                            </BorderPane.margin>
                         </HBox>
                      </top>
                      <center>
-                        <TableView fx:id="tblPedidos" onMouseClicked="#tblPedidos_onMouseClicked" prefHeight="537.0" prefWidth="965.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="tblPedidos" onKeyPressed="#tblPedidos_onKeyPressed" onMouseClicked="#tblPedidos_onMouseClicked" prefHeight="537.0" prefWidth="965.0" BorderPane.alignment="CENTER">
                           <columns>
-                            <TableColumn fx:id="tblID" editable="false" prefWidth="70.0" resizable="false" text="ID" />
-                            <TableColumn fx:id="tblHorario" editable="false" prefWidth="130.0" resizable="false" text="Horário" />
-                              <TableColumn fx:id="tblData" editable="false" prefWidth="130.0" resizable="false" text="Data" />
-                              <TableColumn fx:id="tblTipo" editable="false" prefWidth="130.0" resizable="false" text="Tipo" />
-                              <TableColumn fx:id="tblFixo" editable="false" prefWidth="70.0" resizable="false" text="Fixo" />
-                              <TableColumn fx:id="tblDados" editable="false" minWidth="0.0" prefWidth="222.0" resizable="false" text="Dados" />
-                              <TableColumn fx:id="tblDescricao" editable="false" prefWidth="231.0" resizable="false" text="Descrição" />
+                            <TableColumn fx:id="tbcID" editable="false" maxWidth="70.0" prefWidth="70.0" resizable="false" text="ID" />
+                            <TableColumn fx:id="tbcHorario" editable="false" maxWidth="130.0" prefWidth="130.0" resizable="false" text="Horário" />
+                              <TableColumn fx:id="tbcData" editable="false" maxWidth="130.0" prefWidth="130.0" resizable="false" text="Data" />
+                              <TableColumn fx:id="tbcTipo" editable="false" maxWidth="130.0" prefWidth="130.0" resizable="false" text="Tipo" />
+                              <TableColumn fx:id="tbcFixo" editable="false" maxWidth="70.0" prefWidth="70.0" resizable="false" text="Fixo" />
+                              <TableColumn fx:id="tbcDados" editable="false" maxWidth="182.0" minWidth="0.0" prefWidth="182.0" resizable="false" text="Dados" />
+                              <TableColumn fx:id="tbcDescricao" editable="false" maxWidth="200.0" prefWidth="200.0" resizable="false" text="Descrição" />
                           </columns>
                            <BorderPane.margin>
-                              <Insets left="20.0" right="20.0" />
+                              <Insets bottom="50.0" left="50.0" right="50.0" />
                            </BorderPane.margin>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -113,7 +113,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" prefWidth="150.0" promptText="%cmb.laboratorio" />
+                                          <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" onKeyPressed="#cmdLaboratorio_onKeyPressed" onMouseClicked="#cmbLaboratorio_onMouseClicked" prefWidth="150.0" promptText="%cmb.laboratorio" />
                                        </children>
                                        <padding>
                                           <Insets left="30.0" top="30.0" />
