@@ -29,6 +29,8 @@ public class MockServidorDAO implements IServidorDAO {
 		servidor1.setSenha("kjs8@11");
 		servidor1.setTipo(EnumTipoServidor.PROFESSOR);
 		servidor1.setDepartamento((DepartamentoEntity) MockDepartamentoDAO.getInstance().buscarTodos().toArray()[0]);
+
+		servidores.add(servidor1);
 	}
 
 	public MockServidorDAO() {
@@ -50,7 +52,6 @@ public class MockServidorDAO implements IServidorDAO {
 	@Override
 	public void delete(ServidorEntity entity) {
 		servidores.remove(entity);
-
 	}
 
 	@Override

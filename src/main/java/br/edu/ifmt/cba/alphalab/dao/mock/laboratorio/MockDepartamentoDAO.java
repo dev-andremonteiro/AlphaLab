@@ -1,7 +1,10 @@
 package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 
 import br.edu.ifmt.cba.alphalab.dao.IDepartamentoDAO;
+import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +18,10 @@ public class MockDepartamentoDAO implements IDepartamentoDAO {
 		departamento1.setSigla("DAI");
 		departamento1.setNome("Departamento da Área de Informática");
 		departamento1.setObservacao("Informática");
-		
+		departamento1.setChefe(
+				(ServidorEntity) MockServidorDAO.getInstance().buscarTodos("Augusto César de Oliveira").toArray()[0]);
+
+		listaDepartamentos.add(departamento1);
 	}
 
 	public MockDepartamentoDAO() {
