@@ -7,89 +7,94 @@ import java.util.Date;
 
 public class EquipamentoEntity implements IEntity<EquipamentoException> {
 
-    private Long id;
+	private Long id;
 
-    private String descricao;
+	private String descricao;
 
-    private String patrimonio;
+	private String patrimonio;
 
-    private Enum tipo;
+	private Enum tipo;
 
-    private Date dataAquisicao;
+	private Date dataAquisicao;
 
-    private String observacao;
+	private String observacao;
 
-    private LaboratorioEntity laboratorio;
-    
+	private LaboratorioEntity laboratorio;
 
-    
-    public EquipamentoEntity(Long id,String desc){
-        this.id=id;
-        this.descricao=desc;
-        
-    }
+	public EquipamentoEntity() {
+	}
 
-    @Override
-    public Long getId() {
-        return id;
-    }
+	public EquipamentoEntity(Long id, String descricao, String patrimonio, Enum tipo, Date dataAquisicao,
+			String observacao, LaboratorioEntity laboratorio) {
+		this.id = id;
+		this.descricao = descricao;
+		this.patrimonio = patrimonio;
+		this.tipo = tipo;
+		this.dataAquisicao = dataAquisicao;
+		this.observacao = observacao;
+		this.laboratorio = laboratorio;
+	}
 
-    @Override
-    public EquipamentoException validar() {
-       return null;
-    }
+	@Override
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@Override
+	public EquipamentoException validar() {
+		return null;
+	}
 
-    public String getDescricao() {
-        return descricao;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+	public String getDescricao() {
+		return descricao;
+	}
 
-    public String getPatrimonio() {
-        return patrimonio;
-    }
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
-    public void setPatrimonio(String patrimonio) {
-        this.patrimonio = patrimonio;
-    }
+	public String getPatrimonio() {
+		return patrimonio;
+	}
 
-    public Enum getTipo() {
-        return tipo;
-    }
+	public void setPatrimonio(String patrimonio) {
+		this.patrimonio = patrimonio;
+	}
 
-    public void setTipo(Enum tipo) {
-        this.tipo = tipo;
-    }
+	public Enum getTipo() {
+		return tipo;
+	}
 
-    public Date getDataAquisicao() {
-        return dataAquisicao;
-    }
+	public void setTipo(Enum tipo) {
+		this.tipo = tipo;
+	}
 
-    public void setDataAquisicao(Date dataAquisicao) {
-        this.dataAquisicao = dataAquisicao;
-    }
+	public Date getDataAquisicao() {
+		return dataAquisicao;
+	}
 
-    public String getObservacao() {
-        return observacao;
-    }
+	public void setDataAquisicao(Date dataAquisicao) {
+		this.dataAquisicao = dataAquisicao;
+	}
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
+	public String getObservacao() {
+		return observacao;
+	}
 
-    public LaboratorioEntity getLaboratorio() {
-        return laboratorio;
-    }
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
 
-    public void setLaboratorio(LaboratorioEntity laboratorio) {
-        this.laboratorio = laboratorio;
-    }
+	public LaboratorioEntity getLaboratorio() {
+		return laboratorio;
+	}
 
-    
+	public void setLaboratorio(LaboratorioEntity laboratorio) {
+		this.laboratorio = laboratorio;
+	}
+
 }

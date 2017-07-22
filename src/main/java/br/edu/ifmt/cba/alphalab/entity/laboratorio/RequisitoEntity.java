@@ -14,6 +14,9 @@ public class RequisitoEntity implements IEntity<RequisitoException> {
 
 	private ArrayList<SoftwareEntity> softwares;
 
+	public RequisitoEntity() {
+	}
+
 	public RequisitoEntity(Long id, int qtdAlunos, ArrayList<SoftwareEntity> softwares) {
 		super();
 		this.id = id;

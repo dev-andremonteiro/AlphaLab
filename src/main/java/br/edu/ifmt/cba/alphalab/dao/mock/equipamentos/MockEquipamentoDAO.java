@@ -1,6 +1,7 @@
 package br.edu.ifmt.cba.alphalab.dao.mock.equipamentos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IEquipamentoDAO;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
@@ -14,6 +15,12 @@ import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
 public class MockEquipamentoDAO implements IEquipamentoDAO {
 	private static ArrayList<EquipamentoEntity> equipamentos = new ArrayList<>();
 	private static MockEquipamentoDAO singleton = null;
+
+	private static final EquipamentoEntity equipamento1 = new EquipamentoEntity();
+
+	static {
+
+	}
 
 	public MockEquipamentoDAO() {
 	}
@@ -50,5 +57,9 @@ public class MockEquipamentoDAO implements IEquipamentoDAO {
 			return null;
 		else
 			return equipamentos.get(equipamentos.indexOf(nome));
+	}
+
+	public List<EquipamentoEntity> buscarTodos() {
+		return equipamentos;
 	}
 }

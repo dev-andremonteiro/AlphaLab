@@ -41,6 +41,32 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
 	private ArrayList<RequisitoEntity> requisitos;
 
+	public ReservaEntity() {
+	}
+
+	public ReservaEntity(Long id, EnumReserva status, Date dataSolicitacao, String disciplina, String turma,
+			String observacao, boolean fixo, Date dataInicio, Date dataFim, Date dataAprovacaoRecusa,
+			String justificativa, LaboratorioEntity laboratorio, DepartamentoEntity departamentoAula,
+			ServidorEntity solicitante, ServidorEntity aprovador, ArrayList<RequisitoEntity> requisitos) {
+		super();
+		this.id = id;
+		this.status = status;
+		this.dataSolicitacao = dataSolicitacao;
+		this.disciplina = disciplina;
+		this.turma = turma;
+		this.observacao = observacao;
+		this.fixo = fixo;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+		this.dataAprovacaoRecusa = dataAprovacaoRecusa;
+		this.justificativa = justificativa;
+		this.laboratorio = laboratorio;
+		this.departamentoAula = departamentoAula;
+		this.solicitante = solicitante;
+		this.aprovador = aprovador;
+		this.requisitos = requisitos;
+	}
+
 	@Override
 	public Long getId() {
 		return id;
@@ -203,7 +229,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
 		if (justificativa != null || justificativa.trim().length() < 10)
 			msg.append("Justificativa deve possuir pelo menos 10 caracteres!\n");
-		
+
 		if (dataInicio != null && dataFim != null) {
 			if (dataInicio.before(dataFim)) {
 				msg.append("Data de início precisa ser menor que a data de final da reserva");

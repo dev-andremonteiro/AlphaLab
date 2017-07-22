@@ -3,6 +3,7 @@ package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 import br.edu.ifmt.cba.alphalab.dao.IDepartamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 public class MockDepartamentoDAO implements IDepartamentoDAO {
 	private static ArrayList<DepartamentoEntity> listaDepartamentos = new ArrayList();
 	private static MockDepartamentoDAO singleton = null;
-	
+
 	private static final DepartamentoEntity departamento1 = new DepartamentoEntity();
 
 	static {
@@ -57,5 +58,13 @@ public class MockDepartamentoDAO implements IDepartamentoDAO {
 			if (vo.getId().equals(id))
 				return vo;
 		return null;
+	}
+
+	@Override
+	public DepartamentoEntity getbySigla(String sigla) {
+		if (listaDepartamentos.indexOf(sigla) < 0)
+			return null;
+		else
+			return listaDepartamentos.get(listaDepartamentos.indexOf(sigla));
 	}
 }

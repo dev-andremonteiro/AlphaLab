@@ -11,5 +11,5 @@ import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
  */
 
 public interface ILaboratorioDAO extends IDAO<LaboratorioEntity> {
-	LaboratorioEntity getbySigla(String sigla);
+	LaboratorioEntity getByNome(String nome);
 }
