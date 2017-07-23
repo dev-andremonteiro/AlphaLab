@@ -17,18 +17,6 @@ public class MockRequisitoDAO implements IRequisitoDAO {
 	private static List<RequisitoEntity> requisitos = new ArrayList<>();
 	private static MockRequisitoDAO singleton = null;
 
-	static {
-		// List<SoftwareEntity> softwares = new ArrayList<>();
-		// requisitos.add(new RequisitoEntity(1L, 15, ));
-		// requisitos.add(new RequisitoEntity(2L, 40));
-		// requisitos.add(new RequisitoEntity(3L, 10));
-		// requisitos.add(new RequisitoEntity(4L, 25));
-		// requisitos.add(new RequisitoEntity(5L, 40));
-	}
-
-	private MockRequisitoDAO() {
-	}
-
 	public static MockRequisitoDAO getInstance() {
 		if (singleton == null)
 			singleton = new MockRequisitoDAO();
@@ -57,7 +45,7 @@ public class MockRequisitoDAO implements IRequisitoDAO {
 	}
 
 	@Override
-	public List<RequisitoEntity> buscarTodos() {		
+	public List<RequisitoEntity> buscarTodos() {
 		return requisitos;
 	}
 }

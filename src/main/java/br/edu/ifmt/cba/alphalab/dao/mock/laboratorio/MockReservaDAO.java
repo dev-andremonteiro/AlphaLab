@@ -1,6 +1,5 @@
 package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,15 +7,12 @@ import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IReservaDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
-import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
-import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
-import groovyjarjarasm.asm.tree.TryCatchBlockNode;
 
 /**
  * 
@@ -30,11 +26,13 @@ public class MockReservaDAO implements IReservaDAO {
 
 	private static final ReservaEntity reserva1 = new ReservaEntity();
 
+	private static final String formatoData = "dd/MM/yyyy";
+	
 	static {
 		reserva1.setId(1L);
 		reserva1.setStatus(EnumReserva.Recusado);
 		try {
-			reserva1.setDataSolicitacao(new SimpleDateFormat("dd/MM/yyyy").parse("10/05/2017"));
+			reserva1.setDataSolicitacao(new SimpleDateFormat(formatoData).parse("10/05/2017"));
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
@@ -43,17 +41,17 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva1.setObservacao("");
 		reserva1.setFixo(false);
 		try {
-			reserva1.setDataInicio(new SimpleDateFormat("dd/MM/yyyy").parse("13/05/2017"));
+			reserva1.setDataInicio(new SimpleDateFormat(formatoData).parse("13/05/2017"));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		try {
-			reserva1.setDataFim(new SimpleDateFormat("dd/MM/yyyy").parse("13/09/2017"));
+			reserva1.setDataFim(new SimpleDateFormat(formatoData).parse("13/09/2017"));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		try {
-			reserva1.setDataAprovacaoRecusa(new SimpleDateFormat("dd/MM/yyyy").parse("11/05/2017"));
+			reserva1.setDataAprovacaoRecusa(new SimpleDateFormat(formatoData).parse("11/05/2017"));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

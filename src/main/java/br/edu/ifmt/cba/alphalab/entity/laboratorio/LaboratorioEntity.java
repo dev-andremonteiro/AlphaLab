@@ -5,6 +5,7 @@ import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.exception.LaboratorioException;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LaboratorioEntity implements IEntity<LaboratorioException> {
 
@@ -30,8 +31,8 @@ public class LaboratorioEntity implements IEntity<LaboratorioException> {
 	}
 
 	public LaboratorioEntity(Long id, String nome, Enum situacao, int capacidade, String observacao,
-			DepartamentoEntity departamento, EquipamentoEntity equipamento, ArrayList<SoftwareEntity> softwares,
-			ArrayList<EquipamentoEntity> equipamentos) {
+			DepartamentoEntity departamento, EquipamentoEntity equipamento, List<SoftwareEntity> softwares,
+			List<EquipamentoEntity> equipamentos) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -40,8 +41,8 @@ public class LaboratorioEntity implements IEntity<LaboratorioException> {
 		this.observacao = observacao;
 		this.departamento = departamento;
 		this.equipamento = equipamento;
-		this.softwares = softwares;
-		this.equipamentos = equipamentos;
+		this.softwares = (ArrayList<SoftwareEntity>) softwares;
+		this.equipamentos = (ArrayList<EquipamentoEntity>) equipamentos;
 	}
 
 	@Override

@@ -1,13 +1,12 @@
 package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.edu.ifmt.cba.alphalab.dao.IDepartamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
-import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MockDepartamentoDAO implements IDepartamentoDAO {
 	private static ArrayList<DepartamentoEntity> listaDepartamentos = new ArrayList();
@@ -24,9 +23,6 @@ public class MockDepartamentoDAO implements IDepartamentoDAO {
 				(ServidorEntity) MockServidorDAO.getInstance().getByNome("Augusto César de Oliveira").toArray()[0]);
 
 		listaDepartamentos.add(departamento1);
-	}
-
-	public MockDepartamentoDAO() {
 	}
 
 	public static MockDepartamentoDAO getInstance() {

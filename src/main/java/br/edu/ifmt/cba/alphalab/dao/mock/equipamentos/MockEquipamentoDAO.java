@@ -16,15 +16,6 @@ public class MockEquipamentoDAO implements IEquipamentoDAO {
 	private static ArrayList<EquipamentoEntity> equipamentos = new ArrayList<>();
 	private static MockEquipamentoDAO singleton = null;
 
-	private static final EquipamentoEntity equipamento1 = new EquipamentoEntity();
-
-	static {
-
-	}
-
-	public MockEquipamentoDAO() {
-	}
-
 	public static MockEquipamentoDAO getInstance() {
 		if (singleton == null)
 			singleton = new MockEquipamentoDAO();

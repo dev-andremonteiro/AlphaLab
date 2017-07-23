@@ -34,9 +34,6 @@ public class MockLaboratorioDAO implements ILaboratorioDAO {
 		laboratorio1.setEquipamentos((ArrayList<EquipamentoEntity>) MockEquipamentoDAO.getInstance().buscarTodos());
 	}
 
-	public MockLaboratorioDAO() {
-	}
-
 	public static MockLaboratorioDAO getInstance() {
 		if (singleton == null)
 			singleton = new MockLaboratorioDAO();

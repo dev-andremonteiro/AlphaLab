@@ -2,6 +2,7 @@ package br.edu.ifmt.cba.alphalab.entity.laboratorio;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.entity.IEntity;
 import br.edu.ifmt.cba.alphalab.entity.exception.ReservaException;
@@ -47,7 +48,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
 	public ReservaEntity(Long id, EnumReserva status, Date dataSolicitacao, String disciplina, String turma,
 			String observacao, boolean fixo, Date dataInicio, Date dataFim, Date dataAprovacaoRecusa,
 			String justificativa, LaboratorioEntity laboratorio, DepartamentoEntity departamentoAula,
-			ServidorEntity solicitante, ServidorEntity aprovador, ArrayList<RequisitoEntity> requisitos) {
+			ServidorEntity solicitante, ServidorEntity aprovador, List<RequisitoEntity> requisitos) {
 		super();
 		this.id = id;
 		this.status = status;
@@ -64,7 +65,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
 		this.departamentoAula = departamentoAula;
 		this.solicitante = solicitante;
 		this.aprovador = aprovador;
-		this.requisitos = requisitos;
+		this.requisitos = (ArrayList<RequisitoEntity>) requisitos;
 	}
 
 	@Override
@@ -207,15 +208,15 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
 		if (disciplina == null || disciplina.trim().length() == 0)
 			msg.append("Nome da disciplina é obrigatório!\n");
-		if (disciplina != null || disciplina.trim().length() < 5)
+		if (disciplina != null && disciplina.trim().length() < 5)
 			msg.append("Nome da disciplina deve possuir pelo menos 5 caracteres!\n");
 
 		if (turma == null || turma.trim().length() == 0)
 			msg.append("Nome da turma é obrigatório!\n");
-		if (turma != null || turma.trim().length() < 6)
+		if (turma != null && turma.trim().length() < 6)
 			msg.append("Nome da turma deve possuir pelo menos 6 caracteres!\n");
 
-		if (observacao != null || observacao.trim().length() < 10)
+		if (observacao != null && observacao.trim().length() < 10)
 			msg.append("Observação deve possuir pelo menos 10 caracteres!\n");
 
 		if (dataInicio == null)
@@ -227,13 +228,11 @@ public class ReservaEntity implements IEntity<ReservaException> {
 		if (dataAprovacaoRecusa == null)
 			msg.append("Data de Aprovação ou Recusa deve ser informada!\n");
 
-		if (justificativa != null || justificativa.trim().length() < 10)
+		if (justificativa != null && justificativa.trim().length() < 10)
 			msg.append("Justificativa deve possuir pelo menos 10 caracteres!\n");
 
-		if (dataInicio != null && dataFim != null) {
-			if (dataInicio.before(dataFim)) {
-				msg.append("Data de início precisa ser menor que a data de final da reserva");
-			}
+		if (dataInicio != null && dataFim != null && dataInicio.before(dataFim)) {
+			msg.append("Data de início precisa ser menor que a data de final da reserva");
 		}
 
 		if (laboratorio == null)
