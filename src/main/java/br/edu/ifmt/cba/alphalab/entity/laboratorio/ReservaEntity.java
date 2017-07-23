@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.bcel.generic.GETSTATIC;
+
 import br.edu.ifmt.cba.alphalab.entity.IEntity;
 import br.edu.ifmt.cba.alphalab.entity.exception.ReservaException;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
@@ -195,7 +197,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
 	public void setRequisitos(ArrayList<RequisitoEntity> requisitos) {
 		this.requisitos = requisitos;
-	}
+	}	
 
 	@Override
 	public ReservaException validar() {

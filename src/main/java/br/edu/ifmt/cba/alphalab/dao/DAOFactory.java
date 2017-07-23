@@ -4,13 +4,17 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-
 import br.edu.ifmt.cba.alphalab.dao.mock.MockDAOFactory;
 
 public interface DAOFactory {
 	public static Properties props = new Properties();
-        public abstract IDepartamentoDAO getDepartamentoDAO();
-        public abstract IClienteDAO getClienteDAO();
+
+	public abstract IDepartamentoDAO getDepartamentoDAO();
+
+	public abstract IClienteDAO getClienteDAO();
+
+	public abstract IProfessorDAO getProfessorDAO();
+
 	public static DAOFactory getDAOFactory() {
 		if (props.isEmpty()) {
 			try {
@@ -27,10 +31,10 @@ public interface DAOFactory {
 		switch (datasource) {
 		case MOCK:
 			return MockDAOFactory.getInstance();
-		/*case JPA:
-			return JPADAOFactory.getInstance();
-		case XML:
-			return XMLDAOFactory.getInstance();*/
+		/*
+		 * case JPA: return JPADAOFactory.getInstance(); case XML: return
+		 * XMLDAOFactory.getInstance();
+		 */
 		default:
 			return null;
 		}
