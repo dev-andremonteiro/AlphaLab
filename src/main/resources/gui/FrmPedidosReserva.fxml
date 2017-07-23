@@ -253,9 +253,9 @@
                                        <children>
                                           <Group layoutX="6.0" layoutY="32.0">
                                              <children>
-                                                <Button fx:id="btnCancelar" mnemonicParsing="false" onKeyPressed="#btnCancelar_onAction" onMouseClicked="#btnCancelar_onAction" prefWidth="70.0" text="%button.cancelar" />
-                                                <Button fx:id="btnNegar" layoutX="100.0" mnemonicParsing="false" onKeyPressed="#btnNegar_onAction" onMouseClicked="#btnNegar_onAction" prefWidth="70.0" text="%button.negar" />
-                                                <Button fx:id="btnPermitir" layoutX="200.0" mnemonicParsing="false" onKeyPressed="#btnPermitir_onAction" onMouseClicked="#btnPermitir_onAction" prefWidth="70.0" text="%button.permitir" />
+                                                <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#btnCancelar_onAction" onKeyPressed="#btnCancelar_onKeyPressed" onMouseClicked="#btnCancelar_onMouseClicked" prefWidth="70.0" text="%button.cancelar" />
+                                                <Button fx:id="btnNegar" layoutX="100.0" mnemonicParsing="false" onAction="#btnNegar_onAction" onKeyPressed="#btnNegar_onKeyPressed" onMouseClicked="#btnNegar_onMouseClicked" prefWidth="70.0" text="%button.negar" />
+                                                <Button fx:id="btnPermitir" layoutX="200.0" mnemonicParsing="false" onAction="#btnPermitir_onAction" onKeyPressed="#btnPermitir_onKeyPressed" onMouseClicked="#btnPermitir_onMouseClicked" prefWidth="70.0" text="%button.permitir" />
                                              </children>
                                           </Group>
                                        </children>

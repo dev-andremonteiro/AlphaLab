@@ -84,7 +84,7 @@
                               <HBox prefHeight="32.0" prefWidth="503.0" spacing="8.0">
                                  <children>
                                     <TextField fx:id="txtNomeSoftware" onKeyPressed="#txtNomeSoftware_onKeyPressed" prefHeight="25.0" prefWidth="424.0" />
-                                    <Button fx:id="btnBuscar" mnemonicParsing="false" onKeyPressed="#btnBuscar_onKeyPressed" onMouseClicked="#btnBuscar_onMouseClicked" prefWidth="70.0" text="%button.buscar" />
+                                    <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#btnBuscar_onAction" onKeyPressed="#btnBuscar_onKeyPressed" onMouseClicked="#btnBuscar_onMouseClicked" prefWidth="70.0" text="%button.buscar" />
                                  </children>
                               </HBox>
                               <TableView fx:id="tblRequisitos" onKeyPressed="#tblRequisitos_onKeyPressed" onMouseClicked="#tblRequisitos_onMouseClicked" prefHeight="439.0" prefWidth="503.0">
@@ -274,8 +274,8 @@
                                        <bottom>
                                           <HBox alignment="TOP_RIGHT" prefHeight="144.0" prefWidth="235.0" spacing="20.0" BorderPane.alignment="CENTER_RIGHT">
                                              <children>
-                                                <Button fx:id="btnCancelar" mnemonicParsing="false" onKeyPressed="#btnCancelar_onKeyPressed" onMouseClicked="#btnCancelar_onMouseClicked" prefWidth="70.0" text="%button.cancelar" />
-                                                <Button fx:id="btnConfirmar" mnemonicParsing="false" onKeyPressed="#btnConfirmar_onKeyPressed" onMouseClicked="#btnConfirmar_onMouseClicked" prefWidth="70.0" text="%button.confirmar" />
+                                                <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#btnCancelar_onAction" onKeyPressed="#btnCancelar_onKeyPressed" onMouseClicked="#btnCancelar_onMouseClicked" prefWidth="70.0" text="%button.cancelar" />
+                                                <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#btnConfirmar_onAction" onKeyPressed="#btnConfirmar_onKeyPressed" onMouseClicked="#btnConfirmar_onMouseClicked" prefWidth="70.0" text="%button.confirmar" />
                                              </children>
                                           </HBox>
                                        </bottom>
