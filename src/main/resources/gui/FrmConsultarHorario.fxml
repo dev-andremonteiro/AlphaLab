@@ -30,7 +30,7 @@
       </HBox>
       <Pane prefHeight="600.0" prefWidth="980.0" VBox.vgrow="ALWAYS">
          <children>
-            <TableView accessibleRole="IMAGE_VIEW" focusTraversable="false" prefHeight="600.0" prefWidth="980.0">
+            <TableView fx:id="tblConsultarHorario" accessibleRole="IMAGE_VIEW" focusTraversable="false" prefHeight="600.0" prefWidth="980.0">
               <columns>
                 <TableColumn fx:id="tbcHorario" prefWidth="75.0" text="%column.horario" />
                 <TableColumn fx:id="tbcSegunda" prefWidth="75.0" text="%column.segunda" />
