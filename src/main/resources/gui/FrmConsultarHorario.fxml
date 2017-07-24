@@ -23,9 +23,9 @@
       </StackPane>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1024.0" spacing="125.0" VBox.vgrow="ALWAYS">
          <children>
-            <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" prefWidth="150.0" promptText="%cmb.laboratorio" />
-            <ComboBox fx:id="cmbProfessor" onAction="#cmbProfessor_onAction" prefWidth="150.0" promptText="%cmb.professor" />
-            <ComboBox fx:id="cmbDisciplina" onAction="#cmbDisciplina_onAction" prefWidth="150.0" promptText="%cmb.disciplina" />
+            <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" prefWidth="150.0" promptText="%combo.laboratorio" />
+            <ComboBox fx:id="cmbProfessor" onAction="#cmbProfessor_onAction" prefWidth="150.0" promptText="%combo.professor" />
+            <ComboBox fx:id="cmbDisciplina" onAction="#cmbDisciplina_onAction" prefWidth="150.0" promptText="%combo.disciplina" />
          </children>
       </HBox>
       <Pane prefHeight="600.0" prefWidth="980.0" VBox.vgrow="ALWAYS">
