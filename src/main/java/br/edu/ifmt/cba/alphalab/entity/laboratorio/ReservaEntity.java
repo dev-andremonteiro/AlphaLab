@@ -208,16 +208,16 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
 		if (disciplina == null || disciplina.trim().length() == 0)
 			msg.append("Nome da disciplina é obrigatório!\n");
-		if (disciplina != null && (disciplina.trim().length() < 5 || disciplina.trim().length() > 60))
-			msg.append("Nome da disciplina deve possuir entre 5 e 60 caracteres!\n");
+		if (disciplina != null && (disciplina.trim().length() < 10 || disciplina.trim().length() > 50))
+			msg.append("Nome da disciplina deve possuir entre 10 e 50 caracteres!\n");
 
 		if (turma == null || turma.trim().length() == 0)
 			msg.append("Nome da turma é obrigatório!\n");
-		if (turma != null && turma.trim().length() != 6)
-			msg.append("Nome da turma deve possuir 6 caracteres!\n");
+		if (turma != null && (turma.trim().length() < 10 || turma.trim().length() > 50))
+			msg.append("Nome da turma deve possuir entre 10 e 60 caracteres!\n");
 
-		if (observacao != null && observacao.trim().length() > 60)
-			msg.append("Observação deve possuir no máximo 60 caracteres!\n");
+		if (observacao != null && observacao.trim().length() > 200)
+			msg.append("Observação deve possuir no máximo 200 caracteres!\n");
 
 		if (dataInicio == null)
 			msg.append("Data de início da reserva deve ser informada!\n");

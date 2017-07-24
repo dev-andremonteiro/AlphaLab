@@ -19,62 +19,65 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
+/**
+ * 
+ * @author Stévillis Sousa
+ *
+ */
+
 public class FrmPedidosReserva {
 	@FXML
-	private Tab TABPedidos;
+	private Tab tabPedidos;
 
 	@FXML
 	private DatePicker dtpData;
 
 	@FXML
-	private ComboBox<?> cmbTipo;
+	private ComboBox<EnumTipoReserva> cmbTipo;
 
 	@FXML
-	private ComboBox<?> cmbProfessor;
+	private ComboBox<ProfessorEntity> cmbProfessor;
 
 	@FXML
 	private TableView<ReservaEntity> tblPedidos;
 
 	@FXML
-	private TableColumn<Long, String> tbcID;
+	private TableColumn<ReservaEntity, Long> tbcID;
 
 	@FXML
-	private TableColumn<Date, String> tbcHorario;
+	private TableColumn<ReservaEntity, Date> tbcHorario;
 
 	@FXML
-	private TableColumn<Date, String> tbcData;
+	private TableColumn<ReservaEntity, Date> tbcData;
 
 	@FXML
-	private TableColumn<EnumTipoReserva, String> tbcTipo;
+	private TableColumn<ReservaEntity, EnumTipoReserva> tbcTipo;
 
 	@FXML
-	private TableColumn<Boolean, String> tbcFixo;
+	private TableColumn<ReservaEntity, Boolean> tbcFixo;
 
 	@FXML
-	private TableColumn<ServidorEntity, String> tbcDados;
+	private TableColumn<ReservaEntity, String> tbcDados;
 
 	@FXML
-	private TableColumn<String, String> tbcDescricao;
+	private TableColumn<ReservaEntity, String> tbcDescricao;
 
 	@FXML
-	private Tab TABDados;
+	private Tab tabDados;
 
 	@FXML
 	private Text texID;
 
 	@FXML
 	private Text txtDataPedido;
-
-	@FXML
-	private HBox HBXLaboratorio;
 
 	@FXML
 	private ComboBox<LaboratorioEntity> cmbLaboratorio;
@@ -114,22 +117,7 @@ public class FrmPedidosReserva {
 
 	@FXML
 	void initialize() {
-		Professor professor = new Professor(DAOFactory.getDAOFactory().getProfessorDAO());
 
-		tbcID = new TableColumn<Long, String>("ID");
-		tbcHorario = new TableColumn<Date, String>("Horário");
-		tbcTipo = new TableColumn<EnumTipoReserva, String>("Tipo");
-		tbcFixo = new TableColumn<Boolean, String>("Fixo");
-		tbcDados = new TableColumn<ServidorEntity, String>("Dados");
-		tbcDescricao = new TableColumn<String, String>("Descrição");
-
-		tbcDados.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<ServidorEntity, String>, ObservableValue<String>>() {
-					@Override
-					public ObservableValue<String> call(CellDataFeatures<ServidorEntity, String> param) {
-						return new ReadOnlyObjectWrapper<String>(param.getValue().getNome());
-					}
-				});
 	}
 
 	@FXML
@@ -230,5 +218,14 @@ public class FrmPedidosReserva {
 	@FXML
 	void tblPedidos_onMouseClicked(MouseEvent event) {
 
+	}
+
+	private void limparFormulario() {
+		dtpData.setValue(null);
+		dtpData.setPromptText("Data");
+		cmbTipo.setValue(null);
+		cmbTipo.setPromptText("Tipo");
+		cmbProfessor.setValue(null);
+		cmbProfessor.setPromptText("Professor");		
 	}
 }

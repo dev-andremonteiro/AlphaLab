@@ -27,15 +27,15 @@
    <center>
       <TabPane prefHeight="729.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab fx:id="TABPedidos" closable="false" text="%tab.pedidos">
+          <Tab fx:id="tabPedidos" closable="false" text="%tab.pedidos">
                <content>
                   <BorderPane>
                      <top>
                         <HBox prefHeight="30.0" prefWidth="719.0" spacing="80.0" BorderPane.alignment="CENTER">
                            <children>
                               <DatePicker fx:id="dtpData" onAction="#dtpData_onAction" onKeyPressed="#dtpData_onKeyPressed" promptText="%dtp.data" />
-                              <ComboBox fx:id="cmbTipo" onAction="#cmbTipo_onAction" prefWidth="150.0" promptText="%cmb.tipo" />
-                              <ComboBox fx:id="cmbProfessor" onAction="#cmbProfessor_onAction" prefWidth="150.0" promptText="%cmb.professor" />
+                              <ComboBox fx:id="cmbTipo" onAction="#cmbTipo_onAction" prefWidth="150.0" promptText="%combo.tipo" />
+                              <ComboBox fx:id="cmbProfessor" onAction="#cmbProfessor_onAction" prefWidth="150.0" promptText="%combo.professor" />
                            </children>
                            <BorderPane.margin>
                               <Insets bottom="20.0" left="50.0" top="20.0" />
@@ -64,7 +64,7 @@
                   </BorderPane>
                </content>
           </Tab>
-          <Tab fx:id="TABDados" closable="false" text="%tab.visualizarDados">
+          <Tab fx:id="tabDados" closable="false" text="%tab.visualizarDados">
                <content>
                   <BorderPane prefHeight="768.0" prefWidth="1024.0">
                      <top>
@@ -106,14 +106,14 @@
                               </HBox>
                               <VBox prefHeight="200.0" prefWidth="340.0">
                                  <children>
-                                    <HBox fx:id="HBXLaboratorio" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <children>
                                           <Label text="%label.laboratorio">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" onKeyPressed="#cmdLaboratorio_onKeyPressed" onMouseClicked="#cmbLaboratorio_onMouseClicked" prefWidth="150.0" promptText="%cmb.laboratorio" />
+                                          <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" onKeyPressed="#cmdLaboratorio_onKeyPressed" onMouseClicked="#cmbLaboratorio_onMouseClicked" prefWidth="150.0" promptText="%combo.laboratorio" />
                                        </children>
                                        <padding>
                                           <Insets left="30.0" top="30.0" />

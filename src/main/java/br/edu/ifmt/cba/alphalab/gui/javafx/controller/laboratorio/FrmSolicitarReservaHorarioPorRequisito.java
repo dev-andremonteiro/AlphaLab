@@ -3,6 +3,7 @@ package br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
@@ -15,6 +16,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+
+/**
+ * 
+ * @author Stévillis Sousa
+ *
+ */
 
 public class FrmSolicitarReservaHorarioPorRequisito {
 	@FXML
@@ -81,19 +88,18 @@ public class FrmSolicitarReservaHorarioPorRequisito {
 	private TextArea txaObservacao;
 
 	@FXML
-	private ComboBox<?> cmbRepeticao;
-
-	@FXML
-	private ComboBox<?> cmbReserva;
-
-	@FXML
-	private Text texReserva;
+	private CheckBox ckbFixo;
 
 	@FXML
 	private Button btnCancelar;
 
 	@FXML
 	private Button btnConfirmar;
+
+	@FXML
+	void btnBuscar_onAction(ActionEvent event) {
+
+	}
 
 	@FXML
 	void btnBuscar_onKeyPressed(KeyEvent event) {
@@ -106,12 +112,22 @@ public class FrmSolicitarReservaHorarioPorRequisito {
 	}
 
 	@FXML
+	void btnCancelar_onAction(ActionEvent event) {
+
+	}
+
+	@FXML
 	void btnCancelar_onKeyPressed(KeyEvent event) {
 
 	}
 
 	@FXML
 	void btnCancelar_onMouseClicked(MouseEvent event) {
+
+	}
+
+	@FXML
+	void btnConfirmar_onAction(ActionEvent event) {
 
 	}
 
@@ -141,17 +157,12 @@ public class FrmSolicitarReservaHorarioPorRequisito {
 	}
 
 	@FXML
+	void ckbFixo_onAction(MouseEvent event) {
+
+	}
+
+	@FXML
 	void cmbDepartamento_onAction(ActionEvent event) {
-
-	}
-
-	@FXML
-	void cmbRepeticao_onAction(ActionEvent event) {
-
-	}
-
-	@FXML
-	void cmbReserva_onAction(ActionEvent event) {
 
 	}
 
