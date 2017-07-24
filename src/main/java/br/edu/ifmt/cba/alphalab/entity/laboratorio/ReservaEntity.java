@@ -201,23 +201,23 @@ public class ReservaEntity implements IEntity<ReservaException> {
 	public ReservaException validar() {
 		StringBuilder msg = new StringBuilder();
 		if (status == null)
-			msg.append("Status do laboratório deve ser informado!\n");
+			msg.append("Status da reserva deve ser informado!\n");
 
 		if (dataSolicitacao == null)
 			msg.append("Data de solicitação da reserva deve ser informada!\n");
 
 		if (disciplina == null || disciplina.trim().length() == 0)
 			msg.append("Nome da disciplina é obrigatório!\n");
-		if (disciplina != null && disciplina.trim().length() < 5)
-			msg.append("Nome da disciplina deve possuir pelo menos 5 caracteres!\n");
+		if (disciplina != null && (disciplina.trim().length() < 5 || disciplina.trim().length() > 60))
+			msg.append("Nome da disciplina deve possuir entre 5 e 60 caracteres!\n");
 
 		if (turma == null || turma.trim().length() == 0)
 			msg.append("Nome da turma é obrigatório!\n");
-		if (turma != null && turma.trim().length() < 6)
-			msg.append("Nome da turma deve possuir pelo menos 6 caracteres!\n");
+		if (turma != null && turma.trim().length() != 6)
+			msg.append("Nome da turma deve possuir 6 caracteres!\n");
 
-		if (observacao != null && observacao.trim().length() < 10)
-			msg.append("Observação deve possuir pelo menos 10 caracteres!\n");
+		if (observacao != null && observacao.trim().length() > 60)
+			msg.append("Observação deve possuir no máximo 60 caracteres!\n");
 
 		if (dataInicio == null)
 			msg.append("Data de início da reserva deve ser informada!\n");
@@ -228,24 +228,17 @@ public class ReservaEntity implements IEntity<ReservaException> {
 		if (dataAprovacaoRecusa == null)
 			msg.append("Data de Aprovação ou Recusa deve ser informada!\n");
 
-		if (justificativa != null && justificativa.trim().length() < 10)
-			msg.append("Justificativa deve possuir pelo menos 10 caracteres!\n");
+		if (justificativa != null && (justificativa.trim().length() < 10 || justificativa.trim().length() > 60))
+			msg.append("Justificativa deve possuir entre 10 e 60 caracteres!\n");
 
-		if (dataInicio != null && dataFim != null && dataInicio.before(dataFim)) {
+		if (dataInicio != null && dataFim != null && dataInicio.before(dataFim))
 			msg.append("Data de início precisa ser menor que a data de final da reserva");
-		}
 
 		if (laboratorio == null)
 			msg.append("Laboratório precisa ser informado!\n");
 
 		if (departamentoAula == null)
 			msg.append("Departamento precisa ser informado!\n");
-
-		if (solicitante == null)
-			msg.append("Servidor solicitante da reserva precisa ser informado!\n");
-
-		if (aprovador == null)
-			msg.append("Servidor aprovador da reserva precisa ser informado!\n");
 
 		if (msg.length() > 0)
 			return new ReservaException(msg.toString());
