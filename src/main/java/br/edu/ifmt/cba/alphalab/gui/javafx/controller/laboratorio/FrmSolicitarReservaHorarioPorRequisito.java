@@ -1,5 +1,7 @@
 package br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio;
 
+import br.edu.ifmt.cba.alphalab.gui.javafx.Horario;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,14 +10,17 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 
 /**
  * 
@@ -34,13 +39,13 @@ public class FrmSolicitarReservaHorarioPorRequisito {
 	private DatePicker dtpData;
 
 	@FXML
-	private TableView<?> tblHorarioRequisitos;
+	private TableView<Horario> tblHorarioRequisitos;
 
 	@FXML
-	private TableColumn<?, ?> tbcHorario;
+	private TableColumn<Horario, String> tbcHorario;
 
 	@FXML
-	private TableColumn<?, ?> tbcDiaSemana;
+	private TableColumn<Horario, Button> tbcDiaSemana;
 
 	@FXML
 	private TextField txtNomeSoftware;
@@ -219,5 +224,26 @@ public class FrmSolicitarReservaHorarioPorRequisito {
 	@FXML
 	void txtTurma_onKeyPressed(KeyEvent event) {
 
+	}
+	
+	public void preencherTabelas() {
+		tbcHorario.setCellValueFactory(conteudo -> new SimpleStringProperty(conteudo.getValue().getEstampa()));
+		tbcDiaSemana.setCellValueFactory(new PropertyValueFactory<>(""));
+		//Adiciona botões às celulas da coluna
+		tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, Button>() {
+		    private final Button btn = new Button();
+		    @Override 
+		    protected void updateItem(Button btn, boolean empty) {
+		        super.updateItem(btn, empty) ;
+		        if (empty) {
+		            setGraphic(null);
+		        } else {
+		        	btn = new Button("%btn.selecionar");
+		            setGraphic(btn);
+		        }
+		    }
+		});
+		
+		tblHorarioRequisitos.getItems().addAll(Horario.values());
 	}
 }

@@ -43,7 +43,7 @@
                            <children>
                               <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" prefWidth="150.0" promptText="%combo.laboratorio" />
                               <Pane prefHeight="50.0" prefWidth="650.0" />
-                              <Button fx:id="btnProximo" mnemonicParsing="false" onAction="#btnProximo_onAction" text="%button.proximo" />
+                              <Button fx:id="btnProximo" mnemonicParsing="false" onAction="#btnProximo_onAction" onKeyPressed="#btnProximo_onKeyPressed" text="%button.proximo" />
                            </children>
                         </HBox>
                         <TableView fx:id="tblGerenciarHorario" focusTraversable="false" prefHeight="600.0" prefWidth="980.0">
