@@ -15,7 +15,12 @@
                 <Menu mnemonicParsing="false" text="%menu.sistema">
                   <items>
                     <MenuItem fx:id="mniLogin" mnemonicParsing="false" onAction="#mniLogin_onAction" text="%menu.login" />
-                        <MenuItem fx:id="mniLingua" mnemonicParsing="false" onAction="#mniLingua_onAction" text="%menu.lingua" />
+                        <Menu mnemonicParsing="false" text="%menu.lingua">
+                          <items>
+                            <MenuItem fx:id="mniIngles" mnemonicParsing="false" onAction="#mniIngles_onAction" text="%menu.ingles" />
+                              <MenuItem fx:id="mniPortugues" mnemonicParsing="false" onAction="#mniPortugues_onAction" text="%menu.portugues" />
+                          </items>
+                        </Menu>
                         <MenuItem fx:id="mniSair" mnemonicParsing="false" onAction="#mniSair_onAction" text="%menu.sair" />
                   </items>
                 </Menu>
