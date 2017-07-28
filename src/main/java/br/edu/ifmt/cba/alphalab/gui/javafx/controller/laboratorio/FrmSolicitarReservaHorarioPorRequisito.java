@@ -231,7 +231,6 @@ public class FrmSolicitarReservaHorarioPorRequisito {
 		tbcDiaSemana.setCellValueFactory(new PropertyValueFactory<>(""));
 		//Adiciona botões às celulas da coluna
 		tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, Button>() {
-		    private final Button btn = new Button();
 		    @Override 
 		    protected void updateItem(Button btn, boolean empty) {
 		        super.updateItem(btn, empty) ;
