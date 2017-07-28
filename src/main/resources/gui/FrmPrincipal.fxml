@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="bdpPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.exemplo.FrmPrincipal">
+<BorderPane fx:id="bdpPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.exemplo.FrmPrincipal">
    <top>
       <VBox maxHeight="40.0" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <MenuBar fx:id="mnbPrincipal">
               <menus>
-                <Menu fx:id="mnuCadastro" mnemonicParsing="false" text="_Cadastro">
+                <Menu mnemonicParsing="false" text="%menu.sistema">
                   <items>
-                    <MenuItem fx:id="mniCliente" mnemonicParsing="false" onAction="#mniCliente_onAction" text="Cliente" />
+                    <MenuItem fx:id="mniLogin" mnemonicParsing="false" onAction="#mniLogin_onAction" text="%menu.login" />
+                        <MenuItem fx:id="mniLingua" mnemonicParsing="false" onAction="#mniLingua_onAction" text="%menu.lingua" />
+                        <MenuItem fx:id="mniSair" mnemonicParsing="false" onAction="#mniSair_onAction" text="%menu.sair" />
                   </items>
                 </Menu>
-                <Menu fx:id="mnuOperacoes" mnemonicParsing="false" text="_Operações">
+                <Menu mnemonicParsing="false" text="%menu.operacoes">
                   <items>
-                    <MenuItem fx:id="mniVenda" mnemonicParsing="false" text="Venda" />
+                        <Menu mnemonicParsing="false" text="%menu.solicitar">
+                           <items>
+                              <Menu mnemonicParsing="false" text="%menu.reserva">
+                                <items>
+                                    <MenuItem fx:id="mniReservaPorHorario" mnemonicParsing="false" onAction="#mniReservaPorHorario_onAction" text="%menu.porHorario" />
+                                  <MenuItem fx:id="mniReservaPorRequisito" mnemonicParsing="false" onAction="#mniReservaPorRequisito_onAction" text="%menu.porRequisito" />
+                                </items>
+                              </Menu>
+                           </items>
+                        </Menu>
                   </items>
                 </Menu>
-                <Menu fx:id="mnuAjuda" mnemonicParsing="false" text="_Ajuda">
+                <Menu mnemonicParsing="false" text="%menu.ajuda">
                   <items>
-                    <MenuItem fx:id="mniSobre" mnemonicParsing="false" onAction="#mniSobre_onAction" text="Sobre" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="mniSair" mnemonicParsing="false" onAction="#mniSair_onAction" text="Sair" />
+                        <MenuItem fx:id="mniAjuda" mnemonicParsing="false" onAction="#mniAjuda_onAction" text="%menu.ajuda" />
+                    <MenuItem fx:id="mniSobre" mnemonicParsing="false" onAction="#mniSobre_onAction" text="%menu.sobre" />
                   </items>
                 </Menu>
               </menus>
