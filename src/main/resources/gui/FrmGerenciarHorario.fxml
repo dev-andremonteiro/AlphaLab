@@ -125,7 +125,7 @@
                                           <Label text="%label.turma" GridPane.rowIndex="2" />
                                           <Label text="%label.observacoes" GridPane.rowIndex="3" />
                                           <TextField fx:id="txtDisciplina" onKeyPressed="#txtDisciplina_onKeyPressed" GridPane.columnIndex="1" />
-                                          <ComboBox fx:id="cmbDepartamento" onKeyPressed="#cmbDepartamento_onKeyPressed" prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <ComboBox fx:id="cmbDepartamento" prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="txtTurma" onKeyPressed="#txtTurma_onKeyPressed" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                           <TextArea fx:id="txaObservacoes" onKeyPressed="#txaObservacoes_onKeyPressed" prefHeight="100.0" prefWidth="256.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>

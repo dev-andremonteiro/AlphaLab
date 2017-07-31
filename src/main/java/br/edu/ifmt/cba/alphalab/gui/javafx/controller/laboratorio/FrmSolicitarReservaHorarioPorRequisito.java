@@ -1,9 +1,14 @@
 package br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import br.edu.ifmt.cba.alphalab.gui.javafx.Horario;
+import br.edu.ifmt.cba.alphalab.gui.javafx.controller.exemplo.FrmPrincipal;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -15,12 +20,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
 
 /**
  * 
@@ -28,7 +33,7 @@ import javafx.util.Callback;
  *
  */
 
-public class FrmSolicitarReservaHorarioPorRequisito {
+public class FrmSolicitarReservaHorarioPorRequisito implements Initializable{
 	@FXML
 	private TabPane tabPaneDados;
 
@@ -45,7 +50,7 @@ public class FrmSolicitarReservaHorarioPorRequisito {
 	private TableColumn<Horario, String> tbcHorario;
 
 	@FXML
-	private TableColumn<Horario, Button> tbcDiaSemana;
+	private TableColumn<Horario, ToggleButton> tbcDiaSemana;
 
 	@FXML
 	private TextField txtNomeSoftware;
@@ -226,23 +231,31 @@ public class FrmSolicitarReservaHorarioPorRequisito {
 
 	}
 	
-	public void preencherTabelas() {
+	private void fillColumnHorario() {
 		tbcHorario.setCellValueFactory(conteudo -> new SimpleStringProperty(conteudo.getValue().getEstampa()));
 		tbcDiaSemana.setCellValueFactory(new PropertyValueFactory<>(""));
 		//Adiciona botões às celulas da coluna
-		tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, Button>() {
+		tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, ToggleButton>() {
 		    @Override 
-		    protected void updateItem(Button btn, boolean empty) {
-		        super.updateItem(btn, empty) ;
+		    protected void updateItem(ToggleButton btn, boolean empty) {
+		        super.updateItem(btn, empty);
+		        
+		        ResourceBundle resources = ResourceBundle.getBundle(FrmPrincipal.LINGUA_PORTUGUES);
 		        if (empty) {
 		            setGraphic(null);
 		        } else {
-		        	btn = new Button("%btn.selecionar");
+		        	btn = new ToggleButton(resources.getString("button.selecionar"));
 		            setGraphic(btn);
 		        }
 		    }
 		});
 		
 		tblHorarioRequisitos.getItems().addAll(Horario.values());
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		fillColumnHorario();
+		
 	}
 }
