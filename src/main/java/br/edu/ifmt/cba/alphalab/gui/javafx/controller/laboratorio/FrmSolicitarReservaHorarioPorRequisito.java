@@ -6,9 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
+import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
 import br.edu.ifmt.cba.alphalab.gui.javafx.Horario;
 import br.edu.ifmt.cba.alphalab.gui.javafx.controller.exemplo.FrmPrincipal;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -21,6 +25,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -30,6 +35,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 
 /**
  * 
@@ -37,15 +43,15 @@ import javafx.scene.text.Text;
  *
  */
 
-public class FrmSolicitarReservaHorarioPorRequisito implements Initializable{
+public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	ResourceBundle resources = ResourceBundle.getBundle(FrmPrincipal.LINGUA_PORTUGUES);
-	
-	//Lista de botões contidos na TableColumn tbcDiaSemana
+
+	// Lista de botões contidos na TableColumn tbcDiaSemana
 	private List<ToggleButton> listaBotoes = new ArrayList<>();
-	
-	//Lista dos botões pressionados na TableColumn tbcDiaSemana
+
+	// Lista dos botões pressionados na TableColumn tbcDiaSemana
 	private List<ToggleButton> listaSelecionados = new ArrayList<>();
-	
+
 	@FXML
 	private TabPane tabPaneDados;
 
@@ -71,16 +77,16 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable{
 	private Button btnBuscar;
 
 	@FXML
-	private TableView<?> tblRequisitos;
+	private TableView<SoftwareEntity> tblRequisitos;
 
 	@FXML
-	private TableColumn<?, ?> tbcSelecionado;
+	private TableColumn<SoftwareEntity, Boolean> tbcSelecionado;
 
 	@FXML
-	private TableColumn<?, ?> tbcNome;
+	private TableColumn<SoftwareEntity, String> tbcNome;
 
 	@FXML
-	private TableColumn<?, ?> tbcTipo;
+	private TableColumn<SoftwareEntity, String> tbcTipo;
 
 	@FXML
 	private TextField txtNumMaxAlunos;
@@ -101,7 +107,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable{
 	private TextField txtDisciplina;
 
 	@FXML
-	private ComboBox<?> cmbDepartamento;
+	private ComboBox<DepartamentoEntity> cmbDepartamento;
 
 	@FXML
 	private TextField txtTurma;
@@ -118,9 +124,53 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable{
 	@FXML
 	private Button btnConfirmar;
 
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		fillColumnHorario();
+
+		// Adiciona a coluna Nome do Software
+		tbcNome = new TableColumn<SoftwareEntity, String>(
+				ResourceBundle.getBundle("../../../i18N_pt_BR").getString("tbcNome"));
+		tbcNome.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<SoftwareEntity, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<SoftwareEntity, String> param) {
+
+						return new ReadOnlyObjectWrapper<String>(param.getValue().getDescricao());
+					}
+				});
+
+		// Adiciona a coluna Tipo do Software
+		tbcTipo = new TableColumn<SoftwareEntity, String>(
+				ResourceBundle.getBundle("../../../i18N_pt_BR").getString("tbcTipo"));
+		tbcTipo.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<SoftwareEntity, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<SoftwareEntity, String> param) {
+						// return new
+						// ReadOnlyObjectWrapper<String>(param.getValue().getTipo());
+						return null;
+					}
+				});
+
+		tbcSelecionado = new TableColumn<SoftwareEntity, Boolean>(
+				ResourceBundle.getBundle("../../../i18N_pt_BR").getString("tbcSelecionado"));
+		tbcSelecionado.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<SoftwareEntity, Boolean>, ObservableValue<Boolean>>() {
+
+					@Override
+					public ObservableValue<Boolean> call(CellDataFeatures<SoftwareEntity, Boolean> param) {
+						// TODO Auto-generated method stub
+						return null;
+					}
+				});
+	}
+
 	@FXML
 	void btnBuscar_onAction(ActionEvent event) {
-		
+
 	}
 
 	@FXML
@@ -266,25 +316,26 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable{
 	void txtTurma_onKeyPressed(KeyEvent event) {
 
 	}
-	
+
 	private void fillColumnHorario() {
 		tbcHorario.setCellValueFactory(conteudo -> new SimpleStringProperty(conteudo.getValue().getEstampa()));
 		tbcDiaSemana.setCellValueFactory(new PropertyValueFactory<>(""));
-		
-		//Adiciona botões às celulas da coluna
+
+		// Adiciona botões às celulas da coluna
 		tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, ToggleButton>() {
-		    @Override 
-		    protected void updateItem(ToggleButton btn, boolean empty) {
-		        super.updateItem(btn, empty);
-		        
-		        if (empty) {
-		            setGraphic(null);
-		        } else {
-		        	btn = new ToggleButton(resources.getString("button.selecionar"));
-		        	listaBotoes.add(btn);
-		        	
-		        	//Evento que adiciona/retira botões selecionados na lista listaSelecionados
-		        	btn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			protected void updateItem(ToggleButton btn, boolean empty) {
+				super.updateItem(btn, empty);
+
+				if (empty) {
+					setGraphic(null);
+				} else {
+					btn = new ToggleButton(resources.getString("button.selecionar"));
+					listaBotoes.add(btn);
+
+					// Evento que adiciona/retira botões selecionados na lista
+					// listaSelecionados
+					btn.setOnAction(new EventHandler<ActionEvent>() {
 						@Override
 						public void handle(ActionEvent event) {
 							ToggleButton tgbtn = (ToggleButton) event.getSource();
@@ -294,17 +345,13 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable{
 								listaSelecionados.remove(tgbtn);
 							}
 						}
-		        	});
-		            setGraphic(btn);
-		        }
-		    }
+					});
+					setGraphic(btn);
+				}
+			}
 		});
-		
+
 		tblHorarioRequisitos.getItems().addAll(Horario.values());
 	}
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		fillColumnHorario();
-	}
 }

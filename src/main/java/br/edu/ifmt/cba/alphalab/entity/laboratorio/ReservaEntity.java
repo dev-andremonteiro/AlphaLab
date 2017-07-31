@@ -234,9 +234,6 @@ public class ReservaEntity implements IEntity<ReservaException> {
 		if (dataInicio != null && dataFim != null && dataInicio.before(dataFim))
 			msg.append("Data de início precisa ser menor que a data de final da reserva");
 
-		if (laboratorio == null)
-			msg.append("Laboratório precisa ser informado!\n");
-
 		if (departamentoAula == null)
 			msg.append("Departamento precisa ser informado!\n");
 
