@@ -1,12 +1,16 @@
 package br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import br.edu.ifmt.cba.alphalab.gui.javafx.Horario;
 import br.edu.ifmt.cba.alphalab.gui.javafx.controller.exemplo.FrmPrincipal;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -34,6 +38,14 @@ import javafx.scene.text.Text;
  */
 
 public class FrmSolicitarReservaHorarioPorRequisito implements Initializable{
+	ResourceBundle resources = ResourceBundle.getBundle(FrmPrincipal.LINGUA_PORTUGUES);
+	
+	//Lista de botões contidos na TableColumn tbcDiaSemana
+	private List<ToggleButton> listaBotoes = new ArrayList<>();
+	
+	//Lista dos botões pressionados na TableColumn tbcDiaSemana
+	private List<ToggleButton> listaSelecionados = new ArrayList<>();
+	
 	@FXML
 	private TabPane tabPaneDados;
 
@@ -108,7 +120,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable{
 
 	@FXML
 	void btnBuscar_onAction(ActionEvent event) {
-
+		
 	}
 
 	@FXML
@@ -178,7 +190,31 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable{
 
 	@FXML
 	void dtpData_onAction(ActionEvent event) {
-
+		String diaSemana = new String("column.");
+		LocalDate date = dtpData.getValue();
+		switch (date.getDayOfWeek()) {
+		case MONDAY:
+			diaSemana += "segunda";
+			break;
+		case TUESDAY:
+			diaSemana += "terca";
+			break;
+		case WEDNESDAY:
+			diaSemana += "quarta";
+			break;
+		case THURSDAY:
+			diaSemana += "quinta";
+			break;
+		case FRIDAY:
+			diaSemana += "sexta";
+			break;
+		case SATURDAY:
+			diaSemana += "sabado";
+			break;
+		case SUNDAY:
+			diaSemana += "domingo";
+		}
+		tbcDiaSemana.setText(resources.getString(diaSemana));
 	}
 
 	@FXML
@@ -234,17 +270,31 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable{
 	private void fillColumnHorario() {
 		tbcHorario.setCellValueFactory(conteudo -> new SimpleStringProperty(conteudo.getValue().getEstampa()));
 		tbcDiaSemana.setCellValueFactory(new PropertyValueFactory<>(""));
+		
 		//Adiciona botões às celulas da coluna
 		tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, ToggleButton>() {
 		    @Override 
 		    protected void updateItem(ToggleButton btn, boolean empty) {
 		        super.updateItem(btn, empty);
 		        
-		        ResourceBundle resources = ResourceBundle.getBundle(FrmPrincipal.LINGUA_PORTUGUES);
 		        if (empty) {
 		            setGraphic(null);
 		        } else {
 		        	btn = new ToggleButton(resources.getString("button.selecionar"));
+		        	listaBotoes.add(btn);
+		        	
+		        	//Evento que adiciona/retira botões selecionados na lista listaSelecionados
+		        	btn.setOnAction(new EventHandler<ActionEvent>() {
+						@Override
+						public void handle(ActionEvent event) {
+							ToggleButton tgbtn = (ToggleButton) event.getSource();
+							if (tgbtn.isSelected()) {
+								listaSelecionados.add(tgbtn);
+							} else {
+								listaSelecionados.remove(tgbtn);
+							}
+						}
+		        	});
 		            setGraphic(btn);
 		        }
 		    }
@@ -256,6 +306,5 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		fillColumnHorario();
-		
 	}
 }
