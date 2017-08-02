@@ -17,7 +17,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -124,6 +126,9 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	@FXML
 	private Button btnConfirmar;
 
+	// private Software software = new
+	// Software(DAOFacctory.getDAOFactory().getClienteDAO());
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		fillColumnHorario();
@@ -166,36 +171,93 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 						return null;
 					}
 				});
+
+		tblRequisitos.getColumns().add(tbcSelecionado);
+		tblRequisitos.getColumns().add(tbcNome);
+		tblRequisitos.getColumns().add(tbcTipo);
+		atualizaTableViewSoftwares();
+	}
+
+	/**
+	 * Atualiza o TableView de Softwares
+	 */
+	private void atualizaTableViewSoftwares() {
+		/*
+		 * ObservableList<SoftwareEntity> softwares = FXCollections
+		 * .observableArrayList(software.getByNome(txtNomeSoftware.getText()));
+		 * tblRequisitos.setItems(softwares);
+		 */
+	}
+
+	/**
+	 * Mostra uma caixa de diálogo perguntando se o usuário realmente deseja
+	 * cancelar a solicitação de reserva de horário.
+	 */
+	private void recusarPedidoReserva() {
+		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+		ButtonType sim = new ButtonType("Sim");
+		ButtonType nao = new ButtonType("Não");
+		alerta.setTitle("AlphaLab");
+		alerta.setHeaderText("Cancelar pedido de Reserva de Horário");
+		alerta.setContentText("Deseja cancelar o pedido de Reserva de Horário?");
+		alerta.getButtonTypes().setAll(sim, nao);
+
+		alerta.showAndWait().ifPresent(opcao -> {
+			if (opcao == sim) {
+				// this.tblRequisitos.getSelectionModel().getSelectedItem().setStatus(Enum.CANCELADA);
+			}
+			if (opcao == nao) {
+			}
+		});
+	}
+
+	// Limpa os campos da tela.
+	private void limparCampos() {
+		dtpData.setValue(null);
+		tblHorarioRequisitos.setItems(null);
+		txtNomeSoftware.setText("");
+		tblRequisitos.setItems(null);
+		txtNumMaxAlunos.setText("");
+		texRequisitos.setText("");
+		// hbxHorarios
+		txtDisciplina.setText("");
+		cmbDepartamento.setValue(null);
+		txtTurma.setText("");
+		txaObservacao.setText("");
+		ckbFixo.setSelected(false);
 	}
 
 	@FXML
 	void btnBuscar_onAction(ActionEvent event) {
-
+		atualizaTableViewSoftwares();
 	}
 
 	@FXML
 	void btnBuscar_onKeyPressed(KeyEvent event) {
-
+		atualizaTableViewSoftwares();
 	}
 
 	@FXML
 	void btnBuscar_onMouseClicked(MouseEvent event) {
-
+		atualizaTableViewSoftwares();
 	}
 
 	@FXML
 	void btnCancelar_onAction(ActionEvent event) {
-
+		atualizaTableViewSoftwares();
+		tabPaneDados.getSelectionModel().select(tabRequisitos);
 	}
 
 	@FXML
 	void btnCancelar_onKeyPressed(KeyEvent event) {
-
+		atualizaTableViewSoftwares();
+		tabPaneDados.getSelectionModel().select(tabRequisitos);
 	}
 
 	@FXML
 	void btnCancelar_onMouseClicked(MouseEvent event) {
-
+		atualizaTableViewSoftwares();
+		tabPaneDados.getSelectionModel().select(tabRequisitos);
 	}
 
 	@FXML
@@ -215,17 +277,17 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void btnProximoRequisitos_onAction(ActionEvent event) {
-
+		tabPaneDados.getSelectionModel().select(tabPreencherDados);
 	}
 
 	@FXML
 	void btnProximoRequisitos_onKeyPressed(KeyEvent event) {
-
+		tabPaneDados.getSelectionModel().select(tabPreencherDados);
 	}
 
 	@FXML
 	void btnProximoRequisitos_onMouseClicked(MouseEvent event) {
-
+		tabPaneDados.getSelectionModel().select(tabPreencherDados);
 	}
 
 	@FXML
@@ -353,5 +415,4 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 		tblHorarioRequisitos.getItems().addAll(Horario.values());
 	}
-
 }

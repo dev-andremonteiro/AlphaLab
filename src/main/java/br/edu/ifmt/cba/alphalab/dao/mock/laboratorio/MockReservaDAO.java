@@ -27,7 +27,7 @@ public class MockReservaDAO implements IReservaDAO {
 	private static final ReservaEntity reserva1 = new ReservaEntity();
 
 	private static final String formatoData = "dd/MM/yyyy";
-	
+
 	static {
 		reserva1.setId(1L);
 		reserva1.setStatus(EnumReserva.Recusado);
@@ -95,7 +95,7 @@ public class MockReservaDAO implements IReservaDAO {
 	}
 
 	@Override
-	public List<ReservaEntity> buscarTodos() {
+	public List<ReservaEntity> getByNome() {
 		return reservas;
 	}
 }
