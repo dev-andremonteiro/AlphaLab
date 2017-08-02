@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <BorderPane prefHeight="68.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+         <top>
+            <Label prefHeight="53.0" prefWidth="240.0" text="Empréstimo de Recurso" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets top="20.0" />
+               </BorderPane.margin>
+            </Label>
+         </top>
+      </BorderPane>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="40.0" prefWidth="1024.0" spacing="30.0">
+               <children>
+                  <Label prefHeight="23.0" prefWidth="87.0" text="%label.professor">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ComboBox fx:id="cbxProfessor" prefWidth="150.0" />
+                  <Label prefHeight="23.0" prefWidth="87.0" text="%label.professor" />
+                  <Label fx:id="lblProfessor" prefHeight="32.0" prefWidth="190.0" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="51.0" prefWidth="1024.0" spacing="30.0">
+               <children>
+                  <Label prefHeight="27.0" prefWidth="35.0" text="%label.data">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="txtData" prefHeight="25.0" prefWidth="149.0">
+                     <HBox.margin>
+                        <Insets left="52.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label prefHeight="27.0" prefWidth="177.0" text="%label.Data do pedido">
+                     <padding>
+                        <Insets left="35.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="lblDataPedido" prefHeight="32.0" prefWidth="190.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="455.0" prefWidth="1024.0" spacing="30.0">
+               <children>
+                  <TableView prefHeight="350.0" prefWidth="320.0">
+                    <columns>
+                      <TableColumn prefWidth="178.0" text="Professor" />
+                      <TableColumn minWidth="5.0" prefWidth="134.0" text="Data do pedido" />
+                    </columns>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </TableView>
+                  <VBox prefHeight="516.0" prefWidth="446.0" spacing="10.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="86.0" text="%Recursos">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <TableView prefHeight="353.0" prefWidth="357.0">
+                          <columns>
+                            <TableColumn prefWidth="147.0" text="Descrição" />
+                            <TableColumn prefWidth="91.0" text="Patrimônio" />
+                              <TableColumn prefWidth="81.0" text="Qtde Pedida" />
+                              <TableColumn prefWidth="106.0" text="Qtde  Disponível" />
+                          </columns>
+                        </TableView>
+                        <HBox prefHeight="130.0" prefWidth="446.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="84.0" text="%Observação" />
+                              <TextArea fx:id="txaObservacao" prefHeight="107.0" prefWidth="360.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox prefHeight="88.0" prefWidth="517.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnEmprestar" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" text="Emprestar" />
+            <Button fx:id="btnRecusar" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Recusar">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnSair" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Sair">
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="40.0" left="510.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+</BorderPane>
