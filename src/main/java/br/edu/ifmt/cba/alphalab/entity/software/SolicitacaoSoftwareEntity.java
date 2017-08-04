@@ -12,6 +12,7 @@ import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  *
@@ -19,11 +20,10 @@ import java.util.Calendar;
  */
 public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareException>{
     private long id;
-    private ArrayList<SoftwareEntity> softwares;
+    private ArrayList<SoftwareSolicitacaoEntity> softwares;
     private LaboratorioEntity laboratorio;
     private Calendar dataPedido;
-    private situacaoInstalacaoEnum situacaoInstalacao;
-    private boolean instalado;
+    private SituacaoSolicitacaoEnum situacaoInstalacao;
     private ServidorEntity solicitante, concluinte;
 
     
@@ -36,18 +36,11 @@ public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareExc
         this.id = id;
     }
 
-    public boolean isInstalado() {
-        return instalado;
-    }
-
-    public void setInstalado(boolean instalado) {
-        this.instalado = instalado;
-    }
-    public ArrayList<SoftwareEntity> getSoftwares() {
+    public ArrayList<SoftwareSolicitacaoEntity> getSoftwares() {
         return softwares;
     }
 
-    public void setSoftwares(ArrayList<SoftwareEntity> softwares) {
+    public void setSoftwares(ArrayList<SoftwareSolicitacaoEntity> softwares) {
         this.softwares = softwares;
     }
 
@@ -67,11 +60,11 @@ public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareExc
         this.dataPedido = dataPedido;
     }
 
-    public situacaoInstalacaoEnum getSituacaoInstalacao() {
+    public SituacaoSolicitacaoEnum getSituacaoInstalacao() {
         return situacaoInstalacao;
     }
 
-    public void setSituacaoInstalacao(situacaoInstalacaoEnum situacaoInstalacao) {
+    public void setSituacaoInstalacao(SituacaoSolicitacaoEnum situacaoInstalacao) {
         this.situacaoInstalacao = situacaoInstalacao;
     } 
         
@@ -95,6 +88,39 @@ public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareExc
 
     public void setConcluinte(ServidorEntity concluinte) {
         this.concluinte = concluinte;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 61 * hash + Objects.hashCode(this.laboratorio);
+        hash = 61 * hash + Objects.hashCode(this.dataPedido);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SolicitacaoSoftwareEntity other = (SolicitacaoSoftwareEntity) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.laboratorio, other.laboratorio)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataPedido, other.dataPedido)) {
+            return false;
+        }
+        return true;
     }
     
     

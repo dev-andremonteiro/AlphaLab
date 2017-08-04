@@ -7,7 +7,7 @@ package br.edu.ifmt.cba.alphalab.dao.mock.software;
 
 import br.edu.ifmt.cba.alphalab.dao.ISolicitacaoSoftware;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
-import br.edu.ifmt.cba.alphalab.entity.software.SolicitacaoInstalacaoEntity;
+import br.edu.ifmt.cba.alphalab.entity.software.SolicitacaoSoftwareEntity;
 import java.util.ArrayList;
 
 /**
@@ -15,12 +15,13 @@ import java.util.ArrayList;
  * @author tcloss
  */
 public class MockSolicitacaoSoftware implements ISolicitacaoSoftware {
-    private static final ArrayList<SolicitacaoInstalacaoEntity> listaSolicitacao = new ArrayList<>();
+    private static final ArrayList<SolicitacaoSoftwareEntity> listaSolicitacao = new ArrayList<>();
     
 
     @Override
-    public void save(SolicitacaoInstalacaoEntity entity) {
+    public void save(SolicitacaoSoftwareEntity entity) {
         if(!listaSolicitacao.contains(entity)){
+            entity.setId(listaSolicitacao.size()+1);
             listaSolicitacao.add(entity);
         }
         else{
@@ -29,17 +30,17 @@ public class MockSolicitacaoSoftware implements ISolicitacaoSoftware {
     }
 
     @Override
-    public void delete(SolicitacaoInstalacaoEntity entity) {
+    public void delete(SolicitacaoSoftwareEntity entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public SolicitacaoInstalacaoEntity getById(Long id) {
+    public SolicitacaoSoftwareEntity getById(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void confirmarInstalacaoDeSoftware(SolicitacaoInstalacaoEntity solicitacaoSoftwareEntity, SoftwareEntity softwareEntity) {
+    public void confirmarInstalacaoDeSoftware(SolicitacaoSoftwareEntity solicitacaoSoftwareEntity, SoftwareEntity softwareEntity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

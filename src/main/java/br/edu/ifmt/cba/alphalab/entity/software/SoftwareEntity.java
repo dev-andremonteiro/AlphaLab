@@ -16,6 +16,9 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
     private Enum status;
     private ServidorEntity solicitante;
     private ServidorEntity concluinte;
+    
+    public SoftwareEntity(){
+    }
 
     public SoftwareEntity(String descricao, Enum tipo, String versao, String link, String observacao_Instalacao, Enum status, ServidorEntity solicitante) {
         this.descricao = descricao;
