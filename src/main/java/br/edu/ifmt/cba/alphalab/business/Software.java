@@ -4,6 +4,9 @@ import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IDAO;
 import br.edu.ifmt.cba.alphalab.dao.ISoftwareDAO;
+import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
+import br.edu.ifmt.cba.alphalab.dao.mock.software.MockSoftwareDAO;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
 import javafx.util.Callback;
 
@@ -21,9 +24,11 @@ public class Software extends ABusiness<SoftwareEntity, Exception, ISoftwareDAO>
 	public List<SoftwareEntity> buscarTodosSoftwares() {
 		return ((ISoftwareDAO) dao).buscarTodos();
 	}
-
-	public Callback getByNome(String text) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<SoftwareEntity> getByNome(String nome) {
+		return MockSoftwareDAO.getInstance().getByNome(nome);
 	}
+
+	/*public List<SoftwareEntity> getByNome(String nome) {
+		return ((ISoftwareDAO) dao).getByNome(nome);
+	}*/
 }
