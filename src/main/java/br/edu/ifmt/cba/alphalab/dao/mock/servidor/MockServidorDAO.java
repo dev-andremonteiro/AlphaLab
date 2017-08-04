@@ -19,11 +19,11 @@ public class MockServidorDAO implements IServidorDAO {
 	private static List<ServidorEntity> servidores = new ArrayList<>();
 	private static MockServidorDAO singleton = null;
 
-	private static final ServidorEntity servidor1 = new ServidorEntity();
+	public static final ServidorEntity servidor1 = new ServidorEntity();
 
 	static {
 		servidor1.setId(1L);
-		servidor1.setNome("Augusto César de Olivera");
+		servidor1.setNome("Augusto");
 		servidor1.setEmail("augustocesar.oliveira@cba.ifmt.edu.br");
 		servidor1.setTelefone("(65) 9 8455-2211");
 		servidor1.setLogin("augustocesar.oliveira@cba.ifmt.edu.br");
@@ -64,8 +64,10 @@ public class MockServidorDAO implements IServidorDAO {
 	public List<ServidorEntity> getByNome(String nome) {
 		ArrayList<ServidorEntity> resultado = new ArrayList<>();
 		for (ServidorEntity vo : servidores)
-			if (vo.getNome().toUpperCase().contains(nome.toUpperCase()))
+			if (vo.getNome().toUpperCase().contains(nome.toUpperCase())) {
+				System.out.println(vo.getNome());
 				resultado.add(vo);
+			}
 
 		return resultado;
 	}
