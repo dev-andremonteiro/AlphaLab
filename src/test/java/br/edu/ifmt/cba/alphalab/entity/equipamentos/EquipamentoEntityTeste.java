@@ -16,7 +16,7 @@ public class EquipamentoEntityTeste {
     
     @BeforeClass
     public void setUp() {
-        equipamento= new EquipamentoEntity(2L,"Teste");
+//        equipamento= new EquipamentoEntity(2L,"Teste");
        
        
     }

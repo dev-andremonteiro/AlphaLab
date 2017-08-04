@@ -4,7 +4,6 @@ import java.util.Date;
 
 import br.edu.ifmt.cba.alphalab.business.Professor;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
-import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumTipoReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ProfessorEntity;
@@ -40,8 +39,8 @@ public class FrmPedidosReserva {
 	@FXML
 	private DatePicker dtpData;
 
-	@FXML
-	private ComboBox<EnumTipoReserva> cmbTipo;
+	//@FXML
+	//private ComboBox<EnumTipoReserva> cmbTipo;
 
 	@FXML
 	private ComboBox<ProfessorEntity> cmbProfessor;
@@ -58,8 +57,8 @@ public class FrmPedidosReserva {
 	@FXML
 	private TableColumn<ReservaEntity, Date> tbcData;
 
-	@FXML
-	private TableColumn<ReservaEntity, EnumTipoReserva> tbcTipo;
+	//@FXML
+	//private TableColumn<ReservaEntity, EnumTipoReserva> tbcTipo;
 
 	@FXML
 	private TableColumn<ReservaEntity, Boolean> tbcFixo;
@@ -223,8 +222,8 @@ public class FrmPedidosReserva {
 	private void limparFormulario() {
 		dtpData.setValue(null);
 		dtpData.setPromptText("Data");
-		cmbTipo.setValue(null);
-		cmbTipo.setPromptText("Tipo");
+		//cmbTipo.setValue(null);
+		//cmbTipo.setPromptText("Tipo");
 		cmbProfessor.setValue(null);
 		cmbProfessor.setPromptText("Professor");		
 	}

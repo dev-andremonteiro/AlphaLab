@@ -25,6 +25,10 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
         this.observacao_Instalacao = observacao_Instalacao;
         this.solicitante = solicitante;
     }
+
+    public SoftwareEntity() {
+        
+    }
     
     
     

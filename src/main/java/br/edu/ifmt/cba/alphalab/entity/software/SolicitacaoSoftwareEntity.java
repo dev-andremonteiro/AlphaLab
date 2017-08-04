@@ -22,7 +22,7 @@ public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareExc
     private ArrayList<SoftwareEntity> softwares;
     private LaboratorioEntity laboratorio;
     private Calendar dataPedido;
-    private situacaoInstalacaoEnum situacaoInstalacao;
+    private SituacaoInstalacaoEnum situacaoInstalacao;
     private boolean instalado;
     private ServidorEntity solicitante, concluinte;
 
@@ -67,11 +67,11 @@ public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareExc
         this.dataPedido = dataPedido;
     }
 
-    public situacaoInstalacaoEnum getSituacaoInstalacao() {
+    public SituacaoInstalacaoEnum getSituacaoInstalacao() {
         return situacaoInstalacao;
     }
 
-    public void setSituacaoInstalacao(situacaoInstalacaoEnum situacaoInstalacao) {
+    public void setSituacaoInstalacao(SituacaoInstalacaoEnum situacaoInstalacao) {
         this.situacaoInstalacao = situacaoInstalacao;
     } 
         
