@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<GridPane fx:id="grpGerenciaSoftware" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+<GridPane fx:id="grpGerenciaSoftware" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -41,7 +41,8 @@
                         <RowConstraints maxHeight="-Infinity" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="341.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="55.0" prefHeight="55.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Label fx:id="lblSoftwareId" text="%lbl.id" />
@@ -56,6 +57,12 @@
                         <TextField fx:id="txtSoftwareLink" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <TextArea fx:id="txaSoftwareObservacao" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <ChoiceBox fx:id="chbSoftwareTipo" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                           <children>
+                              <Button fx:id="btnSalvar" mnemonicParsing="false" text="%btn.salvar" />
+                              <Button fx:id="btnCancelar" mnemonicParsing="false" text="%btn.cancelar" />
+                           </children>
+                        </HBox>
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -74,8 +81,8 @@
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints maxHeight="-Infinity" minHeight="60.0" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="556.0" minHeight="10.0" prefHeight="556.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="556.0" minHeight="10.0" prefHeight="535.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="55.0" minHeight="55.0" prefHeight="55.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <HBox fx:id="hbxTabManutencao" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
@@ -97,6 +104,18 @@
                               <TableColumn fx:id="tbcObservacao" prefWidth="268.0" text="%lbl.observacaoSoftware" />
                           </columns>
                         </TableView>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="1024.0" spacing="20.0" GridPane.rowIndex="2">
+                           <children>
+                              <Button fx:id="btnAdicionar" mnemonicParsing="false" text="%btn.adicionar" />
+                              <Button fx:id="btnExcluir" mnemonicParsing="false" text="%btn.excluir" />
+                           </children>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets right="20.0" />
+                           </padding>
+                        </HBox>
                      </children>
                   </GridPane>
                </content>

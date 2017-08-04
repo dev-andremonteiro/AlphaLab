@@ -38,7 +38,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
 	private ServidorEntity aprovador;
         
-        private ArrayList<Integer> horarios;
+    private ArrayList<Integer> horarios;
 
 	private ArrayList<RequisitoEntity> requisitos;
 
@@ -79,7 +79,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
 		this.id = id;
 	}
 
-	public Enum getStatus() {
+	public EnumReserva getStatus() {
 		return status;
 	}
 
@@ -236,21 +236,21 @@ public class ReservaEntity implements IEntity<ReservaException> {
 		if (observacao != null && observacao.trim().length() > 200)
 			msg.append("Observação deve possuir no máximo 200 caracteres!\n");
                 
-                if (status == EnumReserva.Confirmado && laboratorio == null)
+                if (status == EnumReserva.CONFIRMADO && laboratorio == null)
 			msg.append("O laboratorio deve ser informado!\n");
 
-                if ((status == EnumReserva.Confirmado || status == EnumReserva.Recusado) && aprovador == null)
+                if ((status == EnumReserva.CONFIRMADO || status == EnumReserva.RECUSADO) && aprovador == null)
 			msg.append("O aprovador deve ser informado!\n");
                 
-		if (status == EnumReserva.Recusado && (justificativa == null || justificativa.trim().length() == 0))
+		if (status == EnumReserva.RECUSADO && (justificativa == null || justificativa.trim().length() == 0))
 			msg.append("Justificativa deve ser informada!\n");
-                if (status == EnumReserva.Recusado && (justificativa != null && (justificativa.trim().length() < 5 || justificativa.trim().length() > 50)))
+                if (status == EnumReserva.RECUSADO && (justificativa != null && (justificativa.trim().length() < 5 || justificativa.trim().length() > 50)))
 			msg.append("A justificativa deve possuir entre 5 e 50 caracteres!\n");
                 
-                if ((status == EnumReserva.Confirmado || status == EnumReserva.Recusado) && dataAprovacaoRecusa == null)
+                if ((status == EnumReserva.CONFIRMADO || status == EnumReserva.RECUSADO) && dataAprovacaoRecusa == null)
 			msg.append("Data de Aprovação ou Recusa deve ser informada!\n");
 
-                if ((status == EnumReserva.Confirmado || status == EnumReserva.Recusado) && (dataAprovacaoRecusa != null && dataAprovacaoRecusa.before(dataSolicitacao)))
+                if ((status == EnumReserva.CONFIRMADO || status == EnumReserva.RECUSADO) && (dataAprovacaoRecusa != null && dataAprovacaoRecusa.before(dataSolicitacao)))
 			msg.append("Data de Aprovação ou Recusa deve ser maior do que a data de solicitação!\n");
                 
 		if (dataInicio != null && dataFim != null && dataInicio.before(dataFim))

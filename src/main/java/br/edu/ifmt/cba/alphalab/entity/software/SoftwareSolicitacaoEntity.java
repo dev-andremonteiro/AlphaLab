@@ -14,8 +14,8 @@ import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 public class SoftwareSolicitacaoEntity extends SoftwareEntity {
     private boolean instalado;
 
-    public SoftwareSolicitacaoEntity(String descricao, Enum tipo, String versao, String link, String observacao_Instalacao, Enum status, ServidorEntity solicitante) {
-        super(descricao, tipo, versao, link, observacao_Instalacao, status, solicitante);
+    public SoftwareSolicitacaoEntity(String descricao, TipoSoftwareEnum tipo, String versao, String link, String observacao_Instalacao, ServidorEntity solicitante) {
+        super(descricao, tipo, versao, link, observacao_Instalacao, solicitante);
     }
     
     public boolean isInstalado() {

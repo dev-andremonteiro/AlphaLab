@@ -5,7 +5,10 @@
  */
 package br.edu.ifmt.cba.alphalab.dao;
 
+import br.edu.ifmt.cba.alphalab.dao.mock.exception.MockSolicitacaoSoftwareException;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
+import br.edu.ifmt.cba.alphalab.entity.software.SoftwareSolicitacaoEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SolicitacaoSoftwareEntity;
 
 /**
@@ -14,6 +17,5 @@ import br.edu.ifmt.cba.alphalab.entity.software.SolicitacaoSoftwareEntity;
  */
 public interface ISolicitacaoSoftware extends IDAO<SolicitacaoSoftwareEntity>{
     
-    public void confirmarInstalacaoDeSoftware(SolicitacaoSoftwareEntity solicitacaoSoftwareEntity, SoftwareEntity softwareEntity);
-    
+    public void confirmarInstalacaoDeSoftware(SolicitacaoSoftwareEntity solicitacaoSoftwareEntity, SoftwareSolicitacaoEntity softwareSolicitacaoEntity,ServidorEntity concluinte) throws MockSolicitacaoSoftwareException;
 }

@@ -1,4 +1,4 @@
-package br.edu.ifmt.cba.alphalab.gui.javafx;
+package br.edu.ifmt.cba.alphalab.entity.laboratorio;
 
 public enum Horario {
 	
