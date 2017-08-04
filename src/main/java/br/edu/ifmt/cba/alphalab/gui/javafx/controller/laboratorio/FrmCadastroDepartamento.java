@@ -89,8 +89,8 @@ public class FrmCadastroDepartamento implements Initializable {
 		ButtonType sim = new ButtonType("Sim");
 		ButtonType nao = new ButtonType("Não");
 		alerta.setTitle("AlphaLab");
-		alerta.setHeaderText("Confirmar Departamento de Horário");
-		alerta.setContentText("Deseja confirmar a Departamento de Horário?");
+		alerta.setHeaderText("Confirmar Departamento");
+		alerta.setContentText("Deseja confirmar o Departamento?");
 		alerta.getButtonTypes().setAll(sim, nao);
 
 		alerta.showAndWait().ifPresent(option -> {
