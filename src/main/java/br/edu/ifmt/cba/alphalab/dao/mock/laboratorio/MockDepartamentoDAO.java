@@ -13,7 +13,8 @@ public class MockDepartamentoDAO implements IDepartamentoDAO {
 	private static ArrayList<DepartamentoEntity> listaDepartamentos = new ArrayList();
 	private static MockDepartamentoDAO singleton = null;
 
-	private static final DepartamentoEntity departamento1 = new DepartamentoEntity();
+	private static final DepartamentoEntity departamento1= new DepartamentoEntity();
+        private static final DepartamentoEntity departamento2= new DepartamentoEntity();
 
 	static {
 		departamento1.setId(1L);

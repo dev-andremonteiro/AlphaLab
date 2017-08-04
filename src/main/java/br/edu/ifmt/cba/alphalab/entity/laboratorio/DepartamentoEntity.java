@@ -33,10 +33,8 @@ public class DepartamentoEntity implements IEntity<DepartamentoException> {
 		return id;
 	}
 
-	@Override
-	public DepartamentoException validar() {
-		return null;
-	}
+	
+        
 
 	public void setId(Long id) {
 		this.id = id;
@@ -74,6 +72,7 @@ public class DepartamentoEntity implements IEntity<DepartamentoException> {
 		this.chefe = chefe;
 	}
         
+        @Override
         public DepartamentoException validar() {
 		StringBuilder msg = new StringBuilder();
 		if (nome == null)
@@ -87,7 +86,7 @@ public class DepartamentoEntity implements IEntity<DepartamentoException> {
                
 
 		if (msg.length() > 0)
-			return new ReservaException(msg.toString());
+			return new DepartamentoException(msg.toString());
 		else
 			return null;
 	}
