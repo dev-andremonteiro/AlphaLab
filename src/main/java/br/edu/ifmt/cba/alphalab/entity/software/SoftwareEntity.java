@@ -9,20 +9,19 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
 
     private Long id;
     private String descricao;
-    private Enum tipo;
+    private TipoSoftwareEnum tipo;
     private String versao;
     private String link;
-    private String observacao_Instalacao;
-    private Enum status;
+    private String observacaoInstalacao;
     private ServidorEntity solicitante;
     private ServidorEntity concluinte;
     
-    public SoftwareEntity(String descricao, Enum tipo, String versao, String link, String observacao_Instalacao, Enum status, ServidorEntity solicitante) {
+    public SoftwareEntity(String descricao, TipoSoftwareEnum tipo, String versao, String link, String observacaoInstalacao, ServidorEntity solicitante) {
         this.descricao = descricao;
         this.tipo = tipo;
         this.versao = versao;
         this.link = link;
-        this.observacao_Instalacao = observacao_Instalacao;
+        this.observacaoInstalacao = observacaoInstalacao;
         this.solicitante = solicitante;
     }
 
@@ -53,13 +52,6 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
         this.id = id;
     }
 
-    public Enum getStatus() {
-        return status;
-    }
-
-    public void setStatus(Enum status) {
-        this.status = status;
-    }
 
     public String getDescricao() {
         return descricao;
@@ -77,20 +69,20 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
         this.link = link;
     }
 
-    public Enum getTipo() {
+    public TipoSoftwareEnum getTipo() {
         return tipo;
     }
 
-    public void setTipo(Enum tipo) {
+    public void setTipo(TipoSoftwareEnum tipo) {
         this.tipo = tipo;
     }
 
     public String getObservacao_Instalacao() {
-        return observacao_Instalacao;
+        return observacaoInstalacao;
     }
 
-    public void setObservacao_Instalacao(String observacao_Instalacao) {
-        this.observacao_Instalacao = observacao_Instalacao;
+    public void setObservacao_Instalacao(String observacaoInstalacao) {
+        this.observacaoInstalacao = observacaoInstalacao;
     }
 
     public String getVersao() {

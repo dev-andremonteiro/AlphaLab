@@ -10,8 +10,10 @@ package br.edu.ifmt.cba.alphalab.entity.software;
  * @author tcloss
  */
 public enum SituacaoSolicitacaoEnum {
-    EM_ANDAMENTO("Em andamento");
-    
+    CONCLUIDO("Concluído"),
+    EM_ANDAMENTO("Em andamento"),
+    AGUARDANDO_ATRIBUICAO("Aguardando atribuição"),
+    ATRIBUIDO("Atribuído");
 
     private String descricao;
     private SituacaoSolicitacaoEnum(String descricao) {

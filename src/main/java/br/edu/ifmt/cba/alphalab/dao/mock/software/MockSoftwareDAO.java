@@ -6,12 +6,9 @@
 package br.edu.ifmt.cba.alphalab.dao.mock.software;
 
 import br.edu.ifmt.cba.alphalab.dao.ISoftwareDAO;
-import br.edu.ifmt.cba.alphalab.entity.exception.SoftwareException;
-import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
-import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
+import br.edu.ifmt.cba.alphalab.entity.software.TipoSoftwareEnum;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -63,6 +60,28 @@ public class MockSoftwareDAO implements ISoftwareDAO{
     public List<SoftwareEntity> buscarTodos() {
           return listaSoftware;
     }
+
+    @Override
+    public List<SoftwareEntity> buscarPorNome(String nome) {
+        List<SoftwareEntity> retorno=null;
+        listaSoftware.forEach(software->{
+            if(software.getDescricao().contains(nome))
+                retorno.add(software);
+        });
+        return retorno;
+    }
+
+    @Override
+    public List<SoftwareEntity> buscarPorTipoNome(TipoSoftwareEnum tipo, String nome) {
+        List<SoftwareEntity> retorno=null;
+        List<SoftwareEntity> nomes = buscarPorNome(nome);
+        nomes.forEach(software->{
+            if(software.getTipo().equals(tipo))
+                retorno.add(software);
+        });
+        return retorno;
+    }
+
 
 
     

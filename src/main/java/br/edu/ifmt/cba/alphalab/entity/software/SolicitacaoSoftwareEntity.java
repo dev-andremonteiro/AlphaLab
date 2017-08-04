@@ -25,6 +25,36 @@ public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareExc
     private SituacaoSolicitacaoEnum situacaoSolicitacao;
     private ServidorEntity solicitante, concluinte;
 
+    public SolicitacaoSoftwareEntity(ArrayList<SoftwareSolicitacaoEntity> softwares, LaboratorioEntity laboratorio, Calendar dataPedido, SituacaoSolicitacaoEnum situacaoSolicitacao, ServidorEntity solicitante, ServidorEntity concluinte) {
+        this.softwares = softwares;
+        this.laboratorio = laboratorio;
+        this.dataPedido = dataPedido;
+        this.situacaoSolicitacao = situacaoSolicitacao;
+        this.solicitante = solicitante;
+        this.concluinte = concluinte;
+    }
+
+    public SolicitacaoSoftwareEntity(long id, ArrayList<SoftwareSolicitacaoEntity> softwares, LaboratorioEntity laboratorio, Calendar dataPedido, SituacaoSolicitacaoEnum situacaoSolicitacao, ServidorEntity solicitante, ServidorEntity concluinte) {
+        this.id = id;
+        this.softwares = softwares;
+        this.laboratorio = laboratorio;
+        this.dataPedido = dataPedido;
+        this.situacaoSolicitacao = situacaoSolicitacao;
+        this.solicitante = solicitante;
+        this.concluinte = concluinte;
+    }
+
+    public SolicitacaoSoftwareEntity(LaboratorioEntity laboratorio, Calendar dataPedido, ServidorEntity solicitante, ServidorEntity concluinte) {
+        this.laboratorio = laboratorio;
+        this.dataPedido = dataPedido;
+        this.solicitante = solicitante;
+        this.concluinte = concluinte;
+    }
+
+    public SolicitacaoSoftwareEntity() {
+    }
+
+    
     
     @Override
     public Long getId() {
@@ -66,7 +96,15 @@ public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareExc
 
     public void setSituacaoInstalacao(SituacaoSolicitacaoEnum situacaoSolicitacao) {
         this.situacaoSolicitacao = situacaoSolicitacao;
-    } 
+    }
+    public void addSoftware(SoftwareSolicitacaoEntity softwareSolicitacaoEntity){
+        if(!this.softwares.contains(softwareSolicitacaoEntity)){
+            this.softwares.add(softwareSolicitacaoEntity);
+        }
+        else{
+            this.softwares.set(this.softwares.indexOf(softwareSolicitacaoEntity), softwareSolicitacaoEntity);
+        }
+    }
         
 
     @Override
