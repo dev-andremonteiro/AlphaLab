@@ -6,7 +6,6 @@
 package br.edu.ifmt.cba.alphalab.entity.software;
 
 import br.edu.ifmt.cba.alphalab.entity.IEntity;
-import br.edu.ifmt.cba.alphalab.entity.exception.SoftwareException;
 import br.edu.ifmt.cba.alphalab.entity.exception.SolicitacaoSoftwareException;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
@@ -23,7 +22,7 @@ public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareExc
     private ArrayList<SoftwareSolicitacaoEntity> softwares;
     private LaboratorioEntity laboratorio;
     private Calendar dataPedido;
-    private SituacaoSolicitacaoEnum situacaoInstalacao;
+    private SituacaoSolicitacaoEnum situacaoSolicitacao;
     private ServidorEntity solicitante, concluinte;
 
     
@@ -61,11 +60,12 @@ public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareExc
     }
 
     public SituacaoSolicitacaoEnum getSituacaoInstalacao() {
-        return situacaoInstalacao;
+
+        return situacaoSolicitacao;
     }
 
-    public void setSituacaoInstalacao(SituacaoSolicitacaoEnum situacaoInstalacao) {
-        this.situacaoInstalacao = situacaoInstalacao;
+    public void setSituacaoInstalacao(SituacaoSolicitacaoEnum situacaoSolicitacao) {
+        this.situacaoSolicitacao = situacaoSolicitacao;
     } 
         
 

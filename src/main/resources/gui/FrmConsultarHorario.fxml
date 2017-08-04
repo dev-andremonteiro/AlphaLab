@@ -23,14 +23,14 @@
       </StackPane>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1024.0" spacing="125.0" VBox.vgrow="ALWAYS">
          <children>
-            <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" prefWidth="150.0" promptText="%cmb.laboratorio" />
-            <ComboBox fx:id="cmbProfessor" onAction="#cmbProfessor_onAction" prefWidth="150.0" promptText="%cmb.professor" />
-            <ComboBox fx:id="cmbDisciplina" onAction="#cmbDisciplina_onAction" prefWidth="150.0" promptText="%cmb.disciplina" />
+            <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" prefWidth="150.0" promptText="%combo.laboratorio" />
+            <ComboBox fx:id="cmbProfessor" onAction="#cmbProfessor_onAction" prefWidth="150.0" promptText="%combo.professor" />
+            <ComboBox fx:id="cmbDisciplina" onAction="#cmbDisciplina_onAction" prefWidth="150.0" promptText="%combo.disciplina" />
          </children>
       </HBox>
       <Pane prefHeight="600.0" prefWidth="980.0" VBox.vgrow="ALWAYS">
          <children>
-            <TableView accessibleRole="IMAGE_VIEW" focusTraversable="false" prefHeight="600.0" prefWidth="980.0">
+            <TableView fx:id="tblConsultarHorario" accessibleRole="IMAGE_VIEW" focusTraversable="false" prefHeight="600.0" prefWidth="980.0">
               <columns>
                 <TableColumn fx:id="tbcHorario" prefWidth="75.0" text="%column.horario" />
                 <TableColumn fx:id="tbcSegunda" prefWidth="75.0" text="%column.segunda" />

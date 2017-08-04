@@ -1,6 +1,7 @@
 package br.edu.ifmt.cba.alphalab.entity.laboratorio;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.entity.IEntity;
 import br.edu.ifmt.cba.alphalab.entity.exception.RequisitoException;
@@ -14,11 +15,14 @@ public class RequisitoEntity implements IEntity<RequisitoException> {
 
 	private ArrayList<SoftwareEntity> softwares;
 
-	public RequisitoEntity(Long id, int qtdAlunos, ArrayList<SoftwareEntity> softwares) {
+	public RequisitoEntity() {
+	}
+
+	public RequisitoEntity(Long id, int qtdAlunos, List<SoftwareEntity> softwares) {
 		super();
 		this.id = id;
 		this.qtdAlunos = qtdAlunos;
-		this.softwares = softwares;
+		this.softwares = (ArrayList<SoftwareEntity>) softwares;
 	}
 
 	@Override

@@ -2,6 +2,7 @@
 package br.edu.ifmt.cba.alphalab.gui.javafx;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import br.edu.ifmt.cba.alphalab.gui.javafx.controller.exemplo.FrmPrincipal;
 import javafx.application.Application;
@@ -24,7 +25,8 @@ public class Main extends Application {
         BorderPane frmPrincipal = null;
         
         try{
-            frmPrincipal = FXMLLoader.load(FrmPrincipal.class.getClassLoader().getResource("gui//FrmPrincipal.fxml"));
+            frmPrincipal = FXMLLoader.load(FrmPrincipal.class.getClassLoader().getResource("gui//FrmPrincipal.fxml"),
+            		ResourceBundle.getBundle(FrmPrincipal.LINGUA_PORTUGUES));
         }catch (IOException ioe){
             ioe.printStackTrace();
         }

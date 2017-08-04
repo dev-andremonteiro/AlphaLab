@@ -5,10 +5,11 @@
  */
 package br.edu.ifmt.cba.alphalab.dao.mock.software;
 
-import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
+
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
 
 /**
  *

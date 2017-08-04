@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane prefHeight="50.0" prefWidth="1024.0">
          <children>
@@ -35,18 +35,18 @@
       </StackPane>
       <TabPane focusTraversable="false" prefHeight="600.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
         <tabs>
-          <Tab closable="false" text="%tab.visualizar">
+          <Tab fx:id="tabVisualizar" closable="false" onSelectionChanged="#tabVisualizar_onSelectionChanged" text="%tab.visualizar">
                <content>
                   <VBox>
                      <children>
                         <HBox prefHeight="50.0" spacing="50.0">
                            <children>
-                              <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" prefWidth="150.0" promptText="%cmb.laboratorio" />
+                              <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" prefWidth="150.0" promptText="%combo.laboratorio" />
                               <Pane prefHeight="50.0" prefWidth="650.0" />
-                              <Button fx:id="btnProximo" mnemonicParsing="false" onAction="#btnProximo_onAction" text="%button.proximo" />
+                              <Button fx:id="btnProximo" mnemonicParsing="false" onAction="#btnProximo_onAction" onKeyPressed="#btnProximo_onKeyPressed" text="%button.proximo" />
                            </children>
                         </HBox>
-                        <TableView focusTraversable="false" prefHeight="600.0" prefWidth="980.0">
+                        <TableView fx:id="tblGerenciarHorario" focusTraversable="false" prefHeight="600.0" prefWidth="980.0">
                            <columns>
                               <TableColumn fx:id="tbcHorario" prefWidth="75.0" text="%column.horario" />
                               <TableColumn fx:id="tbcSegunda" prefWidth="75.0" text="%column.segunda" />
@@ -68,7 +68,7 @@
                   </VBox>
                </content>
           </Tab>
-          <Tab closable="false" text="%tab.preencherDados">
+          <Tab fx:id="tabPreencherDados" closable="false" onSelectionChanged="#tabPreencherDados_onSelectionChanged" text="%tab.preencherDados">
                <content>
                   <VBox>
                      <children>
@@ -91,7 +91,7 @@
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Text>
-                                    <ComboBox fx:id="cmbProfessor" onKeyPressed="#cmbProfessor_onKeyPressed" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cmbProfessor" onAction="#cmbProfessor_onAction" onKeyPressed="#cmbProfessor_onKeyPressed" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                               <Pane prefHeight="200.0" prefWidth="50.0" />
@@ -125,9 +125,9 @@
                                           <Label text="%label.turma" GridPane.rowIndex="2" />
                                           <Label text="%label.observacoes" GridPane.rowIndex="3" />
                                           <TextField fx:id="txtDisciplina" onKeyPressed="#txtDisciplina_onKeyPressed" GridPane.columnIndex="1" />
-                                          <ComboBox fx:id="cmbDepartamento" onKeyPressed="#cmbDepartamento_onKeyPressed" prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <ComboBox fx:id="cmbDepartamento" onAction="#cmbDepartamento_onAction" prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="txtTurma" onKeyPressed="#txtTurma_onKeyPressed" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <TextArea fx:id="txaObservacoes" prefHeight="100.0" prefWidth="256.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <TextArea fx:id="txaObservacoes" editable="false" onKeyPressed="#txaObservacoes_onKeyPressed" prefHeight="100.0" prefWidth="256.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                        </children>
                                     </GridPane>
                                     <Pane prefHeight="50.0" prefWidth="512.0" />
@@ -142,8 +142,8 @@
                                                 <Insets left="20.0" right="20.0" />
                                              </StackPane.margin>
                                              <children>
-                                                <Button fx:id="btnConfirmar" mnemonicParsing="false" text="%button.confirmar" translateX="150.0" />
-                                                <Button fx:id="btnVoltar" mnemonicParsing="false" text="%button.voltar" />
+                                                <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#btnConfirmar_onAction" text="%button.confirmar" translateX="150.0" />
+                                                <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#btnVoltar_onAction" text="%button.voltar" />
                                              </children>
                                           </Group>
                                        </children>

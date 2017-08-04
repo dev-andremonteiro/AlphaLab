@@ -17,9 +17,6 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
     private ServidorEntity solicitante;
     private ServidorEntity concluinte;
     
-    public SoftwareEntity(){
-    }
-
     public SoftwareEntity(String descricao, Enum tipo, String versao, String link, String observacao_Instalacao, Enum status, ServidorEntity solicitante) {
         this.descricao = descricao;
         this.tipo = tipo;
@@ -28,8 +25,11 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
         this.observacao_Instalacao = observacao_Instalacao;
         this.solicitante = solicitante;
     }
-    
-    
+
+    public SoftwareEntity() {
+       
+    }
+       
     
     @Override
     public Long getId() {

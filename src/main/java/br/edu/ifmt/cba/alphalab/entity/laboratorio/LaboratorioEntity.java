@@ -5,103 +5,121 @@ import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.exception.LaboratorioException;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LaboratorioEntity implements IEntity<LaboratorioException> {
 
-    private Long id;
+	private Long id;
 
-    private String nome;
+	private String nome;
 
-    private Enum situacao;
+	private Enum situacao;
 
-    private int capacidade;
+	private int capacidade;
 
-    private String observacao;
+	private String observacao;
 
-    private DepartamentoEntity departamento;
+	private DepartamentoEntity departamento;
 
-    private EquipamentoEntity equipamento;
+	private EquipamentoEntity equipamento;
 
-    private ArrayList<SoftwareEntity> software;
+	private ArrayList<SoftwareEntity> softwares;
 
-    private ArrayList<EquipamentoEntity> equipamentos;
+	private ArrayList<EquipamentoEntity> equipamentos;
 
-    @Override
-    public Long getId() {
-        return id;
-    }
+	public LaboratorioEntity() {
+	}
 
-    @Override
-    public LaboratorioException validar() {
-        return null;
-    }
+	public LaboratorioEntity(Long id, String nome, Enum situacao, int capacidade, String observacao,
+			DepartamentoEntity departamento, EquipamentoEntity equipamento, List<SoftwareEntity> softwares,
+			List<EquipamentoEntity> equipamentos) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.situacao = situacao;
+		this.capacidade = capacidade;
+		this.observacao = observacao;
+		this.departamento = departamento;
+		this.equipamento = equipamento;
+		this.softwares = (ArrayList<SoftwareEntity>) softwares;
+		this.equipamentos = (ArrayList<EquipamentoEntity>) equipamentos;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@Override
+	public Long getId() {
+		return id;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	@Override
+	public LaboratorioException validar() {
+		return null;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Enum getSituacao() {
-        return situacao;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setSituacao(Enum situacao) {
-        this.situacao = situacao;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public int getCapacidade() {
-        return capacidade;
-    }
+	public Enum getSituacao() {
+		return situacao;
+	}
 
-    public void setCapacidade(int capacidade) {
-        this.capacidade = capacidade;
-    }
+	public void setSituacao(Enum situacao) {
+		this.situacao = situacao;
+	}
 
-    public String getObservacao() {
-        return observacao;
-    }
+	public int getCapacidade() {
+		return capacidade;
+	}
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
+	public void setCapacidade(int capacidade) {
+		this.capacidade = capacidade;
+	}
 
-    public DepartamentoEntity getDepartamento() {
-        return departamento;
-    }
+	public String getObservacao() {
+		return observacao;
+	}
 
-    public void setDepartamento(DepartamentoEntity departamento) {
-        this.departamento = departamento;
-    }
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
 
-    public EquipamentoEntity getEquipamento() {
-        return equipamento;
-    }
+	public DepartamentoEntity getDepartamento() {
+		return departamento;
+	}
 
-    public void setEquipamento(EquipamentoEntity equipamento) {
-        this.equipamento = equipamento;
-    }
+	public void setDepartamento(DepartamentoEntity departamento) {
+		this.departamento = departamento;
+	}
 
-    public ArrayList<SoftwareEntity> getSoftware() {
-        return software;
-    }
+	public EquipamentoEntity getEquipamento() {
+		return equipamento;
+	}
 
-    public void setSoftware(ArrayList<SoftwareEntity> software) {
-        this.software = software;
-    }
+	public void setEquipamento(EquipamentoEntity equipamento) {
+		this.equipamento = equipamento;
+	}
 
-    public ArrayList<EquipamentoEntity> getEquipamentos() {
-        return equipamentos;
-    }
+	public ArrayList<SoftwareEntity> getSoftwares() {
+		return softwares;
+	}
 
-    public void setEquipamentos(ArrayList<EquipamentoEntity> equipamentos) {
-        this.equipamentos = equipamentos;
-    }
+	public void setSoftwares(ArrayList<SoftwareEntity> softwares) {
+		this.softwares = softwares;
+	}
 
+	public ArrayList<EquipamentoEntity> getEquipamentos() {
+		return equipamentos;
+	}
+
+	public void setEquipamentos(ArrayList<EquipamentoEntity> equipamentos) {
+		this.equipamentos = equipamentos;
+	}
 }

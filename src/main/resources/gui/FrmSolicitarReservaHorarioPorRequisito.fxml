@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -23,7 +25,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio.FrmSolicitarReservaHorarioPorRequisito">
    <top>
       <StackPane prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -44,7 +46,8 @@
                      <left>
                         <VBox prefHeight="689.0" prefWidth="400.0" BorderPane.alignment="CENTER">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="350.0" spacing="15.0">
+                              <Pane prefHeight="40.0" prefWidth="501.0" />
+                              <HBox alignment="CENTER_LEFT" prefWidth="350.0" spacing="15.0">
                                  <children>
                                     <Label text="%label.dataDoisPontos">
                                        <font>
@@ -53,8 +56,11 @@
                                     </Label>
                                     <DatePicker fx:id="dtpData" onAction="#dtpData_onAction" onKeyPressed="#dtpData_onKeyPressed" />
                                  </children>
+                                 <padding>
+                                    <Insets bottom="20.0" />
+                                 </padding>
                               </HBox>
-                              <TableView fx:id="tblHorarioRequisitos" onKeyPressed="#tblHorarioRequisitos_onKeyPressed" onMouseClicked="#tblHorarioRequisitos_onMouseClicked" prefHeight="450.0" prefWidth="350.0">
+                              <TableView fx:id="tblHorarioRequisitos" onKeyPressed="#tblHorarioRequisitos_onKeyPressed" onMouseClicked="#tblHorarioRequisitos_onMouseClicked" prefHeight="550.0" prefWidth="350.0">
                                  <columns>
                                     <TableColumn fx:id="tbcHorario" prefWidth="100.0" text="%column.horario" />
                                     <TableColumn fx:id="tbcDiaSemana" prefWidth="130.0" text="Dia da Semana" />
@@ -72,7 +78,8 @@
                      <right>
                         <VBox prefHeight="689.0" prefWidth="551.0" spacing="10.0" BorderPane.alignment="CENTER">
                            <children>
-                              <HBox alignment="BOTTOM_LEFT" prefHeight="58.0" prefWidth="501.0">
+                              <Pane prefHeight="5.0" prefWidth="501.0" />
+                              <HBox alignment="BOTTOM_LEFT" prefWidth="501.0">
                                  <children>
                                     <Label alignment="BOTTOM_CENTER" text="%label.softwares">
                                        <font>
@@ -81,13 +88,16 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <HBox prefHeight="32.0" prefWidth="503.0" spacing="8.0">
+                              <HBox prefWidth="503.0" spacing="8.0">
                                  <children>
                                     <TextField fx:id="txtNomeSoftware" onKeyPressed="#txtNomeSoftware_onKeyPressed" prefHeight="25.0" prefWidth="424.0" />
-                                    <Button fx:id="btnBuscar" mnemonicParsing="false" onKeyPressed="#btnBuscar_onKeyPressed" onMouseClicked="#btnBuscar_onMouseClicked" prefWidth="70.0" text="%button.buscar" />
+                                    <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#btnBuscar_onAction" onKeyPressed="#btnBuscar_onKeyPressed" onMouseClicked="#btnBuscar_onMouseClicked" prefWidth="70.0" text="%button.buscar" />
                                  </children>
+                                 <padding>
+                                    <Insets bottom="5.0" />
+                                 </padding>
                               </HBox>
-                              <TableView fx:id="tblRequisitos" onKeyPressed="#tblRequisitos_onKeyPressed" onMouseClicked="#tblRequisitos_onMouseClicked" prefHeight="439.0" prefWidth="503.0">
+                              <TableView fx:id="tblRequisitos" onKeyPressed="#tblRequisitos_onKeyPressed" onMouseClicked="#tblRequisitos_onMouseClicked" prefHeight="500.0" prefWidth="503.0">
                                  <columns>
                                     <TableColumn fx:id="tbcSelecionado" maxWidth="50.0" prefWidth="200.0" />
                                     <TableColumn fx:id="tbcNome" maxWidth="250.0" prefWidth="287.0" text="%column.nome" />
@@ -97,7 +107,7 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="475.0" spacing="10.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="475.0" spacing="10.0">
                                  <children>
                                     <Label text="%label.numMaxAlunos">
                                        <font>
@@ -179,26 +189,27 @@
                      </top>
                      <center>
                         <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                           <left>
-                              <VBox prefHeight="389.0" prefWidth="470.0" BorderPane.alignment="CENTER">
+                           <top>
+                              <VBox alignment="CENTER" prefHeight="371.0" prefWidth="594.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <GridPane prefHeight="213.0" prefWidth="312.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="88.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="376.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
+                                    <GridPane prefHeight="261.0" prefWidth="550.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="376.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="49.0" minHeight="40.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="79.0" minHeight="70.0" prefHeight="79.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="40.0" minHeight="31.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
                                        <children>
                                           <Label alignment="CENTER" prefHeight="119.0" prefWidth="223.0" text="%label.disciplina" />
                                           <Label alignment="CENTER" prefHeight="104.0" prefWidth="195.0" text="%label.departamento" GridPane.rowIndex="1" />
                                           <Label alignment="CENTER" prefHeight="91.0" prefWidth="201.0" text="%label.turma" GridPane.rowIndex="2" />
                                           <Label alignment="TOP_CENTER" prefHeight="103.0" prefWidth="227.0" text="%label.observacao" GridPane.rowIndex="3" />
-                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                          <Pane prefHeight="24.0" prefWidth="376.0" GridPane.columnIndex="1">
                                              <children>
                                                 <TextField fx:id="txtDisciplina" layoutY="8.0" onKeyPressed="#txtDisciplina_onKeyPressed" prefHeight="25.0" prefWidth="250.0" />
                                              </children>
@@ -213,75 +224,39 @@
                                                 <TextField fx:id="txtTurma" layoutY="8.0" onKeyPressed="#txtTurma_onKeyPressed" prefWidth="250.0" />
                                              </children>
                                           </Pane>
-                                          <Pane prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <Pane prefHeight="72.0" prefWidth="376.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <children>
                                                 <TextArea fx:id="txaObservacao" onKeyPressed="#txaObservacao_onKeyPressed" prefHeight="74.0" prefWidth="250.0" />
                                              </children>
                                           </Pane>
+                                          <Label alignment="CENTER" prefHeight="119.0" prefWidth="223.0" text="%label.fixo" GridPane.rowIndex="4" />
+                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                             <children>
+                                                <CheckBox fx:id="ckbFixo" layoutY="12.0" mnemonicParsing="false" onAction="#ckbFixo_onAction" onKeyPressed="#ckbFixo_onAction" onMouseClicked="#ckbFixo_onAction" />
+                                             </children>
+                                          </Pane>
                                        </children>
                                     </GridPane>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="110.0" prefWidth="470.0" spacing="20.0">
+                                       <children>
+                                          <Pane prefHeight="110.0" prefWidth="446.0">
+                                             <children>
+                                                <Group layoutX="200.0" layoutY="29.0">
+                                                   <children>
+                                                      <Button fx:id="btnConfirmar" layoutX="102.0" mnemonicParsing="false" onAction="#btnConfirmar_onAction" onKeyPressed="#btnConfirmar_onKeyPressed" onMouseClicked="#btnConfirmar_onMouseClicked" prefWidth="70.0" text="%button.confirmar" />
+                                                      <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#btnCancelar_onAction" onKeyPressed="#btnCancelar_onKeyPressed" onMouseClicked="#btnCancelar_onMouseClicked" prefWidth="70.0" text="%button.cancelar" />
+                                                   </children>
+                                                </Group>
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </HBox>
                                  </children>
                                  <BorderPane.margin>
-                                    <Insets left="60.0" />
-                                 </BorderPane.margin></VBox>
-                           </left>
-                           <right>
-                              <VBox prefHeight="389.0" prefWidth="284.0" BorderPane.alignment="CENTER">
-                                 <BorderPane.margin>
-                                    <Insets right="200.0" />
+                                    <Insets left="30.0" right="200.0" />
                                  </BorderPane.margin>
-                                 <children>
-                                    <GridPane prefHeight="143.0" prefWidth="470.0">
-                                       <columnConstraints>
-                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="115.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="388.0" minWidth="10.0" prefWidth="216.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <Label alignment="CENTER_RIGHT" prefHeight="119.0" prefWidth="223.0" text="%label.repeticao" />
-                                          <Label alignment="CENTER_RIGHT" prefHeight="104.0" prefWidth="195.0" text="%label.reservaACada" GridPane.rowIndex="1" />
-                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1">
-                                             <children>
-                                                <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="378.0">
-                                                   <children>
-                                                      <ComboBox fx:id="cmbRepeticao" onAction="#cmbRepeticao_onAction" prefWidth="150.0" />
-                                                   </children>
-                                                   <padding>
-                                                      <Insets left="5.0" />
-                                                   </padding>
-                                                </HBox>
-                                             </children>
-                                          </Pane>
-                                          <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                             <children>
-                                                <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="376.0" spacing="10.0">
-                                                   <children>
-                                                      <ComboBox fx:id="cmbReserva" onAction="#cmbReserva_onAction" prefHeight="25.0" prefWidth="60.0" />
-                                                      <Text fx:id="texReserva" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="130.13671875" />
-                                                   </children>
-                                                   <padding>
-                                                      <Insets left="5.0" />
-                                                   </padding>
-                                                </HBox>
-                                             </children>
-                                          </Pane>
-                                       </children>
-                                    </GridPane>
-                                    <BorderPane prefHeight="300.0" prefWidth="284.0">
-                                       <bottom>
-                                          <HBox alignment="TOP_RIGHT" prefHeight="144.0" prefWidth="235.0" spacing="20.0" BorderPane.alignment="CENTER_RIGHT">
-                                             <children>
-                                                <Button fx:id="btnCancelar" mnemonicParsing="false" onKeyPressed="#btnCancelar_onKeyPressed" onMouseClicked="#btnCancelar_onMouseClicked" prefWidth="70.0" text="%button.cancelar" />
-                                                <Button fx:id="btnConfirmar" mnemonicParsing="false" onKeyPressed="#btnConfirmar_onKeyPressed" onMouseClicked="#btnConfirmar_onMouseClicked" prefWidth="70.0" text="%button.confirmar" />
-                                             </children>
-                                          </HBox>
-                                       </bottom>
-                                    </BorderPane>
-                                 </children></VBox>
-                           </right>
+                              </VBox>
+                           </top>
                         </BorderPane>
                      </center>
                   </BorderPane>
