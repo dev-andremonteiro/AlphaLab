@@ -30,7 +30,7 @@ public class MockReservaDAO implements IReservaDAO {
 
 	static {
 		reserva1.setId(1L);
-		reserva1.setStatus(EnumReserva.Recusado);
+		reserva1.setStatus(EnumReserva.RECUSADO);
 		try {
 			reserva1.setDataSolicitacao(new SimpleDateFormat(formatoData).parse("10/05/2017"));
 		} catch (ParseException e1) {
