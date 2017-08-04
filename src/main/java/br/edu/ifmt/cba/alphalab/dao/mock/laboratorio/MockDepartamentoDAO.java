@@ -23,6 +23,16 @@ public class MockDepartamentoDAO implements IDepartamentoDAO {
 				(ServidorEntity) MockServidorDAO.getInstance().getByNome("Augusto César de Oliveira").toArray()[0]);
 
 		listaDepartamentos.add(departamento1);
+                
+                
+                departamento2.setId(1L);
+		departamento2.setSigla("DACC");
+		departamento2.setNome("Departamento da Área de Constação Civil");
+		departamento2.setObservacao("Construção Civil");
+		departamento2.setChefe(
+				(ServidorEntity) MockServidorDAO.getInstance().getByNome("Ângela de Oliveira").toArray()[0]);
+
+		listaDepartamentos.add(departamento2);
 	}
 
 	public static MockDepartamentoDAO getInstance() {

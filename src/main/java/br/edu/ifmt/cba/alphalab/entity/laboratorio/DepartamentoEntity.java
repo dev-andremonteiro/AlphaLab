@@ -73,4 +73,22 @@ public class DepartamentoEntity implements IEntity<DepartamentoException> {
 	public void setChefe(ServidorEntity chefe) {
 		this.chefe = chefe;
 	}
+        
+        public DepartamentoException validar() {
+		StringBuilder msg = new StringBuilder();
+		if (nome == null)
+			msg.append("Nome do Departamento Deve Ser Informado!\n");
+
+		if (chefe == null)
+			msg.append("Nome do Chefe do Departamento Deve Ser Informado!\n");
+                
+                if (sigla == null)
+			msg.append("Sigla do Departamento Deve Ser Informado!\n");
+               
+
+		if (msg.length() > 0)
+			return new ReservaException(msg.toString());
+		else
+			return null;
+	}
 }
