@@ -2,17 +2,26 @@ package br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.edu.ifmt.cba.alphalab.business.Reserva;
+import br.edu.ifmt.cba.alphalab.business.Software;
+import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
 import br.edu.ifmt.cba.alphalab.gui.javafx.Horario;
 import br.edu.ifmt.cba.alphalab.gui.javafx.controller.exemplo.FrmPrincipal;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -53,6 +62,13 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	// Lista dos botões pressionados na TableColumn tbcDiaSemana
 	private List<ToggleButton> listaSelecionados = new ArrayList<>();
+
+	// Software...
+	private Software software = new Software(DAOFactory.getDAOFactory().getSoftwareDAO());
+
+	private Date dtSolicitacaoReserva = null;
+	private List<RequisitoEntity> listaRequisitos = new ArrayList<>();
+	private Integer numMaxAlunos = 0;
 
 	@FXML
 	private TabPane tabPaneDados;
@@ -126,9 +142,6 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	@FXML
 	private Button btnConfirmar;
 
-	// private Software software = new
-	// Software(DAOFacctory.getDAOFactory().getClienteDAO());
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		fillColumnHorario();
@@ -182,11 +195,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	 * Atualiza o TableView de Softwares
 	 */
 	private void atualizaTableViewSoftwares() {
-		/*
-		 * ObservableList<SoftwareEntity> softwares = FXCollections
-		 * .observableArrayList(software.getByNome(txtNomeSoftware.getText()));
-		 * tblRequisitos.setItems(softwares);
-		 */
+		ObservableList<SoftwareEntity> softwares = FXCollections.observableArrayList(software.buscarTodosSoftwares());
+		tblRequisitos.setItems(softwares);
 	}
 
 	/**
@@ -227,6 +237,41 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		ckbFixo.setSelected(false);
 	}
 
+	// Compõe os dados da solicitação de Reserva de Horário
+	private void comporDados() {
+
+	}
+
+	/**
+	 * Guarda os dados selecionados pelo usuário na Tab tabRequisitos.<br>
+	 * <b>Dados:</b> Data, Horário, Softwares e Número Máximo de Alunos.
+	 */
+	private void getDadosTabRequisitos() {
+		dtSolicitacaoReserva = Date.from(dtpData.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+		// lista de horarários selecionados
+		// lista de softwares selecionados
+		numMaxAlunos = Integer.parseInt(txtNumMaxAlunos.getText());
+		tabRequisitos.setDisable(true);
+		tabPaneDados.getSelectionModel().select(tabPreencherDados);
+		// Preencher requisitos e horários selecionados na Tab TabPreencherDados
+	}
+
+	private ReservaEntity getDadosTabPreencherDados() {
+		ReservaEntity reservaEntity = new ReservaEntity();
+
+		reservaEntity.setDataSolicitacao(dtSolicitacaoReserva);
+		// Horários da reserva
+		// Requisitos da reserva
+		// Num máx. de alunos
+		reservaEntity.setDisciplina(txtDisciplina.getText());
+		reservaEntity.setDepartamentoAula(cmbDepartamento.getSelectionModel().getSelectedItem());
+		reservaEntity.setTurma(txtTurma.getText());
+		reservaEntity.setObservacao(txaObservacao.getText());
+		reservaEntity.setFixo(ckbFixo.isSelected());
+
+		return reservaEntity;
+	}
+
 	@FXML
 	void btnBuscar_onAction(ActionEvent event) {
 		atualizaTableViewSoftwares();
@@ -262,7 +307,33 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void btnConfirmar_onAction(ActionEvent event) {
+		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+		ButtonType sim = new ButtonType("Sim");
+		ButtonType nao = new ButtonType("Não");
+		alerta.setTitle("AlphaLab");
+		alerta.setHeaderText("Confirmar Reserva de Horário");
+		alerta.setContentText("Deseja confirmar a Reserva de Horário?");
+		alerta.getButtonTypes().setAll(sim, nao);
 
+		alerta.showAndWait().ifPresent(option -> {
+			if (option == sim) {
+				ReservaEntity reserva = this.getDadosTabPreencherDados();
+				if (reserva.validar() == null) {
+					Reserva salvarReserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
+					salvarReserva.save(reserva);
+				} else {
+					Alert alertaDadosInvalidos = new Alert(Alert.AlertType.INFORMATION);
+					alertaDadosInvalidos.setTitle("AlphaLab");
+					alertaDadosInvalidos.setHeaderText("Dados inconsistentes!");
+					alertaDadosInvalidos.setContentText(reserva.validar().getMessage());
+
+					alertaDadosInvalidos.show();
+				}
+
+			} else {
+				alerta.close();
+			}
+		});
 	}
 
 	@FXML
@@ -277,27 +348,26 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void btnProximoRequisitos_onAction(ActionEvent event) {
-		tabPaneDados.getSelectionModel().select(tabPreencherDados);
+		getDadosTabRequisitos();
 	}
 
 	@FXML
 	void btnProximoRequisitos_onKeyPressed(KeyEvent event) {
-		tabPaneDados.getSelectionModel().select(tabPreencherDados);
+		getDadosTabRequisitos();
 	}
 
 	@FXML
 	void btnProximoRequisitos_onMouseClicked(MouseEvent event) {
-		tabPaneDados.getSelectionModel().select(tabPreencherDados);
+		getDadosTabRequisitos();
 	}
 
 	@FXML
 	void ckbFixo_onAction(MouseEvent event) {
-
 	}
 
 	@FXML
 	void cmbDepartamento_onAction(ActionEvent event) {
-
+		txtTurma.requestFocus();
 	}
 
 	@FXML
@@ -351,17 +421,26 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void tblRequisitos_onMouseClicked(MouseEvent event) {
+		List<SoftwareEntity> listaSoftwaresSelecionados = new ArrayList<>();
+		SoftwareEntity softwareSelecionado = tblRequisitos.getSelectionModel().getSelectedItem();
 
+		// Adiciona ou remove os softwares na lista de softwares selecionados
+		if (listaSoftwaresSelecionados.contains(softwareSelecionado)) {
+			listaSoftwaresSelecionados.remove(softwareSelecionado);
+			int linha = tblRequisitos.getSelectionModel().getSelectedIndex();
+
+			tblRequisitos.getItems().get(linha);
+		}
 	}
 
 	@FXML
 	void txaObservacao_onKeyPressed(KeyEvent event) {
-
+		ckbFixo.requestFocus();
 	}
 
 	@FXML
 	void txtDisciplina_onKeyPressed(KeyEvent event) {
-
+		cmbDepartamento.requestFocus();
 	}
 
 	@FXML
@@ -376,6 +455,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void txtTurma_onKeyPressed(KeyEvent event) {
+		txaObservacao.requestFocus();
 
 	}
 

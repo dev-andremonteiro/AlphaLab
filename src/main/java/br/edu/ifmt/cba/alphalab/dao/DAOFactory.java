@@ -17,6 +17,8 @@ public interface DAOFactory {
 
 	public abstract IReservaDAO getReservaDAO();
 
+	public abstract ISoftwareDAO getSoftwareDAO();
+
 	public static DAOFactory getDAOFactory() {
 		if (props.isEmpty()) {
 			try {
@@ -41,8 +43,6 @@ public interface DAOFactory {
 			return null;
 		}
 	}
-
 	// public abstract boolean isSessionClosed();
 	// public abstract void closeSession();
-
 }
