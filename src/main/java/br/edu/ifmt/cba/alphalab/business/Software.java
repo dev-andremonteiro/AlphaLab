@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IDAO;
 import br.edu.ifmt.cba.alphalab.dao.ISoftwareDAO;
+import br.edu.ifmt.cba.alphalab.dao.mock.software.MockSoftwareDAO;
 import br.edu.ifmt.cba.alphalab.entity.exception.SoftwareException;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.TipoSoftwareEnum;
@@ -22,12 +23,14 @@ public class Software extends ABusiness<SoftwareEntity, SoftwareException, ISoft
 	public List<SoftwareEntity> buscarTodosSoftwares() {
 		return ((ISoftwareDAO) dao).buscarTodos();
 	}
+
 	public List<SoftwareEntity> getByNome(String text) {
-                return ((ISoftwareDAO) dao).buscarPorNome(text);
+		// return ((ISoftwareDAO) dao).buscarPorNome(text);
+		return MockSoftwareDAO.getInstance().buscarTodos();
 	}
-        
-        public List<SoftwareEntity> buscarPorTipoNome(TipoSoftwareEnum tipo, String nome){
-            return ((ISoftwareDAO) dao).buscarPorTipoNome(tipo, nome);
-        }
+
+	public List<SoftwareEntity> buscarPorTipoNome(TipoSoftwareEnum tipo, String nome) {
+		return ((ISoftwareDAO) dao).buscarPorTipoNome(tipo, nome);
+	}
 
 }

@@ -74,7 +74,7 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 
     @Override
     public List<SoftwareEntity> buscarPorNome(String nome) {
-        List<SoftwareEntity> retorno=null;
+        List<SoftwareEntity> retorno= new ArrayList<>();        
         listaSoftware.forEach(software->{
             if(software.getDescricao().contains(nome))
                 retorno.add(software);
