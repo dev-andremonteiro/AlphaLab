@@ -16,5 +16,7 @@ import java.util.List;
  * @author tcloss
  */
 public interface ISoftwareDAO extends IDAO<SoftwareEntity> {
-    public List<SoftwareEntity> buscarTodos();
+	public List<SoftwareEntity> buscarTodos();
+
+	public List<SoftwareEntity> getByNome(String nome);
 }
