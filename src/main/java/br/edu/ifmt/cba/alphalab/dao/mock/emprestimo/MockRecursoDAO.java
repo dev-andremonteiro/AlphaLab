@@ -11,6 +11,20 @@ public class MockRecursoDAO implements IRecursoDAO{
     private static ArrayList<RecursoEntity> listaRecurso= new ArrayList();
     private static MockRecursoDAO singleton = null;
     
+    private static final RecursoEntity listaRecurso1 = new RecursoEntity ();
+    
+    static{
+          listaRecurso1.setId(1L);
+          listaRecurso1.setDescricao("PIC16f877");
+          listaRecurso1.setObservacao("Microcontroladores");
+          //listaRecurso1.setPatrimonio(patrimonio);
+        
+       
+        
+        
+    }
+    
+    
     public static MockRecursoDAO getInstace(){
         
       if (singleton == null)

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import br.edu.ifmt.cba.alphalab.business.Reserva;
+import br.edu.ifmt.cba.alphalab.business.Software;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
@@ -19,11 +20,13 @@ import br.edu.ifmt.cba.alphalab.gui.javafx.controller.exemplo.FrmPrincipal;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
@@ -60,12 +63,12 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	// Lista dos botões pressionados na TableColumn tbcDiaSemana
 	private List<ToggleButton> listaSelecionados = new ArrayList<>();
 
-	// Software...
-	//private Software software = new Software(DAOFactory.getDAOFactory().getSoftwareDAO());
+	private Software software = new Software(DAOFactory.getDAOFactory().getSoftwareDAO());
 
 	private Date dtSolicitacaoReserva = null;
 	private List<RequisitoEntity> listaRequisitos = new ArrayList<>();
-	private Integer numMaxAlunos = 0;
+	private List<SoftwareEntity> listaSoftwaresSelecionados = new ArrayList<>();
+	private Integer numMaxAlunos = 0, idSoftwares = 100;
 
 	@FXML
 	private TabPane tabPaneDados;
@@ -144,7 +147,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		fillColumnHorario();
 
 		// Adiciona a coluna Nome do Software
-		//tbcNome = new TableColumn<SoftwareEntity, String>("Nome");
+		// tbcNome = new TableColumn<SoftwareEntity, String>("Nome");
 		tbcNome.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<SoftwareEntity, String>, ObservableValue<String>>() {
 
@@ -156,7 +159,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 				});
 
 		// Adiciona a coluna Tipo do Software
-		//tbcTipo = new TableColumn<SoftwareEntity, String>("Tipo");
+		// tbcTipo = new TableColumn<SoftwareEntity, String>("Tipo");
 		tbcTipo.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<SoftwareEntity, String>, ObservableValue<String>>() {
 
@@ -168,7 +171,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 					}
 				});
 
-		//tbcSelecionado = new TableColumn<SoftwareEntity, Boolean>();
+		// tbcSelecionado = new TableColumn<SoftwareEntity, Boolean>();
 		tbcSelecionado.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<SoftwareEntity, Boolean>, ObservableValue<Boolean>>() {
 
@@ -179,18 +182,27 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 					}
 				});
 
-		//tblRequisitos.getColumns().add(tbcSelecionado);
-		//tblRequisitos.getColumns().add(tbcNome);
-		//tblRequisitos.getColumns().add(tbcTipo);
-		atualizaTableViewSoftwares();
+		buscarSoftwares();
 	}
 
 	/**
 	 * Atualiza o TableView de Softwares
 	 */
-	private void atualizaTableViewSoftwares() {
-		//ObservableList<SoftwareEntity> softwares = FXCollections.observableArrayList(software.buscarTodosSoftwares());
-		//tblRequisitos.setItems(softwares);
+	private void buscarSoftwares() {
+		List<SoftwareEntity> listaSoftwareEntity = null;
+		listaSoftwareEntity = (List<SoftwareEntity>) software.getByNome(txtNomeSoftware.getText());
+
+		tblRequisitos.setItems(FXCollections.observableArrayList(listaSoftwareEntity));
+	}
+
+	/**
+	 * Id relacionado à cada software selecionado na lista de tblRequisitos.
+	 * 
+	 * @return um ID do objeto selecionado.
+	 */
+	private Integer getIdSoftwares() {
+		idSoftwares++;
+		return idSoftwares;
 	}
 
 	/**
@@ -261,41 +273,41 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		reservaEntity.setDepartamentoAula(cmbDepartamento.getSelectionModel().getSelectedItem());
 		reservaEntity.setTurma(txtTurma.getText());
 		reservaEntity.setObservacao(txaObservacao.getText());
-		reservaEntity.setFixo(ckbFixo.isSelected());
+		reservaEntity.setFixo(ckbFixo.isPressed());
 
 		return reservaEntity;
 	}
 
 	@FXML
 	void btnBuscar_onAction(ActionEvent event) {
-		atualizaTableViewSoftwares();
+		buscarSoftwares();
 	}
 
 	@FXML
 	void btnBuscar_onKeyPressed(KeyEvent event) {
-		atualizaTableViewSoftwares();
+		buscarSoftwares();
 	}
 
 	@FXML
 	void btnBuscar_onMouseClicked(MouseEvent event) {
-		atualizaTableViewSoftwares();
+		buscarSoftwares();
 	}
 
 	@FXML
 	void btnCancelar_onAction(ActionEvent event) {
-		atualizaTableViewSoftwares();
+		buscarSoftwares();
 		tabPaneDados.getSelectionModel().select(tabRequisitos);
 	}
 
 	@FXML
 	void btnCancelar_onKeyPressed(KeyEvent event) {
-		atualizaTableViewSoftwares();
+		buscarSoftwares();
 		tabPaneDados.getSelectionModel().select(tabRequisitos);
 	}
 
 	@FXML
 	void btnCancelar_onMouseClicked(MouseEvent event) {
-		atualizaTableViewSoftwares();
+		buscarSoftwares();
 		tabPaneDados.getSelectionModel().select(tabRequisitos);
 	}
 
@@ -360,6 +372,11 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	}
 
 	@FXML
+	void ckbFixo_onKeyPressed(KeyEvent event) {
+
+	}
+
+	@FXML
 	void cmbDepartamento_onAction(ActionEvent event) {
 		txtTurma.requestFocus();
 	}
@@ -415,21 +432,50 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void tblRequisitos_onMouseClicked(MouseEvent event) {
-		List<SoftwareEntity> listaSoftwaresSelecionados = new ArrayList<>();
-		SoftwareEntity softwareSelecionado = tblRequisitos.getSelectionModel().getSelectedItem();
+		if (event.getClickCount() >= 2) {
+			if (tblRequisitos.getSelectionModel().getSelectedItem() == null) {
+				Alert alerta = new Alert(AlertType.INFORMATION);
+				alerta.setTitle("AlphaLab");
+				alerta.setHeaderText("Seleção de softwares");
+				alerta.setContentText("Selecione um software na lista de requisitos!");
+				alerta.show();
+			} else {
+				SoftwareEntity softwareSelecionado = this.tblRequisitos.getSelectionModel().getSelectedItem();
+				SoftwareEntity softwareEntity = new SoftwareEntity();
 
-		// Adiciona ou remove os softwares na lista de softwares selecionados
-		if (listaSoftwaresSelecionados.contains(softwareSelecionado)) {
-			listaSoftwaresSelecionados.remove(softwareSelecionado);
-			int linha = tblRequisitos.getSelectionModel().getSelectedIndex();
+				softwareEntity.setId(softwareSelecionado.getId());
+				softwareEntity.setDescricao(softwareSelecionado.getDescricao());
+				softwareEntity.setTipo(softwareSelecionado.getTipo());
+				softwareEntity.setConcluinte(softwareSelecionado.getConcluinte());
+				softwareEntity.setLink(softwareSelecionado.getLink());
+				softwareEntity.setObservacao_Instalacao(softwareSelecionado.getObservacao_Instalacao());
+				softwareEntity.setSolicitante(softwareSelecionado.getSolicitante());
+				softwareEntity.setVersao(softwareSelecionado.getVersao());
+				softwareEntity.setStatus(softwareSelecionado.getStatus());
 
-			tblRequisitos.getItems().get(linha);
+				if (listaSoftwaresSelecionados.contains(softwareEntity)) {
+					listaSoftwaresSelecionados.remove(listaSoftwaresSelecionados.indexOf(softwareEntity));
+				} else {
+					listaSoftwaresSelecionados.add(softwareSelecionado);
+				}
+			}
+		}
+
+		for (SoftwareEntity lista : listaSoftwaresSelecionados) {
+			Alert alerta = new Alert(AlertType.INFORMATION);
+			alerta.setTitle("AlphaLab");
+			alerta.setHeaderText("Softwares selecionados");
+			alerta.setContentText(lista.getId() + "\n" + lista.getDescricao() + "\n" + lista.getTipo() + "\n"
+					+ lista.getConcluinte() + "\n" + lista.getLink() + "\n" + lista.getObservacao_Instalacao() + "\n"
+					+ lista.getSolicitante() + "\n" + lista.getVersao() + "\n" + lista.getStatus().name());
+
+			alerta.show();
 		}
 	}
 
 	@FXML
 	void txaObservacao_onKeyPressed(KeyEvent event) {
-		ckbFixo.requestFocus();
+		// ckbFixo.requestFocus();
 	}
 
 	@FXML

@@ -20,4 +20,5 @@ public interface ISoftwareDAO extends IDAO<SoftwareEntity> {
     public List<SoftwareEntity> buscarTodos();
     public List<SoftwareEntity> buscarPorNome(String nome);
     public List<SoftwareEntity> buscarPorTipoNome(TipoSoftwareEnum tipo, String nome);
+
 }

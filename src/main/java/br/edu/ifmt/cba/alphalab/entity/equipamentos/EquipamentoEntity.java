@@ -20,6 +20,8 @@ public class EquipamentoEntity implements IEntity<EquipamentoException> {
 	private String observacao;
 
 	private LaboratorioEntity laboratorio;
+        
+        private EmprestimoEntity emprestimo;
 
 	public EquipamentoEntity() {
 	}
@@ -96,5 +98,12 @@ public class EquipamentoEntity implements IEntity<EquipamentoException> {
 	public void setLaboratorio(LaboratorioEntity laboratorio) {
 		this.laboratorio = laboratorio;
 	}
+        
+         public EmprestimoEntity getEmprestimo() {
+         return emprestimo;
+        }
 
+        public void setEmprestimo(EmprestimoEntity emprestimo) {
+        this.emprestimo = emprestimo;
+        }
 }

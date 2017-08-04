@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IDepartamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
+import br.edu.ifmt.cba.alphalab.dao.mock.software.MockSoftwareDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 
@@ -12,17 +13,27 @@ public class MockDepartamentoDAO implements IDepartamentoDAO {
 	private static ArrayList<DepartamentoEntity> listaDepartamentos = new ArrayList();
 	private static MockDepartamentoDAO singleton = null;
 
-	private static final DepartamentoEntity departamento1 = new DepartamentoEntity();
+	private static final DepartamentoEntity departamento1= new DepartamentoEntity();
+        private static final DepartamentoEntity departamento2= new DepartamentoEntity();
 
 	static {
 		departamento1.setId(1L);
 		departamento1.setSigla("DAI");
 		departamento1.setNome("Departamento da Área de Informática");
 		departamento1.setObservacao("Informática");
-		departamento1.setChefe(
-				(ServidorEntity) MockServidorDAO.getInstance().getByNome("Augusto César de Oliveira").toArray()[0]);
+		departamento1.setChefe(MockServidorDAO.getInstance().servidor1);
 
 		listaDepartamentos.add(departamento1);
+                
+                
+                departamento2.setId(1L);
+		departamento2.setSigla("DACC");
+		departamento2.setNome("Departamento da Área de Constação Civil");
+		departamento2.setObservacao("Construção Civil");
+		departamento2.setChefe(
+				(ServidorEntity) MockServidorDAO.getInstance().getByNome("Ângela de Oliveira").toArray()[0]);
+
+		listaDepartamentos.add(departamento2);
 	}
 
 	public static MockDepartamentoDAO getInstance() {
