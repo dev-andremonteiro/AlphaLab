@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import br.edu.ifmt.cba.alphalab.business.Reserva;
-import br.edu.ifmt.cba.alphalab.business.Software;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
@@ -20,8 +19,6 @@ import br.edu.ifmt.cba.alphalab.gui.javafx.controller.exemplo.FrmPrincipal;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -64,7 +61,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	private List<ToggleButton> listaSelecionados = new ArrayList<>();
 
 	// Software...
-	private Software software = new Software(DAOFactory.getDAOFactory().getSoftwareDAO());
+	//private Software software = new Software(DAOFactory.getDAOFactory().getSoftwareDAO());
 
 	private Date dtSolicitacaoReserva = null;
 	private List<RequisitoEntity> listaRequisitos = new ArrayList<>();
@@ -147,8 +144,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		fillColumnHorario();
 
 		// Adiciona a coluna Nome do Software
-		tbcNome = new TableColumn<SoftwareEntity, String>(
-				ResourceBundle.getBundle("../../../i18N_pt_BR").getString("tbcNome"));
+		//tbcNome = new TableColumn<SoftwareEntity, String>("Nome");
 		tbcNome.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<SoftwareEntity, String>, ObservableValue<String>>() {
 
@@ -160,8 +156,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 				});
 
 		// Adiciona a coluna Tipo do Software
-		tbcTipo = new TableColumn<SoftwareEntity, String>(
-				ResourceBundle.getBundle("../../../i18N_pt_BR").getString("tbcTipo"));
+		//tbcTipo = new TableColumn<SoftwareEntity, String>("Tipo");
 		tbcTipo.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<SoftwareEntity, String>, ObservableValue<String>>() {
 
@@ -173,8 +168,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 					}
 				});
 
-		tbcSelecionado = new TableColumn<SoftwareEntity, Boolean>(
-				ResourceBundle.getBundle("../../../i18N_pt_BR").getString("tbcSelecionado"));
+		//tbcSelecionado = new TableColumn<SoftwareEntity, Boolean>();
 		tbcSelecionado.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<SoftwareEntity, Boolean>, ObservableValue<Boolean>>() {
 
@@ -185,9 +179,9 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 					}
 				});
 
-		tblRequisitos.getColumns().add(tbcSelecionado);
-		tblRequisitos.getColumns().add(tbcNome);
-		tblRequisitos.getColumns().add(tbcTipo);
+		//tblRequisitos.getColumns().add(tbcSelecionado);
+		//tblRequisitos.getColumns().add(tbcNome);
+		//tblRequisitos.getColumns().add(tbcTipo);
 		atualizaTableViewSoftwares();
 	}
 
@@ -195,8 +189,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	 * Atualiza o TableView de Softwares
 	 */
 	private void atualizaTableViewSoftwares() {
-		ObservableList<SoftwareEntity> softwares = FXCollections.observableArrayList(software.buscarTodosSoftwares());
-		tblRequisitos.setItems(softwares);
+		//ObservableList<SoftwareEntity> softwares = FXCollections.observableArrayList(software.buscarTodosSoftwares());
+		//tblRequisitos.setItems(softwares);
 	}
 
 	/**

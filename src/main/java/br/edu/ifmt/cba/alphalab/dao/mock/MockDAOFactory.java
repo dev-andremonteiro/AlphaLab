@@ -5,6 +5,7 @@ import br.edu.ifmt.cba.alphalab.dao.IClienteDAO;
 import br.edu.ifmt.cba.alphalab.dao.IDepartamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.IProfessorDAO;
 import br.edu.ifmt.cba.alphalab.dao.IReservaDAO;
+import br.edu.ifmt.cba.alphalab.dao.ISoftwareDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockDepartamentoDAO;
 
 public class MockDAOFactory implements DAOFactory {
@@ -41,6 +42,12 @@ public class MockDAOFactory implements DAOFactory {
 
 	@Override
 	public IReservaDAO getReservaDAO() {
+		return null;
+	}
+
+	@Override
+	public ISoftwareDAO getSoftwareDAO() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }
