@@ -2,14 +2,9 @@ package br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio;
 
 import java.util.Date;
 
-import br.edu.ifmt.cba.alphalab.business.Professor;
-import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ProfessorEntity;
-import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,13 +13,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
 
 /**
  * 
@@ -39,8 +32,8 @@ public class FrmPedidosReserva {
 	@FXML
 	private DatePicker dtpData;
 
-	//@FXML
-	//private ComboBox<EnumTipoReserva> cmbTipo;
+	@FXML
+	private ComboBox<?> cmbTipo;
 
 	@FXML
 	private ComboBox<ProfessorEntity> cmbProfessor;
@@ -57,8 +50,8 @@ public class FrmPedidosReserva {
 	@FXML
 	private TableColumn<ReservaEntity, Date> tbcData;
 
-	//@FXML
-	//private TableColumn<ReservaEntity, EnumTipoReserva> tbcTipo;
+	@FXML
+	private TableColumn<ReservaEntity, ?> tbcTipo;
 
 	@FXML
 	private TableColumn<ReservaEntity, Boolean> tbcFixo;

@@ -33,7 +33,7 @@ public class ReservaEntityTest {
     public void setUp() {
         
         reserva.setId(Long.MIN_VALUE);
-        reserva.setStatus(EnumReserva.Pedido);
+        reserva.setStatus(EnumReserva.PEDIDO);
         reserva.setDataSolicitacao(new java.util.Date());
         reserva.setDisciplina("Eng Software");
         reserva.setTurma("Eng da Computa��o");

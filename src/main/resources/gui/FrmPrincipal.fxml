@@ -28,12 +28,17 @@
                   <items>
                         <Menu mnemonicParsing="false" text="%menu.solicitar">
                            <items>
-                              <Menu mnemonicParsing="false" text="%menu.reserva">
+                              <Menu mnemonicParsing="false" text="%menu.reservaHorario">
                                 <items>
                                     <MenuItem fx:id="mniReservaPorHorario" mnemonicParsing="false" onAction="#mniReservaPorHorario_onAction" text="%menu.porHorario" />
                                   <MenuItem fx:id="mniReservaPorRequisito" mnemonicParsing="false" onAction="#mniReservaPorRequisito_onAction" text="%menu.porRequisito" />
                                 </items>
                               </Menu>
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="%menu.gerenciar">
+                           <items>
+                              <MenuItem fx:id="mniGerenciarReserva" mnemonicParsing="false" onAction="#mniGerenciarReserva_onAction" text="%menu.pedidoReservaHorario" />
                            </items>
                         </Menu>
                   </items>

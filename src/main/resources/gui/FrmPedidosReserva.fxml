@@ -23,7 +23,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio.FrmPedidosReserva">
    <center>
       <TabPane prefHeight="729.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -33,7 +33,7 @@
                      <top>
                         <HBox prefHeight="30.0" prefWidth="719.0" spacing="80.0" BorderPane.alignment="CENTER">
                            <children>
-                              <DatePicker fx:id="dtpData" onAction="#dtpData_onAction" onKeyPressed="#dtpData_onKeyPressed" promptText="%dtp.data" />
+                              <DatePicker fx:id="dtpData" promptText="%dtp.data" />
                               <ComboBox fx:id="cmbTipo" onAction="#cmbTipo_onAction" prefWidth="150.0" promptText="%combo.tipo" />
                               <ComboBox fx:id="cmbProfessor" onAction="#cmbProfessor_onAction" prefWidth="150.0" promptText="%combo.professor" />
                            </children>

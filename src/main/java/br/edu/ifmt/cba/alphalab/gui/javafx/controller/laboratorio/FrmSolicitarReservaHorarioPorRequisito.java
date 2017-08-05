@@ -70,7 +70,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	private Date dtSolicitacaoReserva = null;
 	private List<RequisitoEntity> listaRequisitos = new ArrayList<>();
 	private List<SoftwareEntity> listaSoftwaresSelecionados = new ArrayList<>();
-	private Integer numMaxAlunos = 0, idSoftwares = 100;
+	private Integer numMaxAlunos = 0;
 
 	@FXML
 	private TabPane tabPaneDados;
@@ -179,7 +179,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 					public ObservableValue<Boolean> call(CellDataFeatures<SoftwareCheckTableView, Boolean> param) {
 						return new ReadOnlyObjectWrapper<Boolean>(param.getValue().getSelecionado());
 					}
-				});		
+				});
 		buscarSoftwares();
 	}
 
@@ -191,16 +191,6 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		listaSoftwareEntity = (List<SoftwareEntity>) software.getByNome(txtNomeSoftware.getText());
 
 		tblRequisitos.setItems(FXCollections.observableArrayList(SoftwareCheckTableView.convert(listaSoftwareEntity)));
-	}
-
-	/**
-	 * Id relacionado à cada software selecionado na lista de tblRequisitos.
-	 * 
-	 * @return um ID do objeto selecionado.
-	 */
-	private Integer getIdSoftwares() {
-		idSoftwares++;
-		return idSoftwares;
 	}
 
 	/**
@@ -239,11 +229,6 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		txtTurma.setText("");
 		txaObservacao.setText("");
 		ckbFixo.setSelected(false);
-	}
-
-	// Compõe os dados da solicitação de Reserva de Horário
-	private void comporDados() {
-
 	}
 
 	/**

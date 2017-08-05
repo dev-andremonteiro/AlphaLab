@@ -41,6 +41,9 @@ public class FrmPrincipal {
 	private MenuItem mniReservaPorRequisito;
 
 	@FXML
+	private MenuItem mniGerenciarReserva;
+
+	@FXML
 	private MenuItem mniAjuda;
 
 	@FXML
@@ -73,6 +76,12 @@ public class FrmPrincipal {
 	}
 
 	@FXML
+	void mniGerenciarReserva_onAction(ActionEvent event) {
+		loadPane("FrmPedidosReserva");
+
+	}
+
+	@FXML
 	void mniAjuda_onAction(ActionEvent event) {
 		loadPane("FrmCliente");
 	}
@@ -97,7 +106,7 @@ public class FrmPrincipal {
 		Node node = null;
 		try {
 			node = FXMLLoader.load(FrmPrincipal.class.getClassLoader().getResource("gui//" + string + ".fxml"),
-            		ResourceBundle.getBundle(FrmPrincipal.LINGUA_PORTUGUES));
+					ResourceBundle.getBundle(FrmPrincipal.LINGUA_PORTUGUES));
 			bdpPrincipal.setCenter(node);
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
