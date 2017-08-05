@@ -52,7 +52,7 @@ import javafx.util.Callback;
 
 /**
  * 
- * @author Stévillis Sousa
+ * @author Stévillis Sousa & Yuri Nalin
  *
  */
 
