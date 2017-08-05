@@ -60,10 +60,10 @@
                                     <Insets bottom="20.0" />
                                  </padding>
                               </HBox>
-                              <TableView fx:id="tblHorarioRequisitos" onKeyPressed="#tblHorarioRequisitos_onKeyPressed" onMouseClicked="#tblHorarioRequisitos_onMouseClicked" prefHeight="550.0" prefWidth="350.0">
+                              <TableView fx:id="tblHorarioRequisitos" focusTraversable="false" onKeyPressed="#tblHorarioRequisitos_onKeyPressed" onMouseClicked="#tblHorarioRequisitos_onMouseClicked" prefHeight="550.0" prefWidth="350.0">
                                  <columns>
                                     <TableColumn fx:id="tbcHorario" prefWidth="100.0" text="%column.horario" />
-                                    <TableColumn fx:id="tbcDiaSemana" prefWidth="130.0" text="Dia da Semana" />
+                                    <TableColumn fx:id="tbcDiaSemana" prefWidth="130.0" text="%column.diaSemana" />
                                  </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -97,7 +97,7 @@
                                     <Insets bottom="5.0" />
                                  </padding>
                               </HBox>
-                              <TableView fx:id="tblRequisitos" onKeyPressed="#tblRequisitos_onKeyPressed" onMouseClicked="#tblRequisitos_onMouseClicked" prefHeight="500.0" prefWidth="503.0">
+                              <TableView fx:id="tblRequisitos" focusTraversable="false" onKeyPressed="#tblRequisitos_onKeyPressed" onMouseClicked="#tblRequisitos_onMouseClicked" prefHeight="500.0" prefWidth="503.0">
                                  <columns>
                                     <TableColumn fx:id="tbcSelecionado" maxWidth="50.0" prefWidth="200.0" />
                                     <TableColumn fx:id="tbcNome" maxWidth="250.0" prefWidth="287.0" text="%column.nome" />

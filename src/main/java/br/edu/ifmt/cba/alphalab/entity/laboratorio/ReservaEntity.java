@@ -38,17 +38,17 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
 	private ServidorEntity aprovador;
         
-    private ArrayList<Integer> horarios;
+    private ArrayList<Horario> horarios;
 
-	private ArrayList<RequisitoEntity> requisitos;
+	private RequisitoEntity requisitos;
 
 	public ReservaEntity() {
 	}
 
     public ReservaEntity(Long id, EnumReserva status, Date dataSolicitacao, String disciplina, String turma, String observacao, 
             boolean fixo, Date dataInicio, Date dataFim, Date dataAprovacaoRecusa, String justificativa, LaboratorioEntity laboratorio,
-            DepartamentoEntity departamentoAula, ServidorEntity solicitante, ServidorEntity aprovador, ArrayList<Integer> horarios, 
-            ArrayList<RequisitoEntity> requisitos) {
+            DepartamentoEntity departamentoAula, ServidorEntity solicitante, ServidorEntity aprovador, ArrayList<Horario> horarios, 
+            RequisitoEntity requisitos) {
         this.id = id;
         this.status = status;
         this.dataSolicitacao = dataSolicitacao;
@@ -191,12 +191,20 @@ public class ReservaEntity implements IEntity<ReservaException> {
 		this.aprovador = aprovador;
 	}
 
-	public ArrayList<RequisitoEntity> getRequisitos() {
+	public RequisitoEntity getRequisitos() {
 		return requisitos;
 	}
 
-	public void setRequisitos(ArrayList<RequisitoEntity> requisitos) {
+	public void setRequisitos(RequisitoEntity requisitos) {
 		this.requisitos = requisitos;
+	}
+
+	public ArrayList<Horario> getHorarios() {
+		return horarios;
+	}
+
+	public void setHorarios(ArrayList<Horario> horarios) {
+		this.horarios = horarios;
 	}
 
 	@Override

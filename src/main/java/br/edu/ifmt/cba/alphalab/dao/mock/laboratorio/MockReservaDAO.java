@@ -3,12 +3,14 @@ package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IReservaDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
@@ -60,7 +62,8 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva1.setDepartamentoAula((DepartamentoEntity) MockDepartamentoDAO.getInstance().getbySigla("DAI"));
 		reserva1.setSolicitante((ServidorEntity) MockServidorDAO.getInstance().getByNome("Augusto César de Oliveira"));
 		reserva1.setAprovador((ServidorEntity) MockServidorDAO.getInstance().getById(1L));
-		reserva1.setRequisitos((ArrayList<RequisitoEntity>) MockRequisitoDAO.getInstance().buscarTodos());
+		reserva1.setRequisitos((RequisitoEntity) MockRequisitoDAO.getInstance().buscarTodos());
+		reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M1, Horario.M2)));
 	}
 
 	private MockReservaDAO() {

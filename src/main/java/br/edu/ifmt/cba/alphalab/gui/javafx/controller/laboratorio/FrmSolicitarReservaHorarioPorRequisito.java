@@ -59,18 +59,15 @@ import javafx.util.Callback;
 public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	ResourceBundle resources = ResourceBundle.getBundle(FrmPrincipal.LINGUA_PORTUGUES);
 
-	// Lista de botões contidos na TableColumn tbcDiaSemana
-	private List<ToggleButton> listaBotoes = new ArrayList<>();
-
-	// Lista dos botões pressionados na TableColumn tbcDiaSemana
-	private List<ToggleButton> listaSelecionados = new ArrayList<>();
-
 	private Software software = new Software(DAOFactory.getDAOFactory().getSoftwareDAO());
 
-	private Date dtSolicitacaoReserva = null;
-	private List<RequisitoEntity> listaRequisitos = new ArrayList<>();
-	private List<SoftwareEntity> listaSoftwaresSelecionados = new ArrayList<>();
-	private Integer numMaxAlunos = 0;
+	private Date dtSolicitacaoReserva = new Date();
+	private RequisitoEntity requisitos = new RequisitoEntity();
+	private ArrayList<SoftwareEntity> listaSoftwaresSelecionados = new ArrayList<>();
+	private ArrayList<ToggleButton> listaBotoes = new ArrayList<>();
+	private ArrayList<ToggleButton> listaBotoesSelecionados = new ArrayList<>();
+	private ArrayList<Horario> listaHorariosSelecionados = new ArrayList<>();
+	private int numMaxAlunos = 0;
 
 	@FXML
 	private TabPane tabPaneDados;
@@ -146,9 +143,56 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		fillColumnHorario();
+		fillColumns();
 		tabPreencherDados.setDisable(true);
 		dtpData.requestFocus();
+	}
+
+	/**
+	 * Atualiza o TableView de Softwares
+	 */
+	private void buscarSoftwares() {
+		List<SoftwareEntity> listaSoftwareEntity = null;
+		listaSoftwareEntity = (List<SoftwareEntity>) software.getByNome(txtNomeSoftware.getText());
+
+		tblRequisitos.setItems(FXCollections.observableArrayList(SoftwareCheckTableView.convert(listaSoftwareEntity)));
+	}
+
+	private void fillHorarios() {
+		// Adiciona botões às celulas da coluna
+				tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, ToggleButton>() {
+					@Override
+					protected void updateItem(ToggleButton btn, boolean empty) {
+						super.updateItem(btn, empty);
+
+						if (empty) {
+							setGraphic(null);
+						} else {
+							btn = new ToggleButton(resources.getString("button.selecionar"));
+							listaBotoes.add(btn);
+
+							// Evento que adiciona/retira botões selecionados na lista
+							// listaSelecionados
+							btn.setOnAction(new EventHandler<ActionEvent>() {
+								@Override
+								public void handle(ActionEvent event) {
+									ToggleButton tgbtn = (ToggleButton) event.getSource();
+									if (tgbtn.isSelected()) {
+										listaBotoesSelecionados.add(tgbtn);
+									} else {
+										listaBotoesSelecionados.remove(tgbtn);
+									}
+								}
+							});
+							setGraphic(btn);
+						}
+					}
+				});
+	}
+	
+	private void fillColumns() {
+		tbcHorario.setCellValueFactory(conteudo -> new SimpleStringProperty(conteudo.getValue().getEstampa()));
+		tblHorarioRequisitos.getItems().addAll(Horario.values());
 
 		// Adiciona a coluna Nome do Software
 		tbcNome.setCellValueFactory(
@@ -182,17 +226,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 				});
 		buscarSoftwares();
 	}
-
-	/**
-	 * Atualiza o TableView de Softwares
-	 */
-	private void buscarSoftwares() {
-		List<SoftwareEntity> listaSoftwareEntity = null;
-		listaSoftwareEntity = (List<SoftwareEntity>) software.getByNome(txtNomeSoftware.getText());
-
-		tblRequisitos.setItems(FXCollections.observableArrayList(SoftwareCheckTableView.convert(listaSoftwareEntity)));
-	}
-
+	
 	/**
 	 * Mostra uma caixa de diálogo perguntando se o usuário realmente deseja
 	 * cancelar a solicitação de reserva de horário.
@@ -215,15 +249,16 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		});
 	}
 
-	// Limpa os campos da tela.
+	/**
+	 * Limpa os campos da tela.
+	 */
 	private void limparCampos() {
-		dtpData.setValue(null);
-		tblHorarioRequisitos.setItems(null);
+		//tblHorarioRequisitos.setItems(null);
 		txtNomeSoftware.setText("");
-		tblRequisitos.setItems(null);
+		//tblRequisitos.setItems(null);
 		txtNumMaxAlunos.setText("");
 		texRequisitos.setText("");
-		// hbxHorarios
+		//hbxHorarios
 		txtDisciplina.setText("");
 		cmbDepartamento.setValue(null);
 		txtTurma.setText("");
@@ -267,7 +302,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		ReservaEntity reservaEntity = new ReservaEntity();
 
 		reservaEntity.setDataSolicitacao(dtSolicitacaoReserva);
-		// Horários da reserva
+		reservaEntity.setHorarios(listaHorariosSelecionados);
 		// Requisitos da reserva
 		// Num máx. de alunos
 		reservaEntity.setDisciplina(txtDisciplina.getText());
@@ -296,72 +331,26 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void btnCancelar_onAction(ActionEvent event) {
-
+		tabPreencherDados.setDisable(true);
+		tabRequisitos.setDisable(false);
+		tabPaneDados.getSelectionModel().select(tabRequisitos);
+		limparCampos();
+		dtpData.requestFocus();
+		buscarSoftwares();
 	}
 
 	@FXML
 	void btnCancelar_onKeyPressed(KeyEvent event) {
-		tabPreencherDados.setDisable(true);
-		tabRequisitos.setDisable(false);
-		tabPaneDados.getSelectionModel().select(tabRequisitos);
-		limparCampos();
-		dtpData.requestFocus();
-		buscarSoftwares();
+		btnCancelar_onAction(new ActionEvent());
 	}
 
 	@FXML
 	void btnCancelar_onMouseClicked(MouseEvent event) {
-		tabPreencherDados.setDisable(true);
-		tabRequisitos.setDisable(false);
-		tabPaneDados.getSelectionModel().select(tabRequisitos);
-		limparCampos();
-		dtpData.requestFocus();
-		buscarSoftwares();
+		btnCancelar_onAction(new ActionEvent());
 	}
 
 	@FXML
 	void btnConfirmar_onAction(ActionEvent event) {
-
-	}
-
-	@FXML
-	void btnConfirmar_onKeyPressed(KeyEvent event) {
-		if (event.getCode() == KeyCode.ENTER) {
-			Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-			ButtonType sim = new ButtonType("Sim");
-			ButtonType nao = new ButtonType("Não");
-			alerta.setTitle("AlphaLab");
-			alerta.setHeaderText("Confirmar Reserva de Horário");
-			alerta.setContentText("Deseja confirmar a Reserva de Horário?");
-			alerta.getButtonTypes().setAll(sim, nao);
-
-			alerta.showAndWait().ifPresent(option -> {
-				if (option == sim) {
-					ReservaEntity reserva = this.getDadosTabPreencherDados();
-					if (reserva.validar() == null) {
-						Reserva salvarReserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
-						salvarReserva.save(reserva);
-					} else {
-						Alert alertaDadosInvalidos = new Alert(Alert.AlertType.INFORMATION);
-						alertaDadosInvalidos.setTitle("AlphaLab");
-						alertaDadosInvalidos.setHeaderText("Dados inconsistentes!");
-						alertaDadosInvalidos.setContentText(reserva.validar().getMessage());
-
-						alertaDadosInvalidos.show();
-					}
-
-				} else {
-					alerta.close();
-				}
-			});
-
-			tabPaneDados.getSelectionModel().select(tabRequisitos);
-			tabPreencherDados.setDisable(true);
-		}
-	}
-
-	@FXML
-	void btnConfirmar_onMouseClicked(MouseEvent event) {
 		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
 		ButtonType sim = new ButtonType("Sim");
 		ButtonType nao = new ButtonType("Não");
@@ -392,38 +381,22 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 		tabPaneDados.getSelectionModel().select(tabRequisitos);
 		tabPreencherDados.setDisable(true);
-
 	}
 
 	@FXML
-	void btnProximoRequisitos_onAction(ActionEvent event) {
-	}
-
-	@FXML
-	void btnProximoRequisitos_onKeyPressed(KeyEvent event) {
+	void btnConfirmar_onKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
-			String string = getDadosTabRequisitos();
-
-			if (string.length() > 0) {
-				Alert alerta = new Alert(AlertType.INFORMATION);
-				alerta.setTitle("AlphaLab");
-				alerta.setHeaderText("Dados de Requisitos");
-				alerta.setContentText(string);
-				alerta.show();
-			} else {
-				tabPreencherDados.setDisable(false);
-				tabRequisitos.setDisable(true);
-				tabPaneDados.getSelectionModel().select(tabPreencherDados);
-				txtDisciplina.requestFocus();
-				// Preencher requisitos e horários selecionados na Tab
-				// TabPreencherDados
-			}
+			btnConfirmar_onAction(new ActionEvent());
 		}
 	}
 
 	@FXML
-	void btnProximoRequisitos_onMouseClicked(MouseEvent event) {
+	void btnConfirmar_onMouseClicked(MouseEvent event) {
+		btnConfirmar_onAction(new ActionEvent());
+	}
 
+	@FXML
+	void btnProximoRequisitos_onAction(ActionEvent event) {
 		String string = getDadosTabRequisitos();
 
 		if (string.length() > 0) {
@@ -440,6 +413,18 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 			// Preencher requisitos e horários selecionados na Tab
 			// TabPreencherDados
 		}
+	}
+
+	@FXML
+	void btnProximoRequisitos_onKeyPressed(KeyEvent event) {
+		if (event.getCode() == KeyCode.ENTER) {
+			btnProximoRequisitos_onAction(new ActionEvent());
+		}
+	}
+
+	@FXML
+	void btnProximoRequisitos_onMouseClicked(MouseEvent event) {
+		btnProximoRequisitos_onAction(new ActionEvent());
 	}
 
 	@FXML
@@ -572,42 +557,5 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		if (event.getCode() == KeyCode.ENTER)
 			txaObservacao.requestFocus();
 
-	}
-
-	private void fillColumnHorario() {
-		tbcHorario.setCellValueFactory(conteudo -> new SimpleStringProperty(conteudo.getValue().getEstampa()));
-		tbcDiaSemana.setCellValueFactory(new PropertyValueFactory<>(""));
-
-		// Adiciona botões às celulas da coluna
-		tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, ToggleButton>() {
-			@Override
-			protected void updateItem(ToggleButton btn, boolean empty) {
-				super.updateItem(btn, empty);
-
-				if (empty) {
-					setGraphic(null);
-				} else {
-					btn = new ToggleButton(resources.getString("button.selecionar"));
-					listaBotoes.add(btn);
-
-					// Evento que adiciona/retira botões selecionados na lista
-					// listaSelecionados
-					btn.setOnAction(new EventHandler<ActionEvent>() {
-						@Override
-						public void handle(ActionEvent event) {
-							ToggleButton tgbtn = (ToggleButton) event.getSource();
-							if (tgbtn.isSelected()) {
-								listaSelecionados.add(tgbtn);
-							} else {
-								listaSelecionados.remove(tgbtn);
-							}
-						}
-					});
-					setGraphic(btn);
-				}
-			}
-		});
-
-		tblHorarioRequisitos.getItems().addAll(Horario.values());
 	}
 }
