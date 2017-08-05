@@ -43,6 +43,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -146,6 +147,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		fillColumnHorario();
+		tabPreencherDados.setDisable(true);
+		dtpData.requestFocus();
 
 		// Adiciona a coluna Nome do Software
 		tbcNome.setCellValueFactory(
@@ -176,8 +179,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 					public ObservableValue<Boolean> call(CellDataFeatures<SoftwareCheckTableView, Boolean> param) {
 						return new ReadOnlyObjectWrapper<Boolean>(param.getValue().getSelecionado());
 					}
-				});
-
+				});		
 		buscarSoftwares();
 	}
 
@@ -248,14 +250,32 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	 * Guarda os dados selecionados pelo usuário na Tab tabRequisitos.<br>
 	 * <b>Dados:</b> Data, Horário, Softwares e Número Máximo de Alunos.
 	 */
-	private void getDadosTabRequisitos() {
-		dtSolicitacaoReserva = Date.from(dtpData.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+	private String getDadosTabRequisitos() {
+		StringBuilder string = new StringBuilder();
+		if (dtpData.getValue() == null) {
+			string.append("Data da reserva precisa ser selecionada.\n");
+		} else {
+			dtSolicitacaoReserva = Date
+					.from(dtpData.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+		}
 		// lista de horarários selecionados
 		// lista de softwares selecionados
-		numMaxAlunos = Integer.parseInt(txtNumMaxAlunos.getText());
-		tabRequisitos.setDisable(true);
-		tabPaneDados.getSelectionModel().select(tabPreencherDados);
-		// Preencher requisitos e horários selecionados na Tab TabPreencherDados
+
+		if (txtNumMaxAlunos.getText() == null || txtNumMaxAlunos.getText() == "") {
+			string.append("Número máx. de alunos precisa ser informado.\n");
+		} else {
+			try {
+				numMaxAlunos = Integer.parseInt(txtNumMaxAlunos.getText());
+
+				if (numMaxAlunos < 0) {
+					string.append("Número máx. de alunos inválido.\n");
+				}
+			} catch (NumberFormatException nfe) {
+				string.append("Número máx. de alunos inteiro precisa ser informado.\n");
+			}
+		}
+
+		return string.toString();
 	}
 
 	private ReservaEntity getDadosTabPreencherDados() {
@@ -291,24 +311,72 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void btnCancelar_onAction(ActionEvent event) {
-		buscarSoftwares();
-		tabPaneDados.getSelectionModel().select(tabRequisitos);
+
 	}
 
 	@FXML
 	void btnCancelar_onKeyPressed(KeyEvent event) {
-		buscarSoftwares();
+		tabPreencherDados.setDisable(true);
+		tabRequisitos.setDisable(false);
 		tabPaneDados.getSelectionModel().select(tabRequisitos);
+		limparCampos();
+		dtpData.requestFocus();
+		buscarSoftwares();
 	}
 
 	@FXML
 	void btnCancelar_onMouseClicked(MouseEvent event) {
-		buscarSoftwares();
+		tabPreencherDados.setDisable(true);
+		tabRequisitos.setDisable(false);
 		tabPaneDados.getSelectionModel().select(tabRequisitos);
+		limparCampos();
+		dtpData.requestFocus();
+		buscarSoftwares();
 	}
 
 	@FXML
 	void btnConfirmar_onAction(ActionEvent event) {
+
+	}
+
+	@FXML
+	void btnConfirmar_onKeyPressed(KeyEvent event) {
+		if (event.getCode() == KeyCode.ENTER) {
+			Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+			ButtonType sim = new ButtonType("Sim");
+			ButtonType nao = new ButtonType("Não");
+			alerta.setTitle("AlphaLab");
+			alerta.setHeaderText("Confirmar Reserva de Horário");
+			alerta.setContentText("Deseja confirmar a Reserva de Horário?");
+			alerta.getButtonTypes().setAll(sim, nao);
+
+			alerta.showAndWait().ifPresent(option -> {
+				if (option == sim) {
+					ReservaEntity reserva = this.getDadosTabPreencherDados();
+					if (reserva.validar() == null) {
+						Reserva salvarReserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
+						salvarReserva.save(reserva);
+					} else {
+						Alert alertaDadosInvalidos = new Alert(Alert.AlertType.INFORMATION);
+						alertaDadosInvalidos.setTitle("AlphaLab");
+						alertaDadosInvalidos.setHeaderText("Dados inconsistentes!");
+						alertaDadosInvalidos.setContentText(reserva.validar().getMessage());
+
+						alertaDadosInvalidos.show();
+					}
+
+				} else {
+					alerta.close();
+				}
+			});
+
+			tabPaneDados.getSelectionModel().select(tabRequisitos);
+			tabPreencherDados.setDisable(true);
+		}
+	}
+
+	@FXML
+	void btnConfirmar_onMouseClicked(MouseEvent event) {
 		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
 		ButtonType sim = new ButtonType("Sim");
 		ButtonType nao = new ButtonType("Não");
@@ -336,40 +404,63 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 				alerta.close();
 			}
 		});
-	}
 
-	@FXML
-	void btnConfirmar_onKeyPressed(KeyEvent event) {
-
-	}
-
-	@FXML
-	void btnConfirmar_onMouseClicked(MouseEvent event) {
+		tabPaneDados.getSelectionModel().select(tabRequisitos);
+		tabPreencherDados.setDisable(true);
 
 	}
 
 	@FXML
 	void btnProximoRequisitos_onAction(ActionEvent event) {
-		getDadosTabRequisitos();
 	}
 
 	@FXML
 	void btnProximoRequisitos_onKeyPressed(KeyEvent event) {
-		getDadosTabRequisitos();
+		if (event.getCode() == KeyCode.ENTER) {
+			String string = getDadosTabRequisitos();
+
+			if (string.length() > 0) {
+				Alert alerta = new Alert(AlertType.INFORMATION);
+				alerta.setTitle("AlphaLab");
+				alerta.setHeaderText("Dados de Requisitos");
+				alerta.setContentText(string);
+				alerta.show();
+			} else {
+				tabPreencherDados.setDisable(false);
+				tabRequisitos.setDisable(true);
+				tabPaneDados.getSelectionModel().select(tabPreencherDados);
+				txtDisciplina.requestFocus();
+				// Preencher requisitos e horários selecionados na Tab
+				// TabPreencherDados
+			}
+		}
 	}
 
 	@FXML
 	void btnProximoRequisitos_onMouseClicked(MouseEvent event) {
-		getDadosTabRequisitos();
-	}
 
-	@FXML
-	void ckbFixo_onAction(MouseEvent event) {
+		String string = getDadosTabRequisitos();
+
+		if (string.length() > 0) {
+			Alert alerta = new Alert(AlertType.INFORMATION);
+			alerta.setTitle("AlphaLab");
+			alerta.setHeaderText("Dados de Requisitos");
+			alerta.setContentText(string);
+			alerta.show();
+		} else {
+			tabPreencherDados.setDisable(false);
+			tabRequisitos.setDisable(true);
+			tabPaneDados.getSelectionModel().select(tabPreencherDados);
+			txtDisciplina.requestFocus();
+			// Preencher requisitos e horários selecionados na Tab
+			// TabPreencherDados
+		}
 	}
 
 	@FXML
 	void ckbFixo_onKeyPressed(KeyEvent event) {
-
+		if (event.getCode() == KeyCode.TAB)
+			btnConfirmar.requestFocus();
 	}
 
 	@FXML
@@ -471,12 +562,14 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void txaObservacao_onKeyPressed(KeyEvent event) {
-		// ckbFixo.requestFocus();
+		if (event.getCode() == KeyCode.TAB)
+			ckbFixo.requestFocus();
 	}
 
 	@FXML
 	void txtDisciplina_onKeyPressed(KeyEvent event) {
-		cmbDepartamento.requestFocus();
+		if (event.getCode() == KeyCode.ENTER)
+			cmbDepartamento.requestFocus();
 	}
 
 	@FXML
@@ -491,7 +584,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void txtTurma_onKeyPressed(KeyEvent event) {
-		txaObservacao.requestFocus();
+		if (event.getCode() == KeyCode.ENTER)
+			txaObservacao.requestFocus();
 
 	}
 

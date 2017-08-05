@@ -232,7 +232,7 @@
                                           <Label alignment="CENTER" prefHeight="119.0" prefWidth="223.0" text="%label.fixo" GridPane.rowIndex="4" />
                                           <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                              <children>
-                                                <CheckBox fx:id="ckbFixo" layoutY="12.0" mnemonicParsing="false" onAction="#ckbFixo_onAction" onKeyPressed="#ckbFixo_onAction" onMouseClicked="#ckbFixo_onAction" />
+                                                <CheckBox fx:id="ckbFixo" layoutY="12.0" mnemonicParsing="false" onKeyPressed="#ckbFixo_onKeyPressed" />
                                              </children>
                                           </Pane>
                                        </children>
