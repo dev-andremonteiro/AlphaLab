@@ -98,4 +98,9 @@ public class MockReservaDAO implements IReservaDAO {
 	public List<ReservaEntity> getByNome() {
 		return reservas;
 	}
+
+	@Override
+	public List<ReservaEntity> buscarTodasReservas() {
+		return reservas;
+	}
 }

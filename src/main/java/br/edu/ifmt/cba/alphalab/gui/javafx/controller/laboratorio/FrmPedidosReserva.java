@@ -1,30 +1,33 @@
 package br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio;
 
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.ResourceBundle;
 
-import br.edu.ifmt.cba.alphalab.business.Professor;
+import br.edu.ifmt.cba.alphalab.business.Reserva;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ProfessorEntity;
-import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
 
 /**
  * 
@@ -32,15 +35,21 @@ import javafx.util.Callback;
  *
  */
 
-public class FrmPedidosReserva {
+public class FrmPedidosReserva implements Initializable {
+	private List<RequisitoEntity> listaRequisitos = new ArrayList<>();
+	private Reserva reserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
+
+	@FXML
+	private TabPane tbpDados;
+
 	@FXML
 	private Tab tabPedidos;
 
 	@FXML
 	private DatePicker dtpData;
 
-	//@FXML
-	//private ComboBox<EnumTipoReserva> cmbTipo;
+	@FXML
+	private ComboBox<?> cmbTipo;
 
 	@FXML
 	private ComboBox<ProfessorEntity> cmbProfessor;
@@ -57,8 +66,8 @@ public class FrmPedidosReserva {
 	@FXML
 	private TableColumn<ReservaEntity, Date> tbcData;
 
-	//@FXML
-	//private TableColumn<ReservaEntity, EnumTipoReserva> tbcTipo;
+	@FXML
+	private TableColumn<ReservaEntity, Boolean> tbcTipo;
 
 	@FXML
 	private TableColumn<ReservaEntity, Boolean> tbcFixo;
@@ -114,23 +123,90 @@ public class FrmPedidosReserva {
 	@FXML
 	private Button btnPermitir;
 
-	@FXML
-	void initialize() {
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		limparDados();
+		dtpData.requestFocus();
 
+		//preencherDadosTblPedidos(reserva.buscarTodasReservas());
+	}
+
+	/**
+	 * Limpa o formulário da tela.
+	 */
+	private void limparDados() {
+		dtpData.setValue(null);
+		dtpData.setPromptText("Data");
+		cmbTipo.getSelectionModel().select(null);
+		cmbTipo.setPromptText("Tipo");
+		cmbProfessor.getSelectionModel().select(null);
+		cmbProfessor.setPromptText("Professor");
+		tblPedidos.setItems(null);
+		texID.setText("");
+		txtDataPedido.setText("");
+		cmbLaboratorio.getSelectionModel().select(null);
+		cmbLaboratorio.setPromptText("Laboratório");
+		hbxRequisitos.getChildren().remove(1, hbxRequisitos.getChildren().size());
+		texProfessor.setText("");
+		texDisciplina.setText("");
+		texDepartamento.setText("");
+		texTurma.setText("");
+		texDescricao.setText("");
+		hbxHorarios.getChildren().remove(1, hbxHorarios.getChildren().size());
+		ckbFixo.setSelected(false);
+	}
+
+	/**
+	 * Cancela a operação de Gerenciar Pedidos de Reserva e\n retorna à aba
+	 * inicial.
+	 */
+	private void cancelarGerenciarPedido() {
+		limparDados();
+		tabDados.setDisable(true);
+		tabPedidos.setDisable(false);
+		tbpDados.getSelectionModel().select(tabPedidos);
+	}
+
+	/**
+	 * Preenche o formulário da aba Visualizar Dados com os dados\n do pedido
+	 * selecionado na aba Pedidos.
+	 */
+	/*private void preencherDados() {
+		limparDados();
+
+		tabPedidos.setDisable(true);
+		tabDados.setDisable(false);
+
+		texID.setText(value);
+		txtDataPedido.setText(value);
+		// hbxRequisitos
+		texProfessor.setText(value);
+		texDisciplina.setText(value);
+		texDepartamento.setText(value);
+		texTurma.setText(value);
+		texDescricao.setText(value);
+		// hbxHorarios
+		ckbFixo.setSelected(value);
+	}*/
+
+	private void preencherDadosTblPedidos(List<ReservaEntity> listaReserva) {
+		tblPedidos.setItems(FXCollections.observableArrayList(listaReserva));
+		tblPedidos.refresh();
 	}
 
 	@FXML
 	void btnCancelar_onAction(ActionEvent event) {
-
 	}
 
 	@FXML
 	void btnCancelar_onKeyPressed(KeyEvent event) {
+		cancelarGerenciarPedido();
 
 	}
 
 	@FXML
 	void btnCancelar_onMouseClicked(MouseEvent event) {
+		cancelarGerenciarPedido();
 
 	}
 
@@ -216,15 +292,8 @@ public class FrmPedidosReserva {
 
 	@FXML
 	void tblPedidos_onMouseClicked(MouseEvent event) {
-
-	}
-
-	private void limparFormulario() {
-		dtpData.setValue(null);
-		dtpData.setPromptText("Data");
-		//cmbTipo.setValue(null);
-		//cmbTipo.setPromptText("Tipo");
-		cmbProfessor.setValue(null);
-		cmbProfessor.setPromptText("Professor");		
+		if (event.getClickCount() >= 2) {
+			//preencherDados();
+		}
 	}
 }

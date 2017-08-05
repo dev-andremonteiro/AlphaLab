@@ -20,4 +20,9 @@ public class Reserva extends ABusiness<ReservaEntity, ReservaException, IReserva
 	public List<ReservaEntity> getByNome(String nome) {
 		return ((IReservaDAO) dao).getByNome();
 	}
+
+	public List<ReservaEntity> buscarTodasReservas() {
+		return ((IReservaDAO) dao).buscarTodasReservas();
+
+	}
 }

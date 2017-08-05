@@ -12,4 +12,6 @@ import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 
 public interface IReservaDAO extends IDAO<ReservaEntity> {
 	public List<ReservaEntity> getByNome();
+
+	public List<ReservaEntity> buscarTodasReservas();
 }
