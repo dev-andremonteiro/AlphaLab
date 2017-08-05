@@ -13,8 +13,8 @@ public class MockDepartamentoDAO implements IDepartamentoDAO {
 	private static ArrayList<DepartamentoEntity> listaDepartamentos = new ArrayList();
 	private static MockDepartamentoDAO singleton = null;
 
-	private static final DepartamentoEntity departamento1= new DepartamentoEntity();
-        private static final DepartamentoEntity departamento2= new DepartamentoEntity();
+	private static final DepartamentoEntity departamento1 = new DepartamentoEntity();
+	private static final DepartamentoEntity departamento2 = new DepartamentoEntity();
 
 	static {
 		departamento1.setId(1L);
@@ -23,16 +23,13 @@ public class MockDepartamentoDAO implements IDepartamentoDAO {
 		departamento1.setObservacao("Informática");
 		departamento1.setChefe(MockServidorDAO.getInstance().servidor1);
 
-		listaDepartamentos.add(departamento1);
-                
-                
-                departamento2.setId(1L);
+		departamento2.setId(1L);
 		departamento2.setSigla("DACC");
 		departamento2.setNome("Departamento da Área de Constação Civil");
 		departamento2.setObservacao("Construção Civil");
-		departamento2.setChefe(
-				(ServidorEntity) MockServidorDAO.getInstance().getByNome("Ângela de Oliveira").toArray()[0]);
+		departamento2.setChefe(MockServidorDAO.getInstance().servidor1);
 
+		listaDepartamentos.add(departamento1);
 		listaDepartamentos.add(departamento2);
 	}
 

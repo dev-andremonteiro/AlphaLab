@@ -6,7 +6,10 @@
 package br.edu.ifmt.cba.alphalab.dao.mock.software;
 
 import br.edu.ifmt.cba.alphalab.dao.ISolicitacaoSoftware;
+import br.edu.ifmt.cba.alphalab.dao.mock.exception.MockSolicitacaoSoftwareException;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
+import br.edu.ifmt.cba.alphalab.entity.software.SoftwareSolicitacaoEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SolicitacaoSoftwareEntity;
 import java.util.ArrayList;
 
@@ -15,8 +18,16 @@ import java.util.ArrayList;
  * @author tcloss
  */
 public class MockSolicitacaoSoftware implements ISolicitacaoSoftware {
+    private static MockSolicitacaoSoftware instancia;
     private static final ArrayList<SolicitacaoSoftwareEntity> listaSolicitacao = new ArrayList<>();
     
+    private MockSolicitacaoSoftware(){}
+    
+    public static MockSolicitacaoSoftware getInstance(){
+        if(instancia==null)
+            instancia=new MockSolicitacaoSoftware();
+        return instancia;
+    }
 
     @Override
     public void save(SolicitacaoSoftwareEntity entity) {
@@ -31,17 +42,38 @@ public class MockSolicitacaoSoftware implements ISolicitacaoSoftware {
 
     @Override
     public void delete(SolicitacaoSoftwareEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        listaSolicitacao.remove(entity);
     }
 
     @Override
     public SolicitacaoSoftwareEntity getById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        SolicitacaoSoftwareEntity retorno = null;
+        for(SolicitacaoSoftwareEntity solicitacao:listaSolicitacao){
+            if(solicitacao.getId().equals(id))
+            {
+                retorno=solicitacao;
+                break;
+            }
+        }
+        return retorno;
     }
 
     @Override
-    public void confirmarInstalacaoDeSoftware(SolicitacaoSoftwareEntity solicitacaoSoftwareEntity, SoftwareEntity softwareEntity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void confirmarInstalacaoDeSoftware(SolicitacaoSoftwareEntity solicitacaoSoftwareEntity, SoftwareSolicitacaoEntity softwareSolicitacaoEntity,ServidorEntity concluinte) throws MockSolicitacaoSoftwareException {
+        if(listaSolicitacao.contains(solicitacaoSoftwareEntity))
+        {
+           try{ 
+            SolicitacaoSoftwareEntity solicitacao=listaSolicitacao.get(listaSolicitacao.indexOf(solicitacaoSoftwareEntity));
+            SoftwareSolicitacaoEntity software=solicitacao.getSoftwares().get(solicitacao.getSoftwares().indexOf(softwareSolicitacaoEntity));
+            software.setInstalado(true);
+            software.setConcluinte(concluinte);
+           }
+           catch(IndexOutOfBoundsException ex)
+           {
+               throw new MockSolicitacaoSoftwareException("Software não encontrado nesta solicitação para confirmação de instalação",ex.getCause());
+           }
+           
+        }
     }
     
 }
