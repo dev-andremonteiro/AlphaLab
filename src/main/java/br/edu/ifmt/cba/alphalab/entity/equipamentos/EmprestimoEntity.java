@@ -22,7 +22,7 @@ public class EmprestimoEntity implements IEntity<EmprestimoException> {
 
     private String observacaoDevolucao;
 
-    private ArrayList<RecursoEntity> recursos;
+    private ArrayList<EquipamentoEntity> recursos;
 
     private ServidorEntity solicitante;
 
@@ -37,6 +37,20 @@ public class EmprestimoEntity implements IEntity<EmprestimoException> {
 
     @Override
     public EmprestimoException validar() {
+        StringBuilder msg = new StringBuilder();
+        
+        if (status == null)
+        msg.append("Status da recurso deve ser informado!\n");
+        
+        if (dataSolicitacao == null)
+        msg.append("Data de solicitação do recurso deve ser informado!\n");
+        
+        if (dataDevolucao == null)
+        msg.append("Data de solicitação do recurso deve ser informado!\n");
+        
+        
+        
+        
         return null;
     }
 
@@ -92,11 +106,11 @@ public class EmprestimoEntity implements IEntity<EmprestimoException> {
         this.observacaoDevolucao = observacaoDevolucao;
     }
 
-    public ArrayList<RecursoEntity> getRecursos() {
+    public ArrayList<EquipamentoEntity> getRecursos() {
         return recursos;
     }
 
-    public void setRecursos(ArrayList<RecursoEntity> recursos) {
+    public void setRecursos(ArrayList<EquipamentoEntity> recursos) {
         this.recursos = recursos;
     }
 

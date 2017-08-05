@@ -2,17 +2,37 @@
 package br.edu.ifmt.cba.alphalab.dao.mock.emprestimo;
 
 import br.edu.ifmt.cba.alphalab.dao.IEmprestimoDAO;
+import br.edu.ifmt.cba.alphalab.dao.mock.equipamentos.MockEquipamentoDAO;
+import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EmprestimoEntity;
+import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MockEmprestimoDAO implements IEmprestimoDAO {
     
     
     private static ArrayList<EmprestimoEntity> listaEmprestimo = new ArrayList();
-    
-    
     private static MockEmprestimoDAO singleton = null;
+    
+   private static final EmprestimoEntity Emprestimo = new EmprestimoEntity();
+    
+    private static final String formatoData = "dd/MM/yyyy";
+    
+    static{
+        Emprestimo.setId(1L);
+        try {
+            Emprestimo.setDataSolicitacao( new SimpleDateFormat(formatoData).parse("10/05/2017"));
+        } catch (ParseException ex) {
+            //Emprestimo.setRecursos();
+            Emprestimo.setAprovador((ServidorEntity) MockServidorDAO.getInstance().getById(1L));
+        }
+    }
     
     public MockEmprestimoDAO(){  }
     

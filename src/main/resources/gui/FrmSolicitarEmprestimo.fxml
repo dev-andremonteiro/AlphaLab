@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -11,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <Label prefHeight="32.0" prefWidth="502.0" text="     Solicitar Empréstimo de Recurso" BorderPane.alignment="CENTER">
          <font>
@@ -29,9 +34,9 @@
                <children>
                   <Label prefHeight="23.0" prefWidth="87.0" text="%label.professor" />
                   <Label fx:id="lblProfessor" prefHeight="32.0" prefWidth="190.0" />
-                  <Label prefHeight="27.0" prefWidth="35.0" text="%label.data" />
+                  <Label prefHeight="27.0" prefWidth="64.0" text="%label.data" />
                   <TextField fx:id="txtData" prefHeight="25.0" prefWidth="118.0" />
-                  <Label prefHeight="24.0" prefWidth="33.0" text="%label.hora" />
+                  <Label prefHeight="24.0" prefWidth="65.0" text="%label.hora" />
                   <TextField fx:id="txtHora" />
                   <Label fx:id="lblHora" prefHeight="17.0" prefWidth="73.0" />
                </children>
