@@ -59,18 +59,15 @@ import javafx.util.Callback;
 public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	ResourceBundle resources = ResourceBundle.getBundle(FrmPrincipal.LINGUA_PORTUGUES);
 
-	// Lista de botões contidos na TableColumn tbcDiaSemana
-	private List<ToggleButton> listaBotoes = new ArrayList<>();
-
-	// Lista dos botões pressionados na TableColumn tbcDiaSemana
-	private List<ToggleButton> listaSelecionados = new ArrayList<>();
-
 	private Software software = new Software(DAOFactory.getDAOFactory().getSoftwareDAO());
 
-	private Date dtSolicitacaoReserva = null;
-	private List<RequisitoEntity> listaRequisitos = new ArrayList<>();
-	private List<SoftwareEntity> listaSoftwaresSelecionados = new ArrayList<>();
-	private Integer numMaxAlunos = 0, idSoftwares = 100;
+	private Date dtSolicitacaoReserva = new Date();
+	private RequisitoEntity requisitos = new RequisitoEntity();
+	private ArrayList<SoftwareEntity> listaSoftwaresSelecionados = new ArrayList<>();
+	private ArrayList<ToggleButton> listaBotoes = new ArrayList<>();
+	private ArrayList<ToggleButton> listaBotoesSelecionados = new ArrayList<>();
+	private ArrayList<Horario> listaHorariosSelecionados = new ArrayList<>();
+	private int numMaxAlunos = 0, idSoftwares = 100;
 
 	@FXML
 	private TabPane tabPaneDados;
@@ -146,9 +143,14 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		fillColumnHorario();
+		fillColumns();
 		tabPreencherDados.setDisable(true);
 		dtpData.requestFocus();
+	}
+
+	private void fillColumns() {
+		tbcHorario.setCellValueFactory(conteudo -> new SimpleStringProperty(conteudo.getValue().getEstampa()));
+		tblHorarioRequisitos.getItems().addAll(Horario.values());
 
 		// Adiciona a coluna Nome do Software
 		tbcNome.setCellValueFactory(
@@ -179,8 +181,40 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 					public ObservableValue<Boolean> call(CellDataFeatures<SoftwareCheckTableView, Boolean> param) {
 						return new ReadOnlyObjectWrapper<Boolean>(param.getValue().getSelecionado());
 					}
-				});		
+				});
 		buscarSoftwares();
+	}
+
+	private void fillHorarios() {
+		// Adiciona botões às celulas da coluna
+				tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, ToggleButton>() {
+					@Override
+					protected void updateItem(ToggleButton btn, boolean empty) {
+						super.updateItem(btn, empty);
+
+						if (empty) {
+							setGraphic(null);
+						} else {
+							btn = new ToggleButton(resources.getString("button.selecionar"));
+							listaBotoes.add(btn);
+
+							// Evento que adiciona/retira botões selecionados na lista
+							// listaSelecionados
+							btn.setOnAction(new EventHandler<ActionEvent>() {
+								@Override
+								public void handle(ActionEvent event) {
+									ToggleButton tgbtn = (ToggleButton) event.getSource();
+									if (tgbtn.isSelected()) {
+										listaBotoesSelecionados.add(tgbtn);
+									} else {
+										listaBotoesSelecionados.remove(tgbtn);
+									}
+								}
+							});
+							setGraphic(btn);
+						}
+					}
+				});
 	}
 
 	/**
@@ -282,7 +316,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		ReservaEntity reservaEntity = new ReservaEntity();
 
 		reservaEntity.setDataSolicitacao(dtSolicitacaoReserva);
-		// Horários da reserva
+		reservaEntity.setHorarios(listaHorariosSelecionados);
 		// Requisitos da reserva
 		// Num máx. de alunos
 		reservaEntity.setDisciplina(txtDisciplina.getText());
@@ -587,42 +621,5 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		if (event.getCode() == KeyCode.ENTER)
 			txaObservacao.requestFocus();
 
-	}
-
-	private void fillColumnHorario() {
-		tbcHorario.setCellValueFactory(conteudo -> new SimpleStringProperty(conteudo.getValue().getEstampa()));
-		tbcDiaSemana.setCellValueFactory(new PropertyValueFactory<>(""));
-
-		// Adiciona botões às celulas da coluna
-		tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, ToggleButton>() {
-			@Override
-			protected void updateItem(ToggleButton btn, boolean empty) {
-				super.updateItem(btn, empty);
-
-				if (empty) {
-					setGraphic(null);
-				} else {
-					btn = new ToggleButton(resources.getString("button.selecionar"));
-					listaBotoes.add(btn);
-
-					// Evento que adiciona/retira botões selecionados na lista
-					// listaSelecionados
-					btn.setOnAction(new EventHandler<ActionEvent>() {
-						@Override
-						public void handle(ActionEvent event) {
-							ToggleButton tgbtn = (ToggleButton) event.getSource();
-							if (tgbtn.isSelected()) {
-								listaSelecionados.add(tgbtn);
-							} else {
-								listaSelecionados.remove(tgbtn);
-							}
-						}
-					});
-					setGraphic(btn);
-				}
-			}
-		});
-
-		tblHorarioRequisitos.getItems().addAll(Horario.values());
 	}
 }
