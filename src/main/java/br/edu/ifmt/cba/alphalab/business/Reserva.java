@@ -1,5 +1,6 @@
 package br.edu.ifmt.cba.alphalab.business;
 
+import java.util.Date;
 import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IDAO;
@@ -17,12 +18,11 @@ public class Reserva extends ABusiness<ReservaEntity, ReservaException, IReserva
 		return ((IReservaDAO) dao).getById(id);
 	}
 
-	public List<ReservaEntity> getByNome(String nome) {
-		return ((IReservaDAO) dao).getByNome();
-	}
-
 	public List<ReservaEntity> buscarTodasReservas() {
 		return ((IReservaDAO) dao).buscarTodasReservas();
+	}
 
+	public List<ReservaEntity> getByData(Date data) {
+		return ((IReservaDAO) dao).getByData(data);
 	}
 }

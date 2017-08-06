@@ -2,7 +2,6 @@ package br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -26,6 +25,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -171,6 +171,7 @@ public class FrmPedidosReserva implements Initializable {
 		tabDados.setDisable(true);
 		tabPedidos.setDisable(false);
 		tbpDados.getSelectionModel().select(tabPedidos);
+		preencherDadosTblPedidos(reserva.buscarTodasReservas());
 	}
 
 	/**
@@ -294,17 +295,26 @@ public class FrmPedidosReserva implements Initializable {
 
 	@FXML
 	void dtpData_onAction(ActionEvent event) {
+		if(true){
+			
+		}
 
 	}
 
 	@FXML
 	void dtpData_onKeyPressed(KeyEvent event) {
+		
 
 	}
 
 	@FXML
 	void tblPedidos_onKeyPressed(KeyEvent event) {
-
+		if (event.getCode() == KeyCode.ENTER) {
+			if (tblPedidos.getSelectionModel().getSelectedItem() != null) {
+				preencherVisualizarDados(tblPedidos.getSelectionModel().getSelectedItem());
+				tbpDados.getSelectionModel().select(tabDados);
+			}
+		}
 	}
 
 	@FXML

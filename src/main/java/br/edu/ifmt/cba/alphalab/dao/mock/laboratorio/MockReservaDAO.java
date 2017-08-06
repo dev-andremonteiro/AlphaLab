@@ -3,14 +3,13 @@ package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IReservaDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 /**
  * 
@@ -28,47 +27,87 @@ public class MockReservaDAO implements IReservaDAO {
 	private static MockRequisitoDAO requisito = new MockRequisitoDAO();
 
 	private static final ReservaEntity reserva1 = new ReservaEntity();
+	private static final ReservaEntity reserva2 = new ReservaEntity();
+	private static final ReservaEntity reserva3 = new ReservaEntity();
 
-	private static final String formatoData = "dd/MM/yyyy";
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
 
 	static {
 		reserva1.setId(1L);
 		reserva1.setStatus(EnumReserva.RECUSADO);
-		try {
-			reserva1.setDataSolicitacao(new SimpleDateFormat(formatoData).parse("10/05/2017"));
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
 		reserva1.setDisciplina("Algoritmos I");
 		reserva1.setTurma("7844-1");
 		reserva1.setObservacao("");
 		reserva1.setFixo(false);
 		try {
-			reserva1.setDataInicio(new SimpleDateFormat(formatoData).parse("13/05/2017"));
-			System.out.println(new SimpleDateFormat(formatoData).parse("13/05/2017"));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		try {
-			reserva1.setDataFim(new SimpleDateFormat(formatoData).parse("13/09/2017"));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		try {
-			reserva1.setDataAprovacaoRecusa(new SimpleDateFormat(formatoData).parse("11/05/2017"));
+			reserva1.setDataSolicitacao(sdf.parse("10/05/2017"));
+			reserva1.setDataInicio(sdf.parse("13/05/2017"));
+			reserva1.setDataFim(sdf.parse("13/09/2017"));
+			reserva1.setDataAprovacaoRecusa(sdf.parse("11/05/2017"));
+			System.out.println(sdf.format(sdf.parse("25/08/1979")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		reserva1.setJustificativa("Laboratório sem ar condicionado!");
-		reserva1.setLaboratorio(laboratorio.getById((long) 1));
-		reserva1.setDepartamentoAula(departamento.getById((long) 1));
-		reserva1.setSolicitante(servidor.getById((long) 1));
-		reserva1.setAprovador(servidor.getById((long) 1));
+		reserva1.setLaboratorio(laboratorio.getById(1L));
+		reserva1.setDepartamentoAula(departamento.getById(1L));
+		reserva1.setSolicitante(servidor.getById(1L));
+		reserva1.setAprovador(servidor.getById(1L));
 		reserva1.setRequisitos(requisito.buscarTodos());
 		// reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M1,
 		// Horario.M2)));
 
+		reserva2.setId(2L);
+		reserva2.setStatus(EnumReserva.CONFIRMADO);
+		reserva2.setDisciplina("Algoritmos II");
+		reserva2.setTurma("7844-2");
+		reserva2.setObservacao("Minicurso de Python");
+		reserva2.setFixo(true);
+		try {
+			reserva2.setDataSolicitacao(sdf.parse("06/08/2017"));
+			reserva2.setDataInicio(sdf.parse("07/08/2017"));
+			reserva2.setDataFim(sdf.parse("12/12/2017"));
+			reserva2.setDataAprovacaoRecusa(sdf.parse("07/08/2017"));
+			System.out.println(sdf.format(sdf.parse("07/08/2017")));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		reserva2.setJustificativa("");
+		reserva2.setLaboratorio(laboratorio.getById(1L));
+		reserva2.setDepartamentoAula(departamento.getById(1L));
+		reserva2.setSolicitante(servidor.getById(1L));
+		reserva2.setAprovador(servidor.getById(1L));
+		reserva2.setRequisitos(requisito.buscarTodos());
+		// reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M1,
+		// Horario.M2)));
+
+		reserva3.setId(3L);
+		reserva3.setStatus(EnumReserva.PEDIDO);
+		reserva3.setDisciplina("Linguagem de Programação I");
+		reserva3.setTurma("7844-5");
+		reserva3.setObservacao("Urgência!");
+		reserva3.setFixo(false);
+		try {
+			reserva3.setDataSolicitacao(sdf.parse("10/09/2017"));
+			reserva3.setDataInicio(sdf.parse("13/09/2017"));
+			reserva3.setDataFim(sdf.parse("28/09/2017"));
+			reserva3.setDataAprovacaoRecusa(sdf.parse("11/09/2017"));
+			System.out.print(sdf.format(sdf.parse("11/09/2017")));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		reserva3.setJustificativa("");
+		reserva3.setLaboratorio(laboratorio.getById(1L));
+		reserva3.setDepartamentoAula(departamento.getById(1L));
+		reserva3.setSolicitante(servidor.getById(1L));
+		reserva3.setAprovador(servidor.getById(1L));
+		reserva3.setRequisitos(requisito.buscarTodos());
+		// reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M1,
+		// Horario.M2)));
+
 		reservas.add(reserva1);
+		reservas.add(reserva2);
+		reservas.add(reserva3);
 	}
 
 	private MockReservaDAO() {
@@ -103,17 +142,18 @@ public class MockReservaDAO implements IReservaDAO {
 	}
 
 	@Override
-	public List<ReservaEntity> getByNome() {
-		return reservas;
+	public List<ReservaEntity> getByData(Date data) {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+		for (ReservaEntity vo : reservas) {
+			if (vo.getDataSolicitacao().equals(data)) {
+				resultado.add(vo);
+			}
+		}
+		return resultado;
 	}
 
 	@Override
 	public List<ReservaEntity> buscarTodasReservas() {
-		for (ReservaEntity reserva : reservas) {
-			Alert alerta = new Alert(AlertType.INFORMATION);
-			alerta.setContentText(reserva.getDisciplina());
-			alerta.show();
-		}
 		return reservas;
 	}
 }
