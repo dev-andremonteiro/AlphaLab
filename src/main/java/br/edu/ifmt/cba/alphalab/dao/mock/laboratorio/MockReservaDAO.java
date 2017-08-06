@@ -67,7 +67,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva1.setDepartamentoAula(departamento.getById((long) 1));
 		reserva1.setSolicitante(servidor.getById((long) 1));
 		reserva1.setAprovador(servidor.getById((long) 1));
-		reserva1.setRequisitos((ArrayList<RequisitoEntity>) requisito.buscarTodos());
+		reserva1.setRequisitos((RequisitoEntity) requisito.buscarTodos());
 		reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M1, Horario.M2)));
 		
 		reservas.add(reserva1);
