@@ -13,11 +13,17 @@ public interface DAOFactory {
 
 	public abstract IClienteDAO getClienteDAO();
 
-	public abstract IProfessorDAO getProfessorDAO();
-
 	public abstract IReservaDAO getReservaDAO();
 
 	public abstract ISoftwareDAO getSoftwareDAO();
+
+	public abstract IRequisitoDAO getRequisitoDAO();
+
+	public abstract ILaboratorioDAO getLaboratorioDAO();
+
+	public abstract IEquipamentoDAO getEquipamentoDAO();
+
+	public abstract IServidorDAO getServidorDAO();
 
 	public static DAOFactory getDAOFactory() {
 		if (props.isEmpty()) {

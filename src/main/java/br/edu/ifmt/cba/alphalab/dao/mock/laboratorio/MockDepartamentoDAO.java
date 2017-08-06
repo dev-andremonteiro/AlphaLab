@@ -5,12 +5,10 @@ import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IDepartamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
-import br.edu.ifmt.cba.alphalab.dao.mock.software.MockSoftwareDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
-import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 
 public class MockDepartamentoDAO implements IDepartamentoDAO {
-	public static ArrayList<DepartamentoEntity> listaDepartamentos = new ArrayList();
+	private static List<DepartamentoEntity> listaDepartamentos = new ArrayList();
 
 	private static MockServidorDAO servidor = new MockServidorDAO();
 

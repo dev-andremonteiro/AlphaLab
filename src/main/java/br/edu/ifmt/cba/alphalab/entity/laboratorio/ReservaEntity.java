@@ -2,6 +2,8 @@ package br.edu.ifmt.cba.alphalab.entity.laboratorio;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import br.edu.ifmt.cba.alphalab.entity.IEntity;
 import br.edu.ifmt.cba.alphalab.entity.exception.ReservaException;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
@@ -38,17 +40,17 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
 	private ServidorEntity aprovador;
         
-    private ArrayList<Integer> horarios;
+    private List<Integer> horarios;
 
-	private ArrayList<RequisitoEntity> requisitos;
+	private List<RequisitoEntity> requisitos;
 
 	public ReservaEntity() {
 	}
 
     public ReservaEntity(Long id, EnumReserva status, Date dataSolicitacao, String disciplina, String turma, String observacao, 
             boolean fixo, Date dataInicio, Date dataFim, Date dataAprovacaoRecusa, String justificativa, LaboratorioEntity laboratorio,
-            DepartamentoEntity departamentoAula, ServidorEntity solicitante, ServidorEntity aprovador, ArrayList<Integer> horarios, 
-            ArrayList<RequisitoEntity> requisitos) {
+            DepartamentoEntity departamentoAula, ServidorEntity solicitante, ServidorEntity aprovador, List<Integer> horarios, 
+            List<RequisitoEntity> requisitos) {
         this.id = id;
         this.status = status;
         this.dataSolicitacao = dataSolicitacao;
@@ -191,11 +193,11 @@ public class ReservaEntity implements IEntity<ReservaException> {
 		this.aprovador = aprovador;
 	}
 
-	public ArrayList<RequisitoEntity> getRequisitos() {
+	public List<RequisitoEntity> getRequisitos() {
 		return requisitos;
 	}
 
-	public void setRequisitos(ArrayList<RequisitoEntity> requisitos) {
+	public void setRequisitos(List<RequisitoEntity> requisitos) {
 		this.requisitos = requisitos;
 	}
 

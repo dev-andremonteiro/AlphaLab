@@ -3,16 +3,21 @@ package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IReservaDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  * 
@@ -21,7 +26,7 @@ import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
  */
 
 public class MockReservaDAO implements IReservaDAO {
-	public static List<ReservaEntity> reservas = new ArrayList<>();
+	private static List<ReservaEntity> reservas = new ArrayList<>();
 	private static MockReservaDAO singleton = null;
 
 	private static MockLaboratorioDAO laboratorio = new MockLaboratorioDAO();
@@ -65,7 +70,9 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva1.setDepartamentoAula(departamento.getById((long) 1));
 		reserva1.setSolicitante(servidor.getById((long) 1));
 		reserva1.setAprovador(servidor.getById((long) 1));
-		reserva1.setRequisitos((ArrayList<RequisitoEntity>) requisito.buscarTodos());
+		reserva1.setRequisitos(requisito.buscarTodos());
+		// reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M1,
+		// Horario.M2)));
 
 		reservas.add(reserva1);
 	}
@@ -108,6 +115,11 @@ public class MockReservaDAO implements IReservaDAO {
 
 	@Override
 	public List<ReservaEntity> buscarTodasReservas() {
+		for (ReservaEntity reserva : reservas) {
+			Alert alerta = new Alert(AlertType.INFORMATION);
+			alerta.setContentText(reserva.getDisciplina());
+			alerta.show();
+		}
 		return reservas;
 	}
 }

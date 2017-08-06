@@ -2,13 +2,13 @@ package br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import br.edu.ifmt.cba.alphalab.business.Reserva;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
-import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockReservaDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
@@ -25,6 +25,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -133,9 +134,7 @@ public class FrmPedidosReserva implements Initializable {
 		tabPedidos.setDisable(false);
 		tabDados.setDisable(true);
 
-		// preencherDadosTblPedidos(reserva.buscarTodasReservas());
-		preencherDadosTblPedidos(MockReservaDAO.reservas);
-
+		preencherDadosTblPedidos(reserva.buscarTodasReservas());
 	}
 
 	/**
@@ -190,6 +189,17 @@ public class FrmPedidosReserva implements Initializable {
 	 */
 
 	private void preencherDadosTblPedidos(List<ReservaEntity> listaReserva) {
+
+		tbcID.setCellValueFactory(new PropertyValueFactory<>("id"));
+		// Em andamento: lista de horários solicitados para a reserva
+		tbcHorario.setCellValueFactory(new PropertyValueFactory<>("dataSolicitacao"));
+		tbcData.setCellValueFactory(new PropertyValueFactory<>("dataSolicitacao"));
+		// Em andamento: dedicir o que colocar aqui
+		tbcTipo.setCellValueFactory(new PropertyValueFactory<>("fixo"));
+		tbcFixo.setCellValueFactory(new PropertyValueFactory<>("fixo"));
+		tbcDados.setCellValueFactory(new PropertyValueFactory<>("solicitante"));
+		tbcDescricao.setCellValueFactory(new PropertyValueFactory<>("observacao"));
+
 		tblPedidos.setItems(FXCollections.observableArrayList(listaReserva));
 		tblPedidos.refresh();
 	}
