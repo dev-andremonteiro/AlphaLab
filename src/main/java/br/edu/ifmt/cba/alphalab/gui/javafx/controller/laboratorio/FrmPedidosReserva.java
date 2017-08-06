@@ -132,7 +132,7 @@ public class FrmPedidosReserva implements Initializable {
 		dtpData.requestFocus();
 
 		tabPedidos.setDisable(false);
-		tabDados.setDisable(true);
+		// tabDados.setDisable(true);
 
 		preencherDadosTblPedidos(reserva.buscarTodasReservas());
 	}
@@ -177,16 +177,23 @@ public class FrmPedidosReserva implements Initializable {
 	 * Preenche o formulário da aba Visualizar Dados com os dados\n do pedido
 	 * selecionado na aba Pedidos.
 	 */
-	/*
-	 * private void preencherDados() { limparDados();
-	 * 
-	 * tabPedidos.setDisable(true); tabDados.setDisable(false);
-	 * 
-	 * texID.setText(value); txtDataPedido.setText(value); // hbxRequisitos
-	 * texProfessor.setText(value); texDisciplina.setText(value);
-	 * texDepartamento.setText(value); texTurma.setText(value);
-	 * texDescricao.setText(value); // hbxHorarios ckbFixo.setSelected(value); }
-	 */
+	private void preencherVisualizarDados(ReservaEntity reservaEntity) {
+		limparDados();
+
+		tabPedidos.setDisable(true);
+		tabDados.setDisable(false);
+
+		texID.setText(reservaEntity.getId().toString());
+		txtDataPedido.setText(reservaEntity.getDataSolicitacao().toString());
+		// hbxRequisitos
+		texProfessor.setText(reservaEntity.getSolicitante().getNome());
+		texDisciplina.setText(reservaEntity.getDisciplina());
+		texDepartamento.setText(reservaEntity.getDepartamentoAula().getNome());
+		texTurma.setText(reservaEntity.getTurma());
+		texDescricao.setText(reservaEntity.getObservacao());
+		// hbxHorarios
+		ckbFixo.setSelected(false);
+	}
 
 	private void preencherDadosTblPedidos(List<ReservaEntity> listaReserva) {
 
@@ -303,7 +310,11 @@ public class FrmPedidosReserva implements Initializable {
 	@FXML
 	void tblPedidos_onMouseClicked(MouseEvent event) {
 		if (event.getClickCount() >= 2) {
-			// preencherDados();
+			if (tblPedidos.getSelectionModel().getSelectedItem() != null) {
+				preencherVisualizarDados(tblPedidos.getSelectionModel().getSelectedItem());
+
+				tbpDados.getSelectionModel().select(tabDados);
+			}
 		}
 	}
 }

@@ -3,19 +3,12 @@ package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IReservaDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
-import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
-import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
-import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
-import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
-import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -52,6 +45,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva1.setFixo(false);
 		try {
 			reserva1.setDataInicio(new SimpleDateFormat(formatoData).parse("13/05/2017"));
+			System.out.println(new SimpleDateFormat(formatoData).parse("13/05/2017"));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
