@@ -23,9 +23,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio.FrmPedidosReserva">
    <center>
-      <TabPane prefHeight="729.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tbpDados" prefHeight="729.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab fx:id="tabPedidos" closable="false" text="%tab.pedidos">
                <content>
@@ -45,13 +45,13 @@
                      <center>
                         <TableView fx:id="tblPedidos" onKeyPressed="#tblPedidos_onKeyPressed" onMouseClicked="#tblPedidos_onMouseClicked" prefHeight="537.0" prefWidth="965.0" BorderPane.alignment="CENTER">
                           <columns>
-                            <TableColumn fx:id="tbcID" editable="false" maxWidth="70.0" prefWidth="70.0" resizable="false" text="ID" />
-                            <TableColumn fx:id="tbcHorario" editable="false" maxWidth="130.0" prefWidth="130.0" resizable="false" text="Horário" />
-                              <TableColumn fx:id="tbcData" editable="false" maxWidth="130.0" prefWidth="130.0" resizable="false" text="Data" />
-                              <TableColumn fx:id="tbcTipo" editable="false" maxWidth="130.0" prefWidth="130.0" resizable="false" text="Tipo" />
-                              <TableColumn fx:id="tbcFixo" editable="false" maxWidth="70.0" prefWidth="70.0" resizable="false" text="Fixo" />
-                              <TableColumn fx:id="tbcDados" editable="false" maxWidth="182.0" minWidth="0.0" prefWidth="182.0" resizable="false" text="Dados" />
-                              <TableColumn fx:id="tbcDescricao" editable="false" maxWidth="200.0" prefWidth="200.0" resizable="false" text="Descrição" />
+                            <TableColumn fx:id="tbcID" editable="false" maxWidth="70.0" prefWidth="70.0" resizable="false" text="%column.id" />
+                            <TableColumn fx:id="tbcHorario" editable="false" maxWidth="130.0" prefWidth="130.0" resizable="false" text="%column.horario" />
+                              <TableColumn fx:id="tbcData" editable="false" maxWidth="130.0" prefWidth="130.0" resizable="false" text="%column.data" />
+                              <TableColumn fx:id="tbcTipo" editable="false" maxWidth="130.0" prefWidth="130.0" resizable="false" text="%column.tipo" />
+                              <TableColumn fx:id="tbcFixo" editable="false" maxWidth="70.0" prefWidth="70.0" resizable="false" text="%column.fixo" />
+                              <TableColumn fx:id="tbcDados" editable="false" maxWidth="182.0" minWidth="0.0" prefWidth="182.0" resizable="false" text="%column.dados" />
+                              <TableColumn fx:id="tbcDescricao" editable="false" maxWidth="200.0" prefWidth="200.0" resizable="false" text="%column.descricao" />
                           </columns>
                            <BorderPane.margin>
                               <Insets bottom="50.0" left="50.0" right="50.0" />

@@ -13,7 +13,7 @@ public class RequisitoEntity implements IEntity<RequisitoException> {
 
 	private int qtdAlunos;
 
-	private ArrayList<SoftwareEntity> softwares;
+	private List<SoftwareEntity> softwares;
 
 	public RequisitoEntity() {
 	}
@@ -22,7 +22,7 @@ public class RequisitoEntity implements IEntity<RequisitoException> {
 		super();
 		this.id = id;
 		this.qtdAlunos = qtdAlunos;
-		this.softwares = (ArrayList<SoftwareEntity>) softwares;
+		this.softwares = softwares;
 	}
 
 	@Override
@@ -54,11 +54,11 @@ public class RequisitoEntity implements IEntity<RequisitoException> {
 		this.qtdAlunos = qtdAlunos;
 	}
 
-	public ArrayList<SoftwareEntity> getSoftwares() {
+	public List<SoftwareEntity> getSoftwares() {
 		return softwares;
 	}
 
-	public void setSoftwares(ArrayList<SoftwareEntity> softwares) {
+	public void setSoftwares(List<SoftwareEntity> softwares) {
 		this.softwares = softwares;
 	}
 }

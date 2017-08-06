@@ -10,7 +10,10 @@ import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 
 public class MockDepartamentoDAO implements IDepartamentoDAO {
-	private static ArrayList<DepartamentoEntity> listaDepartamentos = new ArrayList();
+	public static ArrayList<DepartamentoEntity> listaDepartamentos = new ArrayList();
+
+	private static MockServidorDAO servidor = new MockServidorDAO();
+
 	private static MockDepartamentoDAO singleton = null;
 
 	private static final DepartamentoEntity departamento1 = new DepartamentoEntity();
@@ -21,13 +24,13 @@ public class MockDepartamentoDAO implements IDepartamentoDAO {
 		departamento1.setSigla("DAI");
 		departamento1.setNome("Departamento da Área de Informática");
 		departamento1.setObservacao("Informática");
-		departamento1.setChefe(MockServidorDAO.getInstance().servidor1);
+		departamento1.setChefe(servidor.getById((long) 1));
 
 		departamento2.setId(1L);
 		departamento2.setSigla("DACC");
 		departamento2.setNome("Departamento da Área de Constação Civil");
 		departamento2.setObservacao("Construção Civil");
-		departamento2.setChefe(MockServidorDAO.getInstance().servidor1);
+		departamento2.setChefe(servidor.getById((long) 2));
 
 		listaDepartamentos.add(departamento1);
 		listaDepartamentos.add(departamento2);

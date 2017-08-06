@@ -36,6 +36,11 @@
                               </Menu>
                            </items>
                         </Menu>
+                        <Menu mnemonicParsing="false" text="%menu.gerenciar">
+                           <items>
+                              <MenuItem fx:id="mniPedidosReservaHorario" mnemonicParsing="false" onAction="#mniPedidosReservaHorario" text="%mni.pedidosReservaHorario" />
+                           </items>
+                        </Menu>
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="%menu.ajuda">

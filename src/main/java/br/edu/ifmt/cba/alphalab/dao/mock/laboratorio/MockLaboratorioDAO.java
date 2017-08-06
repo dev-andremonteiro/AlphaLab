@@ -20,6 +20,11 @@ public class MockLaboratorioDAO implements ILaboratorioDAO {
 	private static ArrayList<LaboratorioEntity> laboratorios = new ArrayList<>();
 	private static MockLaboratorioDAO singleton = null;
 
+	private static MockDepartamentoDAO departamento = new MockDepartamentoDAO();
+	private static MockEquipamentoDAO equipamento = new MockEquipamentoDAO();
+	private static MockSoftwareDAO software = new MockSoftwareDAO();
+	private static MockEquipamentoDAO equipamentos = new MockEquipamentoDAO();
+
 	private static final LaboratorioEntity laboratorio1 = new LaboratorioEntity();
 
 	static {
@@ -28,10 +33,10 @@ public class MockLaboratorioDAO implements ILaboratorioDAO {
 		laboratorio1.setSituacao(EnumSituacaoLaboratorio.DISPONIVEL);
 		laboratorio1.setCapacidade(20);
 		laboratorio1.setObservacao("Ar condicionado com defeito.");
-		laboratorio1.setDepartamento((DepartamentoEntity) MockDepartamentoDAO.getInstance().buscarTodos().toArray()[0]);
-		laboratorio1.setEquipamento((EquipamentoEntity) MockEquipamentoDAO.getInstance().buscarTodos().toArray()[0]);
-		laboratorio1.setSoftwares((ArrayList<SoftwareEntity>) MockSoftwareDAO.getInstance().buscarTodos());
-		laboratorio1.setEquipamentos((ArrayList<EquipamentoEntity>) MockEquipamentoDAO.getInstance().buscarTodos());
+		laboratorio1.setDepartamento(departamento.getById((long) 1));
+		laboratorio1.setEquipamento(equipamento.getById((long) 1));
+		laboratorio1.setSoftwares(software.buscarTodos());
+		laboratorio1.setEquipamentos(equipamentos.buscarTodos());
 	}
 
 	public static MockLaboratorioDAO getInstance() {

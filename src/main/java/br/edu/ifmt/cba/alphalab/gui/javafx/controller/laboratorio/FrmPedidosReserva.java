@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import br.edu.ifmt.cba.alphalab.business.Reserva;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
+import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockReservaDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
@@ -125,10 +126,16 @@ public class FrmPedidosReserva implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		tblPedidos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		limparDados();
 		dtpData.requestFocus();
 
-		//preencherDadosTblPedidos(reserva.buscarTodasReservas());
+		tabPedidos.setDisable(false);
+		tabDados.setDisable(true);
+
+		// preencherDadosTblPedidos(reserva.buscarTodasReservas());
+		preencherDadosTblPedidos(MockReservaDAO.reservas);
+
 	}
 
 	/**
@@ -171,23 +178,16 @@ public class FrmPedidosReserva implements Initializable {
 	 * Preenche o formulário da aba Visualizar Dados com os dados\n do pedido
 	 * selecionado na aba Pedidos.
 	 */
-	/*private void preencherDados() {
-		limparDados();
-
-		tabPedidos.setDisable(true);
-		tabDados.setDisable(false);
-
-		texID.setText(value);
-		txtDataPedido.setText(value);
-		// hbxRequisitos
-		texProfessor.setText(value);
-		texDisciplina.setText(value);
-		texDepartamento.setText(value);
-		texTurma.setText(value);
-		texDescricao.setText(value);
-		// hbxHorarios
-		ckbFixo.setSelected(value);
-	}*/
+	/*
+	 * private void preencherDados() { limparDados();
+	 * 
+	 * tabPedidos.setDisable(true); tabDados.setDisable(false);
+	 * 
+	 * texID.setText(value); txtDataPedido.setText(value); // hbxRequisitos
+	 * texProfessor.setText(value); texDisciplina.setText(value);
+	 * texDepartamento.setText(value); texTurma.setText(value);
+	 * texDescricao.setText(value); // hbxHorarios ckbFixo.setSelected(value); }
+	 */
 
 	private void preencherDadosTblPedidos(List<ReservaEntity> listaReserva) {
 		tblPedidos.setItems(FXCollections.observableArrayList(listaReserva));
@@ -293,7 +293,7 @@ public class FrmPedidosReserva implements Initializable {
 	@FXML
 	void tblPedidos_onMouseClicked(MouseEvent event) {
 		if (event.getClickCount() >= 2) {
-			//preencherDados();
+			// preencherDados();
 		}
 	}
 }

@@ -21,8 +21,13 @@ import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
  */
 
 public class MockReservaDAO implements IReservaDAO {
-	private static List<ReservaEntity> reservas = new ArrayList<>();
+	public static List<ReservaEntity> reservas = new ArrayList<>();
 	private static MockReservaDAO singleton = null;
+
+	private static MockLaboratorioDAO laboratorio = new MockLaboratorioDAO();
+	private static MockDepartamentoDAO departamento = new MockDepartamentoDAO();
+	private static MockServidorDAO servidor = new MockServidorDAO();
+	private static MockRequisitoDAO requisito = new MockRequisitoDAO();
 
 	private static final ReservaEntity reserva1 = new ReservaEntity();
 
@@ -56,11 +61,13 @@ public class MockReservaDAO implements IReservaDAO {
 			e.printStackTrace();
 		}
 		reserva1.setJustificativa("Laboratório sem ar condicionado!");
-		reserva1.setLaboratorio((LaboratorioEntity) MockLaboratorioDAO.getInstance().getById(1L));
-		reserva1.setDepartamentoAula((DepartamentoEntity) MockDepartamentoDAO.getInstance().getbySigla("DAI"));
-		reserva1.setSolicitante((ServidorEntity) MockServidorDAO.getInstance().getByNome("Augusto César de Oliveira"));
-		reserva1.setAprovador((ServidorEntity) MockServidorDAO.getInstance().getById(1L));
-		reserva1.setRequisitos((ArrayList<RequisitoEntity>) MockRequisitoDAO.getInstance().buscarTodos());
+		reserva1.setLaboratorio(laboratorio.getById((long) 1));
+		reserva1.setDepartamentoAula(departamento.getById((long) 1));
+		reserva1.setSolicitante(servidor.getById((long) 1));
+		reserva1.setAprovador(servidor.getById((long) 1));
+		reserva1.setRequisitos((ArrayList<RequisitoEntity>) requisito.buscarTodos());
+
+		reservas.add(reserva1);
 	}
 
 	private MockReservaDAO() {

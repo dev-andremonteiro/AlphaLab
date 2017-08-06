@@ -1,11 +1,12 @@
 package br.edu.ifmt.cba.alphalab.entity.laboratorio;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.edu.ifmt.cba.alphalab.entity.IEntity;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.exception.LaboratorioException;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LaboratorioEntity implements IEntity<LaboratorioException> {
 
@@ -23,9 +24,9 @@ public class LaboratorioEntity implements IEntity<LaboratorioException> {
 
 	private EquipamentoEntity equipamento;
 
-	private ArrayList<SoftwareEntity> softwares;
+	private List<SoftwareEntity> softwares;
 
-	private ArrayList<EquipamentoEntity> equipamentos;
+	private List<EquipamentoEntity> equipamentos;
 
 	public LaboratorioEntity() {
 	}
@@ -107,19 +108,19 @@ public class LaboratorioEntity implements IEntity<LaboratorioException> {
 		this.equipamento = equipamento;
 	}
 
-	public ArrayList<SoftwareEntity> getSoftwares() {
+	public List<SoftwareEntity> getSoftwares() {
 		return softwares;
 	}
 
-	public void setSoftwares(ArrayList<SoftwareEntity> softwares) {
+	public void setSoftwares(List<SoftwareEntity> softwares) {
 		this.softwares = softwares;
 	}
 
-	public ArrayList<EquipamentoEntity> getEquipamentos() {
+	public List<EquipamentoEntity> getEquipamentos() {
 		return equipamentos;
 	}
 
-	public void setEquipamentos(ArrayList<EquipamentoEntity> equipamentos) {
+	public void setEquipamentos(List<EquipamentoEntity> equipamentos) {
 		this.equipamentos = equipamentos;
 	}
 }

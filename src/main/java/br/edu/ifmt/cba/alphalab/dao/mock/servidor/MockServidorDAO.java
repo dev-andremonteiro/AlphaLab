@@ -17,7 +17,10 @@ import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 
 public class MockServidorDAO implements IServidorDAO {
 	private static List<ServidorEntity> servidores = new ArrayList<>();
+
 	private static MockServidorDAO singleton = null;
+
+	private static MockDepartamentoDAO departamento = new MockDepartamentoDAO();
 
 	public static final ServidorEntity servidor1 = new ServidorEntity();
 
@@ -29,7 +32,7 @@ public class MockServidorDAO implements IServidorDAO {
 		servidor1.setLogin("augustocesar.oliveira@cba.ifmt.edu.br");
 		servidor1.setSenha("kjs8@11");
 		servidor1.setTipo(EnumTipoServidor.PROFESSOR);
-		servidor1.setDepartamento((DepartamentoEntity) MockDepartamentoDAO.getInstance().buscarTodos().toArray()[0]);
+		servidor1.setDepartamento(departamento.getById((long) 1));
 
 		servidores.add(servidor1);
 	}

@@ -39,7 +39,7 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 		listaSoftware.add(new SoftwareEntity());
 	}
 
-	private MockSoftwareDAO() {
+	public MockSoftwareDAO() {
 	}
 
 	public static MockSoftwareDAO getInstance() {
