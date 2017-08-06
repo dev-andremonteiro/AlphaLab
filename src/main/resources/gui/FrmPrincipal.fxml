@@ -38,11 +38,7 @@
                         </Menu>
                         <Menu mnemonicParsing="false" text="%menu.gerenciar">
                            <items>
-<<<<<<< HEAD
-                              <MenuItem fx:id="mniPedidosReservaHorario" mnemonicParsing="false" onAction="#mniPedidosReservaHorario" text="%mni.pedidosReservaHorario" />
-=======
-                              <MenuItem fx:id="mniGerenciarReserva" mnemonicParsing="false" onAction="#mniGerenciarReserva_onAction" text="%menu.pedidoReservaHorario" />
->>>>>>> branch 'SegueOBondeYuri' of https://github.com/dev-andremonteiro/AlphaLab.git
+                              <MenuItem fx:id="mniPedidosReservaHorario" mnemonicParsing="false" onAction="#mniPedidosReservaHorario" text="%menu.pedidoReservaHorario" />                              
                            </items>
                         </Menu>
                   </items>
