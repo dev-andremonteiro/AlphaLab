@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Arrays;
 import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IReservaDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 import javafx.collections.FXCollections;
 
@@ -57,8 +59,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva1.setSolicitante(servidor.getById(1L));
 		reserva1.setAprovador(servidor.getById(1L));
 		reserva1.setRequisitos(requisito.buscarTodos());
-		// reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M1,
-		// Horario.M2)));
+		reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.N1, Horario.N2, Horario.N3)));
 
 		reserva2.setId(2L);
 		reserva2.setStatus(EnumReserva.CONFIRMADO);
@@ -81,8 +82,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva2.setSolicitante(servidor.getById(1L));
 		reserva2.setAprovador(servidor.getById(1L));
 		reserva2.setRequisitos(requisito.buscarTodos());
-		// reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M1,
-		// Horario.M2)));
+		reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M1, Horario.M2)));
 
 		reserva3.setId(3L);
 		reserva3.setStatus(EnumReserva.PEDIDO);
@@ -105,8 +105,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva3.setSolicitante(servidor.getById(1L));
 		reserva3.setAprovador(servidor.getById(1L));
 		reserva3.setRequisitos(requisito.buscarTodos());
-		// reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M1,
-		// Horario.M2)));
+		reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.V3, Horario.V4)));
 
 		reservas.add(reserva1);
 		reservas.add(reserva2);

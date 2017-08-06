@@ -40,7 +40,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
 	private ServidorEntity aprovador;
         
-    private List<Integer> horarios;
+    private ArrayList<Horario> horarios;
 
 	private List<RequisitoEntity> requisitos;
 
@@ -49,7 +49,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
     public ReservaEntity(Long id, EnumReserva status, Date dataSolicitacao, String disciplina, String turma, String observacao, 
             boolean fixo, Date dataInicio, Date dataFim, Date dataAprovacaoRecusa, String justificativa, LaboratorioEntity laboratorio,
-            DepartamentoEntity departamentoAula, ServidorEntity solicitante, ServidorEntity aprovador, List<Integer> horarios, 
+            DepartamentoEntity departamentoAula, ServidorEntity solicitante, ServidorEntity aprovador, ArrayList<Horario> horarios, 
             List<RequisitoEntity> requisitos) {
         this.id = id;
         this.status = status;
@@ -201,6 +201,14 @@ public class ReservaEntity implements IEntity<ReservaException> {
 		this.requisitos = requisitos;
 	}
 
+	public ArrayList<Horario> getHorarios() {
+		return horarios;
+	}
+
+	public void setHorarios(ArrayList<Horario> horarios) {
+		this.horarios = horarios;
+	}
+
 	@Override
 	public ReservaException validar() {
 		StringBuilder msg = new StringBuilder();
@@ -222,7 +230,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
                 if (solicitante == null)
 			msg.append("O solicitante deve ser informada!\n");
                 
-                if (horarios == null)
+                if (horarios.isEmpty())
 			msg.append("O horário de reserva deve ser informado!\n");
 
 		if (disciplina == null || disciplina.trim().length() == 0)

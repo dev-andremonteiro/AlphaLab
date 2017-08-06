@@ -82,6 +82,12 @@ public class FrmPrincipal {
 
 
 	@FXML
+	void mniGerenciarReserva_onAction(ActionEvent event) {
+		loadPane("FrmPedidosReserva");
+
+	}
+
+	@FXML
 	void mniAjuda_onAction(ActionEvent event) {
 		loadPane("FrmCliente");
 	}
