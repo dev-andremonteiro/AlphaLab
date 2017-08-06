@@ -42,7 +42,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -259,25 +258,21 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		});
 	}
 
-	// Limpa os campos da tela.
+	/**
+	 * Limpa os campos da tela.
+	 */
 	private void limparCampos() {
-		dtpData.setValue(null);
-		tblHorarioRequisitos.setItems(null);
+		//tblHorarioRequisitos.setItems(null);
 		txtNomeSoftware.setText("");
-		tblRequisitos.setItems(null);
+		//tblRequisitos.setItems(null);
 		txtNumMaxAlunos.setText("");
 		texRequisitos.setText("");
-		// hbxHorarios
+		//hbxHorarios
 		txtDisciplina.setText("");
 		cmbDepartamento.setValue(null);
 		txtTurma.setText("");
 		txaObservacao.setText("");
 		ckbFixo.setSelected(false);
-	}
-
-	// Compõe os dados da solicitação de Reserva de Horário
-	private void comporDados() {
-
 	}
 
 	/**
@@ -345,72 +340,26 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void btnCancelar_onAction(ActionEvent event) {
-
+		tabPreencherDados.setDisable(true);
+		tabRequisitos.setDisable(false);
+		tabPaneDados.getSelectionModel().select(tabRequisitos);
+		limparCampos();
+		dtpData.requestFocus();
+		buscarSoftwares();
 	}
 
 	@FXML
 	void btnCancelar_onKeyPressed(KeyEvent event) {
-		tabPreencherDados.setDisable(true);
-		tabRequisitos.setDisable(false);
-		tabPaneDados.getSelectionModel().select(tabRequisitos);
-		limparCampos();
-		dtpData.requestFocus();
-		buscarSoftwares();
+		btnCancelar_onAction(new ActionEvent());
 	}
 
 	@FXML
 	void btnCancelar_onMouseClicked(MouseEvent event) {
-		tabPreencherDados.setDisable(true);
-		tabRequisitos.setDisable(false);
-		tabPaneDados.getSelectionModel().select(tabRequisitos);
-		limparCampos();
-		dtpData.requestFocus();
-		buscarSoftwares();
+		btnCancelar_onAction(new ActionEvent());
 	}
 
 	@FXML
 	void btnConfirmar_onAction(ActionEvent event) {
-
-	}
-
-	@FXML
-	void btnConfirmar_onKeyPressed(KeyEvent event) {
-		if (event.getCode() == KeyCode.ENTER) {
-			Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-			ButtonType sim = new ButtonType("Sim");
-			ButtonType nao = new ButtonType("Não");
-			alerta.setTitle("AlphaLab");
-			alerta.setHeaderText("Confirmar Reserva de Horário");
-			alerta.setContentText("Deseja confirmar a Reserva de Horário?");
-			alerta.getButtonTypes().setAll(sim, nao);
-
-			alerta.showAndWait().ifPresent(option -> {
-				if (option == sim) {
-					ReservaEntity reserva = this.getDadosTabPreencherDados();
-					if (reserva.validar() == null) {
-						Reserva salvarReserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
-						salvarReserva.save(reserva);
-					} else {
-						Alert alertaDadosInvalidos = new Alert(Alert.AlertType.INFORMATION);
-						alertaDadosInvalidos.setTitle("AlphaLab");
-						alertaDadosInvalidos.setHeaderText("Dados inconsistentes!");
-						alertaDadosInvalidos.setContentText(reserva.validar().getMessage());
-
-						alertaDadosInvalidos.show();
-					}
-
-				} else {
-					alerta.close();
-				}
-			});
-
-			tabPaneDados.getSelectionModel().select(tabRequisitos);
-			tabPreencherDados.setDisable(true);
-		}
-	}
-
-	@FXML
-	void btnConfirmar_onMouseClicked(MouseEvent event) {
 		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
 		ButtonType sim = new ButtonType("Sim");
 		ButtonType nao = new ButtonType("Não");
@@ -441,38 +390,22 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 		tabPaneDados.getSelectionModel().select(tabRequisitos);
 		tabPreencherDados.setDisable(true);
-
 	}
 
 	@FXML
-	void btnProximoRequisitos_onAction(ActionEvent event) {
-	}
-
-	@FXML
-	void btnProximoRequisitos_onKeyPressed(KeyEvent event) {
+	void btnConfirmar_onKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER) {
-			String string = getDadosTabRequisitos();
-
-			if (string.length() > 0) {
-				Alert alerta = new Alert(AlertType.INFORMATION);
-				alerta.setTitle("AlphaLab");
-				alerta.setHeaderText("Dados de Requisitos");
-				alerta.setContentText(string);
-				alerta.show();
-			} else {
-				tabPreencherDados.setDisable(false);
-				tabRequisitos.setDisable(true);
-				tabPaneDados.getSelectionModel().select(tabPreencherDados);
-				txtDisciplina.requestFocus();
-				// Preencher requisitos e horários selecionados na Tab
-				// TabPreencherDados
-			}
+			btnConfirmar_onAction(new ActionEvent());
 		}
 	}
 
 	@FXML
-	void btnProximoRequisitos_onMouseClicked(MouseEvent event) {
+	void btnConfirmar_onMouseClicked(MouseEvent event) {
+		btnConfirmar_onAction(new ActionEvent());
+	}
 
+	@FXML
+	void btnProximoRequisitos_onAction(ActionEvent event) {
 		String string = getDadosTabRequisitos();
 
 		if (string.length() > 0) {
@@ -489,6 +422,18 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 			// Preencher requisitos e horários selecionados na Tab
 			// TabPreencherDados
 		}
+	}
+
+	@FXML
+	void btnProximoRequisitos_onKeyPressed(KeyEvent event) {
+		if (event.getCode() == KeyCode.ENTER) {
+			btnProximoRequisitos_onAction(new ActionEvent());
+		}
+	}
+
+	@FXML
+	void btnProximoRequisitos_onMouseClicked(MouseEvent event) {
+		btnProximoRequisitos_onAction(new ActionEvent());
 	}
 
 	@FXML
@@ -620,6 +565,5 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	void txtTurma_onKeyPressed(KeyEvent event) {
 		if (event.getCode() == KeyCode.ENTER)
 			txaObservacao.requestFocus();
-
 	}
 }
