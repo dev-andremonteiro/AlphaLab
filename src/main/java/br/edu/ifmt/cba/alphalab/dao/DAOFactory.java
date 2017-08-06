@@ -25,6 +25,8 @@ public interface DAOFactory {
 
 	public abstract IServidorDAO getServidorDAO();
 
+	public abstract IProfessorDAO getProfessorDAO();
+
 	public static DAOFactory getDAOFactory() {
 		if (props.isEmpty()) {
 			try {

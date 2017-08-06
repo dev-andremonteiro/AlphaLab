@@ -3,6 +3,8 @@ package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import br.edu.ifmt.cba.alphalab.dao.IReservaDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
+import javafx.collections.FXCollections;
 
 /**
  * 
@@ -30,7 +33,7 @@ public class MockReservaDAO implements IReservaDAO {
 	private static final ReservaEntity reserva2 = new ReservaEntity();
 	private static final ReservaEntity reserva3 = new ReservaEntity();
 
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 	static {
 		reserva1.setId(1L);

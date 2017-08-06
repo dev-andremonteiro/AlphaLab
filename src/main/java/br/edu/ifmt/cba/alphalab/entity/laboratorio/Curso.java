@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Curso {
 	private String nome;
-	private List<Disciplina> disciplinas;
+	private List<EnumDisciplina> disciplinas;
 
 	/**
 	 * @return the nome
@@ -24,7 +24,7 @@ public class Curso {
 	/**
 	 * @return the disciplinas
 	 */
-	public List<Disciplina> getDisciplinas() {
+	public List<EnumDisciplina> getDisciplinas() {
 		return disciplinas;
 	}
 
@@ -32,7 +32,7 @@ public class Curso {
 	 * @param disciplinas
 	 *            the disciplinas to set
 	 */
-	public void setDisciplinas(List<Disciplina> disciplinas) {
+	public void setDisciplinas(List<EnumDisciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
 

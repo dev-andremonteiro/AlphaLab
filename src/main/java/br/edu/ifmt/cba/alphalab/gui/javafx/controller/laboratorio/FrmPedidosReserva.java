@@ -6,13 +6,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.edu.ifmt.cba.alphalab.business.Professor;
 import br.edu.ifmt.cba.alphalab.business.Reserva;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumTipoReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ProfessorEntity;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,6 +43,7 @@ import javafx.scene.text.Text;
 public class FrmPedidosReserva implements Initializable {
 	private List<RequisitoEntity> listaRequisitos = new ArrayList<>();
 	private Reserva reserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
+	private Professor professor = new Professor(DAOFactory.getDAOFactory().getProfessorDAO());
 
 	@FXML
 	private TabPane tbpDados;
@@ -51,7 +55,7 @@ public class FrmPedidosReserva implements Initializable {
 	private DatePicker dtpData;
 
 	@FXML
-	private ComboBox<?> cmbTipo;
+	private ComboBox<EnumTipoReserva> cmbTipo;
 
 	@FXML
 	private ComboBox<ProfessorEntity> cmbProfessor;
@@ -128,11 +132,19 @@ public class FrmPedidosReserva implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		tblPedidos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
 		limparDados();
 		dtpData.requestFocus();
 
 		tabPedidos.setDisable(false);
 		// tabDados.setDisable(true);
+
+		ObservableList<EnumTipoReserva> comboTipo = FXCollections.observableArrayList(EnumTipoReserva.ANUAL,
+				EnumTipoReserva.MENSAL, EnumTipoReserva.SEMANAL, EnumTipoReserva.SEMESTRAL);
+		cmbTipo.setItems(comboTipo);
+
+		ObservableList<ProfessorEntity> professores = FXCollections.observableArrayList(professor.buscarTodos());
+		cmbProfessor.setItems(professores);
 
 		preencherDadosTblPedidos(reserva.buscarTodasReservas());
 	}
@@ -295,16 +307,16 @@ public class FrmPedidosReserva implements Initializable {
 
 	@FXML
 	void dtpData_onAction(ActionEvent event) {
-		if(true){
-			
+		if (dtpData.getValue() != null) {
+			preencherDadosTblPedidos(reserva.getByData(java.sql.Date.valueOf(dtpData.getValue())));
 		}
-
 	}
 
 	@FXML
 	void dtpData_onKeyPressed(KeyEvent event) {
-		
-
+		if (event.getCode() == KeyCode.ENTER && dtpData.getValue() != null) {
+			preencherDadosTblPedidos(reserva.getByData(java.sql.Date.valueOf(dtpData.getValue())));
+		}
 	}
 
 	@FXML

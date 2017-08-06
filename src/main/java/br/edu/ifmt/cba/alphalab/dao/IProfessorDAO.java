@@ -12,4 +12,6 @@ import br.edu.ifmt.cba.alphalab.entity.pessoa.ProfessorEntity;
 
 public interface IProfessorDAO extends IDAO<ProfessorEntity> {
 	List<ProfessorEntity> getByNome(String nome);
+
+	List<ProfessorEntity> buscarTodos();
 }

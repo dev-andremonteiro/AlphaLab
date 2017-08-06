@@ -15,6 +15,7 @@ import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockDepartamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockLaboratorioDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockRequisitoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockReservaDAO;
+import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockProfessorDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.software.MockSoftwareDAO;
 
@@ -67,6 +68,13 @@ public class MockDAOFactory implements DAOFactory {
 	public IServidorDAO getServidorDAO() {
 		return MockServidorDAO.getInstance();
 	}
+
+	@Override
+	public IProfessorDAO getProfessorDAO() {		
+		return MockProfessorDAO.getInstance();
+	}
+	
+	
 
 	/*
 	 * @Override public boolean isSessionClosed() { return false; }

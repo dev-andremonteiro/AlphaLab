@@ -2,7 +2,8 @@ package br.edu.ifmt.cba.alphalab.entity.pessoa;
 
 import java.util.List;
 
-import br.edu.ifmt.cba.alphalab.entity.laboratorio.Disciplina;
+import br.edu.ifmt.cba.alphalab.entity.exception.ServidorException;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumDisciplina;
 
 /**
  * 
@@ -12,7 +13,15 @@ import br.edu.ifmt.cba.alphalab.entity.laboratorio.Disciplina;
 
 public class ProfessorEntity extends ServidorEntity {
 	private Long id;
-	private List<Disciplina> disciplinas;
+	private List<EnumDisciplina> disciplinas;
+
+	public ProfessorEntity() {
+	}
+
+	public ProfessorEntity(Long id, List<EnumDisciplina> disciplinas) {
+		this.id = id;
+		this.disciplinas = disciplinas;
+	}
 
 	/**
 	 * @return the id
@@ -32,7 +41,7 @@ public class ProfessorEntity extends ServidorEntity {
 	/**
 	 * @return the disciplinas
 	 */
-	public List<Disciplina> getDisciplinas() {
+	public List<EnumDisciplina> getDisciplinas() {
 		return disciplinas;
 	}
 
@@ -40,7 +49,17 @@ public class ProfessorEntity extends ServidorEntity {
 	 * @param disciplinas
 	 *            the disciplinas to set
 	 */
-	public void setDisciplinas(List<Disciplina> disciplinas) {
+	public void setDisciplinas(List<EnumDisciplina> disciplinas) {
 		this.disciplinas = disciplinas;
+	}
+
+	@Override
+	public ServidorException validar() {
+		return null;
+	}
+
+	@Override
+	public String toString() {
+		return this.getNome();
 	}
 }

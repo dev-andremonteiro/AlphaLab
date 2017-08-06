@@ -21,4 +21,8 @@ public class Professor extends ABusiness<ProfessorEntity, ProfessorException, IP
 	public List<ProfessorEntity> getByNome(String nome) {
 		return ((IProfessorDAO) dao).getByNome(nome);
 	}
+
+	public List<ProfessorEntity> buscarTodos() {
+		return ((IProfessorDAO) dao).buscarTodos();
+	}
 }
