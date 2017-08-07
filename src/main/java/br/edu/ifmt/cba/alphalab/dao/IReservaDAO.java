@@ -1,5 +1,6 @@
 package br.edu.ifmt.cba.alphalab.dao;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface IReservaDAO extends IDAO<ReservaEntity> {
 	public List<ReservaEntity> buscarTodasReservas();
 
 	public List<ReservaEntity> getByData(Date data);
+	
+	public List<ReservaEntity> getAtivosNaData(LocalDate data);
 }

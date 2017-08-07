@@ -59,7 +59,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	ResourceBundle resources = ResourceBundle.getBundle(FrmPrincipal.LINGUA_PORTUGUES);
 
 	private Software software = new Software(DAOFactory.getDAOFactory().getSoftwareDAO());
-
+	private Reserva reserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
+	
 	private Date dtSolicitacaoReserva = new Date();
 	private RequisitoEntity requisitos = new RequisitoEntity();
 	private ArrayList<SoftwareEntity> listaSoftwaresSelecionados = new ArrayList<>();
@@ -450,8 +451,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	@FXML
 	void dtpData_onAction(ActionEvent event) {
 		String diaSemana = new String("column.");
-		LocalDate date = dtpData.getValue();
-		switch (date.getDayOfWeek()) {
+		LocalDate data = dtpData.getValue();
+		switch (data.getDayOfWeek()) {
 		case MONDAY:
 			diaSemana += "segunda";
 			break;
@@ -474,6 +475,9 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 			diaSemana += "domingo";
 		}
 		tbcDiaSemana.setText(resources.getString(diaSemana));
+		
+		List<ReservaEntity> reservas = new ArrayList<ReservaEntity>(reserva.getAtivosNaData(data));
+		
 	}
 
 	@FXML

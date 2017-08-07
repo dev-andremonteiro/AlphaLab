@@ -1,5 +1,6 @@
 package br.edu.ifmt.cba.alphalab.business;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -24,5 +25,9 @@ public class Reserva extends ABusiness<ReservaEntity, ReservaException, IReserva
 
 	public List<ReservaEntity> getByData(Date data) {
 		return ((IReservaDAO) dao).getByData(data);
+	}
+	
+	public List<ReservaEntity> getAtivosNaData(LocalDate data){
+		return ((IReservaDAO) dao).getAtivosNaData(data);
 	}
 }

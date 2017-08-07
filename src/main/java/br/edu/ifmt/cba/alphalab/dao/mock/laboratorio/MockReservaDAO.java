@@ -2,11 +2,11 @@ package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IReservaDAO;
@@ -14,7 +14,6 @@ import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
-import javafx.collections.FXCollections;
 
 /**
  * 
@@ -157,5 +156,18 @@ public class MockReservaDAO implements IReservaDAO {
 	@Override
 	public List<ReservaEntity> buscarTodasReservas() {
 		return reservas;
+	}
+
+	@Override
+	public List<ReservaEntity> getAtivosNaData(LocalDate data) {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+		for (ReservaEntity vo : reservas) {
+			if (data.getDayOfWeek() == vo.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek()) {
+				if (!data.isBefore(vo.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()) && !data.isAfter(vo.getDataFim().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())) {
+					resultado.add(vo);
+				} 
+			}
+		}
+		return resultado;
 	}
 }
