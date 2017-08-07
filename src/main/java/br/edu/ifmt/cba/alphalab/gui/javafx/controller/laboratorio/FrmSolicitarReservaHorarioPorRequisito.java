@@ -12,6 +12,7 @@ import br.edu.ifmt.cba.alphalab.business.Reserva;
 import br.edu.ifmt.cba.alphalab.business.Software;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
@@ -183,40 +184,68 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 					}
 				});
 		buscarSoftwares();
+		fillColunaBotoes();
 	}
 
-	private void fillHorarios() {
+	private void fillColunaBotoes() {
 		// Adiciona botões às celulas da coluna
-				tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, ToggleButton>() {
-					@Override
-					protected void updateItem(ToggleButton btn, boolean empty) {
-						super.updateItem(btn, empty);
+		tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, ToggleButton>() {
+			@Override
+			protected void updateItem(ToggleButton btn, boolean empty) {
+				super.updateItem(btn, empty);
 
-						if (empty) {
-							setGraphic(null);
-						} else {
-							btn = new ToggleButton(resources.getString("button.selecionar"));
-							listaBotoes.add(btn);
-
-							// Evento que adiciona/retira botões selecionados na lista
-							// listaSelecionados
-							btn.setOnAction(new EventHandler<ActionEvent>() {
-								@Override
-								public void handle(ActionEvent event) {
-									ToggleButton tgbtn = (ToggleButton) event.getSource();
-									if (tgbtn.isSelected()) {
-										listaBotoesSelecionados.add(tgbtn);
-									} else {
-										listaBotoesSelecionados.remove(tgbtn);
-									}
-								}
-							});
-							setGraphic(btn);
+				if (empty) {
+					setGraphic(null);
+				} else if (listaBotoes.size() < 17) {
+					btn = new ToggleButton(resources.getString("button.selecionar"));
+					listaBotoes.add(btn);
+					// Evento que adiciona/retira botões selecionados na lista
+					// listaSelecionados
+					btn.setOnAction(new EventHandler<ActionEvent>() {
+						@Override
+						public void handle(ActionEvent event) {
+							ToggleButton tgbtn = (ToggleButton) event.getSource();
+							if (tgbtn.isSelected()) {
+								System.out.println(listaBotoes.indexOf(tgbtn));
+								listaBotoesSelecionados.add(tgbtn);
+							} else {
+								listaBotoesSelecionados.remove(tgbtn);
+							}
 						}
-					}
-				});
+					});
+					setGraphic(btn);
+				} else {
+					btn = listaBotoes.get(this.getIndex());
+					setGraphic(btn);
+				}
+			}
+		});
 	}
-
+	
+	private void refreshColunaBotoes(List<ReservaEntity> reservas) {
+		listaBotoesSelecionados.clear();
+		
+		for (ToggleButton btn : listaBotoes) {
+			if(btn.isDisabled()) {
+				btn.setDisable(false);
+				btn.setText(resources.getString("button.selecionar"));
+			}
+		}
+		
+		if (!reservas.isEmpty()) {
+			for (ReservaEntity reservaEntity : reservas) {
+				if (reservaEntity.getStatus() == EnumReserva.CONFIRMADO) {
+					for (Horario horario : reservaEntity.getHorarios()) {
+						listaBotoes.get(horario.ordinal()).setText(resources.getString("button.indisponivel"));
+						listaBotoes.get(horario.ordinal()).setDisable(true);
+					} 
+				}
+			} 
+		}
+		
+		tblHorarioRequisitos.refresh();
+	}
+	
 	/**
 	 * Atualiza o TableView de Softwares
 	 */
@@ -285,10 +314,18 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		if (dtpData.getValue() == null) {
 			string.append("Data da reserva precisa ser selecionada.\n");
 		} else {
-			dtSolicitacaoReserva = Date
-					.from(dtpData.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+			dtSolicitacaoReserva = Date.from(dtpData.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 		}
-		// lista de horarários selecionados
+
+		if (listaBotoesSelecionados.isEmpty()) {
+			string.append("Ao menos um horário disponível deve ser selecionado.\n");
+		} else {
+			listaHorariosSelecionados.clear();
+			for (ToggleButton btn : listaBotoesSelecionados) {
+				listaHorariosSelecionados.add(Horario.values()[listaBotoes.indexOf(btn)]);
+			}
+		}
+		
 		// lista de softwares selecionados
 
 		if (txtNumMaxAlunos.getText() == null || txtNumMaxAlunos.getText() == "") {
@@ -474,10 +511,10 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		case SUNDAY:
 			diaSemana += "domingo";
 		}
+		
 		tbcDiaSemana.setText(resources.getString(diaSemana));
-		
 		List<ReservaEntity> reservas = new ArrayList<ReservaEntity>(reserva.getAtivosNaData(data));
-		
+		refreshColunaBotoes(reservas);
 	}
 
 	@FXML
