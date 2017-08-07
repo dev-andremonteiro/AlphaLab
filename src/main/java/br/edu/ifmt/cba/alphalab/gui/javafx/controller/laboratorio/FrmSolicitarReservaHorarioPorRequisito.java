@@ -476,7 +476,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		}
 		tbcDiaSemana.setText(resources.getString(diaSemana));
 		
-		List<ReservaEntity> reservas = new ArrayList<ReservaEntity>(reserva.getAtivosNaData(Date.from(data.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant())));
+		List<ReservaEntity> reservas = new ArrayList<ReservaEntity>(reserva.getAtivosNaData(data));
 		
 	}
 
