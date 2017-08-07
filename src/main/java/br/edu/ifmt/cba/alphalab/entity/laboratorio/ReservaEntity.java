@@ -41,7 +41,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
 	private ServidorEntity aprovador;
         
     private ArrayList<Horario> horarios;
-
+    // TODO Esse atributo deveria ser um único RequisitoEntity, não List
 	private List<RequisitoEntity> requisitos;
 
 	public ReservaEntity() {

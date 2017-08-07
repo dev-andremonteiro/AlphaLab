@@ -148,7 +148,7 @@
                            <children>
                               <HBox prefHeight="190.0" prefWidth="1024.0">
                                  <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="250.0" spacing="5.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="550.0" spacing="5.0">
                                        <children>
                                           <Label text="%label.requisitos">
                                              <font>
@@ -160,9 +160,26 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Text>
+                                          <Separator focusTraversable="false" orientation="VERTICAL" prefHeight="200.0">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" top="5.0" />
+                                             </padding>
+                                          </Separator>
+                                          <VBox fx:id="vbxSoftwares" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" />
+                                          <Separator focusTraversable="false" orientation="VERTICAL" prefHeight="200.0">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" top="5.0" />
+                                             </padding>
+                                          </Separator>
                                        </children>
                                     </HBox>
-                                    <HBox fx:id="hbxHorarios" alignment="CENTER_LEFT" prefHeight="190.0" prefWidth="710.0" spacing="20.0">
+                                    <HBox fx:id="hbxHorarios" alignment="CENTER_LEFT" prefHeight="190.0" prefWidth="400.0" spacing="20.0">
                                        <children>
                                           <Label text="%label.horarios">
                                              <font>
@@ -176,7 +193,7 @@
                                     <Insets left="50.0" />
                                  </padding>
                               </HBox>
-                              <Separator prefWidth="200.0">
+                              <Separator focusTraversable="false" prefWidth="200.0">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
