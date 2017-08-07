@@ -10,7 +10,7 @@ public class EmprestimoEntity implements IEntity<EmprestimoException> {
 
     private Long id;
 
-    private Enum status;
+    private EnumEmprestimo status;
 
     private Date dataSolicitacao;
 
@@ -58,13 +58,13 @@ public class EmprestimoEntity implements IEntity<EmprestimoException> {
         this.id = id;
     }
 
-    public Enum getStatus() {
-        return status;
-    }
+    public EnumEmprestimo getStatus() {
+		return status;
+	}
 
-    public void setStatus(Enum status) {
-        this.status = status;
-    }
+     public void setStatus(EnumEmprestimo status) {
+		this.status = status;
+     }
 
     public Date getDataSolicitacao() {
         return dataSolicitacao;
