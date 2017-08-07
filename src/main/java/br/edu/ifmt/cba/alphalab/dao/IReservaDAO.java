@@ -16,4 +16,6 @@ public interface IReservaDAO extends IDAO<ReservaEntity> {
 	public List<ReservaEntity> buscarTodasReservas();
 
 	public List<ReservaEntity> getByData(Date data);
+	
+	public List<ReservaEntity> getAtivosNaData(Date data);
 }

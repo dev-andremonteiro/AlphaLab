@@ -158,4 +158,15 @@ public class MockReservaDAO implements IReservaDAO {
 	public List<ReservaEntity> buscarTodasReservas() {
 		return reservas;
 	}
+
+	@Override
+	public List<ReservaEntity> getAtivosNaData(Date data) {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+		for (ReservaEntity vo : reservas) {
+			if (!data.before(vo.getDataInicio()) && !data.after(vo.getDataFim())) {
+				resultado.add(vo);
+			}
+		}
+		return resultado;
+	}
 }

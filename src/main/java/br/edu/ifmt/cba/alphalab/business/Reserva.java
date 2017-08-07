@@ -25,4 +25,8 @@ public class Reserva extends ABusiness<ReservaEntity, ReservaException, IReserva
 	public List<ReservaEntity> getByData(Date data) {
 		return ((IReservaDAO) dao).getByData(data);
 	}
+	
+	public List<ReservaEntity> getAtivosNaData(Date data){
+		return ((IReservaDAO) dao).getAtivosNaData(data);
+	}
 }
