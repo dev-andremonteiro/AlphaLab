@@ -16,7 +16,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
 	private Date dataSolicitacao;
 
-	private String disciplina;
+	private EnumDisciplina disciplina;
 
 	private String turma;
 
@@ -47,7 +47,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
 	public ReservaEntity() {
 	}
 
-    public ReservaEntity(Long id, EnumReserva status, Date dataSolicitacao, String disciplina, String turma, String observacao, 
+    public ReservaEntity(Long id, EnumReserva status, Date dataSolicitacao, EnumDisciplina disciplina, String turma, String observacao, 
             boolean fixo, Date dataInicio, Date dataFim, Date dataAprovacaoRecusa, String justificativa, LaboratorioEntity laboratorio,
             DepartamentoEntity departamentoAula, ServidorEntity solicitante, ServidorEntity aprovador, ArrayList<Horario> horarios, 
             List<RequisitoEntity> requisitos) {
@@ -97,11 +97,11 @@ public class ReservaEntity implements IEntity<ReservaException> {
 		this.dataSolicitacao = dataSolicitacao;
 	}
 
-	public String getDisciplina() {
+	public EnumDisciplina getDisciplina() {
 		return disciplina;
 	}
 
-	public void setDisciplina(String disciplina) {
+	public void setDisciplina(EnumDisciplina disciplina) {
 		this.disciplina = disciplina;
 	}
 
@@ -233,10 +233,10 @@ public class ReservaEntity implements IEntity<ReservaException> {
                 if (horarios.isEmpty())
 			msg.append("O horário de reserva deve ser informado!\n");
 
-		if (disciplina == null || disciplina.trim().length() == 0)
-			msg.append("Nome da disciplina é obrigatório!\n");
-		if (disciplina != null && (disciplina.trim().length() < 5 || disciplina.trim().length() > 50))
-			msg.append("Nome da disciplina deve possuir entre 5 e 50 caracteres!\n");
+		if (disciplina == null)
+			msg.append("É obrigatório escolher uma disciplina!\n");
+		/*if (disciplina != null && (disciplina.trim().length() < 5 || disciplina.trim().length() > 50))
+			msg.append("Nome da disciplina deve possuir entre 5 e 50 caracteres!\n");*/
 
 		if (turma == null || turma.trim().length() == 0)
 			msg.append("Nome da turma é obrigatório!\n");

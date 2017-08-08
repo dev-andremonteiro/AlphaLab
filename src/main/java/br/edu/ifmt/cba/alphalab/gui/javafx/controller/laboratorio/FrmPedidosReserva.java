@@ -200,7 +200,7 @@ public class FrmPedidosReserva implements Initializable {
 		txtDataPedido.setText(reservaEntity.getDataSolicitacao().toString());
 		// hbxRequisitos
 		texProfessor.setText(reservaEntity.getSolicitante().getNome());
-		texDisciplina.setText(reservaEntity.getDisciplina());
+		texDisciplina.setText(reservaEntity.getDisciplina().toString());
 		texDepartamento.setText(reservaEntity.getDepartamentoAula().getNome());
 		texTurma.setText(reservaEntity.getTurma());
 		texDescricao.setText(reservaEntity.getObservacao());

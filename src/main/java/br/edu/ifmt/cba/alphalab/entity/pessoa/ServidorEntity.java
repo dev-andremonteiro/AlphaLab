@@ -18,11 +18,28 @@ public class ServidorEntity implements IEntity<ServidorException> {
 
     private String senha;
 
-    private Enum tipo;
+    private EnumTipoServidor tipo;
 
     private DepartamentoEntity departamento;
 
-    @Override
+    public ServidorEntity() {
+		super();
+	}
+
+	public ServidorEntity(Long id, String nome, String email, String telefone, String login, String senha,
+			EnumTipoServidor tipo, DepartamentoEntity departamento) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.login = login;
+		this.senha = senha;
+		this.tipo = tipo;
+		this.departamento = departamento;
+	}
+
+	@Override
     public Long getId() {
         return id;
     }
@@ -76,11 +93,11 @@ public class ServidorEntity implements IEntity<ServidorException> {
         this.senha = senha;
     }
 
-    public Enum getTipo() {
+    public EnumTipoServidor getTipo() {
         return tipo;
     }
 
-    public void setTipo(Enum tipo) {
+    public void setTipo(EnumTipoServidor tipo) {
         this.tipo = tipo;
     }
 
@@ -90,5 +107,5 @@ public class ServidorEntity implements IEntity<ServidorException> {
 
     public void setDepartamento(DepartamentoEntity departamento) {
         this.departamento = departamento;
-    }    
+    }
 }

@@ -14,6 +14,7 @@ import br.edu.ifmt.cba.alphalab.business.Reserva;
 import br.edu.ifmt.cba.alphalab.business.Software;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumDisciplina;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
@@ -134,7 +135,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	private HBox hbxHorarios;
 
 	@FXML
-	private TextField txtDisciplina;
+	private ComboBox<EnumDisciplina> cmbDisciplina;
 
 	@FXML
 	private ComboBox<DepartamentoEntity> cmbDepartamento;
@@ -158,6 +159,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		fillColumns();
 		tabPreencherDados.setDisable(true);
+		cmbDepartamento.getItems().setAll(DAOFactory.getDAOFactory().getDepartamentoDAO().buscarTodos());
+		cmbDisciplina.getItems().setAll(EnumDisciplina.values());
 		dtpData.requestFocus();
 	}
 
@@ -180,7 +183,6 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 				} else if (listaBotoes.size() < 17) {
 					btn = new ToggleButton(resources.getString("button.selecionar"));
 					listaBotoes.add(btn);
-
 					// Adiciona/retira botões selecionados na lista
 					// listaBotoesSelecionados
 					btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -349,8 +351,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		txtNumMaxAlunos.setText("");
 		texRequisitos.setText("");
 		// hbxHorarios
-		txtDisciplina.setText("");
-		cmbDepartamento.setValue(null);
+		cmbDisciplina.getSelectionModel().select(-1);
+		cmbDepartamento.getSelectionModel().select(-1);
 		txtTurma.setText("");
 		txaObservacao.setText("");
 		ckbFixo.setSelected(false);
@@ -410,7 +412,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		requisitos.setQtdAlunos(numMaxAlunos);
 		requisitos.setSoftwares(listaSoftwaresSelecionados);
 		reservaEntity.setRequisitos(Arrays.asList(requisitos));
-		reservaEntity.setDisciplina(txtDisciplina.getText());
+		reservaEntity.setDisciplina(cmbDisciplina.getSelectionModel().getSelectedItem());
 		reservaEntity.setDepartamentoAula(cmbDepartamento.getSelectionModel().getSelectedItem());
 		reservaEntity.setTurma(txtTurma.getText());
 		reservaEntity.setObservacao(txaObservacao.getText());
@@ -515,7 +517,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 			tabPreencherDados.setDisable(false);
 			tabRequisitos.setDisable(true);
 			tabPaneDados.getSelectionModel().select(tabPreencherDados);
-			txtDisciplina.requestFocus();
+			cmbDisciplina.requestFocus();
 			if (hbxHorarios.getChildren().size() > 1)
 				hbxHorarios.getChildren().remove(1, hbxHorarios.getChildren().size());
 			hbxHorarios.getChildren().add(buildBoxHorario());
@@ -583,7 +585,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		}
 
 		tbcDiaSemana.setText(resources.getString(diaSemana));
-		List<ReservaEntity> reservas = new ArrayList<ReservaEntity>(reserva.getAtivosNaData(data));
+		List<ReservaEntity> reservas = new ArrayList<ReservaEntity>(reserva.getAtivosNoDia(data));
 		refreshColunaBotoes(reservas);
 	}
 
@@ -657,9 +659,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	}
 
 	@FXML
-	void txtDisciplina_onKeyPressed(KeyEvent event) {
-		if (event.getCode() == KeyCode.ENTER)
-			cmbDepartamento.requestFocus();
+	void cmbDisciplina_onAction(ActionEvent event) {
+		cmbDepartamento.requestFocus();
 	}
 
 	@FXML

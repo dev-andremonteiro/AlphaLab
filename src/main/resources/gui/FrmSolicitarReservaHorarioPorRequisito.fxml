@@ -228,8 +228,11 @@
                                           <Label alignment="TOP_CENTER" prefHeight="103.0" prefWidth="227.0" text="%label.observacao" GridPane.rowIndex="3" />
                                           <Pane prefHeight="24.0" prefWidth="376.0" GridPane.columnIndex="1">
                                              <children>
-                                                <TextField fx:id="txtDisciplina" layoutY="8.0" onKeyPressed="#txtDisciplina_onKeyPressed" prefHeight="25.0" prefWidth="250.0" />
+                                                <ComboBox fx:id="cmbDisciplina" onAction="#cmbDisciplina_onAction" prefHeight="25.0" prefWidth="250.0" />
                                              </children>
+                                             <GridPane.margin>
+                                                <Insets top="10.0" />
+                                             </GridPane.margin>
                                           </Pane>
                                           <Pane prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <children>

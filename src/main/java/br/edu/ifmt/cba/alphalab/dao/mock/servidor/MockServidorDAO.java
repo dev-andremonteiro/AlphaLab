@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IServidorDAO;
-import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.EnumTipoServidor;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockDepartamentoDAO;
-import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.EnumTipoServidor;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 
 /**
@@ -20,8 +19,10 @@ public class MockServidorDAO implements IServidorDAO {
 
 	private static MockServidorDAO singleton = null;
 
-	private static MockDepartamentoDAO departamento = new MockDepartamentoDAO();
+	private static MockDepartamentoDAO departamentoDAO = new MockDepartamentoDAO();
 
+	private static MockProfessorDAO professorDAO = MockProfessorDAO.getInstance();
+	
 	public static final ServidorEntity servidor1 = new ServidorEntity();
 
 	static {
@@ -31,10 +32,11 @@ public class MockServidorDAO implements IServidorDAO {
 		servidor1.setTelefone("(65) 9 8455-2211");
 		servidor1.setLogin("augustocesar.oliveira@cba.ifmt.edu.br");
 		servidor1.setSenha("kjs8@11");
-		servidor1.setTipo(EnumTipoServidor.PROFESSOR);
-		servidor1.setDepartamento(departamento.getById((long) 1));
-
+		servidor1.setTipo(EnumTipoServidor.TEC_LABORATORIO);
+		servidor1.setDepartamento(departamentoDAO.getById((long) 1));
+		
 		servidores.add(servidor1);
+		servidores.addAll(professorDAO.buscarTodos());
 	}
 
 	public static MockServidorDAO getInstance() {

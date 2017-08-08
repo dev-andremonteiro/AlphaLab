@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IProfessorDAO;
+import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockDepartamentoDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumDisciplina;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.EnumTipoServidor;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ProfessorEntity;
 
 /**
@@ -16,12 +18,20 @@ import br.edu.ifmt.cba.alphalab.entity.pessoa.ProfessorEntity;
 public class MockProfessorDAO implements IProfessorDAO {
 	private static List<ProfessorEntity> professores = new ArrayList<>();
 	private static MockProfessorDAO singleton = null;
+	private static MockDepartamentoDAO departamento = new MockDepartamentoDAO();
 
-	private static final ProfessorEntity professor1 = new ProfessorEntity(1L,
+	private static final ProfessorEntity professor1 = new ProfessorEntity(1L, "Carlos André Silva",
+			"carlos.silva@cba.ifmt.edu.br", "(65) 9 8413-5588", "carlos.silva@cba.ifmt.edu.br", "123asd45",
+			EnumTipoServidor.PROFESSOR, departamento.getById(1L),
 			Arrays.asList(EnumDisciplina.VETORES_E_GEOMETRIA_ANALITICA, EnumDisciplina.CALCULO_I));
-	private static final ProfessorEntity professor2 = new ProfessorEntity(2L,
+	private static final ProfessorEntity professor2 = new ProfessorEntity(2L, "Ana Figueiredo",
+			"ana.figueiredo@cba.ifmt.edu.br", "(65) 9 8896-6689", "ana.figueiredo@cba.ifmt.edu.br", "785#54a",
+			EnumTipoServidor.PROFESSOR, departamento.getById(1L),
 			Arrays.asList(EnumDisciplina.COMUNICACAO_E_EXPRESSAO, EnumDisciplina.FISICA_I));
-	private static final ProfessorEntity professor3 = new ProfessorEntity(3L, Arrays.asList(EnumDisciplina.CALCULO_I));
+	private static final ProfessorEntity professor3 = new ProfessorEntity(3L, "Anderson Moura",
+			"anderson.moura@cba.ifmt.edu.br", "(65) 9 8413-5588", "anderson.moura@cba.ifmt.edu.br", "4da6$5s",
+			EnumTipoServidor.PROFESSOR, departamento.getById(1L),
+			Arrays.asList(EnumDisciplina.CALCULO_I));
 
 	static {
 		professores.add(professor1);

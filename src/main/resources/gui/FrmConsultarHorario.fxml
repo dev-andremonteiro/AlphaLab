@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
@@ -21,25 +23,34 @@
                </font></Label>
          </children>
       </StackPane>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1024.0" spacing="125.0" VBox.vgrow="ALWAYS">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1024.0" spacing="70.0" VBox.vgrow="ALWAYS">
          <children>
             <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" prefWidth="150.0" promptText="%combo.laboratorio" />
             <ComboBox fx:id="cmbProfessor" onAction="#cmbProfessor_onAction" prefWidth="150.0" promptText="%combo.professor" />
             <ComboBox fx:id="cmbDisciplina" onAction="#cmbDisciplina_onAction" prefWidth="150.0" promptText="%combo.disciplina" />
+            <StackPane alignment="CENTER_LEFT" prefWidth="150.0">
+               <children>
+                  <Button fx:id="btnReset" mnemonicParsing="false" onAction="#btnReset_onAction" text="%button.reiniciar">
+                     <tooltip>
+                        <Tooltip text="%tooltip.reiniciarFiltros" />
+                     </tooltip>
+                  </Button>
+               </children>
+            </StackPane>
          </children>
       </HBox>
       <Pane prefHeight="600.0" prefWidth="980.0" VBox.vgrow="ALWAYS">
          <children>
             <TableView fx:id="tblConsultarHorario" accessibleRole="IMAGE_VIEW" focusTraversable="false" prefHeight="600.0" prefWidth="980.0">
               <columns>
-                <TableColumn fx:id="tbcHorario" prefWidth="75.0" text="%column.horario" />
-                <TableColumn fx:id="tbcSegunda" prefWidth="75.0" text="%column.segunda" />
-                  <TableColumn fx:id="tbcTerca" prefWidth="75.0" text="%column.terca" />
-                  <TableColumn fx:id="tbcQuarta" prefWidth="75.0" text="%column.quarta" />
-                  <TableColumn fx:id="tbcQuinta" prefWidth="75.0" text="%column.quinta" />
-                  <TableColumn fx:id="tbcSexta" prefWidth="75.0" text="%column.sexta" />
-                  <TableColumn fx:id="tbcSabado" prefWidth="75.0" text="%column.sabado" />
-                  <TableColumn fx:id="tbcDomingo" prefWidth="75.0" text="%column.domingo" />
+                <TableColumn fx:id="tbcHorario" editable="false" prefWidth="75.0" sortable="false" text="%column.horario" />
+                <TableColumn fx:id="tbcSegunda" editable="false" prefWidth="75.0" sortable="false" text="%column.segunda" />
+                  <TableColumn fx:id="tbcTerca" editable="false" prefWidth="75.0" sortable="false" text="%column.terca" />
+                  <TableColumn fx:id="tbcQuarta" editable="false" prefWidth="75.0" sortable="false" text="%column.quarta" />
+                  <TableColumn fx:id="tbcQuinta" editable="false" prefWidth="75.0" sortable="false" text="%column.quinta" />
+                  <TableColumn fx:id="tbcSexta" editable="false" prefWidth="75.0" sortable="false" text="%column.sexta" />
+                  <TableColumn fx:id="tbcSabado" editable="false" prefWidth="75.0" sortable="false" text="%column.sabado" />
+                  <TableColumn fx:id="tbcDomingo" editable="false" prefWidth="75.0" sortable="false" text="%column.domingo" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

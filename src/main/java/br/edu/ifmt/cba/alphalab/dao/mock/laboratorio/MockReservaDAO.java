@@ -2,8 +2,10 @@ package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -11,6 +13,7 @@ import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IReservaDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumDisciplina;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
@@ -39,7 +42,7 @@ public class MockReservaDAO implements IReservaDAO {
 	static {
 		reserva1.setId(1L);
 		reserva1.setStatus(EnumReserva.RECUSADO);
-		reserva1.setDisciplina("Algoritmos I");
+		reserva1.setDisciplina(EnumDisciplina.COMUNICACAO_E_EXPRESSAO);
 		reserva1.setTurma("7844-1");
 		reserva1.setObservacao("");
 		reserva1.setFixo(false);
@@ -62,7 +65,7 @@ public class MockReservaDAO implements IReservaDAO {
 
 		reserva2.setId(2L);
 		reserva2.setStatus(EnumReserva.CONFIRMADO);
-		reserva2.setDisciplina("Algoritmos II");
+		reserva2.setDisciplina(EnumDisciplina.ALGORITMOS_I);
 		reserva2.setTurma("7844-2");
 		reserva2.setObservacao("Minicurso de Python");
 		reserva2.setFixo(true);
@@ -85,13 +88,13 @@ public class MockReservaDAO implements IReservaDAO {
 
 		reserva3.setId(3L);
 		reserva3.setStatus(EnumReserva.PEDIDO);
-		reserva3.setDisciplina("Linguagem de Programação I");
+		reserva3.setDisciplina(EnumDisciplina.CALCULO_I);
 		reserva3.setTurma("7844-5");
 		reserva3.setObservacao("Urgência!");
 		reserva3.setFixo(false);
 		try {
 			reserva3.setDataSolicitacao(sdf.parse("10/09/2017"));
-			reserva3.setDataInicio(sdf.parse("13/09/2017"));
+			reserva3.setDataInicio(sdf.parse("08/05/2017"));
 			reserva3.setDataFim(sdf.parse("28/09/2017"));
 			reserva3.setDataAprovacaoRecusa(sdf.parse("11/09/2017"));
 			//System.out.print(sdf.format(sdf.parse("11/09/2017")));
@@ -159,15 +162,29 @@ public class MockReservaDAO implements IReservaDAO {
 	}
 
 	@Override
-	public List<ReservaEntity> getAtivosNaData(LocalDate data) {
+	public List<ReservaEntity> getAtivosNoDia(LocalDate data) {
 		ArrayList<ReservaEntity> resultado = new ArrayList<>();
 		for (ReservaEntity vo : reservas) {
-			if (data.getDayOfWeek() == vo.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek()) {
+			if (data.getDayOfWeek().equals(vo.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek())) {
 				if (!data.isBefore(vo.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()) && !data.isAfter(vo.getDataFim().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())) {
 					resultado.add(vo);
 				} 
 			}
 		}
+		return resultado;
+	}
+
+	@Override
+	public List<ReservaEntity> getAtivosNaSemana(LocalDate data) {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+		
+		if (!data.getDayOfWeek().equals(DayOfWeek.MONDAY))
+			data = data.minusDays(data.getDayOfWeek().getValue() - 1);
+		do {
+			resultado.addAll(getAtivosNoDia(data));
+			data = data.plusDays(1);
+		} while (!data.getDayOfWeek().equals(DayOfWeek.SUNDAY));
+		
 		return resultado;
 	}
 }

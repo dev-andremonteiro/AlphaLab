@@ -7,5 +7,5 @@ package br.edu.ifmt.cba.alphalab.entity.pessoa;
  */
 
 public enum EnumTipoServidor {
-	PROFESSOR, TECNICO_ADM
+	PROFESSOR, ESTAGIARIO, TEC_LABORATORIO, TEC_ADM
 }

@@ -3,6 +3,7 @@ package br.edu.ifmt.cba.alphalab.entity.pessoa;
 import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.entity.exception.ServidorException;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumDisciplina;
 
 /**
@@ -18,7 +19,9 @@ public class ProfessorEntity extends ServidorEntity {
 	public ProfessorEntity() {
 	}
 
-	public ProfessorEntity(Long id, List<EnumDisciplina> disciplinas) {
+	public ProfessorEntity(Long id, String nome, String email, String telefone, String login, String senha,
+			EnumTipoServidor tipo, DepartamentoEntity departamento, List<EnumDisciplina> disciplinas) {
+		super(id, nome, email, telefone, login, senha, tipo, departamento);
 		this.id = id;
 		this.disciplinas = disciplinas;
 	}

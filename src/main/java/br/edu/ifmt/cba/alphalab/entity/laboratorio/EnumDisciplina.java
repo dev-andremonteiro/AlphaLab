@@ -6,22 +6,15 @@ package br.edu.ifmt.cba.alphalab.entity.laboratorio;
  *
  */
 public enum EnumDisciplina {
-	ALGORITMOS_I, CALCULO_I, FISICA_I, VETORES_E_GEOMETRIA_ANALITICA, COMUNICACAO_E_EXPRESSAO;
+	ALGORITMOS_I("Algoritmos 1"),
+	CALCULO_I("Cálculo 1"),
+	FISICA_I("Física 1"),
+	VETORES_E_GEOMETRIA_ANALITICA("Vetores e Geometria Analítica"),
+	COMUNICACAO_E_EXPRESSAO("Comunicação e Expressão");
 
 	private String descricao;
 
-	/**
-	 * @return the descricao
-	 */
-	public String getDescricao() {
-		return descricao;
-	}
-
-	/**
-	 * @param descricao
-	 *            the descricao to set
-	 */
-	public void setDescricao(String descricao) {
+	private EnumDisciplina(String descricao) {
 		this.descricao = descricao;
 	}
 
