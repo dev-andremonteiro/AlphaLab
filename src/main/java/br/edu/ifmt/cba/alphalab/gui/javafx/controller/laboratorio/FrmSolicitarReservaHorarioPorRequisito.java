@@ -70,7 +70,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	private Software software = new Software(DAOFactory.getDAOFactory().getSoftwareDAO());
 	private Reserva reserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
-	
+
 	private Date dtSolicitacaoReserva = new Date();
 	private RequisitoEntity requisitos = new RequisitoEntity();
 	private ArrayList<SoftwareEntity> listaSoftwaresSelecionados = new ArrayList<>();
@@ -128,8 +128,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	private Text texRequisitos;
 
 	@FXML
-    private VBox vbxSoftwares;
-	
+	private VBox vbxSoftwares;
+
 	@FXML
 	private HBox hbxHorarios;
 
@@ -180,7 +180,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 				} else if (listaBotoes.size() < 17) {
 					btn = new ToggleButton(resources.getString("button.selecionar"));
 					listaBotoes.add(btn);
-					
+
 					// Adiciona/retira botões selecionados na lista
 					// listaBotoesSelecionados
 					btn.setOnAction(new EventHandler<ActionEvent>() {
@@ -234,10 +234,11 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 				});
 		buscarSoftwares();
 	}
-	
+
 	/**
-	 * Limpa e atualiza coluna de botões selecionáveis. Recebe uma lista das <b>reservas</b> existentes no dia escolhido
-	 * para determinar horários indisponíveis.
+	 * Limpa e atualiza coluna de botões selecionáveis. Recebe uma lista das
+	 * <b>reservas</b> existentes no dia escolhido para determinar horários
+	 * indisponíveis.
 	 * 
 	 * @param reservas
 	 */
@@ -248,28 +249,28 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 			}
 			listaBotoesSelecionados.clear();
 		}
-		
+
 		for (ToggleButton btn : listaBotoes) {
-			if(btn.isDisabled()) {
+			if (btn.isDisabled()) {
 				btn.setDisable(false);
 				btn.setText(resources.getString("button.selecionar"));
 			}
 		}
-		
+
 		if (!reservas.isEmpty()) {
 			for (ReservaEntity reservaEntity : reservas) {
 				if (reservaEntity.getStatus() == EnumReserva.CONFIRMADO) {
 					for (Horario horario : reservaEntity.getHorarios()) {
 						listaBotoes.get(horario.ordinal()).setText(resources.getString("button.indisponivel"));
 						listaBotoes.get(horario.ordinal()).setDisable(true);
-					} 
+					}
 				}
-			} 
+			}
 		}
-		
+
 		tblHorarioRequisitos.refresh();
 	}
-	
+
 	/**
 	 * Constroi a caixa de horário exibida na tabPreencherDados
 	 * 
@@ -278,24 +279,24 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	private StackPane buildBoxHorario() {
 		VBox vbox = new VBox(7);
 		vbox.setAlignment(Pos.CENTER);
-		
+
 		Rectangle rect = new Rectangle(200, 150);
 		rect.setStroke(Color.BLACK);
 		rect.setStrokeWidth(2);
 		rect.setFill(Color.TRANSPARENT);
-		
+
 		Text data = new Text(new SimpleDateFormat("dd/MM/yyyy").format(dtSolicitacaoReserva));
 		data.setFont(Font.font("Verdana", FontWeight.BOLD, 12.0));
 		vbox.getChildren().add(data);
-		
+
 		for (Horario horario : listaHorariosSelecionados) {
 			vbox.getChildren().add(new Text(horario.getEstampa()));
 		}
-		
+
 		StackPane caixa = new StackPane(rect, vbox);
 		return caixa;
 	}
-	
+
 	/**
 	 * Atualiza o TableView de Softwares
 	 */
@@ -342,12 +343,12 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	 * Limpa os campos da tela.
 	 */
 	private void limparCampos() {
-		//tblHorarioRequisitos.setItems(null);
+		// tblHorarioRequisitos.setItems(null);
 		txtNomeSoftware.setText("");
-		//tblRequisitos.setItems(null);
+		// tblRequisitos.setItems(null);
 		txtNumMaxAlunos.setText("");
 		texRequisitos.setText("");
-		//hbxHorarios
+		// hbxHorarios
 		txtDisciplina.setText("");
 		cmbDepartamento.setValue(null);
 		txtTurma.setText("");
@@ -364,7 +365,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		if (dtpData.getValue() == null) {
 			string.append("Data da reserva precisa ser selecionada.\n");
 		} else {
-			dtSolicitacaoReserva = Date.from(dtpData.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+			dtSolicitacaoReserva = Date
+					.from(dtpData.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 		}
 
 		if (listaBotoesSelecionados.isEmpty()) {
@@ -375,7 +377,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 				listaHorariosSelecionados.add(Horario.values()[listaBotoes.indexOf(btn)]);
 			}
 		}
-		
+
 		// lista de softwares selecionados
 
 		if (txtNumMaxAlunos.getText() == null || txtNumMaxAlunos.getText() == "") {
@@ -430,7 +432,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void btnBuscar_onMouseClicked(MouseEvent event) {
-		//buscarSoftwares();
+		// buscarSoftwares();
 	}
 
 	@FXML
@@ -445,12 +447,12 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void btnCancelar_onKeyPressed(KeyEvent event) {
-		//btnCancelar_onAction(new ActionEvent());
+		// btnCancelar_onAction(new ActionEvent());
 	}
 
 	@FXML
 	void btnCancelar_onMouseClicked(MouseEvent event) {
-		//btnCancelar_onAction(new ActionEvent());
+		// btnCancelar_onAction(new ActionEvent());
 	}
 
 	@FXML
@@ -496,7 +498,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void btnConfirmar_onMouseClicked(MouseEvent event) {
-		//btnConfirmar_onAction(new ActionEvent());
+		// btnConfirmar_onAction(new ActionEvent());
 	}
 
 	@FXML
@@ -539,7 +541,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void btnProximoRequisitos_onMouseClicked(MouseEvent event) {
-		//btnProximoRequisitos_onAction(new ActionEvent());
+		// btnProximoRequisitos_onAction(new ActionEvent());
 	}
 
 	@FXML
@@ -579,7 +581,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		case SUNDAY:
 			diaSemana += "domingo";
 		}
-		
+
 		tbcDiaSemana.setText(resources.getString(diaSemana));
 		List<ReservaEntity> reservas = new ArrayList<ReservaEntity>(reserva.getAtivosNaData(data));
 		refreshColunaBotoes(reservas);
@@ -662,7 +664,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void txtNomeSoftware_onKeyPressed(KeyEvent event) {
-			buscarSoftwares();
+		buscarSoftwares();
 	}
 
 	@FXML

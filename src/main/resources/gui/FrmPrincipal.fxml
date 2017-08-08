@@ -26,6 +26,16 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="%menu.operacoes">
                   <items>
+                        <Menu mnemonicParsing="false" text="%menu.consultar">
+                          <items>
+                              <MenuItem fx:id="mniConsultarHorario" mnemonicParsing="false" onAction="#mniConsultarHorario_onAction" text="%menu.horario" />
+                          </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="%menu.gerenciar">
+                           <items>
+                              <MenuItem fx:id="mniPedidosReservaHorario" mnemonicParsing="false" onAction="#mniPedidosReservaHorario" text="%menu.pedidoReservaHorario" />                              
+                           </items>
+                        </Menu>
                         <Menu mnemonicParsing="false" text="%menu.solicitar">
                            <items>
                               <Menu mnemonicParsing="false" text="%menu.reservaHorario">
@@ -34,11 +44,6 @@
                                   <MenuItem fx:id="mniReservaPorRequisito" mnemonicParsing="false" onAction="#mniReservaPorRequisito_onAction" text="%menu.porRequisito" />
                                 </items>
                               </Menu>
-                           </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="%menu.gerenciar">
-                           <items>
-                              <MenuItem fx:id="mniPedidosReservaHorario" mnemonicParsing="false" onAction="#mniPedidosReservaHorario" text="%menu.pedidoReservaHorario" />                              
                            </items>
                         </Menu>
                   </items>

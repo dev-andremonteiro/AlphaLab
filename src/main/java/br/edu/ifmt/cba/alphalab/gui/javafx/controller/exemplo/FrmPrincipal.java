@@ -48,7 +48,15 @@ public class FrmPrincipal {
 
 	@FXML
 	private MenuItem mniSobre;
+	
+	@FXML
+    private MenuItem mniConsultarHorario;
 
+	@FXML
+    void mniConsultarHorario_onAction(ActionEvent event) {
+		loadPane("FrmConsultarHorario");
+    }
+	
 	@FXML
 	void mniIngles_onAction(ActionEvent event) {
 
@@ -74,12 +82,11 @@ public class FrmPrincipal {
 		loadPane("FrmSolicitarReservaHorarioPorRequisito");
 
 	}
-	
-	  @FXML
-	    void mniPedidosReservaHorario(ActionEvent event) {
-		  loadPane("FrmPedidosReserva");
-	    }
 
+	@FXML
+	void mniPedidosReservaHorario(ActionEvent event) {
+		loadPane("FrmPedidosReserva");
+	}
 
 	@FXML
 	void mniGerenciarReserva_onAction(ActionEvent event) {
