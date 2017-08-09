@@ -53,7 +53,7 @@
             </HBox>
             <HBox prefHeight="51.0" prefWidth="1024.0" spacing="50.0">
                <children>
-                  <Label prefHeight="27.0" prefWidth="74.0" text="%label.data do Empréstimo">
+                  <Label prefHeight="27.0" prefWidth="114.0" text="%label.dataDoEmprestimo">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -63,14 +63,14 @@
                         <Insets />
                      </HBox.margin>
                   </TextField>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="51.0" prefWidth="165.0">
                      <children>
-                        <Label prefHeight="27.0" prefWidth="187.0" text="%label.Data do pedido">
+                        <Label prefHeight="27.0" prefWidth="130.0" text="%label.DataDoPedido">
                            <padding>
                               <Insets left="35.0" />
                            </padding>
                         </Label>
-                        <Label prefHeight="25.0" prefWidth="138.0" text="%label.Resposável Emprestar">
+                        <Label prefHeight="25.0" prefWidth="170.0" text="%label.ResposavelEmprestar">
                            <padding>
                               <Insets left="35.0" />
                            </padding>
@@ -93,7 +93,7 @@
             </HBox>
             <HBox prefHeight="455.0" prefWidth="1024.0" spacing="30.0">
                <children>
-                  <TableView prefHeight="350.0" prefWidth="320.0">
+                  <TableView fx:id="tblProfessorData" onInputMethodTextChanged="#tblProfessorData_onKeyPressed" prefHeight="350.0" prefWidth="320.0">
                     <columns>
                       <TableColumn prefWidth="178.0" text="Professor" />
                       <TableColumn minWidth="5.0" prefWidth="134.0" text="Data do Empréstimo" />
@@ -104,12 +104,12 @@
                   </TableView>
                   <VBox prefHeight="516.0" prefWidth="446.0" spacing="10.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="132.0" text="%Recursos Emprestado">
+                        <Label prefHeight="17.0" prefWidth="132.0" text="%label.RecursosEmprestado">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <TableView prefHeight="353.0" prefWidth="357.0">
+                        <TableView fx:id="tblRecursosEmprestado" onInputMethodTextChanged="#tblRecursosEmprestado_onKeyPressed" prefHeight="353.0" prefWidth="357.0">
                           <columns>
                             <TableColumn prefWidth="147.0" text="Descrição" />
                             <TableColumn prefWidth="91.0" text="Patrimônio" />
@@ -118,7 +118,7 @@
                         </TableView>
                         <HBox prefHeight="130.0" prefWidth="446.0">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="84.0" text="%Observação" />
+                              <Label prefHeight="17.0" prefWidth="84.0" text="%label.observacao" />
                               <TextArea fx:id="txaObservacao" prefHeight="107.0" prefWidth="360.0" />
                            </children>
                         </HBox>

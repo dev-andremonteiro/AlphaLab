@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.emprestimo.FrmSolicitarEmprestimoRecurso">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.emprestimo.FrmSolicitarEmprestimoRecurso">
    <top>
       <Label prefHeight="32.0" prefWidth="502.0" text="     Solicitar Empréstimo de Recurso" BorderPane.alignment="CENTER">
          <font>

@@ -47,11 +47,9 @@ public class MockEmprestimoDAO implements IEmprestimoDAO {
         emprestimo1.setSolicitante(servidor.getById(1L));
         emprestimo1.setAprovador(servidor.getById(1L));
         emprestimo1.setRecebedor(servidor.getById(1L));
-        equipamento.buscarTodos();
         
         emprestimo1.setRecursos((ArrayList<EquipamentoEntity>) equipamento.buscarTodos());
         
-        //emprestimo1.setRecursos();
         
         listaEmprestimo.add(emprestimo1);
        
