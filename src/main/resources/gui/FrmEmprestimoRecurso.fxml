@@ -58,11 +58,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="txtData" prefHeight="25.0" prefWidth="149.0">
-                     <HBox.margin>
-                        <Insets left="52.0" />
-                     </HBox.margin>
-                  </TextField>
+                  <DatePicker fx:id="dtpData" promptText="%dtp.data" />
                   <Label prefHeight="27.0" prefWidth="177.0" text="%label.DataDoPedido">
                      <padding>
                         <Insets left="35.0" />
@@ -113,13 +109,13 @@
    <bottom>
       <HBox prefHeight="88.0" prefWidth="517.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnEmprestar" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" text="Emprestar" />
-            <Button fx:id="btnRecusar" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Recusar">
+            <Button fx:id="btnEmprestar" mnemonicParsing="false" onAction="#btnEmprestarAction" prefHeight="30.0" prefWidth="77.0" text="Emprestar" />
+            <Button fx:id="btnRecusar" mnemonicParsing="false" onAction="#btnRecusarAction" prefHeight="32.0" prefWidth="70.0" text="Recusar">
                <HBox.margin>
                   <Insets left="40.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnSair" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Sair">
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#btnSairAction" prefHeight="32.0" prefWidth="70.0" text="Sair">
                <HBox.margin>
                   <Insets left="40.0" />
                </HBox.margin>

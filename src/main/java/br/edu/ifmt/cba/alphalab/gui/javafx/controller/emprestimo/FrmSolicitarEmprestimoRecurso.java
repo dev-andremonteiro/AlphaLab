@@ -8,6 +8,7 @@ package br.edu.ifmt.cba.alphalab.gui.javafx.controller.emprestimo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -22,7 +23,7 @@ public class FrmSolicitarEmprestimoRecurso {
     private Button btnAdicionar;
 
     @FXML
-    private TextField txtData;
+    private DatePicker dtpData;
 
     @FXML
     private TableColumn<?, ?> tblRecursoDisponivel;
@@ -57,17 +58,27 @@ public class FrmSolicitarEmprestimoRecurso {
     }
 
     @FXML
-    void btnAdicionar(ActionEvent event) {
+    void btnAdicionarAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnRemover(ActionEvent event) {
+    void btnRemoverAction(ActionEvent event) {
 
     }
 
     @FXML
     void tblPedidos_onKeyPressed(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnSolicitarAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnVoltarAction(ActionEvent event) {
 
     }
 

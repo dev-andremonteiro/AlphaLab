@@ -35,7 +35,7 @@
                   <Label prefHeight="23.0" prefWidth="87.0" text="%label.professor" />
                   <Label fx:id="lblProfessor" prefHeight="32.0" prefWidth="190.0" />
                   <Label prefHeight="27.0" prefWidth="64.0" text="%label.data" />
-                  <TextField fx:id="txtData" prefHeight="25.0" prefWidth="118.0" />
+                  <DatePicker fx:id="dtpData" promptText="%dtp.data" />
                   <Label prefHeight="24.0" prefWidth="65.0" text="%label.hora" />
                   <TextField fx:id="txtHora" />
                   <Label fx:id="lblHora" prefHeight="17.0" prefWidth="73.0" />
@@ -85,12 +85,12 @@
                   </VBox>
                   <VBox prefHeight="480.0" prefWidth="106.0">
                      <children>
-                        <Button fx:id="btnAdicionar" mnemonicParsing="false" onAction="#btnAdicionar" prefHeight="25.0" prefWidth="80.0" text="&gt;&gt;&gt;">
+                        <Button fx:id="btnAdicionar" mnemonicParsing="false" onAction="#btnAdicionarAction" prefHeight="25.0" prefWidth="80.0" text="&gt;&gt;&gt;">
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="btnRemover" mnemonicParsing="false" onAction="#btnRemover" prefHeight="25.0" prefWidth="80.0" text="&lt;&lt;&lt;">
+                        <Button fx:id="btnRemover" mnemonicParsing="false" onAction="#btnRemoverAction" prefHeight="25.0" prefWidth="80.0" text="&lt;&lt;&lt;">
                            <VBox.margin>
                               <Insets left="10.0" top="30.0" />
                            </VBox.margin>
@@ -119,8 +119,8 @@
             </HBox>
             <HBox prefHeight="38.0" prefWidth="214.0">
                <children>
-                  <Button fx:id="btnSolicitar" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" text="Solicitar" />
-                  <Button fx:id="btnVoltar" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Voltar">
+                  <Button fx:id="btnSolicitar" mnemonicParsing="false" onAction="#btnSolicitarAction" prefHeight="30.0" prefWidth="77.0" text="Solicitar" />
+                  <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="32.0" prefWidth="70.0" text="Voltar">
                      <HBox.margin>
                         <Insets left="40.0" />
                      </HBox.margin>

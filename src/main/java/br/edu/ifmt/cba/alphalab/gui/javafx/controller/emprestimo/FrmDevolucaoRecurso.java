@@ -5,8 +5,8 @@ package br.edu.ifmt.cba.alphalab.gui.javafx.controller.emprestimo;
  *
  * @author Wesley
  */
-
- 
+// FrmDevolucaoRecurso 
+    
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,23 +16,22 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 
+public class FrmDevolucaoRecurso  {
 
-public class FrmEmprestimoRecurso{
-
-     @FXML
+    @FXML
     private Button btnRecusar;
 
     @FXML
     private Label lblProfessor;
 
     @FXML
-    private TableView<?> tblRecurso;
-
-    @FXML
     private DatePicker dtpData;
 
     @FXML
-    private TableView<?> tblPedidos;
+    private Button btnDevolver;
+
+    @FXML
+    private Label lblResponsavel;
 
     @FXML
     private Button btnSair;
@@ -41,16 +40,19 @@ public class FrmEmprestimoRecurso{
     private ComboBox<?> cbxProfessor;
 
     @FXML
-    private Button btnEmprestar;
+    private Label lblDataDevolver;
+
+    @FXML
+    private TableView<?> tblRecursosEmprestado;
 
     @FXML
     private TextArea txaObservacao;
 
     @FXML
-    private Label lblDataPedido;
+    private TableView<?> tblProfessorData;
 
     @FXML
-    void btnEmprestarAction(ActionEvent event) {
+    void btnDevolverAction(ActionEvent event) {
 
     }
 
@@ -65,17 +67,13 @@ public class FrmEmprestimoRecurso{
     }
 
     @FXML
-    void tblPedido_onKeyPressed(ActionEvent event) {
+    void tblProfessorData_onKeyPressed(ActionEvent event) {
 
     }
 
     @FXML
-    void tblRecurso_onKeyPressed(ActionEvent event) {
+    void tblRecursosEmprestado_onKeyPressed(ActionEvent event) {
 
     }
-   
+
 }
-
- 
-    
-

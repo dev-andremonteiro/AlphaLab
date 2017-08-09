@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.emprestimo.FrmDevolucaoRecurso">
    <top>
       <BorderPane prefHeight="68.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
          <top>
@@ -58,11 +58,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="txtDataEmprestimo" prefHeight="25.0" prefWidth="121.0">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </TextField>
+                  <DatePicker fx:id="dtpData" promptText="%dtp.data" />
                   <VBox prefHeight="51.0" prefWidth="165.0">
                      <children>
                         <Label prefHeight="27.0" prefWidth="130.0" text="%label.DataDoPedido">
@@ -132,13 +128,13 @@
    <bottom>
       <HBox prefHeight="88.0" prefWidth="517.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnDevolver" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" text="Devolver" />
-            <Button fx:id="btnRecusar" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Recusar">
+            <Button fx:id="btnDevolver" mnemonicParsing="false" onAction="#btnDevolverAction" prefHeight="30.0" prefWidth="77.0" text="Devolver" />
+            <Button fx:id="btnRecusar" mnemonicParsing="false" onAction="#btnRecusarAction" prefHeight="32.0" prefWidth="70.0" text="Recusar">
                <HBox.margin>
                   <Insets left="40.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnSair" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Sair">
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#btnSairAction" prefHeight="32.0" prefWidth="70.0" text="Sair">
                <HBox.margin>
                   <Insets left="40.0" />
                </HBox.margin>
