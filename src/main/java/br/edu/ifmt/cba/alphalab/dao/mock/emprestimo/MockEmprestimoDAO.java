@@ -22,7 +22,8 @@ public class MockEmprestimoDAO implements IEmprestimoDAO {
     
     private static ArrayList<EmprestimoEntity> listaEmprestimo = new ArrayList();
     private static MockEmprestimoDAO singleton = null;
-    
+    private static EquipamentoEntity equipamentoEntity;
+    private static ArrayList<EquipamentoEntity> listaEquipamento= new ArrayList();
    private static  MockEquipamentoDAO equipamento = new MockEquipamentoDAO();
    private static MockServidorDAO servidor = new MockServidorDAO();
    
@@ -48,8 +49,21 @@ public class MockEmprestimoDAO implements IEmprestimoDAO {
         emprestimo1.setAprovador(servidor.getById(1L));
         emprestimo1.setRecebedor(servidor.getById(1L));
        
+        equipamentoEntity= new EquipamentoEntity();
+        equipamentoEntity.setId(1L);
+        equipamentoEntity.setDescricao("TEste1");
+        equipamentoEntity.setQtdeEstoque(10L);
+        equipamentoEntity.setQtdeEmprestada(8L);
+        listaEquipamento.add(equipamentoEntity);
         
-       // emprestimo1.setRecursos((ArrayList<EquipamentoEntity>) equipamento.buscarTodos());
+        equipamentoEntity= new EquipamentoEntity();
+        equipamentoEntity.setId(2L);
+        equipamentoEntity.setDescricao("TEste2");
+        equipamentoEntity.setQtdeEstoque(15L);
+        equipamentoEntity.setQtdeEmprestada(4L);
+        listaEquipamento.add(equipamentoEntity);
+        
+        emprestimo1.setRecursos(listaEquipamento);
         
         
         listaEmprestimo.add(emprestimo1);

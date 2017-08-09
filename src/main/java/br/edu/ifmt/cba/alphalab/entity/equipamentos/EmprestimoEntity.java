@@ -41,8 +41,9 @@ public class EmprestimoEntity implements IEntity<EmprestimoException> {
         
         if (status == null)
         msg.append("Status da recurso deve ser informado!\n");
-        
-        if (dataSolicitacao == null)
+        if (this.solicitante==null && this.status.CONFIRMADO==EnumEmprestimo.CONFIRMADO)
+            msg.append("Precisa informar servidor solicitante");
+        if (dataSolicitacao == null && this.status.CONFIRMADO==EnumEmprestimo.CONFIRMADO)
         msg.append("Data de solicitação do recurso deve ser informado!\n");
         
         if (dataDevolucao == null)

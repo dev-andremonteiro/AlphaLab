@@ -5,6 +5,8 @@ import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IEquipamentoDAO;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EnumEquipamento;
+import br.edu.ifmt.cba.alphalab.entity.equipamentos.EnumEquipamento;
+import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

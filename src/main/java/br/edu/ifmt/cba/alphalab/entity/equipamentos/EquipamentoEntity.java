@@ -12,7 +12,9 @@ public class EquipamentoEntity implements IEntity<EquipamentoException> {
         private EnumEquipamento status;
 
 	private String descricao;
-
+        
+        private Long qtdeEstoque;
+        private Long qtdeEmprestada;
     public EnumEquipamento getStatus() {
         return status;
     }
@@ -116,4 +118,32 @@ public class EquipamentoEntity implements IEntity<EquipamentoException> {
         public void setEmprestimo(EmprestimoEntity emprestimo) {
         this.emprestimo = emprestimo;
         }
+
+    /**
+     * @return the qtdeEstoque
+     */
+    public Long getQtdeEstoque() {
+        return qtdeEstoque;
+    }
+
+    /**
+     * @param qtdeEstoque the qtdeEstoque to set
+     */
+    public void setQtdeEstoque(Long qtdeEstoque) {
+        this.qtdeEstoque = qtdeEstoque;
+    }
+
+    /**
+     * @return the qtdeEmprestada
+     */
+    public Long getQtdeEmprestada() {
+        return qtdeEmprestada;
+    }
+
+    /**
+     * @param qtdeEmprestada the qtdeEmprestada to set
+     */
+    public void setQtdeEmprestada(Long qtdeEmprestada) {
+        this.qtdeEmprestada = qtdeEmprestada;
+    }
 }
