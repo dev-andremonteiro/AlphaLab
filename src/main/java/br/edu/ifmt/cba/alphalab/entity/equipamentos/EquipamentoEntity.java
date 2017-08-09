@@ -8,8 +8,18 @@ import java.util.Date;
 public class EquipamentoEntity implements IEntity<EquipamentoException> {
 
 	private Long id;
+        
+        private EnumEquipamento status;
 
 	private String descricao;
+
+    public EnumEquipamento getStatus() {
+        return status;
+    }
+
+    public void setStatus(EnumEquipamento status) {
+        this.status = status;
+    }
 
 	private String patrimonio;
 

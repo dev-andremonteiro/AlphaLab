@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IEquipamentoDAO;
+import br.edu.ifmt.cba.alphalab.entity.equipamentos.EnumEquipamento;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,6 +29,7 @@ public class MockEquipamentoDAO implements IEquipamentoDAO {
          equipamento1.setDescricao("Osciloscópio");
          equipamento1.setObservacao("");
          equipamento1.setPatrimonio("");
+         equipamento1.setStatus(EnumEquipamento.DISPONIVEL);
          
             try {
                 equipamento1.setDataAquisicao(sdf.parse("10/08/2017"));

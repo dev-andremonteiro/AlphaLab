@@ -8,9 +8,11 @@ import br.edu.ifmt.cba.alphalab.entity.equipamentos.EmprestimoEntity;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EnumEmprestimo;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
+import java.sql.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,7 +47,11 @@ public class MockEmprestimoDAO implements IEmprestimoDAO {
         emprestimo1.setSolicitante(servidor.getById(1L));
         emprestimo1.setAprovador(servidor.getById(1L));
         emprestimo1.setRecebedor(servidor.getById(1L));
-        //emprestimo1.setRecursos(equipamento.getById(1L));
+        equipamento.buscarTodos();
+        
+        emprestimo1.setRecursos((ArrayList<EquipamentoEntity>) equipamento.buscarTodos());
+        
+        //emprestimo1.setRecursos();
         
         listaEmprestimo.add(emprestimo1);
        

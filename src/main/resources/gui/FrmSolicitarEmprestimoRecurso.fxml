@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.emprestimo.FrmSolicitarEmprestimoRecurso">
    <top>
       <Label prefHeight="32.0" prefWidth="502.0" text="     Solicitar Empréstimo de Recurso" BorderPane.alignment="CENTER">
          <font>
@@ -45,10 +45,10 @@
                <children>
                   <VBox prefHeight="217.0" prefWidth="278.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="134.0" text="%Recursos Disponíveis" />
+                        <Label prefHeight="17.0" prefWidth="134.0" text="%label.recursosDisponiveis" />
                         <HBox prefHeight="51.0" prefWidth="278.0">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="68.0" text="%Descrição" />
+                              <Label prefHeight="17.0" prefWidth="68.0" text="%label.descricao" />
                               <TextField fx:id="txtDescricao" prefHeight="25.0" prefWidth="189.0">
                                  <HBox.margin>
                                     <Insets left="30.0" />
@@ -64,7 +64,7 @@
                         </HBox>
                         <HBox prefHeight="51.0" prefWidth="278.0">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="134.0" text="%Quantidade" />
+                              <Label prefHeight="17.0" prefWidth="134.0" text="%label.quantidade" />
                               <TextField fx:id="txtDescricao1" prefHeight="25.0" prefWidth="224.0">
                                  <HBox.margin>
                                     <Insets />
@@ -75,7 +75,7 @@
                               <Insets top="20.0" />
                            </padding>
                         </HBox>
-                        <TableView prefHeight="356.0" prefWidth="278.0">
+                        <TableView fx:id="tblRecursoDisponivel" onKeyPressed="#tblDisponivel_onKeyPressed" prefHeight="356.0" prefWidth="278.0">
                           <columns>
                             <TableColumn prefWidth="172.0" text="Descrição" />
                             <TableColumn fx:id="tblRecursoDisponivel" prefWidth="98.0" text="Qtde Disponivel" />
@@ -103,7 +103,7 @@
                         <Insets top="250.0" />
                      </padding>
                   </VBox>
-                  <TableView fx:id="tblRecursoPedido" prefHeight="364.0" prefWidth="312.0">
+                  <TableView fx:id="tblRecursoPedido" onKeyPressed="#tblPedidos_onKeyPressed" prefHeight="364.0" prefWidth="312.0">
                     <columns>
                       <TableColumn prefWidth="172.0" text="Descrição" />
                       <TableColumn minWidth="9.0" prefWidth="194.0" text="Qtde Pedida" />
