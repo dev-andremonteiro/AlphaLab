@@ -119,6 +119,7 @@ public class FrmConsultarHorario implements Initializable {
 		// TODO Camada de negocio para Laboratorio ainda não foi implementada...
 		// cmbLaboratorio.getItems().setAll(DAOFactory.getDAOFactory().getLaboratorioDAO().buscarTodos());
 		cmbProfessor.getItems().setAll(DAOFactory.getDAOFactory().getServidorDAO().buscarTodosProfessores());
+
 		fillColumns();
 	}
 
@@ -206,8 +207,6 @@ public class FrmConsultarHorario implements Initializable {
 			celula.setGraphic(null);
 		} else {
 			if (reservasFiltradas.isEmpty()) {
-				// System.out.println("\t" + celula.getTableColumn().getText() + " x " +
-				// celula.getIndex());
 				txt.setText("Selecione um filtro");
 			} else {
 				for (ReservaEntity reservaEntity : reservasFiltradas) {

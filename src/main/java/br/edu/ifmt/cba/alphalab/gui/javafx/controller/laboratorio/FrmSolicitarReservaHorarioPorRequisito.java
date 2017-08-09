@@ -531,7 +531,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 					vbxSoftwares.getChildren().add(new Text(software.getDescricao()));
 				}
 			} else {
-				// TODO Código de teste. Remover todo o else na versão final.
+				// TODO Código de teste. Remover todo o else quando a lista de software estiver
+				// implementada.
 				vbxSoftwares.getChildren().add(new Text("TESTE\nTESTE"));
 			}
 			// TabPreencherDados
