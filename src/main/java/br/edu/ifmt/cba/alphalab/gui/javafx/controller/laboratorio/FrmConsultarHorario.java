@@ -2,28 +2,29 @@ package br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.edu.ifmt.cba.alphalab.business.Reserva;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
+import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockLaboratorioDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumDisciplina;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
-import br.edu.ifmt.cba.alphalab.entity.pessoa.ProfessorEntity;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
-import javafx.util.StringConverter;
 
 public class FrmConsultarHorario implements Initializable {
 
@@ -31,7 +32,7 @@ public class FrmConsultarHorario implements Initializable {
 	private ComboBox<LaboratorioEntity> cmbLaboratorio;
 
 	@FXML
-	private ComboBox<ProfessorEntity> cmbProfessor;
+	private ComboBox<ServidorEntity> cmbProfessor;
 
 	@FXML
 	private ComboBox<EnumDisciplina> cmbDisciplina;
@@ -66,26 +67,38 @@ public class FrmConsultarHorario implements Initializable {
 	@FXML
 	private Button btnReset;
 
-	private Reserva reservaDAO = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
-
-	private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>(reservaDAO.getAtivosNaSemana(LocalDate.now()));
+	private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>(DAOFactory.getDAOFactory().getReservaDAO().getAtivosNaSemana(LocalDate.now()));
+	
+	private List<ReservaEntity> reservasFiltradas = new ArrayList<>();
 
 	@FXML
 	void cmbDisciplina_onAction(ActionEvent event) {
-		// tblConsultarHorario.refresh();
-		// TODO Código de teste
-		System.out.println("\t--" + cmbDisciplina.getSelectionModel().getSelectedIndex() + " "
-				+ cmbDisciplina.getSelectionModel().isEmpty());
+		if (!cmbDisciplina.getSelectionModel().isEmpty()) {
+			cmbLaboratorio.getSelectionModel().select(-1);
+			cmbProfessor.getSelectionModel().select(-1);
+			filtrarReservas();
+			tblConsultarHorario.refresh();
+		}
 	}
 
 	@FXML
 	void cmbLaboratorio_onAction(ActionEvent event) {
-		// tblConsultarHorario.refresh();
+		if (!cmbLaboratorio.getSelectionModel().isEmpty()) {
+			cmbDisciplina.getSelectionModel().select(-1);
+			cmbProfessor.getSelectionModel().select(-1);
+			filtrarReservas();
+			tblConsultarHorario.refresh();
+		}
 	}
 
 	@FXML
 	void cmbProfessor_onAction(ActionEvent event) {
-		// tblConsultarHorario.refresh();
+		if (!cmbProfessor.getSelectionModel().isEmpty()) {
+			cmbDisciplina.getSelectionModel().select(-1);
+			cmbLaboratorio.getSelectionModel().select(-1);
+			filtrarReservas();
+			tblConsultarHorario.refresh();
+		}
 	}
 
 	@FXML
@@ -93,14 +106,18 @@ public class FrmConsultarHorario implements Initializable {
 		cmbDisciplina.getSelectionModel().select(-1);
 		cmbLaboratorio.getSelectionModel().select(-1);
 		cmbProfessor.getSelectionModel().select(-1);
+		filtrarReservas();
 		tblConsultarHorario.refresh();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		cmbDisciplina.getItems().setAll(EnumDisciplina.values());
-		// cmbLaboratorio.getItems.setAll(DAOFactory.getDAOFactory().getLaboratorioDAO().buscarTodos());
-		cmbProfessor.getItems().setAll(DAOFactory.getDAOFactory().getProfessorDAO().buscarTodos());
+		MockLaboratorioDAO laboratorio = new MockLaboratorioDAO();
+		cmbLaboratorio.getItems().setAll(laboratorio.buscarTodos());
+		// TODO Camada de negocio para Laboratorio ainda não foi implementada...
+		//cmbLaboratorio.getItems().setAll(DAOFactory.getDAOFactory().getLaboratorioDAO().buscarTodos());
+		cmbProfessor.getItems().setAll(DAOFactory.getDAOFactory().getServidorDAO().buscarTodosProfessores());
 		fillColumns();
 	}
 
@@ -108,16 +125,15 @@ public class FrmConsultarHorario implements Initializable {
 	 * Preenche as colunas da tabela tblConsultarHorario
 	 */
 	private void fillColumns() {
-		// TODO Lembrar que as células de horário deverão ser ocupadas por uma caixa
-		// contendo Departamento e Código da Turma.
-
+		String estilo = new String("-fx-alignment: CENTER;");
+		
 		// Inicializa coluna de horários
 		tbcHorario.setCellValueFactory(conteudo -> new SimpleStringProperty(conteudo.getValue().getEstampa()));
-		tbcHorario.setStyle("-fx-alignment: CENTER;");
+		tbcHorario.setStyle(estilo);
 		tblConsultarHorario.getItems().addAll(Horario.values());
 
-		// Especifica rotina de criação de células para a matriz de horários
-		tbcSegunda.setStyle("-fx-alignment: CENTER;");
+		// Implementação da rotina de criação de células para a matriz de horários
+		tbcSegunda.setStyle(estilo);
 		tbcSegunda.setCellFactory(col -> new TableCell<ReservaEntity, Text>() {
 			@Override
 			protected void updateItem(Text txt, boolean empty) {
@@ -125,7 +141,7 @@ public class FrmConsultarHorario implements Initializable {
 				updateCelula(this, txt, empty);
 			}
 		});
-		tbcTerca.setStyle("-fx-alignment: CENTER;");
+		tbcTerca.setStyle(estilo);
 		tbcTerca.setCellFactory(col -> new TableCell<ReservaEntity, Text>() {
 			@Override
 			protected void updateItem(Text txt, boolean empty) {
@@ -133,7 +149,7 @@ public class FrmConsultarHorario implements Initializable {
 				updateCelula(this, txt, empty);
 			}
 		});
-		tbcQuarta.setStyle("-fx-alignment: CENTER;");
+		tbcQuarta.setStyle(estilo);
 		tbcQuarta.setCellFactory(col -> new TableCell<ReservaEntity, Text>() {
 			@Override
 			protected void updateItem(Text txt, boolean empty) {
@@ -141,7 +157,7 @@ public class FrmConsultarHorario implements Initializable {
 				updateCelula(this, txt, empty);
 			}
 		});
-		tbcQuinta.setStyle("-fx-alignment: CENTER;");
+		tbcQuinta.setStyle(estilo);
 		tbcQuinta.setCellFactory(col -> new TableCell<ReservaEntity, Text>() {
 			@Override
 			protected void updateItem(Text txt, boolean empty) {
@@ -149,7 +165,7 @@ public class FrmConsultarHorario implements Initializable {
 				updateCelula(this, txt, empty);
 			}
 		});
-		tbcSexta.setStyle("-fx-alignment: CENTER;");
+		tbcSexta.setStyle(estilo);
 		tbcSexta.setCellFactory(col -> new TableCell<ReservaEntity, Text>() {
 			@Override
 			protected void updateItem(Text txt, boolean empty) {
@@ -157,7 +173,7 @@ public class FrmConsultarHorario implements Initializable {
 				updateCelula(this, txt, empty);
 			}
 		});
-		tbcSabado.setStyle("-fx-alignment: CENTER;");
+		tbcSabado.setStyle(estilo);
 		tbcSabado.setCellFactory(col -> new TableCell<ReservaEntity, Text>() {
 			@Override
 			protected void updateItem(Text txt, boolean empty) {
@@ -165,7 +181,7 @@ public class FrmConsultarHorario implements Initializable {
 				updateCelula(this, txt, empty);
 			}
 		});
-		tbcDomingo.setStyle("-fx-alignment: CENTER;");
+		tbcDomingo.setStyle(estilo);
 		tbcDomingo.setCellFactory(col -> new TableCell<ReservaEntity, Text>() {
 			@Override
 			protected void updateItem(Text txt, boolean empty) {
@@ -184,17 +200,45 @@ public class FrmConsultarHorario implements Initializable {
 	 * @param empty
 	 */
 	private void updateCelula(TableCell<ReservaEntity, Text> celula, Text txt, boolean empty) {
+		txt = new Text(" ");
 		if (empty) {
 			celula.setGraphic(null);
 		} else {
-			if (!(cmbDisciplina.getSelectionModel().isEmpty() || cmbLaboratorio.getSelectionModel().isEmpty()
-					|| cmbProfessor.getSelectionModel().isEmpty())) {
-				
+			if (reservasFiltradas.isEmpty()) {
+				//System.out.println("\t" + celula.getTableColumn().getText() + " x " + celula.getIndex());
+				txt.setText("Selecione um filtro");
 			} else {
-				System.out.println("\t" + celula.getTableColumn().getText() + " x " + celula.getIndex());
-				txt = new Text("Selecione um filtro");
+				for (ReservaEntity reservaEntity : reservasFiltradas) {
+					if (reservaEntity.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek().getValue() == celula.getTableView().getColumns().indexOf(celula.getTableColumn()))
+						for (Horario horario : reservaEntity.getHorarios()) {
+							if (horario.ordinal() == celula.getIndex())
+								txt.setText(reservaEntity.getDepartamentoAula().getSigla() + " " + reservaEntity.getTurma());
+						}
+				}
 			}
 			celula.setGraphic(txt);
 		}
+	}
+	
+	/**
+	 * Povoa a lista reservasFiltradas de acordo com o filtro selecionado
+	 */
+	private void filtrarReservas() {
+		reservasFiltradas.clear();
+		if (!cmbDisciplina.getSelectionModel().isEmpty())
+			for (ReservaEntity reservaEntity : reservas) {
+				if (reservaEntity.getDisciplina().equals(cmbDisciplina.getSelectionModel().getSelectedItem()))
+					reservasFiltradas.add(reservaEntity);
+			}
+		else if (!cmbLaboratorio.getSelectionModel().isEmpty())
+			for (ReservaEntity reservaEntity : reservas) {
+				if (reservaEntity.getLaboratorio().equals(cmbLaboratorio.getSelectionModel().getSelectedItem()))
+					reservasFiltradas.add(reservaEntity);
+			}
+		else if (!cmbProfessor.getSelectionModel().isEmpty())
+			for (ReservaEntity reservaEntity : reservas) {
+				if (reservaEntity.getSolicitante().equals(cmbProfessor.getSelectionModel().getSelectedItem()))
+					reservasFiltradas.add(reservaEntity);
+			}
 	}
 }

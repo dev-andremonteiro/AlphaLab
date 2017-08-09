@@ -36,6 +36,8 @@ public class MockReservaDAO implements IReservaDAO {
 	private static final ReservaEntity reserva1 = new ReservaEntity();
 	private static final ReservaEntity reserva2 = new ReservaEntity();
 	private static final ReservaEntity reserva3 = new ReservaEntity();
+	private static final ReservaEntity reserva4 = new ReservaEntity();
+	private static final ReservaEntity reserva5 = new ReservaEntity();
 
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -58,7 +60,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva1.setJustificativa("Laboratório sem ar condicionado!");
 		reserva1.setLaboratorio(laboratorio.getById(1L));
 		reserva1.setDepartamentoAula(departamento.getById(1L));
-		reserva1.setSolicitante(servidor.getById(1L));
+		reserva1.setSolicitante(servidor.getById(4L));
 		reserva1.setAprovador(servidor.getById(1L));
 		reserva1.setRequisitos(requisito.buscarTodos());
 		reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.N1, Horario.N2, Horario.N3)));
@@ -67,7 +69,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva2.setStatus(EnumReserva.CONFIRMADO);
 		reserva2.setDisciplina(EnumDisciplina.ALGORITMOS_I);
 		reserva2.setTurma("7844-2");
-		reserva2.setObservacao("Minicurso de Python");
+		reserva2.setObservacao("Reserva para semestre letivo.");
 		reserva2.setFixo(true);
 		try {
 			reserva2.setDataSolicitacao(sdf.parse("06/08/2017"));
@@ -81,7 +83,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva2.setJustificativa("");
 		reserva2.setLaboratorio(laboratorio.getById(1L));
 		reserva2.setDepartamentoAula(departamento.getById(1L));
-		reserva2.setSolicitante(servidor.getById(1L));
+		reserva2.setSolicitante(servidor.getById(4L));
 		reserva2.setAprovador(servidor.getById(1L));
 		reserva2.setRequisitos(requisito.buscarTodos());
 		reserva2.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M1, Horario.M2)));
@@ -104,14 +106,62 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva3.setJustificativa("");
 		reserva3.setLaboratorio(laboratorio.getById(1L));
 		reserva3.setDepartamentoAula(departamento.getById(1L));
-		reserva3.setSolicitante(servidor.getById(1L));
+		reserva3.setSolicitante(servidor.getById(4L));
 		reserva3.setAprovador(servidor.getById(1L));
 		reserva3.setRequisitos(requisito.buscarTodos());
 		reserva3.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.V3, Horario.V4)));
+		
+		reserva4.setId(4L);
+		reserva4.setStatus(EnumReserva.CONFIRMADO);
+		reserva4.setDisciplina(EnumDisciplina.ALGORITMOS_I);
+		reserva4.setTurma("7844-2");
+		reserva4.setObservacao("Reserva para semestre letivo.");
+		reserva4.setFixo(true);
+		try {
+			reserva4.setDataSolicitacao(sdf.parse("06/08/2017"));
+			reserva4.setDataInicio(sdf.parse("09/08/2017"));
+			reserva4.setDataFim(sdf.parse("12/12/2017"));
+			reserva4.setDataAprovacaoRecusa(sdf.parse("07/08/2017"));
+			//System.out.println(sdf.format(sdf.parse("07/08/2017")));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		reserva4.setJustificativa("");
+		reserva4.setLaboratorio(laboratorio.getById(1L));
+		reserva4.setDepartamentoAula(departamento.getById(1L));
+		reserva4.setSolicitante(servidor.getById(4L));
+		reserva4.setAprovador(servidor.getById(1L));
+		reserva4.setRequisitos(requisito.buscarTodos());
+		reserva4.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M2, Horario.M3)));
+		
+		reserva5.setId(5L);
+		reserva5.setStatus(EnumReserva.CONFIRMADO);
+		reserva5.setDisciplina(EnumDisciplina.COMUNICACAO_E_EXPRESSAO);
+		reserva5.setTurma("7844-2");
+		reserva5.setObservacao("Minicurso de Arte para vender na praia");
+		reserva5.setFixo(true);
+		try {
+			reserva5.setDataSolicitacao(sdf.parse("06/08/2017"));
+			reserva5.setDataInicio(sdf.parse("10/08/2017"));
+			reserva5.setDataFim(sdf.parse("12/12/2017"));
+			reserva5.setDataAprovacaoRecusa(sdf.parse("07/08/2017"));
+			//System.out.println(sdf.format(sdf.parse("07/08/2017")));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		reserva5.setJustificativa("");
+		reserva5.setLaboratorio(laboratorio.getById(1L));
+		reserva5.setDepartamentoAula(departamento.getById(1L));
+		reserva5.setSolicitante(servidor.getById(4L));
+		reserva5.setAprovador(servidor.getById(1L));
+		reserva5.setRequisitos(requisito.buscarTodos());
+		reserva5.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.V4, Horario.V5, Horario.V6)));
 
 		reservas.add(reserva1);
 		reservas.add(reserva2);
 		reservas.add(reserva3);
+		reservas.add(reserva4);
+		reservas.add(reserva5);
 	}
 
 	private MockReservaDAO() {
@@ -166,7 +216,7 @@ public class MockReservaDAO implements IReservaDAO {
 		ArrayList<ReservaEntity> resultado = new ArrayList<>();
 		for (ReservaEntity vo : reservas) {
 			if (data.getDayOfWeek().equals(vo.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek())) {
-				if (!data.isBefore(vo.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()) && !data.isAfter(vo.getDataFim().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())) {
+				if (!data.isBefore(vo.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()) && !data.isAfter(vo.getDataFim().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()) && vo.getStatus().equals(EnumReserva.CONFIRMADO)) {
 					resultado.add(vo);
 				} 
 			}

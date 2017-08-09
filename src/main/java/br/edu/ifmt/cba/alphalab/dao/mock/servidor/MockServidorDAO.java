@@ -111,4 +111,14 @@ public class MockServidorDAO implements IServidorDAO {
 	public List<ServidorEntity> buscarTodosServidores() {
 		return servidores;
 	}
+
+	@Override
+	public List<ServidorEntity> buscarTodosProfessores() {
+		List<ServidorEntity> resultado = new ArrayList<>();
+		for (ServidorEntity vo : servidores) {
+			if (vo.getTipo().equals(EnumTipoServidor.PROFESSOR))
+				resultado.add(vo);
+		}
+		return resultado;
+	}
 }

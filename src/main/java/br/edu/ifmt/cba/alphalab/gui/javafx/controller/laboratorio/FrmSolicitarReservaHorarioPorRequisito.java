@@ -168,11 +168,15 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	 * Constroi colunas de todos TableViews na aba tabRequisitos
 	 */
 	private void fillColumns() {
+		String estilo = new String("-fx-alignment: CENTER;");
+		
 		// Inicializa coluna de horários
+		tbcHorario.setStyle(estilo);
 		tbcHorario.setCellValueFactory(conteudo -> new SimpleStringProperty(conteudo.getValue().getEstampa()));
 		tblHorarioRequisitos.getItems().addAll(Horario.values());
 
 		// Especifica rotina de criação de células para a coluna de botões
+		tbcDiaSemana.setStyle(estilo);
 		tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, ToggleButton>() {
 			@Override
 			protected void updateItem(ToggleButton btn, boolean empty) {

@@ -108,4 +108,9 @@ public class ServidorEntity implements IEntity<ServidorException> {
     public void setDepartamento(DepartamentoEntity departamento) {
         this.departamento = departamento;
     }
+
+	@Override
+	public String toString() {
+		return nome;
+	}
 }

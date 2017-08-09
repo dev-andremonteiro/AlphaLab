@@ -123,4 +123,9 @@ public class LaboratorioEntity implements IEntity<LaboratorioException> {
 	public void setEquipamentos(List<EquipamentoEntity> equipamentos) {
 		this.equipamentos = equipamentos;
 	}
+
+	@Override
+	public String toString() {
+		return this.nome;
+	}
 }

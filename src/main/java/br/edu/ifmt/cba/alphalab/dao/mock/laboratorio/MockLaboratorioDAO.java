@@ -1,14 +1,12 @@
 package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.ILaboratorioDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.equipamentos.MockEquipamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.software.MockSoftwareDAO;
-import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
-import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
-import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
 
 /**
  * 
@@ -17,7 +15,7 @@ import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
  */
 
 public class MockLaboratorioDAO implements ILaboratorioDAO {
-	private static ArrayList<LaboratorioEntity> laboratorios = new ArrayList<>();
+	private static List<LaboratorioEntity> laboratorios = new ArrayList<>();
 	private static MockLaboratorioDAO singleton = null;
 
 	private static MockDepartamentoDAO departamento = new MockDepartamentoDAO();
@@ -37,6 +35,8 @@ public class MockLaboratorioDAO implements ILaboratorioDAO {
 		laboratorio1.setEquipamento(equipamento.getById((long) 1));
 		laboratorio1.setSoftwares(software.buscarTodos());
 		laboratorio1.setEquipamentos(equipamentos.buscarTodos());
+		
+		laboratorios.add(laboratorio1);
 	}
 
 	public static MockLaboratorioDAO getInstance() {
@@ -71,5 +71,10 @@ public class MockLaboratorioDAO implements ILaboratorioDAO {
 			return null;
 		else
 			return laboratorios.get(laboratorios.indexOf(nome));
+	}
+
+	@Override
+	public List<LaboratorioEntity> buscarTodos() {
+		return laboratorios;
 	}
 }
