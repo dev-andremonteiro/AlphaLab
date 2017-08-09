@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="bdpPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.exemplo.FrmPrincipal">
+<BorderPane fx:id="bdpPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.exemplo.FrmPrincipal">
    <top>
       <VBox maxHeight="25.0" BorderPane.alignment="CENTER">
          <children>
@@ -42,9 +45,17 @@
                                 <items>
                                     <MenuItem fx:id="mniReservaPorHorario" mnemonicParsing="false" onAction="#mniReservaPorHorario_onAction" text="%menu.porHorario" />
                                   <MenuItem fx:id="mniReservaPorRequisito" mnemonicParsing="false" onAction="#mniReservaPorRequisito_onAction" text="%menu.porRequisito" />
+                                    <SeparatorMenuItem mnemonicParsing="false" />
                                 </items>
                               </Menu>
                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="%menu.emprestimo">
+                          <items>
+                            <MenuItem fx:id="mniSolicitarEmprestimo" mnemonicParsing="false" onAction="#mniSolicitarEmprestimo_onAction" text="%menu.SolicitarEmprestimo" />
+                              <MenuItem fx:id="mniEmprestimoRecursos" mnemonicParsing="false" onAction="#mniEmprestimoRecursos_onAction" text="%menu.EmprestimoRecurso" />
+                              <MenuItem fx:id="mniDevolucaoRecursos" mnemonicParsing="false" onAction="#mniDevolucaoRecursos_onAction" text="%menu.DevolverRecurso" />
+                          </items>
                         </Menu>
                   </items>
                 </Menu>

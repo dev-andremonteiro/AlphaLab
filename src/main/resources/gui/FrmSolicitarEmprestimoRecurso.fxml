@@ -75,7 +75,7 @@
                               <Insets top="20.0" />
                            </padding>
                         </HBox>
-                        <TableView fx:id="tblRecursoDisponivel" onKeyPressed="#tblDisponivel_onKeyPressed" prefHeight="356.0" prefWidth="278.0">
+                        <TableView onKeyPressed="#tblDisponivel_onKeyPressed" prefHeight="356.0" prefWidth="278.0">
                           <columns>
                             <TableColumn prefWidth="172.0" text="Descrição" />
                             <TableColumn fx:id="tblRecursoDisponivel" prefWidth="98.0" text="Qtde Disponivel" />

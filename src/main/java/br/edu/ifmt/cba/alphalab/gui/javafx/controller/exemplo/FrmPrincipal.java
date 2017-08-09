@@ -50,8 +50,16 @@ public class FrmPrincipal {
 	private MenuItem mniSobre;
 	
 	@FXML
-    private MenuItem mniConsultarHorario;
+        private MenuItem mniConsultarHorario;
+        
+        @FXML
+        private MenuItem mniSolicitarEmprestimo;
 
+        @FXML
+        private MenuItem mniDevolucaoRecursos;
+         
+        @FXML
+        private MenuItem mniEmprestimoRecursos;
 	@FXML
     void mniConsultarHorario_onAction(ActionEvent event) {
 		loadPane("FrmConsultarHorario");
@@ -93,7 +101,10 @@ public class FrmPrincipal {
 		loadPane("FrmPedidosReserva");
 
 	}
-
+        
+        
+        
+        
 	@FXML
 	void mniAjuda_onAction(ActionEvent event) {
 		loadPane("FrmCliente");
@@ -103,7 +114,21 @@ public class FrmPrincipal {
 	void mniSobre_onAction(ActionEvent event) {
 		loadPane("FrmSobre");
 	}
+        
+        @FXML
+        void mniSolicitarEmprestimo_onAction(ActionEvent event) {
+         loadPane("FrmSolicitarEmprestimoRecurso");
+        }
 
+        @FXML
+        void mniEmprestimoRecursos_onAction(ActionEvent event) {
+         loadPane("FrmEmprestimoRecurso");
+        }
+
+        @FXML
+        void mniDevolucaoRecursos_onAction(ActionEvent event) {
+         loadPane("FrmDevolucaoRecurso");
+        }
 	@FXML
 	void mniSair_onAction(ActionEvent event) {
 		System.exit(0);
