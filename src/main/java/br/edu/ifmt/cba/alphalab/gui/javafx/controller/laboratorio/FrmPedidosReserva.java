@@ -6,14 +6,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.edu.ifmt.cba.alphalab.business.Professor;
 import br.edu.ifmt.cba.alphalab.business.Reserva;
+import br.edu.ifmt.cba.alphalab.business.Servidor;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumTipoReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
-import br.edu.ifmt.cba.alphalab.entity.pessoa.ProfessorEntity;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.EnumTipoServidor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,7 +43,7 @@ import javafx.scene.text.Text;
 public class FrmPedidosReserva implements Initializable {
 	private List<RequisitoEntity> listaRequisitos = new ArrayList<>();
 	private Reserva reserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
-	private Professor professor = new Professor(DAOFactory.getDAOFactory().getProfessorDAO());
+	private Servidor servidor = new Servidor(DAOFactory.getDAOFactory().getServidorDAO());
 
 	@FXML
 	private TabPane tbpDados;
@@ -58,7 +58,7 @@ public class FrmPedidosReserva implements Initializable {
 	private ComboBox<EnumTipoReserva> cmbTipo;
 
 	@FXML
-	private ComboBox<ProfessorEntity> cmbProfessor;
+	private ComboBox<EnumTipoServidor> cmbProfessor;
 
 	@FXML
 	private TableView<ReservaEntity> tblPedidos;
@@ -143,8 +143,9 @@ public class FrmPedidosReserva implements Initializable {
 				EnumTipoReserva.MENSAL, EnumTipoReserva.SEMANAL, EnumTipoReserva.SEMESTRAL);
 		cmbTipo.setItems(comboTipo);
 
-		ObservableList<ProfessorEntity> professores = FXCollections.observableArrayList(professor.buscarTodos());
-		cmbProfessor.setItems(professores);
+		ObservableList<EnumTipoServidor> servidores = FXCollections.observableArrayList(EnumTipoServidor.ESTAGIARIO,
+				EnumTipoServidor.PROFESSOR, EnumTipoServidor.TEC_ADM, EnumTipoServidor.TEC_LABORATORIO);
+		cmbProfessor.setItems(servidores);
 
 		preencherDadosTblPedidos(reserva.buscarTodasReservas());
 	}
@@ -224,6 +225,10 @@ public class FrmPedidosReserva implements Initializable {
 		tblPedidos.refresh();
 	}
 
+	private void atualizaTableViewPorProfessor(EnumTipoServidor servidor) {
+
+	}
+
 	@FXML
 	void btnCancelar_onAction(ActionEvent event) {
 	}
@@ -292,7 +297,8 @@ public class FrmPedidosReserva implements Initializable {
 
 	@FXML
 	void cmbProfessor_onAction(ActionEvent event) {
-
+		if (cmbProfessor.getSelectionModel().getSelectedItem() != null)
+			atualizaTableViewPorProfessor(cmbProfessor.getSelectionModel().getSelectedItem());
 	}
 
 	@FXML

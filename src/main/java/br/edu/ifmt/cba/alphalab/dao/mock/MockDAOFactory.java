@@ -5,7 +5,6 @@ import br.edu.ifmt.cba.alphalab.dao.IClienteDAO;
 import br.edu.ifmt.cba.alphalab.dao.IDepartamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.IEquipamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.ILaboratorioDAO;
-import br.edu.ifmt.cba.alphalab.dao.IProfessorDAO;
 import br.edu.ifmt.cba.alphalab.dao.IRequisitoDAO;
 import br.edu.ifmt.cba.alphalab.dao.IReservaDAO;
 import br.edu.ifmt.cba.alphalab.dao.IServidorDAO;
@@ -15,7 +14,6 @@ import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockDepartamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockLaboratorioDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockRequisitoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockReservaDAO;
-import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockProfessorDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.software.MockSoftwareDAO;
 
@@ -68,13 +66,6 @@ public class MockDAOFactory implements DAOFactory {
 	public IServidorDAO getServidorDAO() {
 		return MockServidorDAO.getInstance();
 	}
-
-	@Override
-	public IProfessorDAO getProfessorDAO() {		
-		return MockProfessorDAO.getInstance();
-	}
-	
-	
 
 	/*
 	 * @Override public boolean isSessionClosed() { return false; }
