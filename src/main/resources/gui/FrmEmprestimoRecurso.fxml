@@ -22,7 +22,7 @@
    <top>
       <BorderPane prefHeight="68.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
          <top>
-            <Label prefHeight="53.0" prefWidth="240.0" text="Empréstimo de Recurso" BorderPane.alignment="CENTER">
+            <Label prefHeight="53.0" prefWidth="240.0" text="%label.EmprestimoDeRecurso" BorderPane.alignment="CENTER">
                <font>
                   <Font size="22.0" />
                </font>
@@ -71,8 +71,8 @@
                <children>
                   <TableView fx:id="tblPedidos" onKeyPressed="#tblPedido_onKeyPressed" prefHeight="350.0" prefWidth="320.0">
                     <columns>
-                      <TableColumn prefWidth="178.0" text="Professor" />
-                      <TableColumn minWidth="5.0" prefWidth="134.0" text="Data do pedido" />
+                      <TableColumn prefWidth="178.0" text="%column.professor" />
+                      <TableColumn minWidth="5.0" prefWidth="134.0" text="%column.dataDoPedido" />
                     </columns>
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
@@ -87,10 +87,10 @@
                         </Label>
                         <TableView fx:id="tblRecurso" onKeyPressed="#tblRecurso_onKeyPressed" prefHeight="353.0" prefWidth="357.0">
                           <columns>
-                            <TableColumn prefWidth="147.0" text="Descrição" />
-                            <TableColumn prefWidth="91.0" text="Patrimônio" />
-                              <TableColumn prefWidth="81.0" text="Qtde Pedida" />
-                              <TableColumn prefWidth="106.0" text="Qtde  Disponível" />
+                            <TableColumn prefWidth="147.0" text="%column.descricao" />
+                            <TableColumn prefWidth="91.0" text="%column.patrimonio" />
+                              <TableColumn prefWidth="81.0" text="%column.qtdePedida" />
+                              <TableColumn prefWidth="106.0" text="%column.qtdeDisponivel" />
                           </columns>
                         </TableView>
                         <HBox prefHeight="130.0" prefWidth="446.0">
@@ -109,13 +109,13 @@
    <bottom>
       <HBox prefHeight="88.0" prefWidth="517.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnEmprestar" mnemonicParsing="false" onAction="#btnEmprestarAction" prefHeight="30.0" prefWidth="77.0" text="Emprestar" />
-            <Button fx:id="btnRecusar" mnemonicParsing="false" onAction="#btnRecusarAction" prefHeight="32.0" prefWidth="70.0" text="Recusar">
+            <Button fx:id="btnEmprestar" mnemonicParsing="false" onAction="#btnEmprestarAction" prefHeight="30.0" prefWidth="77.0" text="%button.emprestar" />
+            <Button fx:id="btnRecusar" mnemonicParsing="false" onAction="#btnRecusarAction" prefHeight="32.0" prefWidth="70.0" text="%button.recusar">
                <HBox.margin>
                   <Insets left="40.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#btnSairAction" prefHeight="32.0" prefWidth="70.0" text="Sair">
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#btnSairAction" prefHeight="32.0" prefWidth="70.0" text="%button.sair">
                <HBox.margin>
                   <Insets left="40.0" />
                </HBox.margin>

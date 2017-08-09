@@ -18,7 +18,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.emprestimo.FrmSolicitarEmprestimoRecurso">
    <top>
-      <Label prefHeight="32.0" prefWidth="502.0" text="     Solicitar Empréstimo de Recurso" BorderPane.alignment="CENTER">
+      <Label prefHeight="32.0" prefWidth="502.0" text="%label.SolicitarEmprestimoDeRecursos" BorderPane.alignment="CENTER">
          <font>
             <Font size="22.0" />
          </font>
@@ -77,20 +77,20 @@
                         </HBox>
                         <TableView onKeyPressed="#tblDisponivel_onKeyPressed" prefHeight="356.0" prefWidth="278.0">
                           <columns>
-                            <TableColumn prefWidth="172.0" text="Descrição" />
-                            <TableColumn fx:id="tblRecursoDisponivel" prefWidth="98.0" text="Qtde Disponivel" />
+                            <TableColumn prefWidth="172.0" text="%column.descricao" />
+                            <TableColumn fx:id="tblRecursoDisponivel" prefWidth="98.0" text="%column.qtdeDisponivel" />
                           </columns>
                         </TableView>
                      </children>
                   </VBox>
                   <VBox prefHeight="480.0" prefWidth="106.0">
                      <children>
-                        <Button fx:id="btnAdicionar" mnemonicParsing="false" onAction="#btnAdicionarAction" prefHeight="25.0" prefWidth="80.0" text="&gt;&gt;&gt;">
+                        <Button fx:id="btnAdicionar" mnemonicParsing="false" onAction="#btnAdicionarAction" prefHeight="25.0" prefWidth="80.0" text="%button.DeslocarDireita">
                            <VBox.margin>
                               <Insets left="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="btnRemover" mnemonicParsing="false" onAction="#btnRemoverAction" prefHeight="25.0" prefWidth="80.0" text="&lt;&lt;&lt;">
+                        <Button fx:id="btnRemover" mnemonicParsing="false" onAction="#btnRemoverAction" prefHeight="25.0" prefWidth="80.0" text="%button.DeslocarEsquerda">
                            <VBox.margin>
                               <Insets left="10.0" top="30.0" />
                            </VBox.margin>
@@ -105,8 +105,8 @@
                   </VBox>
                   <TableView fx:id="tblRecursoPedido" onKeyPressed="#tblPedidos_onKeyPressed" prefHeight="364.0" prefWidth="312.0">
                     <columns>
-                      <TableColumn prefWidth="172.0" text="Descrição" />
-                      <TableColumn minWidth="9.0" prefWidth="194.0" text="Qtde Pedida" />
+                      <TableColumn prefWidth="172.0" text="%column.descricao" />
+                      <TableColumn minWidth="9.0" prefWidth="194.0" text="%column.qtdePedida" />
                     </columns>
                      <HBox.margin>
                         <Insets top="120.0" />
@@ -119,8 +119,8 @@
             </HBox>
             <HBox prefHeight="38.0" prefWidth="214.0">
                <children>
-                  <Button fx:id="btnSolicitar" mnemonicParsing="false" onAction="#btnSolicitarAction" prefHeight="30.0" prefWidth="77.0" text="Solicitar" />
-                  <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="32.0" prefWidth="70.0" text="Voltar">
+                  <Button fx:id="btnSolicitar" mnemonicParsing="false" onAction="#btnSolicitarAction" prefHeight="30.0" prefWidth="77.0" text="%button.solicitar" />
+                  <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#btnVoltarAction" prefHeight="32.0" prefWidth="70.0" text="%button.voltar">
                      <HBox.margin>
                         <Insets left="40.0" />
                      </HBox.margin>
