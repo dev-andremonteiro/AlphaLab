@@ -44,27 +44,31 @@ public class FrmPrincipal {
 	private MenuItem mniPedidosReservaHorario;
 
 	@FXML
+	private MenuItem mniGerenciarHorario;
+
+	@FXML
 	private MenuItem mniAjuda;
 
 	@FXML
 	private MenuItem mniSobre;
-	
-	@FXML
-        private MenuItem mniConsultarHorario;
-        
-        @FXML
-        private MenuItem mniSolicitarEmprestimo;
 
-        @FXML
-        private MenuItem mniDevolucaoRecursos;
-         
-        @FXML
-        private MenuItem mniEmprestimoRecursos;
 	@FXML
-    void mniConsultarHorario_onAction(ActionEvent event) {
+	private MenuItem mniConsultarHorario;
+
+	@FXML
+	private MenuItem mniSolicitarEmprestimo;
+
+	@FXML
+	private MenuItem mniDevolucaoRecursos;
+
+	@FXML
+	private MenuItem mniEmprestimoRecursos;
+
+	@FXML
+	void mniConsultarHorario_onAction(ActionEvent event) {
 		loadPane("FrmConsultarHorario");
-    }
-	
+	}
+
 	@FXML
 	void mniIngles_onAction(ActionEvent event) {
 
@@ -101,10 +105,12 @@ public class FrmPrincipal {
 		loadPane("FrmPedidosReserva");
 
 	}
-        
-        
-        
-        
+	
+	@FXML
+    void mniGerenciarHorario_onAction(ActionEvent event) {
+		loadPane("FrmGerenciarHorario");
+    }
+
 	@FXML
 	void mniAjuda_onAction(ActionEvent event) {
 		loadPane("FrmCliente");
@@ -114,21 +120,22 @@ public class FrmPrincipal {
 	void mniSobre_onAction(ActionEvent event) {
 		loadPane("FrmSobre");
 	}
-        
-        @FXML
-        void mniSolicitarEmprestimo_onAction(ActionEvent event) {
-         loadPane("FrmSolicitarEmprestimoRecurso");
-        }
 
-        @FXML
-        void mniEmprestimoRecursos_onAction(ActionEvent event) {
-         loadPane("FrmEmprestimoRecurso");
-        }
+	@FXML
+	void mniSolicitarEmprestimo_onAction(ActionEvent event) {
+		loadPane("FrmSolicitarEmprestimoRecurso");
+	}
 
-        @FXML
-        void mniDevolucaoRecursos_onAction(ActionEvent event) {
-         loadPane("FrmDevolucaoRecurso");
-        }
+	@FXML
+	void mniEmprestimoRecursos_onAction(ActionEvent event) {
+		loadPane("FrmEmprestimoRecurso");
+	}
+
+	@FXML
+	void mniDevolucaoRecursos_onAction(ActionEvent event) {
+		loadPane("FrmDevolucaoRecurso");
+	}
+
 	@FXML
 	void mniSair_onAction(ActionEvent event) {
 		System.exit(0);
@@ -137,8 +144,8 @@ public class FrmPrincipal {
 	/**
 	 * 
 	 * @param string
-	 *            é o caminho da tela a ser carregada. <b>Exemplo - carregar
-	 *            tela FrmCliente.fxml:</b> loadPane(FrmCliente)
+	 *            é o caminho da tela a ser carregada. <b>Exemplo - carregar tela
+	 *            FrmCliente.fxml:</b> loadPane(FrmCliente)
 	 */
 	private void loadPane(String string) {
 		Node node = null;

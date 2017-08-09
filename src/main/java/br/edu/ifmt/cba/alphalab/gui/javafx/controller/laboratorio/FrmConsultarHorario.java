@@ -67,8 +67,9 @@ public class FrmConsultarHorario implements Initializable {
 	@FXML
 	private Button btnReset;
 
-	private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>(DAOFactory.getDAOFactory().getReservaDAO().getAtivosNaSemana(LocalDate.now()));
-	
+	private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>(
+			DAOFactory.getDAOFactory().getReservaDAO().getAtivosNaSemana(LocalDate.now()));
+
 	private List<ReservaEntity> reservasFiltradas = new ArrayList<>();
 
 	@FXML
@@ -116,7 +117,7 @@ public class FrmConsultarHorario implements Initializable {
 		MockLaboratorioDAO laboratorio = new MockLaboratorioDAO();
 		cmbLaboratorio.getItems().setAll(laboratorio.buscarTodos());
 		// TODO Camada de negocio para Laboratorio ainda não foi implementada...
-		//cmbLaboratorio.getItems().setAll(DAOFactory.getDAOFactory().getLaboratorioDAO().buscarTodos());
+		// cmbLaboratorio.getItems().setAll(DAOFactory.getDAOFactory().getLaboratorioDAO().buscarTodos());
 		cmbProfessor.getItems().setAll(DAOFactory.getDAOFactory().getServidorDAO().buscarTodosProfessores());
 		fillColumns();
 	}
@@ -126,7 +127,7 @@ public class FrmConsultarHorario implements Initializable {
 	 */
 	private void fillColumns() {
 		String estilo = new String("-fx-alignment: CENTER;");
-		
+
 		// Inicializa coluna de horários
 		tbcHorario.setCellValueFactory(conteudo -> new SimpleStringProperty(conteudo.getValue().getEstampa()));
 		tbcHorario.setStyle(estilo);
@@ -205,21 +206,25 @@ public class FrmConsultarHorario implements Initializable {
 			celula.setGraphic(null);
 		} else {
 			if (reservasFiltradas.isEmpty()) {
-				//System.out.println("\t" + celula.getTableColumn().getText() + " x " + celula.getIndex());
+				// System.out.println("\t" + celula.getTableColumn().getText() + " x " +
+				// celula.getIndex());
 				txt.setText("Selecione um filtro");
 			} else {
 				for (ReservaEntity reservaEntity : reservasFiltradas) {
-					if (reservaEntity.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek().getValue() == celula.getTableView().getColumns().indexOf(celula.getTableColumn()))
+					if (reservaEntity.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+							.getDayOfWeek()
+							.getValue() == celula.getTableView().getColumns().indexOf(celula.getTableColumn()))
 						for (Horario horario : reservaEntity.getHorarios()) {
 							if (horario.ordinal() == celula.getIndex())
-								txt.setText(reservaEntity.getDepartamentoAula().getSigla() + " " + reservaEntity.getTurma());
+								txt.setText(reservaEntity.getDepartamentoAula().getSigla() + " "
+										+ reservaEntity.getTurma());
 						}
 				}
 			}
 			celula.setGraphic(txt);
 		}
 	}
-	
+
 	/**
 	 * Povoa a lista reservasFiltradas de acordo com o filtro selecionado
 	 */

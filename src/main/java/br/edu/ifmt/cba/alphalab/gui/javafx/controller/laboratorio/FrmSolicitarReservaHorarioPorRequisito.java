@@ -169,7 +169,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	 */
 	private void fillColumns() {
 		String estilo = new String("-fx-alignment: CENTER;");
-		
+
 		// Inicializa coluna de horários
 		tbcHorario.setStyle(estilo);
 		tbcHorario.setCellValueFactory(conteudo -> new SimpleStringProperty(conteudo.getValue().getEstampa()));

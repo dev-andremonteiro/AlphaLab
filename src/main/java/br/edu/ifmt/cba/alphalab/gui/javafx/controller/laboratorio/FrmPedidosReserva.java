@@ -136,9 +136,12 @@ public class FrmPedidosReserva implements Initializable {
 		limparDados();
 		dtpData.requestFocus();
 
-		tabPedidos.setDisable(false);
-		// tabDados.setDisable(true);
+		tabDados.setDisable(true);
 
+		// TODO Sugestão: Como esse campo não existe mais, você pode transformar ele em
+		// SEMESTRAL e UNICA (além de tirar esse atributo da entidade) e aí filtra pelas
+		// reservas que tem mesmo dia de começo e fim (isso dá pra fazer em uma linha
+		// usando LocalDate).
 		ObservableList<EnumTipoReserva> comboTipo = FXCollections.observableArrayList(EnumTipoReserva.ANUAL,
 				EnumTipoReserva.MENSAL, EnumTipoReserva.SEMANAL, EnumTipoReserva.SEMESTRAL);
 		cmbTipo.setItems(comboTipo);
@@ -176,8 +179,7 @@ public class FrmPedidosReserva implements Initializable {
 	}
 
 	/**
-	 * Cancela a operação de Gerenciar Pedidos de Reserva e\n retorna à aba
-	 * inicial.
+	 * Cancela a operação de Gerenciar Pedidos de Reserva e\n retorna à aba inicial.
 	 */
 	private void cancelarGerenciarPedido() {
 		limparDados();
