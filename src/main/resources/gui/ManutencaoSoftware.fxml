@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<GridPane fx:id="grpGerenciaSoftware" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="grpGerenciaSoftware" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.software.ManutencaoSoftware">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -59,8 +59,8 @@
                         <ChoiceBox fx:id="chbSoftwareTipo" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                            <children>
-                              <Button fx:id="btnSalvar" mnemonicParsing="false" text="%btn.salvar" />
-                              <Button fx:id="btnCancelar" mnemonicParsing="false" text="%btn.cancelar" />
+                              <Button fx:id="btnSalvar" mnemonicParsing="false" text="%button.salvar" />
+                              <Button fx:id="btnCancelar" mnemonicParsing="false" text="%button.cancelar" />
                            </children>
                         </HBox>
                      </children>
@@ -87,9 +87,9 @@
                      <children>
                         <HBox fx:id="hbxTabManutencao" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Label fx:id="lblManutencaoTipo" text="%lbl.Tipo" />
+                              <Label fx:id="lblManutencaoTipo" text="%lbl.tipo" />
                               <ChoiceBox fx:id="chbManutencaoTipoSoftware" prefWidth="150.0" />
-                              <Label fx:id="lblManutencaoNome" text="%lbl.SoftwareNome" />
+                              <Label fx:id="lblManutencaoNome" text="%lbl.softwareNome" />
                               <TextField fx:id="txtManutencaoSoftware" />
                               <Button fx:id="btnManutencaoPesquisar" mnemonicParsing="false" text="%button.pesquisar" />
                            </children>
@@ -97,7 +97,7 @@
                         <TableView fx:id="tblManutencaoSoftware" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                           <columns>
                             <TableColumn fx:id="tbcId" prefWidth="55.0" text="%lbl.id" />
-                            <TableColumn fx:id="tbcDescricao" prefWidth="203.0" text="%lbl.Descricao" />
+                            <TableColumn fx:id="tbcDescricao" prefWidth="203.0" text="%lbl.descricao" />
                               <TableColumn fx:id="tbcVersao" minWidth="0.0" prefWidth="97.0" text="%lbl.versao" />
                               <TableColumn fx:id="tbcLink" prefWidth="248.0" text="%lbl.link" />
                               <TableColumn fx:id="tbcTipo" prefWidth="113.0" text="%lbl.tipo" />
@@ -106,8 +106,8 @@
                         </TableView>
                         <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="1024.0" spacing="20.0" GridPane.rowIndex="2">
                            <children>
-                              <Button fx:id="btnAdicionar" mnemonicParsing="false" text="%btn.adicionar" />
-                              <Button fx:id="btnExcluir" mnemonicParsing="false" text="%btn.excluir" />
+                              <Button fx:id="btnAdicionar" mnemonicParsing="false" text="%button.adicionar" />
+                              <Button fx:id="btnExcluir" mnemonicParsing="false" text="%button.excluir" />
                            </children>
                            <GridPane.margin>
                               <Insets />

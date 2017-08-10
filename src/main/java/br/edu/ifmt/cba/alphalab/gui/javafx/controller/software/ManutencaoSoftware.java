@@ -54,7 +54,15 @@ public class ManutencaoSoftware implements Initializable{
     @FXML
     TableColumn<SoftwareEntity,String> tbcVersao;
     @FXML
-    TextField txtSoftwareVersao,txtSoftwareLink,txtSoftwareDescricao,txtSoftwareId,txtManutencaoSoftware;
+    TextField txtSoftwareVersao;
+    @FXML
+    TextField txtSoftwareLink;
+    @FXML
+    TextField txtSoftwareDescricao;
+    @FXML
+    TextField txtSoftwareId;
+    @FXML
+    TextField txtManutencaoSoftware;
     @FXML
     TextArea txaSoftwareObservacao;
     @Override

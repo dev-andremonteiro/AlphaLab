@@ -63,7 +63,15 @@ public class FrmPrincipal {
 
 	@FXML
 	private MenuItem mniEmprestimoRecursos;
-
+        
+        @FXML
+        private MenuItem mniGerenciarSoftware;
+        
+        @FXML 
+        void mniGerenciarSoftwareOnAction(ActionEvent event){
+            loadPane("ManutencaoSoftware");
+        }
+        
 	@FXML
 	void mniConsultarHorario_onAction(ActionEvent event) {
 		loadPane("FrmConsultarHorario");
@@ -144,7 +152,7 @@ public class FrmPrincipal {
 	/**
 	 * 
 	 * @param string
-	 *            é o caminho da tela a ser carregada. <b>Exemplo - carregar tela
+	 *            ï¿½ o caminho da tela a ser carregada. <b>Exemplo - carregar tela
 	 *            FrmCliente.fxml:</b> loadPane(FrmCliente)
 	 */
 	private void loadPane(String string) {

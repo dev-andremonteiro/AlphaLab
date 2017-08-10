@@ -34,7 +34,8 @@
                         <Menu mnemonicParsing="false" text="%menu.gerenciar">
                            <items>
                               <MenuItem fx:id="mniGerenciarHorario" mnemonicParsing="false" onAction="#mniGerenciarHorario_onAction" text="%menu.horario" />
-                              <MenuItem fx:id="mniPedidosReservaHorario" mnemonicParsing="false" onAction="#mniPedidosReservaHorario" text="%menu.pedidoReservaHorario" />                              
+                              <MenuItem fx:id="mniPedidosReservaHorario" mnemonicParsing="false" onAction="#mniPedidosReservaHorario" text="%menu.pedidoReservaHorario" />
+                              <MenuItem fx:id="mniGerenciarSoftware" mnemonicParsing="false" onAction="#mniGerenciarSoftwareOnAction" text="Software" />                              
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="%menu.solicitar">
