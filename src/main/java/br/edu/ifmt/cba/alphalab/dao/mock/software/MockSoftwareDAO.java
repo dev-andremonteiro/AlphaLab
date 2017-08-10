@@ -7,7 +7,6 @@ package br.edu.ifmt.cba.alphalab.dao.mock.software;
 
 import br.edu.ifmt.cba.alphalab.dao.ISoftwareDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
-import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.TipoSoftwareEnum;
 
@@ -49,7 +48,7 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 		listaSoftware.add(software2);
 	}
 
-	public MockSoftwareDAO() {
+	private MockSoftwareDAO() {
 	}
 
 	public static MockSoftwareDAO getInstance() {
@@ -64,6 +63,10 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 		if (listaSoftware.indexOf(entity) < 0) {
 			listaSoftware.add(entity);
 		}
+                else
+                {
+                    listaSoftware.set(listaSoftware.indexOf(entity), entity);
+                }
 	}
 
 	@Override
@@ -93,7 +96,7 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 
 	@Override
 	public List<SoftwareEntity> buscarPorTipoNome(TipoSoftwareEnum tipo, String nome) {
-		List<SoftwareEntity> retorno = null;
+		List<SoftwareEntity> retorno = new ArrayList<>();
 		List<SoftwareEntity> nomes = buscarPorNome(nome);
 		nomes.forEach(software -> {
 			if (software.getTipo().equals(tipo))
