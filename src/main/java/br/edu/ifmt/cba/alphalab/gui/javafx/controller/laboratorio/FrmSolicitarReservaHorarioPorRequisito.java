@@ -316,11 +316,9 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	/**
 	 * Limpa os campos da tela.
 	 */
-	private void limparCampos() {
-		tblHorarioRequisitos.setItems(null);
+	private void limparCampos() {		
 		txtNomeSoftware.setText("");
-		tblRequisitos.getItems().clear();
-		;
+		tblRequisitos.getItems().clear();		
 		txtNumMaxAlunos.setText("");
 		texRequisitos.setText("");
 		hbxHorarios.getChildren().remove(1, hbxHorarios.getChildren().size());
