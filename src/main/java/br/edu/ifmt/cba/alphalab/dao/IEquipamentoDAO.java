@@ -1,6 +1,7 @@
 package br.edu.ifmt.cba.alphalab.dao;
 
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
+import java.util.List;
 
 /**
  * 
@@ -10,4 +11,6 @@ import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
 
 public interface IEquipamentoDAO extends IDAO<EquipamentoEntity> {
 	EquipamentoEntity getByNome(String nome);
+        
+        public List<EquipamentoEntity> buscarDisponivel();
 }

@@ -8,6 +8,7 @@ import br.edu.ifmt.cba.alphalab.entity.equipamentos.EnumEquipamento;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EnumEquipamento;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -77,5 +78,19 @@ public class MockEquipamentoDAO implements IEquipamentoDAO {
 
 	public List<EquipamentoEntity> buscarTodos() {
 		return equipamentos;
+	}
+        // Busca equipamentos disponíveis
+        @Override
+        public List<EquipamentoEntity> buscarDisponivel() {
+            
+            ArrayList<EquipamentoEntity> resultado = new ArrayList<>();
+            
+            for(EquipamentoEntity vo : equipamentos){
+              if(vo.getStatus() == EnumEquipamento.DISPONIVEL){
+                  resultado.add(vo);
+              }
+               
+            }
+		return resultado;
 	}
 }

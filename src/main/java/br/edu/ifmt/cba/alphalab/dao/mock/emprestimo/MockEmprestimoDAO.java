@@ -73,7 +73,7 @@ public class MockEmprestimoDAO implements IEmprestimoDAO {
     
     public MockEmprestimoDAO(){  }
     
-    public MockEmprestimoDAO getInstance(){
+    public static MockEmprestimoDAO getInstance(){
         if (singleton == null)
             
                singleton = new MockEmprestimoDAO();
