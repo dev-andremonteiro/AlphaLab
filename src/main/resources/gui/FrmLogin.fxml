@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Text layoutX="318.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AlphaLab">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
+            <Text layoutX="212.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <Text layoutX="208.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtLogin" layoutX="331.0" layoutY="201.0" onAction="#txtLogin_onAction" onKeyPressed="#txtLogin_onKeyPressed" prefHeight="25.0" prefWidth="240.0" />
+            <PasswordField fx:id="pswSenha" layoutX="331.0" layoutY="264.0" onAction="#pswSenha_onAction" onKeyPressed="#pswSenha_onKeyPressed" prefHeight="25.0" prefWidth="240.0" />
+            <Button fx:id="btnSair" layoutX="519.0" layoutY="331.0" mnemonicParsing="false" onAction="#btnSair_onAction" onKeyPressed="#btnSair_onKeyPressed" onMouseClicked="#btnSair_onMouseClicked" prefWidth="70.0" text="Sair" />
+            <Button fx:id="btnEntrar" layoutX="425.0" layoutY="331.0" mnemonicParsing="false" onAction="#btnEntrar_onAction" onKeyPressed="#btnEntrar_onKeyPressed" onMouseClicked="#btnEntrar_onMousecClicked" prefWidth="70.0" text="Entrar" />
+            <Button fx:id="btnCadastrar" layoutX="331.0" layoutY="331.0" mnemonicParsing="false" onAction="#btnCadastrar_onAction" onKeyPressed="#btnCadastrar_onKeyPressed" onMouseClicked="#btnCdastrar_onMouseClicked" prefWidth="70.0" text="Cadastrar" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
