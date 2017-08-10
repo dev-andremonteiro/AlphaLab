@@ -3,12 +3,14 @@ package br.edu.ifmt.cba.alphalab.dao.mock;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.dao.IClienteDAO;
 import br.edu.ifmt.cba.alphalab.dao.IDepartamentoDAO;
+import br.edu.ifmt.cba.alphalab.dao.IEmprestimoDAO;
 import br.edu.ifmt.cba.alphalab.dao.IEquipamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.ILaboratorioDAO;
 import br.edu.ifmt.cba.alphalab.dao.IRequisitoDAO;
 import br.edu.ifmt.cba.alphalab.dao.IReservaDAO;
 import br.edu.ifmt.cba.alphalab.dao.IServidorDAO;
 import br.edu.ifmt.cba.alphalab.dao.ISoftwareDAO;
+import br.edu.ifmt.cba.alphalab.dao.mock.emprestimo.MockEmprestimoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.equipamentos.MockEquipamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockDepartamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockLaboratorioDAO;
@@ -60,6 +62,11 @@ public class MockDAOFactory implements DAOFactory {
 	@Override
 	public IEquipamentoDAO getEquipamentoDAO() {
 		return MockEquipamentoDAO.getInstance();
+	}
+        
+        @Override
+	public IEmprestimoDAO getEmprestimoDAO() {
+		return MockEmprestimoDAO.getInstance();
 	}
 
 	@Override

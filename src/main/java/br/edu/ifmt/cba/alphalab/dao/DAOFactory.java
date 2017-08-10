@@ -22,6 +22,8 @@ public interface DAOFactory {
 	public abstract ILaboratorioDAO getLaboratorioDAO();
 
 	public abstract IEquipamentoDAO getEquipamentoDAO();
+        
+        public abstract IEmprestimoDAO getEmprestimoDAO();
 
 	public abstract IServidorDAO getServidorDAO();
 

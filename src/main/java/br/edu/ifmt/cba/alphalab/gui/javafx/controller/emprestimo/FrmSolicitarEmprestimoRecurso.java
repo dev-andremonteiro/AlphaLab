@@ -5,9 +5,16 @@ package br.edu.ifmt.cba.alphalab.gui.javafx.controller.emprestimo;
  *
  * @author Wesley
  */
+import br.edu.ifmt.cba.alphalab.business.Emprestimo;
+import br.edu.ifmt.cba.alphalab.business.Equipamento;
+import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EmprestimoEntity;
+import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,9 +24,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-public class FrmSolicitarEmprestimoRecurso {
-
+public class FrmSolicitarEmprestimoRecurso implements Initializable {
+    
+  // private Emprestimo equipamento = new Emprestimo(DAOFactory.getDAOFactory().getEmprestimoDAO());
+  private Equipamento equipamento = new Equipamento(DAOFactory.getDAOFactory().getEquipamentoDAO());
    
     @FXML
     private Label lblProfessor;
@@ -46,10 +56,10 @@ public class FrmSolicitarEmprestimoRecurso {
     private TextField txtDescricao1;
 
     @FXML
-    private TableView<?> tblRecursoPedido;
+    private TableView<EmprestimoEntity> tblRecursoPedido;
     
     @FXML
-    private TableView<EmprestimoEntity> tblRecursoDisponivel;
+    private TableView<EquipamentoEntity> tblRecursoDisponivel;
     
     @FXML
     private TableColumn<EmprestimoEntity, String> tbcQtdeDisponivel;
@@ -97,6 +107,24 @@ public class FrmSolicitarEmprestimoRecurso {
     @FXML
     void btnVoltarAction(ActionEvent event) {
 
+    }
+    
+    private void preencherDadosTblDisponivel(List<EquipamentoEntity> listaDiponivel){
+        
+        tbcDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        
+        tblRecursoDisponivel.setItems(FXCollections.observableArrayList(listaDiponivel));
+        
+        tblRecursoDisponivel.refresh();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        tblRecursoPedido.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tblRecursoDisponivel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        preencherDadosTblDisponivel(equipamento.buscarEquipamentosDisponiveis());
+        
+        
     }
 
     
