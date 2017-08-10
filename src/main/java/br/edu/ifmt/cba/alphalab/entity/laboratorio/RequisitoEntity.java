@@ -61,4 +61,13 @@ public class RequisitoEntity implements IEntity<RequisitoException> {
 	public void setSoftwares(List<SoftwareEntity> softwares) {
 		this.softwares = softwares;
 	}
+
+	@Override
+	public String toString() {
+		String requisito = this.qtdAlunos + " alunos" + "\n";
+		for (SoftwareEntity lista : softwares) {
+			requisito = requisito + lista.getDescricao() + "\n";
+		}
+		return requisito;
+	}
 }

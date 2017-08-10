@@ -1,6 +1,7 @@
 package br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,7 @@ import br.edu.ifmt.cba.alphalab.business.Reserva;
 import br.edu.ifmt.cba.alphalab.business.Servidor;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumTipoReserva;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
@@ -19,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -32,6 +35,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 /**
@@ -138,12 +145,14 @@ public class FrmPedidosReserva implements Initializable {
 
 		tabDados.setDisable(true);
 
-		// TODO Sugestão: Como esse campo não existe mais, você pode transformar ele em
-		// SEMESTRAL e UNICA (além de tirar esse atributo da entidade) e aí filtra pelas
-		// reservas que tem mesmo dia de começo e fim (isso dá pra fazer em uma linha
-		// usando LocalDate).
-		ObservableList<EnumTipoReserva> comboTipo = FXCollections.observableArrayList(EnumTipoReserva.ANUAL,
-				EnumTipoReserva.MENSAL, EnumTipoReserva.SEMANAL, EnumTipoReserva.SEMESTRAL);
+		/*
+		 * TODO Sugestão: Como esse campo não existe mais, você pode transformar
+		 * ele em SEMESTRAL e UNICA (além de tirar esse atributo da entidade) e
+		 * aí filtra pelas reservas que tem mesmo dia de começo e fim (isso dá
+		 * pra fazer em uma linha usando LocalDate).
+		 */
+		ObservableList<EnumTipoReserva> comboTipo = FXCollections.observableArrayList(EnumTipoReserva.UNICA,
+				EnumTipoReserva.SEMESTRAL);
 		cmbTipo.setItems(comboTipo);
 
 		ObservableList<EnumTipoServidor> servidores = FXCollections.observableArrayList(EnumTipoServidor.ESTAGIARIO,
@@ -179,7 +188,8 @@ public class FrmPedidosReserva implements Initializable {
 	}
 
 	/**
-	 * Cancela a operação de Gerenciar Pedidos de Reserva e\n retorna à aba inicial.
+	 * Cancela a operação de Gerenciar Pedidos de Reserva e\n retorna à aba
+	 * inicial.
 	 */
 	private void cancelarGerenciarPedido() {
 		limparDados();
@@ -199,15 +209,21 @@ public class FrmPedidosReserva implements Initializable {
 		tabPedidos.setDisable(true);
 		tabDados.setDisable(false);
 
+		cmbLaboratorio.getItems().setAll(DAOFactory.getDAOFactory().getLaboratorioDAO().buscarTodos());
+
 		texID.setText(reservaEntity.getId().toString());
 		txtDataPedido.setText(reservaEntity.getDataSolicitacao().toString());
-		// hbxRequisitos
+		if (hbxRequisitos.getChildren().size() > 1)
+			hbxRequisitos.getChildren().remove(1, hbxRequisitos.getChildren().size());
+		hbxRequisitos.getChildren().add(buildBoxRequisitos(reservaEntity.getRequisitos()));
 		texProfessor.setText(reservaEntity.getSolicitante().getNome());
 		texDisciplina.setText(reservaEntity.getDisciplina().toString());
 		texDepartamento.setText(reservaEntity.getDepartamentoAula().getNome());
 		texTurma.setText(reservaEntity.getTurma());
 		texDescricao.setText(reservaEntity.getObservacao());
-		// hbxHorarios
+		if (hbxHorarios.getChildren().size() > 1)
+			hbxHorarios.getChildren().remove(1, hbxHorarios.getChildren().size());
+		hbxHorarios.getChildren().add(buildBoxHorarios(reservaEntity.getHorarios()));
 		ckbFixo.setSelected(false);
 	}
 
@@ -229,6 +245,33 @@ public class FrmPedidosReserva implements Initializable {
 
 	private void atualizaTableViewPorProfessor(EnumTipoServidor servidor) {
 
+	}
+
+	private StackPane buildBoxRequisitos(RequisitoEntity requisito) {
+		VBox vbox = new VBox(7);
+		vbox.setAlignment(Pos.CENTER);
+
+		vbox.getChildren().add(new Text(requisito.toString()));
+
+		StackPane caixa = new StackPane(vbox);
+		return caixa;
+	}
+
+	private StackPane buildBoxHorarios(List<Horario> horarios) {
+		VBox vbox = new VBox(7);
+		vbox.setAlignment(Pos.CENTER);
+
+		Rectangle rect = new Rectangle(150, 100);
+		rect.setStroke(Color.BLACK);
+		rect.setStrokeWidth(2);
+		rect.setFill(Color.TRANSPARENT);
+
+		for (Horario horario : horarios) {
+			vbox.getChildren().add(new Text(horario.getEstampa()));
+		}
+
+		StackPane caixa = new StackPane(rect, vbox);
+		return caixa;
 	}
 
 	@FXML

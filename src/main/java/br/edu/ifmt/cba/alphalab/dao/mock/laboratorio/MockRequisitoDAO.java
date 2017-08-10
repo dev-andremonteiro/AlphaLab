@@ -20,15 +20,40 @@ import br.edu.ifmt.cba.alphalab.entity.software.TipoSoftwareEnum;
 public class MockRequisitoDAO implements IRequisitoDAO {
 
 	private static List<RequisitoEntity> requisitos = new ArrayList<>();
-	
+
 	static {
 		SituacaoSolicitacaoEnum status = null;
 		TipoSoftwareEnum tipo = null;
-		requisitos.add(new RequisitoEntity(1L, 15, Arrays.asList(new SoftwareEntity("OpenOffice", tipo, "1.0", "http:\\domain.org", "Nada a declarar",  new ServidorEntity()), new SoftwareEntity("MS Paint", tipo, "3.5.7", "http:\\domain.org", "Nada a declarar",  new ServidorEntity()), new SoftwareEntity("PostgreSQL", tipo, "0.7", "http:\\domain.org", "Requer usu�rio",  new ServidorEntity()))));
-		requisitos.add(new RequisitoEntity(2L, 30, Arrays.asList(new SoftwareEntity("OpenOffice", tipo, "1.0", "http:\\domain.org", "Nada a declarar",  new ServidorEntity()))));
-		requisitos.add(new RequisitoEntity(3L, 10, Arrays.asList(new SoftwareEntity("OpenOffice", tipo, "1.0", "http:\\domain.org", "Nada a declarar",  new ServidorEntity()), new SoftwareEntity("MS Paint", tipo, "3.5.7", "http:\\domain.org", "Nada a declarar",  new ServidorEntity()))));
+		requisitos.add(new RequisitoEntity(1L, 15,
+				Arrays.asList(
+						new SoftwareEntity("OpenOffice", tipo, "1.0", "http:\\domain.org", "Nada a declarar",
+								new ServidorEntity()),
+						new SoftwareEntity("MS Paint", tipo, "3.5.7", "http:\\domain.org", "Nada a declarar",
+								new ServidorEntity()),
+						new SoftwareEntity("PostgreSQL", tipo, "0.7", "http:\\domain.org", "Requer usu�rio",
+								new ServidorEntity()))));
+		requisitos.add(new RequisitoEntity(2L, 30, Arrays.asList(new SoftwareEntity("OpenOffice", tipo, "1.0",
+				"http:\\domain.org", "Nada a declarar", new ServidorEntity()))));
+		requisitos.add(new RequisitoEntity(3L, 10,
+				Arrays.asList(
+						new SoftwareEntity("OpenOffice", tipo, "1.0", "http:\\domain.org", "Nada a declarar",
+								new ServidorEntity()),
+						new SoftwareEntity("MS Paint", tipo, "3.5.7", "http:\\domain.org", "Nada a declarar",
+								new ServidorEntity()))));
+		requisitos.add(new RequisitoEntity(4L, 15,
+				Arrays.asList(
+						new SoftwareEntity("Scene Builder", tipo, "8.3.0", "http:\\domain.org", "Nada a declarar",
+								new ServidorEntity()),
+						new SoftwareEntity("MS Paint", tipo, "3.5.7", "http:\\domain.org", "Nada a declarar",
+								new ServidorEntity()))));
+		requisitos.add(new RequisitoEntity(5L, 10,
+				Arrays.asList(
+						new SoftwareEntity("brModelo", tipo, "1.0", "http:\\domain.org", "Nada a declarar",
+								new ServidorEntity()),
+						new SoftwareEntity("MS Paint", tipo, "3.5.7", "http:\\domain.org", "Nada a declarar",
+								new ServidorEntity()))));
 	}
-	
+
 	private static MockRequisitoDAO singleton = null;
 
 	public static MockRequisitoDAO getInstance() {
@@ -59,7 +84,7 @@ public class MockRequisitoDAO implements IRequisitoDAO {
 	}
 
 	@Override
-	public List<RequisitoEntity> buscarTodos() {
-		return requisitos;
+	public RequisitoEntity getRequisitos(int id) {
+		return requisitos.get(id);
 	}
 }

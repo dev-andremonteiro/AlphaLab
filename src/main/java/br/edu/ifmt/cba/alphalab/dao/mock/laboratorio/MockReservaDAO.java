@@ -53,7 +53,7 @@ public class MockReservaDAO implements IReservaDAO {
 			reserva1.setDataInicio(sdf.parse("13/05/2017"));
 			reserva1.setDataFim(sdf.parse("13/09/2017"));
 			reserva1.setDataAprovacaoRecusa(sdf.parse("11/05/2017"));
-			//System.out.println(sdf.format(sdf.parse("25/08/1979")));
+			// System.out.println(sdf.format(sdf.parse("25/08/1979")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -62,7 +62,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva1.setDepartamentoAula(departamento.getById(1L));
 		reserva1.setSolicitante(servidor.getById(4L));
 		reserva1.setAprovador(servidor.getById(1L));
-		reserva1.setRequisitos(requisito.buscarTodos());
+		reserva1.setRequisitos(requisito.getRequisitos(1));
 		reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.N1, Horario.N2, Horario.N3)));
 
 		reserva2.setId(2L);
@@ -76,7 +76,7 @@ public class MockReservaDAO implements IReservaDAO {
 			reserva2.setDataInicio(sdf.parse("07/08/2017"));
 			reserva2.setDataFim(sdf.parse("12/12/2017"));
 			reserva2.setDataAprovacaoRecusa(sdf.parse("07/08/2017"));
-			//System.out.println(sdf.format(sdf.parse("07/08/2017")));
+			// System.out.println(sdf.format(sdf.parse("07/08/2017")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -85,7 +85,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva2.setDepartamentoAula(departamento.getById(1L));
 		reserva2.setSolicitante(servidor.getById(4L));
 		reserva2.setAprovador(servidor.getById(1L));
-		reserva2.setRequisitos(requisito.buscarTodos());
+		reserva2.setRequisitos(requisito.getRequisitos(2));
 		reserva2.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M1, Horario.M2)));
 
 		reserva3.setId(3L);
@@ -99,7 +99,7 @@ public class MockReservaDAO implements IReservaDAO {
 			reserva3.setDataInicio(sdf.parse("08/05/2017"));
 			reserva3.setDataFim(sdf.parse("28/09/2017"));
 			reserva3.setDataAprovacaoRecusa(sdf.parse("11/09/2017"));
-			//System.out.print(sdf.format(sdf.parse("11/09/2017")));
+			// System.out.print(sdf.format(sdf.parse("11/09/2017")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -108,9 +108,9 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva3.setDepartamentoAula(departamento.getById(1L));
 		reserva3.setSolicitante(servidor.getById(4L));
 		reserva3.setAprovador(servidor.getById(1L));
-		reserva3.setRequisitos(requisito.buscarTodos());
+		reserva3.setRequisitos(requisito.getRequisitos(3));
 		reserva3.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.V3, Horario.V4)));
-		
+
 		reserva4.setId(4L);
 		reserva4.setStatus(EnumReserva.CONFIRMADO);
 		reserva4.setDisciplina(EnumDisciplina.ALGORITMOS_I);
@@ -122,7 +122,7 @@ public class MockReservaDAO implements IReservaDAO {
 			reserva4.setDataInicio(sdf.parse("09/08/2017"));
 			reserva4.setDataFim(sdf.parse("12/12/2017"));
 			reserva4.setDataAprovacaoRecusa(sdf.parse("07/08/2017"));
-			//System.out.println(sdf.format(sdf.parse("07/08/2017")));
+			// System.out.println(sdf.format(sdf.parse("07/08/2017")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -131,9 +131,9 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva4.setDepartamentoAula(departamento.getById(1L));
 		reserva4.setSolicitante(servidor.getById(4L));
 		reserva4.setAprovador(servidor.getById(1L));
-		reserva4.setRequisitos(requisito.buscarTodos());
+		reserva4.setRequisitos(requisito.getRequisitos(4));
 		reserva4.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M2, Horario.M3)));
-		
+
 		reserva5.setId(5L);
 		reserva5.setStatus(EnumReserva.CONFIRMADO);
 		reserva5.setDisciplina(EnumDisciplina.COMUNICACAO_E_EXPRESSAO);
@@ -145,7 +145,7 @@ public class MockReservaDAO implements IReservaDAO {
 			reserva5.setDataInicio(sdf.parse("10/08/2017"));
 			reserva5.setDataFim(sdf.parse("12/12/2017"));
 			reserva5.setDataAprovacaoRecusa(sdf.parse("07/08/2017"));
-			//System.out.println(sdf.format(sdf.parse("07/08/2017")));
+			// System.out.println(sdf.format(sdf.parse("07/08/2017")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -154,7 +154,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva5.setDepartamentoAula(departamento.getById(1L));
 		reserva5.setSolicitante(servidor.getById(4L));
 		reserva5.setAprovador(servidor.getById(1L));
-		reserva5.setRequisitos(requisito.buscarTodos());
+		reserva5.setRequisitos(requisito.getRequisitos(4));
 		reserva5.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.V4, Horario.V5, Horario.V6)));
 
 		reservas.add(reserva1);
@@ -215,10 +215,13 @@ public class MockReservaDAO implements IReservaDAO {
 	public List<ReservaEntity> getAtivosNoDia(LocalDate data) {
 		ArrayList<ReservaEntity> resultado = new ArrayList<>();
 		for (ReservaEntity vo : reservas) {
-			if (data.getDayOfWeek().equals(vo.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek())) {
-				if (!data.isBefore(vo.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()) && !data.isAfter(vo.getDataFim().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()) && vo.getStatus().equals(EnumReserva.CONFIRMADO)) {
+			if (data.getDayOfWeek().equals(
+					vo.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek())) {
+				if (!data.isBefore(vo.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
+						&& !data.isAfter(vo.getDataFim().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
+						&& vo.getStatus().equals(EnumReserva.CONFIRMADO)) {
 					resultado.add(vo);
-				} 
+				}
 			}
 		}
 		return resultado;
@@ -227,14 +230,14 @@ public class MockReservaDAO implements IReservaDAO {
 	@Override
 	public List<ReservaEntity> getAtivosNaSemana(LocalDate data) {
 		ArrayList<ReservaEntity> resultado = new ArrayList<>();
-		
+
 		if (!data.getDayOfWeek().equals(DayOfWeek.MONDAY))
 			data = data.minusDays(data.getDayOfWeek().getValue() - 1);
 		do {
 			resultado.addAll(getAtivosNoDia(data));
 			data = data.plusDays(1);
 		} while (!data.getDayOfWeek().equals(DayOfWeek.SUNDAY));
-		
+
 		return resultado;
 	}
 }

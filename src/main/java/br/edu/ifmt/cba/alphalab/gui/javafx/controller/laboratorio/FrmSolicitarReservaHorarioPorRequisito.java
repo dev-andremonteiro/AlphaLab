@@ -208,9 +208,11 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 			}
 		});
 
+		buscarSoftwares();
+
 		// Adiciona a coluna Nome do Software
 		tbcNome.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<SoftwareCheckTableView, String>, ObservableValue<String>>() {
+				new Callback<CellDataFeatures<SoftwareCheckTableView, String>, ObservableValue<String>>() {
 
 					@Override
 					public ObservableValue<String> call(CellDataFeatures<SoftwareCheckTableView, String> param) {
@@ -219,26 +221,27 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 					}
 				});
 
-		// Adiciona a coluna Tipo do Software
-		tbcTipo.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<SoftwareCheckTableView, String>, ObservableValue<String>>() {
+		/*
+		 * Adiciona a coluna Tipo do Software tbcTipo.setCellValueFactory( new
+		 * Callback<TableColumn.CellDataFeatures<SoftwareCheckTableView,
+		 * String>, ObservableValue<String>>() {
+		 * 
+		 * @Override public ObservableValue<Enum>
+		 * call(CellDataFeatures<SoftwareCheckTableView, String> param) { return
+		 * new ReadOnlyObjectWrapper<String>(param.getValue().getTipo()); } });
+		 * 
+		 * tbcSelecionado = new TableColumn<SoftwareEntity, Boolean>();
+		 * tbcSelecionado.setCellValueFactory( new
+		 * Callback<TableColumn.CellDataFeatures<SoftwareCheckTableView,
+		 * Boolean>, ObservableValue<Boolean>>() {
+		 * 
+		 * @Override public ObservableValue<Boolean>
+		 * call(CellDataFeatures<SoftwareCheckTableView, Boolean> param) {
+		 * return new
+		 * ReadOnlyObjectWrapper<Boolean>(param.getValue().getSelecionado()); }
+		 * });
+		 */
 
-					@Override
-					public ObservableValue<String> call(CellDataFeatures<SoftwareCheckTableView, String> param) {
-						return new ReadOnlyObjectWrapper<String>("Editor de Texto");
-					}
-				});
-
-		// tbcSelecionado = new TableColumn<SoftwareEntity, Boolean>();
-		tbcSelecionado.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<SoftwareCheckTableView, Boolean>, ObservableValue<Boolean>>() {
-
-					@Override
-					public ObservableValue<Boolean> call(CellDataFeatures<SoftwareCheckTableView, Boolean> param) {
-						return new ReadOnlyObjectWrapper<Boolean>(param.getValue().getSelecionado());
-					}
-				});
-		buscarSoftwares();
 	}
 
 	/**
@@ -307,7 +310,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	 * Atualiza o TableView de Softwares
 	 */
 	private void buscarSoftwares() {
-		List<SoftwareEntity> listaSoftwareEntity = software.getByNome(txtNomeSoftware.getText());
+		List<SoftwareEntity> listaSoftwareEntity = software.buscarTodosSoftwares();
 
 		tblRequisitos.getItems().clear();
 		tblRequisitos.setItems(FXCollections.observableArrayList(SoftwareCheckTableView.convert(listaSoftwareEntity)));
@@ -349,12 +352,12 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	 * Limpa os campos da tela.
 	 */
 	private void limparCampos() {
-		// tblHorarioRequisitos.setItems(null);
+		tblHorarioRequisitos.setItems(null);
 		txtNomeSoftware.setText("");
-		// tblRequisitos.setItems(null);
+		tblRequisitos.setItems(null);
 		txtNumMaxAlunos.setText("");
 		texRequisitos.setText("");
-		// hbxHorarios
+		hbxHorarios.getChildren().remove(1, hbxHorarios.getChildren().size());
 		cmbDisciplina.getSelectionModel().select(-1);
 		cmbDepartamento.getSelectionModel().select(-1);
 		txtTurma.setText("");
@@ -415,7 +418,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		reservaEntity.setHorarios(listaHorariosSelecionados);
 		requisitos.setQtdAlunos(numMaxAlunos);
 		requisitos.setSoftwares(listaSoftwaresSelecionados);
-		reservaEntity.setRequisitos(Arrays.asList(requisitos));
+		reservaEntity.setRequisitos(requisitos);
 		reservaEntity.setDisciplina(cmbDisciplina.getSelectionModel().getSelectedItem());
 		reservaEntity.setDepartamentoAula(cmbDepartamento.getSelectionModel().getSelectedItem());
 		reservaEntity.setTurma(txtTurma.getText());
@@ -531,7 +534,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 					vbxSoftwares.getChildren().add(new Text(software.getDescricao()));
 				}
 			} else {
-				// TODO Código de teste. Remover todo o else quando a lista de software estiver
+				// TODO Código de teste. Remover todo o else quando a lista de
+				// software estiver
 				// implementada.
 				vbxSoftwares.getChildren().add(new Text("TESTE\nTESTE"));
 			}

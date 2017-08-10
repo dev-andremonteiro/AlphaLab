@@ -7,7 +7,7 @@ package br.edu.ifmt.cba.alphalab.entity.laboratorio;
  */
 
 public enum EnumTipoReserva {
-	SEMANAL("Semanal"), MENSAL("Mensal"), SEMESTRAL("Semestral"), ANUAL("Anual");
+	SEMESTRAL("Semestral"), UNICA("Única");
 
 	private final String descricao;
 

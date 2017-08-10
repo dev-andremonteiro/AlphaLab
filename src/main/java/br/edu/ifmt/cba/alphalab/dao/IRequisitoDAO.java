@@ -11,5 +11,6 @@ import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
  */
 
 public interface IRequisitoDAO extends IDAO<RequisitoEntity> {
-	public List<RequisitoEntity> buscarTodos();
+
+	RequisitoEntity getRequisitos(int id);
 }

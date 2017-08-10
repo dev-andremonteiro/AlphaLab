@@ -39,38 +39,37 @@ public class ReservaEntity implements IEntity<ReservaException> {
 	private ServidorEntity solicitante;
 
 	private ServidorEntity aprovador;
-        
-    private ArrayList<Horario> horarios;
-    // TODO Esse atributo deveria ser um único RequisitoEntity, não List
-	private List<RequisitoEntity> requisitos;
+
+	private ArrayList<Horario> horarios;
+	// TODO Esse atributo deveria ser um único RequisitoEntity, não List
+	private RequisitoEntity requisitos;
 
 	public ReservaEntity() {
 	}
 
-    public ReservaEntity(Long id, EnumReserva status, Date dataSolicitacao, EnumDisciplina disciplina, String turma, String observacao, 
-            boolean fixo, Date dataInicio, Date dataFim, Date dataAprovacaoRecusa, String justificativa, LaboratorioEntity laboratorio,
-            DepartamentoEntity departamentoAula, ServidorEntity solicitante, ServidorEntity aprovador, ArrayList<Horario> horarios, 
-            List<RequisitoEntity> requisitos) {
-        this.id = id;
-        this.status = status;
-        this.dataSolicitacao = dataSolicitacao;
-        this.disciplina = disciplina;
-        this.turma = turma;
-        this.observacao = observacao;
-        this.fixo = fixo;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-        this.dataAprovacaoRecusa = dataAprovacaoRecusa;
-        this.justificativa = justificativa;
-        this.laboratorio = laboratorio;
-        this.departamentoAula = departamentoAula;
-        this.solicitante = solicitante;
-        this.aprovador = aprovador;
-        this.horarios = horarios;
-        this.requisitos = requisitos;
-    }
-
-	
+	public ReservaEntity(Long id, EnumReserva status, Date dataSolicitacao, EnumDisciplina disciplina, String turma,
+			String observacao, boolean fixo, Date dataInicio, Date dataFim, Date dataAprovacaoRecusa,
+			String justificativa, LaboratorioEntity laboratorio, DepartamentoEntity departamentoAula,
+			ServidorEntity solicitante, ServidorEntity aprovador, ArrayList<Horario> horarios,
+			RequisitoEntity requisitos) {
+		this.id = id;
+		this.status = status;
+		this.dataSolicitacao = dataSolicitacao;
+		this.disciplina = disciplina;
+		this.turma = turma;
+		this.observacao = observacao;
+		this.fixo = fixo;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
+		this.dataAprovacaoRecusa = dataAprovacaoRecusa;
+		this.justificativa = justificativa;
+		this.laboratorio = laboratorio;
+		this.departamentoAula = departamentoAula;
+		this.solicitante = solicitante;
+		this.aprovador = aprovador;
+		this.horarios = horarios;
+		this.requisitos = requisitos;
+	}
 
 	@Override
 	public Long getId() {
@@ -193,11 +192,11 @@ public class ReservaEntity implements IEntity<ReservaException> {
 		this.aprovador = aprovador;
 	}
 
-	public List<RequisitoEntity> getRequisitos() {
+	public RequisitoEntity getRequisitos() {
 		return requisitos;
 	}
 
-	public void setRequisitos(List<RequisitoEntity> requisitos) {
+	public void setRequisitos(RequisitoEntity requisitos) {
 		this.requisitos = requisitos;
 	}
 
@@ -217,26 +216,29 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
 		if (dataSolicitacao == null)
 			msg.append("Data de solicitação da reserva deve ser informada!\n");
-                
-                if (departamentoAula == null)
+
+		if (departamentoAula == null)
 			msg.append("Departamento da aula deve ser informado!\n");
-                
-                if (dataInicio == null)
+
+		if (dataInicio == null)
 			msg.append("Data de início da reserva deve ser informada!\n");
 
 		if (dataFim == null)
 			msg.append("Data final da reserva deve ser informada!\n");
-                
-                if (solicitante == null)
+
+		if (solicitante == null)
 			msg.append("O solicitante deve ser informada!\n");
-                
-                if (horarios.isEmpty())
+
+		if (horarios.isEmpty())
 			msg.append("O horário de reserva deve ser informado!\n");
 
 		if (disciplina == null)
 			msg.append("É obrigatório escolher uma disciplina!\n");
-		/*if (disciplina != null && (disciplina.trim().length() < 5 || disciplina.trim().length() > 50))
-			msg.append("Nome da disciplina deve possuir entre 5 e 50 caracteres!\n");*/
+		/*
+		 * if (disciplina != null && (disciplina.trim().length() < 5 ||
+		 * disciplina.trim().length() > 50)) msg.append(
+		 * "Nome da disciplina deve possuir entre 5 e 50 caracteres!\n");
+		 */
 
 		if (turma == null || turma.trim().length() == 0)
 			msg.append("Nome da turma é obrigatório!\n");
@@ -245,24 +247,26 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
 		if (observacao != null && observacao.trim().length() > 200)
 			msg.append("Observação deve possuir no máximo 200 caracteres!\n");
-                
-                if (status == EnumReserva.CONFIRMADO && laboratorio == null)
+
+		if (status == EnumReserva.CONFIRMADO && laboratorio == null)
 			msg.append("O laboratorio deve ser informado!\n");
 
-                if ((status == EnumReserva.CONFIRMADO || status == EnumReserva.RECUSADO) && aprovador == null)
+		if ((status == EnumReserva.CONFIRMADO || status == EnumReserva.RECUSADO) && aprovador == null)
 			msg.append("O aprovador deve ser informado!\n");
-                
+
 		if (status == EnumReserva.RECUSADO && (justificativa == null || justificativa.trim().length() == 0))
 			msg.append("Justificativa deve ser informada!\n");
-                if (status == EnumReserva.RECUSADO && (justificativa != null && (justificativa.trim().length() < 5 || justificativa.trim().length() > 50)))
+		if (status == EnumReserva.RECUSADO
+				&& (justificativa != null && (justificativa.trim().length() < 5 || justificativa.trim().length() > 50)))
 			msg.append("A justificativa deve possuir entre 5 e 50 caracteres!\n");
-                
-                if ((status == EnumReserva.CONFIRMADO || status == EnumReserva.RECUSADO) && dataAprovacaoRecusa == null)
+
+		if ((status == EnumReserva.CONFIRMADO || status == EnumReserva.RECUSADO) && dataAprovacaoRecusa == null)
 			msg.append("Data de Aprovação ou Recusa deve ser informada!\n");
 
-                if ((status == EnumReserva.CONFIRMADO || status == EnumReserva.RECUSADO) && (dataAprovacaoRecusa != null && dataAprovacaoRecusa.before(dataSolicitacao)))
+		if ((status == EnumReserva.CONFIRMADO || status == EnumReserva.RECUSADO)
+				&& (dataAprovacaoRecusa != null && dataAprovacaoRecusa.before(dataSolicitacao)))
 			msg.append("Data de Aprovação ou Recusa deve ser maior do que a data de solicitação!\n");
-                
+
 		if (dataInicio != null && dataFim != null && dataInicio.before(dataFim))
 			msg.append("Data de início precisa ser menor que a data de final da reserva");
 
