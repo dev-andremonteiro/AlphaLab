@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -22,9 +21,7 @@ import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
 import br.edu.ifmt.cba.alphalab.gui.javafx.controller.exemplo.FrmPrincipal;
 import br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio.adapter.SoftwareCheckTableView;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -42,12 +39,11 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -59,7 +55,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
 
 /**
  * 
@@ -212,7 +207,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	}
 
 	private void iniciarTableViewRequisitos() {
-		// 
+		//
 		List<SoftwareEntity> listaSoftwareEntity = new ArrayList<>();
 		listaSoftwareEntity = software.buscarTodosSoftwares();
 
@@ -324,7 +319,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	private void limparCampos() {
 		tblHorarioRequisitos.setItems(null);
 		txtNomeSoftware.setText("");
-		tblRequisitos.setItems(null);
+		tblRequisitos.getItems().clear();
+		;
 		txtNumMaxAlunos.setText("");
 		texRequisitos.setText("");
 		hbxHorarios.getChildren().remove(1, hbxHorarios.getChildren().size());
@@ -333,6 +329,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		txtTurma.setText("");
 		txaObservacao.setText("");
 		ckbFixo.setSelected(false);
+		dtpData.setValue(null);
 	}
 
 	/**
@@ -398,6 +395,26 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		return reservaEntity;
 	}
 
+	/**
+	 * Caixa de diálogo Alert.
+	 * 
+	 * @param alertType
+	 *            é o tipo to alerta.
+	 * @param titulo
+	 *            é o título da caixa de diálogo.
+	 * @param headerText
+	 *            é o cabeçalho da caixa de diálogo.
+	 * @param contentText
+	 *            é o conteúdo da caixa de diálogo.
+	 */
+	private void caixaAlerta(AlertType alertType, String titulo, String headerText, String contentText) {
+		Alert alerta = new Alert(alertType);
+		alerta.setTitle(titulo);
+		alerta.setHeaderText(headerText);
+		alerta.setContentText(contentText);
+		alerta.show();
+	}
+
 	@FXML
 	void btnBuscar_onAction(ActionEvent event) {
 		// buscarSoftwares();
@@ -420,8 +437,9 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		tabRequisitos.setDisable(false);
 		tabPaneDados.getSelectionModel().select(tabRequisitos);
 		limparCampos();
+		fillColumns();
+		iniciarTableViewRequisitos();
 		dtpData.requestFocus();
-		// buscarSoftwares();
 	}
 
 	@FXML
@@ -592,50 +610,41 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	void tblRequisitos_onMouseClicked(MouseEvent event) {
 		if (event.getClickCount() >= 2) {
 			if (tblRequisitos.getSelectionModel().getSelectedItem() == null) {
-				Alert alerta = new Alert(AlertType.INFORMATION);
-				alerta.setTitle("AlphaLab");
-				alerta.setHeaderText("Seleção de softwares");
-				alerta.setContentText("Selecione um software na lista de requisitos!");
-				alerta.show();
-			} /*
-				 * else { SoftwareCheckTableView softwareSelecionado =
-				 * this.tblRequisitos.getSelectionModel().getSelectedItem();
-				 * SoftwareEntity softwareEntity = new SoftwareEntity();
-				 * 
-				 * softwareEntity.setId(softwareSelecionado.getSoftwareEntity().
-				 * getId()); softwareEntity.setDescricao(softwareSelecionado.
-				 * getSoftwareEntity().getDescricao());
-				 * softwareEntity.setTipo(softwareSelecionado.getSoftwareEntity(
-				 * ).getTipo());
-				 * softwareEntity.setConcluinte(softwareSelecionado.
-				 * getSoftwareEntity().getConcluinte());
-				 * softwareEntity.setLink(softwareSelecionado.getSoftwareEntity(
-				 * ).getLink()); softwareEntity
-				 * .setObservacao_Instalacao(softwareSelecionado.
-				 * getSoftwareEntity().getObservacao_Instalacao());
-				 * softwareEntity.setSolicitante(softwareSelecionado.
-				 * getSoftwareEntity().getSolicitante());
-				 * softwareEntity.setVersao(softwareSelecionado.
-				 * getSoftwareEntity().getVersao());
-				 * 
-				 * if (listaSoftwaresSelecionados.contains(softwareEntity)) {
-				 * listaSoftwaresSelecionados.remove(listaSoftwaresSelecionados.
-				 * indexOf(softwareEntity)); } else {
-				 * listaSoftwaresSelecionados.add(softwareSelecionado.
-				 * getSoftwareEntity()); } }
-				 */
+				caixaAlerta(AlertType.INFORMATION, "AlphaLab", "Seleção de softwares",
+						"Selecione um software na lista de requisitos!");
+			} else {
+				SoftwareEntity softwareSelecionado = this.tblRequisitos.getSelectionModel().getSelectedItem();
+				SoftwareEntity softwareEntity = new SoftwareEntity();
+
+				softwareEntity.setId(softwareSelecionado.getId());
+				softwareEntity.setDescricao(softwareSelecionado.getDescricao());
+				softwareEntity.setTipo(softwareSelecionado.getTipo());
+				softwareEntity.setConcluinte(softwareSelecionado.getConcluinte());
+				softwareEntity.setLink(softwareSelecionado.getLink());
+				softwareEntity.setObservacao_Instalacao(softwareSelecionado.getObservacao_Instalacao());
+				softwareEntity.setSolicitante(softwareSelecionado.getSolicitante());
+				softwareEntity.setVersao(softwareSelecionado.getVersao());
+
+				if (listaSoftwaresSelecionados.indexOf(softwareEntity) < 0) {
+					listaSoftwaresSelecionados.add(softwareEntity);
+					caixaAlerta(AlertType.INFORMATION, "AlphaLab", "Seleção de softwares",
+							softwareEntity.getDescricao() + " adicionado à lista de requisitos");
+				} else {
+					listaSoftwaresSelecionados.remove(listaSoftwaresSelecionados.indexOf(softwareEntity));
+					caixaAlerta(AlertType.INFORMATION, "AlphaLab", "Seleção de softwares",
+							softwareEntity.getDescricao() + " removido da lista de requisitos");
+				}
+			}
 		}
 
-		for (SoftwareEntity lista : listaSoftwaresSelecionados) {
-			Alert alerta = new Alert(AlertType.INFORMATION);
-			alerta.setTitle("AlphaLab");
-			alerta.setHeaderText("Softwares selecionados");
-			alerta.setContentText(lista.getId() + "\n" + lista.getDescricao() + "\n" + lista.getTipo() + "\n"
-					+ lista.getConcluinte() + "\n" + lista.getLink() + "\n" + lista.getObservacao_Instalacao() + "\n"
-					+ lista.getSolicitante() + "\n" + lista.getVersao());
-
-			alerta.show();
-		}
+		/*
+		 * for (SoftwareEntity lista : listaSoftwaresSelecionados) {
+		 * caixaAlerta(AlertType.INFORMATION, "AlphaLab",
+		 * "Softwares selecionados", lista.getId() + "\n" + lista.getDescricao()
+		 * + "\n" + lista.getTipo() + "\n" + lista.getConcluinte() + "\n" +
+		 * lista.getLink() + "\n" + lista.getObservacao_Instalacao() + "\n" +
+		 * lista.getSolicitante() + "\n" + lista.getVersao()); }
+		 */
 	}
 
 	@FXML
