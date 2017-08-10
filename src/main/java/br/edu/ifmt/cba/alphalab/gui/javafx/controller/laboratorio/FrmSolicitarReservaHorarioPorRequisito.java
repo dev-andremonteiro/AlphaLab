@@ -212,6 +212,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	}
 
 	private void iniciarTableViewRequisitos() {
+		// 
 		List<SoftwareEntity> listaSoftwareEntity = new ArrayList<>();
 		listaSoftwareEntity = software.buscarTodosSoftwares();
 
