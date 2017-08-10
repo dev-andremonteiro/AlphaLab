@@ -43,6 +43,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -105,13 +106,13 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	private Button btnBuscar;
 
 	@FXML
-	private TableView<SoftwareCheckTableView> tblRequisitos;
+	private TableView<SoftwareEntity> tblRequisitos;
 
 	@FXML
-	private TableColumn<SoftwareCheckTableView, Boolean> tbcSelecionado;
+	private TableColumn<SoftwareEntity, Boolean> tbcSelecionado;
 
 	@FXML
-	private TableColumn<SoftwareCheckTableView, String> tbcNome;
+	private TableColumn<SoftwareEntity, String> tbcNome;
 
 	@FXML
 	private TableColumn<SoftwareCheckTableView, String> tbcTipo;
@@ -158,6 +159,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		fillColumns();
+		iniciarTableViewRequisitos();
 		tabPreencherDados.setDisable(true);
 		cmbDepartamento.getItems().setAll(DAOFactory.getDAOFactory().getDepartamentoDAO().buscarTodos());
 		cmbDisciplina.getItems().setAll(EnumDisciplina.values());
@@ -207,41 +209,18 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 				}
 			}
 		});
+	}
 
-		buscarSoftwares();
+	private void iniciarTableViewRequisitos() {
+		List<SoftwareEntity> listaSoftwareEntity = new ArrayList<>();
+		listaSoftwareEntity = software.buscarTodosSoftwares();
 
-		// Adiciona a coluna Nome do Software
-		tbcNome.setCellValueFactory(
-				new Callback<CellDataFeatures<SoftwareCheckTableView, String>, ObservableValue<String>>() {
+		tbcNome.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+		tbcTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
 
-					@Override
-					public ObservableValue<String> call(CellDataFeatures<SoftwareCheckTableView, String> param) {
-
-						return new ReadOnlyObjectWrapper<String>(param.getValue().getDescricao());
-					}
-				});
-
-		/*
-		 * Adiciona a coluna Tipo do Software tbcTipo.setCellValueFactory( new
-		 * Callback<TableColumn.CellDataFeatures<SoftwareCheckTableView,
-		 * String>, ObservableValue<String>>() {
-		 * 
-		 * @Override public ObservableValue<Enum>
-		 * call(CellDataFeatures<SoftwareCheckTableView, String> param) { return
-		 * new ReadOnlyObjectWrapper<String>(param.getValue().getTipo()); } });
-		 * 
-		 * tbcSelecionado = new TableColumn<SoftwareEntity, Boolean>();
-		 * tbcSelecionado.setCellValueFactory( new
-		 * Callback<TableColumn.CellDataFeatures<SoftwareCheckTableView,
-		 * Boolean>, ObservableValue<Boolean>>() {
-		 * 
-		 * @Override public ObservableValue<Boolean>
-		 * call(CellDataFeatures<SoftwareCheckTableView, Boolean> param) {
-		 * return new
-		 * ReadOnlyObjectWrapper<Boolean>(param.getValue().getSelecionado()); }
-		 * });
-		 */
-
+		tblRequisitos.getItems().clear();
+		tblRequisitos.setItems(FXCollections.observableArrayList(listaSoftwareEntity));
+		tblRequisitos.refresh();
 	}
 
 	/**
@@ -304,16 +283,6 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 		StackPane caixa = new StackPane(rect, vbox);
 		return caixa;
-	}
-
-	/**
-	 * Atualiza o TableView de Softwares
-	 */
-	private void buscarSoftwares() {
-		List<SoftwareEntity> listaSoftwareEntity = software.buscarTodosSoftwares();
-
-		tblRequisitos.getItems().clear();
-		tblRequisitos.setItems(FXCollections.observableArrayList(SoftwareCheckTableView.convert(listaSoftwareEntity)));
 	}
 
 	/**
@@ -430,13 +399,13 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void btnBuscar_onAction(ActionEvent event) {
-		buscarSoftwares();
+		// buscarSoftwares();
 	}
 
 	@FXML
 	void btnBuscar_onKeyPressed(KeyEvent event) {
-		if (event.getCode() == KeyCode.ENTER)
-			buscarSoftwares();
+		// if (event.getCode() == KeyCode.ENTER)
+		// buscarSoftwares();
 	}
 
 	@FXML
@@ -451,7 +420,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		tabPaneDados.getSelectionModel().select(tabRequisitos);
 		limparCampos();
 		dtpData.requestFocus();
-		buscarSoftwares();
+		// buscarSoftwares();
 	}
 
 	@FXML
@@ -627,26 +596,33 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 				alerta.setHeaderText("Seleção de softwares");
 				alerta.setContentText("Selecione um software na lista de requisitos!");
 				alerta.show();
-			} else {
-				SoftwareCheckTableView softwareSelecionado = this.tblRequisitos.getSelectionModel().getSelectedItem();
-				SoftwareEntity softwareEntity = new SoftwareEntity();
-
-				softwareEntity.setId(softwareSelecionado.getSoftwareEntity().getId());
-				softwareEntity.setDescricao(softwareSelecionado.getSoftwareEntity().getDescricao());
-				softwareEntity.setTipo(softwareSelecionado.getSoftwareEntity().getTipo());
-				softwareEntity.setConcluinte(softwareSelecionado.getSoftwareEntity().getConcluinte());
-				softwareEntity.setLink(softwareSelecionado.getSoftwareEntity().getLink());
-				softwareEntity
-						.setObservacao_Instalacao(softwareSelecionado.getSoftwareEntity().getObservacao_Instalacao());
-				softwareEntity.setSolicitante(softwareSelecionado.getSoftwareEntity().getSolicitante());
-				softwareEntity.setVersao(softwareSelecionado.getSoftwareEntity().getVersao());
-
-				if (listaSoftwaresSelecionados.contains(softwareEntity)) {
-					listaSoftwaresSelecionados.remove(listaSoftwaresSelecionados.indexOf(softwareEntity));
-				} else {
-					listaSoftwaresSelecionados.add(softwareSelecionado.getSoftwareEntity());
-				}
-			}
+			} /*
+				 * else { SoftwareCheckTableView softwareSelecionado =
+				 * this.tblRequisitos.getSelectionModel().getSelectedItem();
+				 * SoftwareEntity softwareEntity = new SoftwareEntity();
+				 * 
+				 * softwareEntity.setId(softwareSelecionado.getSoftwareEntity().
+				 * getId()); softwareEntity.setDescricao(softwareSelecionado.
+				 * getSoftwareEntity().getDescricao());
+				 * softwareEntity.setTipo(softwareSelecionado.getSoftwareEntity(
+				 * ).getTipo());
+				 * softwareEntity.setConcluinte(softwareSelecionado.
+				 * getSoftwareEntity().getConcluinte());
+				 * softwareEntity.setLink(softwareSelecionado.getSoftwareEntity(
+				 * ).getLink()); softwareEntity
+				 * .setObservacao_Instalacao(softwareSelecionado.
+				 * getSoftwareEntity().getObservacao_Instalacao());
+				 * softwareEntity.setSolicitante(softwareSelecionado.
+				 * getSoftwareEntity().getSolicitante());
+				 * softwareEntity.setVersao(softwareSelecionado.
+				 * getSoftwareEntity().getVersao());
+				 * 
+				 * if (listaSoftwaresSelecionados.contains(softwareEntity)) {
+				 * listaSoftwaresSelecionados.remove(listaSoftwaresSelecionados.
+				 * indexOf(softwareEntity)); } else {
+				 * listaSoftwaresSelecionados.add(softwareSelecionado.
+				 * getSoftwareEntity()); } }
+				 */
 		}
 
 		for (SoftwareEntity lista : listaSoftwaresSelecionados) {
@@ -674,7 +650,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void txtNomeSoftware_onKeyPressed(KeyEvent event) {
-		buscarSoftwares();
+		// buscarSoftwares();
 	}
 
 	@FXML
