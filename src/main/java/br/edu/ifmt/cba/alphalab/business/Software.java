@@ -25,8 +25,7 @@ public class Software extends ABusiness<SoftwareEntity, SoftwareException, ISoft
 	}
 
 	public List<SoftwareEntity> getByNome(String text) {
-		// return ((ISoftwareDAO) dao).buscarPorNome(text);
-		return MockSoftwareDAO.getInstance().buscarTodos();
+		return ((ISoftwareDAO) dao).buscarPorNome(text);
 	}
 
 	public List<SoftwareEntity> buscarPorTipoNome(TipoSoftwareEnum tipo, String nome) {
