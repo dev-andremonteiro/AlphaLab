@@ -62,10 +62,10 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
     private TableView<EquipamentoEntity> tblRecursoDisponivel;
     
     @FXML
-    private TableColumn<EmprestimoEntity, String> tbcQtdeDisponivel;
+    private TableColumn<EmprestimoEntity, Long> tbcQtdeDisponivel;
 
     @FXML
-    private TableColumn<EmprestimoEntity, Long> tbcDescricao;
+    private TableColumn<EmprestimoEntity, String> tbcDescricao;
     
     @FXML
     private TableColumn<EmprestimoEntity, String> tbcDescricao2;
@@ -86,7 +86,8 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
 
     @FXML
     void btnAdicionarAction(ActionEvent event) {
-
+     //preencherDadosTblPedido(equipamento.buscarEquipamentosDisponiveis());
+     
     }
 
     @FXML
@@ -109,11 +110,24 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
 
     }
     
+    private void preencherDadosTblPedido(List<EmprestimoEntity> listaPedida){
+        
+        tbcDescricao2.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        tbcQtdePedida.setCellValueFactory(new PropertyValueFactory<>("qtdeEmprestada"));
+        
+        tblRecursoPedido.setItems(FXCollections.observableArrayList(listaPedida));
+        
+        
+        tblRecursoPedido.refresh();
+    }
+    
     private void preencherDadosTblDisponivel(List<EquipamentoEntity> listaDiponivel){
         
         tbcDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        tbcQtdeDisponivel.setCellValueFactory(new PropertyValueFactory<>("qtdeEstoque"));
         
         tblRecursoDisponivel.setItems(FXCollections.observableArrayList(listaDiponivel));
+        
         
         tblRecursoDisponivel.refresh();
     }
@@ -124,6 +138,8 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
         tblRecursoDisponivel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         preencherDadosTblDisponivel(equipamento.buscarEquipamentosDisponiveis());
         
+     //   preencherDadosTblPedido(equipamento.buscarEquipamentosDisponiveis());
+
         
     }
 
