@@ -5,8 +5,12 @@ package br.edu.ifmt.cba.alphalab.gui.javafx.controller.emprestimo;
  *
  * @author Wesley
  */
+import br.edu.ifmt.cba.alphalab.entity.equipamentos.EmprestimoEntity;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -16,6 +20,7 @@ import javafx.scene.control.TextField;
 
 public class FrmSolicitarEmprestimoRecurso {
 
+   
     @FXML
     private Label lblProfessor;
 
@@ -24,9 +29,6 @@ public class FrmSolicitarEmprestimoRecurso {
 
     @FXML
     private DatePicker dtpData;
-
-    @FXML
-    private TableColumn<?, ?> tblRecursoDisponivel;
 
     @FXML
     private Button btnVoltar;
@@ -45,6 +47,21 @@ public class FrmSolicitarEmprestimoRecurso {
 
     @FXML
     private TableView<?> tblRecursoPedido;
+    
+    @FXML
+    private TableView<EmprestimoEntity> tblRecursoDisponivel;
+    
+    @FXML
+    private TableColumn<EmprestimoEntity, String> tbcQtdeDisponivel;
+
+    @FXML
+    private TableColumn<EmprestimoEntity, Long> tbcDescricao;
+    
+    @FXML
+    private TableColumn<EmprestimoEntity, String> tbcDescricao2;
+    
+    @FXML
+    private TableColumn<EmprestimoEntity, Long> tbcQtdePedida;
 
     @FXML
     private Button btnRemover;
@@ -81,6 +98,8 @@ public class FrmSolicitarEmprestimoRecurso {
     void btnVoltarAction(ActionEvent event) {
 
     }
+
+    
 
 }
 

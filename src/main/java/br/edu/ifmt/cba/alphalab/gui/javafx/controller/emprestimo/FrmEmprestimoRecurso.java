@@ -61,7 +61,7 @@ public class FrmEmprestimoRecurso{
 
     @FXML
     void btnSairAction(ActionEvent event) {
-
+      System.exit(0);
     }
 
     @FXML

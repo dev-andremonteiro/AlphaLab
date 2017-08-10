@@ -75,11 +75,11 @@
                               <Insets top="20.0" />
                            </padding>
                         </HBox>
-                        <TableView onKeyPressed="#tblDisponivel_onKeyPressed" prefHeight="356.0" prefWidth="278.0">
-                          <columns>
-                            <TableColumn prefWidth="172.0" text="%column.descricao" />
-                            <TableColumn fx:id="tblRecursoDisponivel" prefWidth="98.0" text="%column.qtdeDisponivel" />
-                          </columns>
+                        <TableView fx:id="tblRecursoDisponivel" onKeyPressed="#tblDisponivel_onKeyPressed" prefHeight="364.0" prefWidth="227.0">
+                           <columns>
+                              <TableColumn fx:id="tbcDescricao" prefWidth="87.0" text="%column.descricao" />
+                              <TableColumn fx:id="tbcQtdeDisponivel" minWidth="9.0" prefWidth="190.0" text="%column.qtdeDisponivel" />
+                           </columns>
                         </TableView>
                      </children>
                   </VBox>
@@ -105,8 +105,8 @@
                   </VBox>
                   <TableView fx:id="tblRecursoPedido" onKeyPressed="#tblPedidos_onKeyPressed" prefHeight="364.0" prefWidth="312.0">
                     <columns>
-                      <TableColumn prefWidth="172.0" text="%column.descricao" />
-                      <TableColumn minWidth="9.0" prefWidth="194.0" text="%column.qtdePedida" />
+                      <TableColumn fx:id="tbcDescricao2" prefWidth="172.0" text="%column.descricao" />
+                      <TableColumn fx:id="tbcQtdePedida" minWidth="9.0" prefWidth="139.0" text="%column.qtdePedida" />
                     </columns>
                      <HBox.margin>
                         <Insets top="120.0" />
