@@ -388,7 +388,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		reservaEntity.setDepartamentoAula(cmbDepartamento.getSelectionModel().getSelectedItem());
 		reservaEntity.setTurma(txtTurma.getText());
 		reservaEntity.setObservacao(txaObservacao.getText());
-		reservaEntity.setFixo(ckbFixo.isPressed());
+		//reservaEntity.setFixo(ckbFixo.isPressed());
 
 		return reservaEntity;
 	}

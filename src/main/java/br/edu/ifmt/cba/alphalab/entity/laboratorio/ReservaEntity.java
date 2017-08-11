@@ -22,7 +22,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
 
 	private String observacao;
 
-	private boolean fixo;
+	private EnumTipoReserva tipo;
 
 	private Date dataInicio;
 
@@ -45,30 +45,6 @@ public class ReservaEntity implements IEntity<ReservaException> {
 	private RequisitoEntity requisitos;
 
 	public ReservaEntity() {
-	}
-
-	public ReservaEntity(Long id, EnumReserva status, Date dataSolicitacao, EnumDisciplina disciplina, String turma,
-			String observacao, boolean fixo, Date dataInicio, Date dataFim, Date dataAprovacaoRecusa,
-			String justificativa, LaboratorioEntity laboratorio, DepartamentoEntity departamentoAula,
-			ServidorEntity solicitante, ServidorEntity aprovador, ArrayList<Horario> horarios,
-			RequisitoEntity requisitos) {
-		this.id = id;
-		this.status = status;
-		this.dataSolicitacao = dataSolicitacao;
-		this.disciplina = disciplina;
-		this.turma = turma;
-		this.observacao = observacao;
-		this.fixo = fixo;
-		this.dataInicio = dataInicio;
-		this.dataFim = dataFim;
-		this.dataAprovacaoRecusa = dataAprovacaoRecusa;
-		this.justificativa = justificativa;
-		this.laboratorio = laboratorio;
-		this.departamentoAula = departamentoAula;
-		this.solicitante = solicitante;
-		this.aprovador = aprovador;
-		this.horarios = horarios;
-		this.requisitos = requisitos;
 	}
 
 	@Override
@@ -120,12 +96,19 @@ public class ReservaEntity implements IEntity<ReservaException> {
 		this.observacao = observacao;
 	}
 
-	public boolean isFixo() {
-		return fixo;
+	/**
+	 * @return the tipo
+	 */
+	public EnumTipoReserva getTipo() {
+		return tipo;
 	}
 
-	public void setFixo(boolean fixo) {
-		this.fixo = fixo;
+	/**
+	 * @param tipo
+	 *            the tipo to set
+	 */
+	public void setTipo(EnumTipoReserva tipo) {
+		this.tipo = tipo;
 	}
 
 	public Date getDataInicio() {

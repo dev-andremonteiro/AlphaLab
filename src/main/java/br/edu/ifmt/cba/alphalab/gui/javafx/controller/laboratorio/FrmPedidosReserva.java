@@ -4,24 +4,30 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import br.edu.ifmt.cba.alphalab.business.Reserva;
 import br.edu.ifmt.cba.alphalab.business.Servidor;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumTipoReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.EnumTipoServidor;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -52,6 +58,8 @@ public class FrmPedidosReserva implements Initializable {
 	private Reserva reserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
 	private Servidor servidor = new Servidor(DAOFactory.getDAOFactory().getServidorDAO());
 
+	private ReservaEntity reservaSelecionada = null;
+
 	@FXML
 	private TabPane tbpDados;
 
@@ -74,16 +82,13 @@ public class FrmPedidosReserva implements Initializable {
 	private TableColumn<ReservaEntity, Long> tbcID;
 
 	@FXML
-	private TableColumn<ReservaEntity, Date> tbcHorario;
+	private TableColumn<ReservaEntity, Horario> tbcHorario;
 
 	@FXML
 	private TableColumn<ReservaEntity, Date> tbcData;
 
 	@FXML
-	private TableColumn<ReservaEntity, Boolean> tbcTipo;
-
-	@FXML
-	private TableColumn<ReservaEntity, Boolean> tbcFixo;
+	private TableColumn<ReservaEntity, String> tbcTipo;
 
 	@FXML
 	private TableColumn<ReservaEntity, String> tbcDados;
@@ -168,15 +173,12 @@ public class FrmPedidosReserva implements Initializable {
 	private void limparDados() {
 		dtpData.setValue(null);
 		dtpData.setPromptText("Data");
-		cmbTipo.getSelectionModel().select(null);
-		cmbTipo.setPromptText("Tipo");
-		cmbProfessor.getSelectionModel().select(null);
-		cmbProfessor.setPromptText("Professor");
+		cmbTipo.getSelectionModel().select(-1);
+		cmbProfessor.getSelectionModel().select(-1);
 		tblPedidos.setItems(null);
 		texID.setText("");
 		txtDataPedido.setText("");
-		cmbLaboratorio.getSelectionModel().select(null);
-		cmbLaboratorio.setPromptText("Laboratório");
+		cmbLaboratorio.getSelectionModel().select(-1);
 		hbxRequisitos.getChildren().remove(1, hbxRequisitos.getChildren().size());
 		texProfessor.setText("");
 		texDisciplina.setText("");
@@ -230,12 +232,9 @@ public class FrmPedidosReserva implements Initializable {
 	private void preencherDadosTblPedidos(List<ReservaEntity> listaReserva) {
 
 		tbcID.setCellValueFactory(new PropertyValueFactory<>("id"));
-		// Em andamento: lista de horários solicitados para a reserva
-		tbcHorario.setCellValueFactory(new PropertyValueFactory<>("dataSolicitacao"));
+		tbcHorario.setCellValueFactory(new PropertyValueFactory<>("horarios"));
 		tbcData.setCellValueFactory(new PropertyValueFactory<>("dataSolicitacao"));
-		// Em andamento: dedicir o que colocar aqui
-		tbcTipo.setCellValueFactory(new PropertyValueFactory<>("fixo"));
-		tbcFixo.setCellValueFactory(new PropertyValueFactory<>("fixo"));
+		tbcTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
 		tbcDados.setCellValueFactory(new PropertyValueFactory<>("solicitante"));
 		tbcDescricao.setCellValueFactory(new PropertyValueFactory<>("observacao"));
 
@@ -274,8 +273,83 @@ public class FrmPedidosReserva implements Initializable {
 		return caixa;
 	}
 
+	private void negarPedidoReserva() {
+		if (reservaSelecionada != null) {
+			Locale locale = new Locale("pt", "BR");
+			GregorianCalendar calendar = new GregorianCalendar();
+			SimpleDateFormat formato = new SimpleDateFormat("dd' de 'MMMMM' de 'yyyy' - 'HH':'mm'h'", locale);
+			System.out.println(formato.format(calendar.getTime()));
+
+			reservaSelecionada.setStatus(EnumReserva.RECUSADO);
+			reservaSelecionada.setDataAprovacaoRecusa(calendar.getTime());
+
+			if (reservaSelecionada.validar() == null) {
+				Reserva salvarReserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
+				salvarReserva.save(reservaSelecionada);
+			} else {
+				caixaAlerta(AlertType.ERROR, "AlphaLab", "Aprovação de Reserva",
+						"Dados inconsistentes!\n" + reservaSelecionada.validar());
+			}
+		} else {
+			System.out.println("Vazio!");
+		}
+		limparDados();
+		tabPedidos.setDisable(false);
+		tabDados.setDisable(true);
+		tbpDados.getSelectionModel().select(tabPedidos);
+		preencherDadosTblPedidos(reserva.buscarTodasReservas());
+	}
+
+	private void permitirPedidoReserva() {
+		if (reservaSelecionada != null) {
+			Locale locale = new Locale("pt", "BR");
+			GregorianCalendar calendar = new GregorianCalendar();
+			SimpleDateFormat formato = new SimpleDateFormat("dd' de 'MMMMM' de 'yyyy' - 'HH':'mm'h'", locale);
+			System.out.println(formato.format(calendar.getTime()));
+
+			reservaSelecionada.setStatus(EnumReserva.CONFIRMADO);
+			reservaSelecionada.setDataAprovacaoRecusa(calendar.getTime());
+
+			if (reservaSelecionada.validar() == null) {
+				Reserva salvarReserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
+				salvarReserva.save(reservaSelecionada);
+			} else {
+				caixaAlerta(AlertType.ERROR, "AlphaLab", "Aprovação de Reserva",
+						"Dados inconsistentes!\n" + reservaSelecionada.validar());
+			}
+		} else {
+			System.out.println("Vazio!");
+		}
+		limparDados();
+		tabPedidos.setDisable(false);
+		tabDados.setDisable(true);
+		tbpDados.getSelectionModel().select(tabPedidos);
+		preencherDadosTblPedidos(reserva.buscarTodasReservas());
+	}
+
+	/**
+	 * Caixa de diálogo Alert.
+	 * 
+	 * @param alertType
+	 *            é o tipo to alerta.
+	 * @param titulo
+	 *            é o título da caixa de diálogo.
+	 * @param headerText
+	 *            é o cabeçalho da caixa de diálogo.
+	 * @param contentText
+	 *            é o conteúdo da caixa de diálogo.
+	 */
+	private void caixaAlerta(AlertType alertType, String titulo, String headerText, String contentText) {
+		Alert alerta = new Alert(alertType);
+		alerta.setTitle(titulo);
+		alerta.setHeaderText(headerText);
+		alerta.setContentText(contentText);
+		alerta.show();
+	}
+
 	@FXML
 	void btnCancelar_onAction(ActionEvent event) {
+		cancelarGerenciarPedido();
 	}
 
 	@FXML
@@ -292,32 +366,32 @@ public class FrmPedidosReserva implements Initializable {
 
 	@FXML
 	void btnNegar_onAction(ActionEvent event) {
-
+		negarPedidoReserva();
 	}
 
 	@FXML
 	void btnNegar_onKeyPressed(KeyEvent event) {
-
+		negarPedidoReserva();
 	}
 
 	@FXML
 	void btnNegar_onMouseClicked(MouseEvent event) {
-
+		negarPedidoReserva();
 	}
 
 	@FXML
 	void btnPermitir_onAction(ActionEvent event) {
-
+		permitirPedidoReserva();
 	}
 
 	@FXML
 	void btnPermitir_onKeyPressed(KeyEvent event) {
-
+		permitirPedidoReserva();
 	}
 
 	@FXML
 	void btnPermitir_onMouseClicked(MouseEvent event) {
-
+		permitirPedidoReserva();
 	}
 
 	@FXML
@@ -348,12 +422,18 @@ public class FrmPedidosReserva implements Initializable {
 
 	@FXML
 	void cmbTipo_onAction(ActionEvent event) {
+		if (cmbTipo.getSelectionModel().getSelectedItem() != null) {
+			// buscar reserva por tipo
+
+		}
 
 	}
 
 	@FXML
 	void cmdLaboratorio_onKeyPressed(KeyEvent event) {
-
+		if (cmbLaboratorio.getSelectionModel().getSelectedItem() != null) {
+			// buscar reserva por laboratorio
+		}
 	}
 
 	@FXML
@@ -383,9 +463,9 @@ public class FrmPedidosReserva implements Initializable {
 	@FXML
 	void tblPedidos_onMouseClicked(MouseEvent event) {
 		if (event.getClickCount() >= 2) {
-			if (tblPedidos.getSelectionModel().getSelectedItem() != null) {
-				preencherVisualizarDados(tblPedidos.getSelectionModel().getSelectedItem());
-
+			reservaSelecionada = tblPedidos.getSelectionModel().getSelectedItem();
+			if (reservaSelecionada != null) {
+				preencherVisualizarDados(reservaSelecionada);
 				tbpDados.getSelectionModel().select(tabDados);
 			}
 		}
