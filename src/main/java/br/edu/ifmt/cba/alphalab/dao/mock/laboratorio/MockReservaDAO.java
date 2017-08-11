@@ -1,12 +1,10 @@
 package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -20,7 +18,6 @@ import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumTipoReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.EnumTipoServidor;
-import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 
 /**
  * 
@@ -199,6 +196,8 @@ public class MockReservaDAO implements IReservaDAO {
 		ArrayList<ReservaEntity> resultado = new ArrayList<>();
 		for (ReservaEntity vo : reservas) {
 			if (vo.getDataSolicitacao().equals(data)) {
+				System.out.println(vo.getDataSolicitacao());
+				System.out.println(data);
 				resultado.add(vo);
 			}
 		}
@@ -244,7 +243,7 @@ public class MockReservaDAO implements IReservaDAO {
 	public List<ReservaEntity> getByTipo(EnumTipoReserva enumTipoReserva) {
 		ArrayList<ReservaEntity> resultado = new ArrayList<>();
 		for (ReservaEntity vo : reservas) {
-			if (vo.getTipo().equals(enumTipoReserva)) {
+			if (vo.getTipo().equals(enumTipoReserva) && vo.getStatus() == EnumReserva.PEDIDO) {
 				resultado.add(vo);
 			}
 		}
@@ -255,7 +254,7 @@ public class MockReservaDAO implements IReservaDAO {
 	public List<ReservaEntity> getByServidor(EnumTipoServidor enumTipoServidor) {
 		ArrayList<ReservaEntity> resultado = new ArrayList<>();
 		for (ReservaEntity vo : reservas) {
-			if (vo.getSolicitante().equals(enumTipoServidor)) {
+			if (vo.getSolicitante().equals(enumTipoServidor) && vo.getStatus() == EnumReserva.PEDIDO) {
 				resultado.add(vo);
 			}
 		}
@@ -281,6 +280,22 @@ public class MockReservaDAO implements IReservaDAO {
 		ArrayList<ReservaEntity> resultado = new ArrayList<>();
 		for (ReservaEntity vo : reservas) {
 			if (vo.getStatus() == (EnumReserva.PEDIDO)) {
+				resultado.add(vo);
+			}
+		}
+		return resultado;
+	}
+
+	@Override
+	public List<ReservaEntity> getByTipoEServidorEPedido(EnumTipoReserva enumTipoReserva,
+			EnumTipoServidor enumTipoServidor) {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+		for (ReservaEntity vo : reservas) {
+			System.out.println(vo.getTipo() + " == " + enumTipoReserva);
+			System.out.println(vo.getSolicitante() + " == " + enumTipoServidor);
+			System.out.println("********************************************\n\n");
+			if (vo.getTipo().equals(enumTipoReserva) && vo.getSolicitante().getTipo().equals(enumTipoServidor)
+					&& vo.getStatus() == (EnumReserva.PEDIDO)) {
 				resultado.add(vo);
 			}
 		}
