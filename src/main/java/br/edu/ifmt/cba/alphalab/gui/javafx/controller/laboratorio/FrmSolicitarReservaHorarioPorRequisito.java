@@ -161,6 +161,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		tabPreencherDados.setDisable(true);
 		cmbDepartamento.getItems().setAll(DAOFactory.getDAOFactory().getDepartamentoDAO().buscarTodos());
 		cmbDisciplina.getItems().setAll(EnumDisciplina.values());
+		limparCampos();
 		dtpData.requestFocus();
 	}
 

@@ -2,6 +2,7 @@ package br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -102,7 +103,7 @@ public class FrmPedidosReserva implements Initializable {
 	private Text texID;
 
 	@FXML
-	private Text txtDataPedido;
+	private Text texDataPedido;
 
 	@FXML
 	private ComboBox<LaboratorioEntity> cmbLaboratorio;
@@ -159,11 +160,10 @@ public class FrmPedidosReserva implements Initializable {
 				EnumTipoReserva.SEMESTRAL);
 		cmbTipo.setItems(comboTipo);
 
-		ObservableList<EnumTipoServidor> servidores = FXCollections.observableArrayList(EnumTipoServidor.ESTAGIARIO,
-				EnumTipoServidor.PROFESSOR, EnumTipoServidor.TEC_ADM, EnumTipoServidor.TEC_LABORATORIO);
+		ObservableList<EnumTipoServidor> servidores = FXCollections.observableArrayList(EnumTipoServidor.PROFESSOR);
 		cmbServidor.setItems(servidores);
 
-		preencherDadosTblPedidos(reserva.buscarReservasPedidas());
+		preencherDadosTblPedidos(reserva.getReservasEmAbertNaSemana(LocalDate.now()));
 	}
 
 	/**
@@ -176,7 +176,7 @@ public class FrmPedidosReserva implements Initializable {
 		cmbServidor.getSelectionModel().select(-1);
 		tblPedidos.setItems(null);
 		texID.setText("");
-		txtDataPedido.setText("");
+		texDataPedido.setText("");
 		cmbLaboratorio.getSelectionModel().select(-1);
 		hbxRequisitos.getChildren().remove(1, hbxRequisitos.getChildren().size());
 		texProfessor.setText("");
@@ -197,7 +197,7 @@ public class FrmPedidosReserva implements Initializable {
 		tabDados.setDisable(true);
 		tabPedidos.setDisable(false);
 		tbpDados.getSelectionModel().select(tabPedidos);
-		preencherDadosTblPedidos(reserva.buscarReservasPedidas());
+		preencherDadosTblPedidos(reserva.getReservasEmAbertNaSemana(LocalDate.now()));
 	}
 
 	/**
@@ -213,7 +213,7 @@ public class FrmPedidosReserva implements Initializable {
 		cmbLaboratorio.getItems().setAll(DAOFactory.getDAOFactory().getLaboratorioDAO().buscarTodos());
 
 		texID.setText(reservaEntity.getId().toString());
-		txtDataPedido.setText(reservaEntity.getDataSolicitacao().toString());
+		texDataPedido.setText(new SimpleDateFormat("dd/MM/yyyy").format(reservaEntity.getDataSolicitacao()));
 		if (hbxRequisitos.getChildren().size() > 1)
 			hbxRequisitos.getChildren().remove(1, hbxRequisitos.getChildren().size());
 		hbxRequisitos.getChildren().add(buildBoxRequisitos(reservaEntity.getRequisitos()));
@@ -285,7 +285,7 @@ public class FrmPedidosReserva implements Initializable {
 		tabPedidos.setDisable(false);
 		tabDados.setDisable(true);
 		tbpDados.getSelectionModel().select(tabPedidos);
-		preencherDadosTblPedidos(reserva.buscarReservasPedidas());
+		preencherDadosTblPedidos(reserva.getReservasEmAbertNaSemana(LocalDate.now()));
 	}
 
 	private void permitirPedidoReserva() {
@@ -357,7 +357,7 @@ public class FrmPedidosReserva implements Initializable {
 					tabPedidos.setDisable(false);
 					tabDados.setDisable(true);
 					tbpDados.getSelectionModel().select(tabPedidos);
-					preencherDadosTblPedidos(reserva.buscarReservasPedidas());
+					preencherDadosTblPedidos(reserva.getReservasEmAbertNaSemana(LocalDate.now()));
 				} else if (reservaSelecionada != null && cmbLaboratorio.getSelectionModel().getSelectedItem() == null) {
 					caixaAlerta(AlertType.INFORMATION, "AlphaLab", "Permitir Reserva de Horário",
 							"É preciso selecionar um laboratório para a reserva!");
@@ -446,8 +446,9 @@ public class FrmPedidosReserva implements Initializable {
 
 			if (cmbServidor.getSelectionModel().getSelectedItem() != null
 					&& cmbTipo.getSelectionModel().getSelectedItem() != null) {
-				preencherDadosTblPedidos(reserva.getByTipoEServidor(cmbTipo.getSelectionModel().getSelectedItem(),
-						cmbServidor.getSelectionModel().getSelectedItem()));
+				preencherDadosTblPedidos(
+						reserva.getByTipoEServidorEPedido(cmbTipo.getSelectionModel().getSelectedItem(),
+								cmbServidor.getSelectionModel().getSelectedItem()));
 			}
 		}
 	}
@@ -459,8 +460,9 @@ public class FrmPedidosReserva implements Initializable {
 
 			if (cmbServidor.getSelectionModel().getSelectedItem() != null
 					&& cmbTipo.getSelectionModel().getSelectedItem() != null) {
-				preencherDadosTblPedidos(reserva.getByTipoEServidor(cmbTipo.getSelectionModel().getSelectedItem(),
-						cmbServidor.getSelectionModel().getSelectedItem()));
+				preencherDadosTblPedidos(
+						reserva.getByTipoEServidorEPedido(cmbTipo.getSelectionModel().getSelectedItem(),
+								cmbServidor.getSelectionModel().getSelectedItem()));
 			}
 		}
 	}
@@ -468,13 +470,7 @@ public class FrmPedidosReserva implements Initializable {
 	@FXML
 	void dtpData_onAction(ActionEvent event) {
 		if (dtpData.getValue() != null) {
-			preencherDadosTblPedidos(reserva.getByData(java.sql.Date.valueOf(dtpData.getValue())));
-		}
-	}
-
-	@FXML
-	void dtpData_onKeyPressed(KeyEvent event) {
-		if (event.getCode() == KeyCode.ENTER && dtpData.getValue() != null) {
+			System.out.println("Entrou OnAction");
 			preencherDadosTblPedidos(reserva.getByData(java.sql.Date.valueOf(dtpData.getValue())));
 		}
 	}
