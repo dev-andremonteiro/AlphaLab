@@ -16,5 +16,11 @@ public class Departamento extends ABusiness<DepartamentoEntity, Exception, IDepa
      public List<DepartamentoEntity> buscarTodos(){
          return ((IDepartamentoDAO)dao).buscarTodos();
      }
-    
+     
+     public List<DepartamentoEntity> getByNome(String nome){
+		return ((IDepartamentoDAO)dao).getByNome(nome);
+	}
+    public List<DepartamentoEntity> getBySigla(String sigla){
+		return ((IDepartamentoDAO)dao).getBySigla(sigla);
+    }
 }
