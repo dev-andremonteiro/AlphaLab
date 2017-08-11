@@ -88,7 +88,7 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 	public List<SoftwareEntity> buscarPorNome(String nome) {
 		List<SoftwareEntity> retorno = new ArrayList<>();
 		listaSoftware.forEach(software -> {
-			if (software.getDescricao().contains(nome))
+			if (((SoftwareEntity)software).getDescricao().toUpperCase().contains(nome.trim().toUpperCase()))
 				retorno.add(software);
 		});
 		return retorno;
