@@ -71,5 +71,20 @@ public class MockDepartamentoDAO implements IDepartamentoDAO {
 			return null;
 		else
 			return listaDepartamentos.get(listaDepartamentos.indexOf(sigla));
+                
 	}
+        
+        @Override
+	public List<DepartamentoEntity> getByNome(String nome) {
+		ArrayList<DepartamentoEntity> resultado = new ArrayList<>();
+		for (DepartamentoEntity vo : listaDepartamentos )
+			if (vo.getNome().toUpperCase().contains(nome.toUpperCase()))
+				resultado.add(vo);		
+		return resultado;
+	}
+
+    @Override
+    public List<DepartamentoEntity> getBySigla(String sigla) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

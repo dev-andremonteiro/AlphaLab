@@ -1,6 +1,7 @@
 package br.edu.ifmt.cba.alphalab.entity.pessoa;
 
 import br.edu.ifmt.cba.alphalab.entity.IEntity;
+import br.edu.ifmt.cba.alphalab.entity.exception.DepartamentoException;
 import br.edu.ifmt.cba.alphalab.entity.exception.ServidorException;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 
@@ -44,10 +45,7 @@ public class ServidorEntity implements IEntity<ServidorException> {
         return id;
     }
 
-    @Override
-    public ServidorException validar() {
-        return null;
-    }
+    
 
     public void setId(Long id) {
         this.id = id;
@@ -108,7 +106,20 @@ public class ServidorEntity implements IEntity<ServidorException> {
     public void setDepartamento(DepartamentoEntity departamento) {
         this.departamento = departamento;
     }
-
+    
+    @Override
+    public ServidorException validar() {
+        StringBuilder msg = new StringBuilder();
+            if (nome == null || nome.trim().length() == 0)
+			msg.append("Nome da turma é obrigatório!\n");
+		if (nome!= null && (nome.trim().length() < 5 || nome.trim().length() > 200))
+			msg.append("Nome da turma deve possuir entre 5 e 200 caracteres!\n");
+        
+                if (msg.length() > 0)
+			return new ServidorException(msg.toString());
+		else
+			return null;
+    }
 	@Override
 	public String toString() {
 		return nome;

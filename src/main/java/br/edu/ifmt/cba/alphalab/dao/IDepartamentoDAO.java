@@ -7,4 +7,10 @@ public interface IDepartamentoDAO extends IDAO<DepartamentoEntity> {
 	public List<DepartamentoEntity> buscarTodos();
 
 	public DepartamentoEntity getbySigla(String sigla);
+
+    public List<DepartamentoEntity> getByNome(String nome);
+
+    public List<DepartamentoEntity> getBySigla(String sigla);
+
+    
 }
