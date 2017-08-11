@@ -163,7 +163,7 @@ public class FrmPedidosReserva implements Initializable {
 				EnumTipoServidor.PROFESSOR, EnumTipoServidor.TEC_ADM, EnumTipoServidor.TEC_LABORATORIO);
 		cmbServidor.setItems(servidores);
 
-		preencherDadosTblPedidos(reserva.buscarTodasReservas());
+		preencherDadosTblPedidos(reserva.buscarReservasPedidas());
 	}
 
 	/**
@@ -197,7 +197,7 @@ public class FrmPedidosReserva implements Initializable {
 		tabDados.setDisable(true);
 		tabPedidos.setDisable(false);
 		tbpDados.getSelectionModel().select(tabPedidos);
-		preencherDadosTblPedidos(reserva.buscarTodasReservas());
+		preencherDadosTblPedidos(reserva.buscarReservasPedidas());
 	}
 
 	/**
@@ -285,7 +285,7 @@ public class FrmPedidosReserva implements Initializable {
 		tabPedidos.setDisable(false);
 		tabDados.setDisable(true);
 		tbpDados.getSelectionModel().select(tabPedidos);
-		preencherDadosTblPedidos(reserva.buscarTodasReservas());
+		preencherDadosTblPedidos(reserva.buscarReservasPedidas());
 	}
 
 	private void permitirPedidoReserva() {
@@ -305,7 +305,7 @@ public class FrmPedidosReserva implements Initializable {
 		tabPedidos.setDisable(false);
 		tabDados.setDisable(true);
 		tbpDados.getSelectionModel().select(tabPedidos);
-		preencherDadosTblPedidos(reserva.buscarTodasReservas());
+		preencherDadosTblPedidos(reserva.buscarReservasPedidas());
 	}
 
 	/**
@@ -357,7 +357,7 @@ public class FrmPedidosReserva implements Initializable {
 					tabPedidos.setDisable(false);
 					tabDados.setDisable(true);
 					tbpDados.getSelectionModel().select(tabPedidos);
-					preencherDadosTblPedidos(reserva.buscarTodasReservas());
+					preencherDadosTblPedidos(reserva.buscarReservasPedidas());
 				} else if (reservaSelecionada != null && cmbLaboratorio.getSelectionModel().getSelectedItem() == null) {
 					caixaAlerta(AlertType.INFORMATION, "AlphaLab", "Permitir Reserva de Horário",
 							"É preciso selecionar um laboratório para a reserva!");

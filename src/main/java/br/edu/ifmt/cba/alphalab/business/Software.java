@@ -33,4 +33,8 @@ public class Software extends ABusiness<SoftwareEntity, SoftwareException, ISoft
 		return ((ISoftwareDAO) dao).buscarPorTipoNome(tipo, nome);
 	}
 
+	public List<SoftwareEntity> buscarPorNome(String nome) {
+		return ((ISoftwareDAO) dao).buscarPorNome(nome);
+	}
+
 }

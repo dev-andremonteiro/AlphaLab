@@ -116,7 +116,6 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva3.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.V3, Horario.V4)));
 
 		reserva4.setId(4L);
-		reserva4.setStatus(EnumReserva.CONFIRMADO);
 		reserva4.setDisciplina(EnumDisciplina.ALGORITMOS_I);
 		reserva4.setTurma("7844-2");
 		reserva4.setObservacao("Reserva para semestre letivo.");
@@ -275,6 +274,17 @@ public class MockReservaDAO implements IReservaDAO {
 			System.out.println(vo.getSolicitante() + " == " + enumTipoServidor);
 			System.out.println("********************************************\n\n");
 			if (vo.getTipo().equals(enumTipoReserva) && vo.getSolicitante().getTipo().equals(enumTipoServidor)) {
+				resultado.add(vo);
+			}
+		}
+		return resultado;
+	}
+
+	@Override
+	public List<ReservaEntity> buscarReservasPedidas() {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+		for (ReservaEntity vo : reservas) {
+			if (vo.getStatus() == (EnumReserva.PEDIDO)) {
 				resultado.add(vo);
 			}
 		}

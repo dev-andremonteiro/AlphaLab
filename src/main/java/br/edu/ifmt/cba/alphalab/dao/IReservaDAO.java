@@ -29,4 +29,6 @@ public interface IReservaDAO extends IDAO<ReservaEntity> {
 	public List<ReservaEntity> getByServidor(EnumTipoServidor enumTipoServidor);
 
 	public List<ReservaEntity> getByTipoEServidor(EnumTipoReserva enumTipoReserva, EnumTipoServidor enumTipoServidor);
+
+	public List<ReservaEntity> buscarReservasPedidas();
 }

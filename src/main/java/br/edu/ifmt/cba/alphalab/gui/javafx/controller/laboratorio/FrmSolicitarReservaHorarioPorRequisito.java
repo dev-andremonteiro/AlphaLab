@@ -223,6 +223,12 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		tblRequisitos.refresh();
 	}
 
+	private void preencherTableViewRequisitos(List<SoftwareEntity> listaSoftwareEntity) {
+		tblRequisitos.getItems().clear();
+		tblRequisitos.setItems(FXCollections.observableArrayList(listaSoftwareEntity));
+		tblRequisitos.refresh();
+	}
+
 	/**
 	 * Limpa e atualiza coluna de bot�es selecion�veis. Recebe uma lista das
 	 * <b>reservas</b> existentes no dia escolhido para determinar hor�rios
@@ -420,13 +426,22 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void btnBuscar_onAction(ActionEvent event) {
-		// buscarSoftwares();
+		if (txtNomeSoftware.getText().equals("")) {
+			preencherTableViewRequisitos(software.buscarTodosSoftwares());
+		} else {
+			preencherTableViewRequisitos(software.buscarPorNome(txtNomeSoftware.getText()));
+		}
 	}
 
 	@FXML
 	void btnBuscar_onKeyPressed(KeyEvent event) {
-		// if (event.getCode() == KeyCode.ENTER)
-		// buscarSoftwares();
+		if (event.getCode() == KeyCode.ENTER) {
+			if (txtNomeSoftware.getText().equals("")) {
+				preencherTableViewRequisitos(software.buscarTodosSoftwares());
+			} else {
+				preencherTableViewRequisitos(software.buscarPorNome(txtNomeSoftware.getText()));
+			}
+		}
 	}
 
 	@FXML
@@ -468,7 +483,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		alerta.showAndWait().ifPresent(option -> {
 			if (option == sim) {
 				ReservaEntity reserva = this.getDadosTabPreencherDados();
-				reserva.setId(Long.parseLong("" + this.reserva.buscarTodasReservas().size() + 1));
+				reserva.setId(Long.parseLong("" + (this.reserva.buscarTodasReservas().size() + 1)));
 				reserva.setStatus(EnumReserva.PEDIDO);
 				reserva.setDataInicio(Date.from(dtpData.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 				// TODO miss define default date of the end of the semester.
@@ -675,7 +690,13 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void txtNomeSoftware_onKeyPressed(KeyEvent event) {
-		// buscarSoftwares();
+		if (event.getCode() == KeyCode.ENTER) {
+			if (txtNomeSoftware.getText().equals("")) {
+				preencherTableViewRequisitos(software.buscarTodosSoftwares());
+			} else {
+				preencherTableViewRequisitos(software.buscarPorNome(txtNomeSoftware.getText()));
+			}
+		}
 	}
 
 	@FXML
