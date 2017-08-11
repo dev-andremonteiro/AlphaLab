@@ -10,6 +10,8 @@ import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockLaboratorioDAO;
 import br.edu.ifmt.cba.alphalab.entity.exception.SolicitacaoSoftwareException;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.EnumTipoServidor;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SituacaoSolicitacaoEnum;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareSolicitacaoEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SolicitacaoSoftwareEntity;
@@ -87,6 +89,7 @@ public class TelaSoftware implements Initializable {
             solicitacao.setDataPedido(Calendar.getInstance());
             solicitacao.setSituacaoInstalacao(SituacaoSolicitacaoEnum.AGUARDANDO_ATRIBUICAO);
             solicitacao.setSoftwares(new ArrayList<>(listaSoftwares));
+            solicitacao.setSolicitante(new ServidorEntity(1L, "Servidor 01", "e-maill","fone", "lg","", EnumTipoServidor.TEC_ADM, null));
             SolicitacaoSoftwareException save = negocio.save(solicitacao);
             if (save == null) {
                 Alertas.exibirAlerta(Alert.AlertType.INFORMATION, "Salvar", "Solicitação gravada com sucesso", "Sua solicitação foi gravada com o código " + solicitacao.getId().toString() + " e sua situação atual é " + solicitacao.getSituacaoInstalacao().getDescricao());
