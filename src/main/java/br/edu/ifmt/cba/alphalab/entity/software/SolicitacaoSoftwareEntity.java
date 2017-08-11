@@ -52,6 +52,7 @@ public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareExc
     }
 
     public SolicitacaoSoftwareEntity() {
+        softwares=new ArrayList<>();
     }
 
     
