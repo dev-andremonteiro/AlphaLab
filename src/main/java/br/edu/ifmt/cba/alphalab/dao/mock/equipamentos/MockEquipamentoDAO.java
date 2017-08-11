@@ -114,4 +114,11 @@ public class MockEquipamentoDAO implements IEquipamentoDAO {
             }
 		return resultado;
 	}
+        public void removerEquipamento(){
+            
+        }
+        
+        public void AdicionarEquipamento(){
+            
+        }
 }

@@ -2,6 +2,7 @@
 package br.edu.ifmt.cba.alphalab.dao;
 
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EmprestimoEntity;
+import java.util.List;
 
 /**
  *
@@ -10,4 +11,5 @@ import br.edu.ifmt.cba.alphalab.entity.equipamentos.EmprestimoEntity;
 public interface IEmprestimoDAO extends IDAO<EmprestimoEntity> {
     
     EmprestimoEntity getByNome(String nome);
+    public List<EmprestimoEntity> buscarTodos();
 }

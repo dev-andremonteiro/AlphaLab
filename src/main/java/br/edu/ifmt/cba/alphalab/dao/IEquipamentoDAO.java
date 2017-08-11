@@ -13,4 +13,6 @@ public interface IEquipamentoDAO extends IDAO<EquipamentoEntity> {
 	EquipamentoEntity getByNome(String nome);
         
         public List<EquipamentoEntity> buscarDisponivel();
+        public void removerEquipamento();
+        public void AdicionarEquipamento();
 }

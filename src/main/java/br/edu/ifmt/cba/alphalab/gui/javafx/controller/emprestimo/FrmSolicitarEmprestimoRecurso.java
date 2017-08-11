@@ -11,8 +11,11 @@ import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EmprestimoEntity;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -25,12 +28,19 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class FrmSolicitarEmprestimoRecurso implements Initializable {
     
-  // private Emprestimo equipamento = new Emprestimo(DAOFactory.getDAOFactory().getEmprestimoDAO());
+  private Emprestimo Emprestimo = new Emprestimo(DAOFactory.getDAOFactory().getEmprestimoDAO());
   private Equipamento equipamento = new Equipamento(DAOFactory.getDAOFactory().getEquipamentoDAO());
-   
+  
+  private  ArrayList<EmprestimoEntity> listaPedido = new ArrayList<>();
+  
+  private  ArrayList<EquipamentoEntity> listaEquipamento = new ArrayList<>();
+  
+  private EquipamentoEntity equipamentoSelecionado = null;
+ 
     @FXML
     private Label lblProfessor;
 
@@ -56,7 +66,7 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
     private TextField txtDescricao1;
 
     @FXML
-    private TableView<EmprestimoEntity> tblRecursoPedido;
+    private TableView<EquipamentoEntity> tblRecursoPedido;
     
     @FXML
     private TableView<EquipamentoEntity> tblRecursoDisponivel;
@@ -78,6 +88,8 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
 
     @FXML
     private Button btnSolicitar;
+    
+    private  EmprestimoEntity emprestimoEntity;
 
     @FXML
     void tblDisponivel_onKeyPressed(ActionEvent event) {
@@ -86,8 +98,9 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
 
     @FXML
     void btnAdicionarAction(ActionEvent event) {
-     //preencherDadosTblPedido(equipamento.buscarEquipamentosDisponiveis());
-     
+      // preencherDadosTblPedido(listaPedido);
+       
+       
     }
 
     @FXML
@@ -110,14 +123,44 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
 
     }
     
-    private void preencherDadosTblPedido(List<EmprestimoEntity> listaPedida){
+    @FXML
+    void tblDisponivel_onMouseClicked(MouseEvent event) {
+     if (event.getClickCount() >= 2) {
+			equipamentoSelecionado = tblRecursoDisponivel.getSelectionModel().getSelectedItem();
+			if (equipamentoSelecionado != null) {
+                              if(equipamentoSelecionado.getQtdeEstoque()!=0){
+                                   equipamentoSelecionado.setQtdeEstoque( equipamentoSelecionado.getQtdeEstoque()-1L);
+                                   listaEquipamento.add(equipamentoSelecionado);
+                              }
+                                
+				 preencherDadosTblPedido(listaEquipamento);
+				
+			}
+    }
+    }
+    
+    @FXML
+    void tblPedida_onMouseClicked(MouseEvent event) {
+      if (event.getClickCount() >= 2) {
+			equipamentoSelecionado = tblRecursoPedido.getSelectionModel().getSelectedItem();
+			if (equipamentoSelecionado != null) {
+                                 
+                                 listaEquipamento.remove(equipamentoSelecionado);
+				 preencherDadosTblPedido(listaEquipamento);
+				 
+			}
+    }
+    
+    }
+    
+    private void preencherDadosTblPedido(List<EquipamentoEntity>  listaPedida){
         
         tbcDescricao2.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         tbcQtdePedida.setCellValueFactory(new PropertyValueFactory<>("qtdeEmprestada"));
         
         tblRecursoPedido.setItems(FXCollections.observableArrayList(listaPedida));
         
-        
+        tblRecursoDisponivel.refresh();
         tblRecursoPedido.refresh();
     }
     
@@ -130,6 +173,7 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
         
         
         tblRecursoDisponivel.refresh();
+        tblRecursoPedido.refresh();
     }
 
     @Override
@@ -137,6 +181,11 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
         tblRecursoPedido.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tblRecursoDisponivel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         preencherDadosTblDisponivel(equipamento.buscarEquipamentosDisponiveis());
+        
+        GregorianCalendar calendar = new GregorianCalendar();
+			
+        dtpData.setUserData(calendar.getTime());
+        
         
      //   preencherDadosTblPedido(equipamento.buscarEquipamentosDisponiveis());
 
