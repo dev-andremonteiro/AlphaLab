@@ -110,4 +110,14 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 		return listaSoftware;
 	}
 
+    @Override
+    public List<SoftwareEntity> buscarPorTipo(TipoSoftwareEnum tipoSoftwareEnum) {
+        List<SoftwareEntity> retorno=new ArrayList<>();
+        listaSoftware.forEach(sft->{
+            if(((SoftwareEntity) sft).getTipo().equals(tipoSoftwareEnum))
+                retorno.add(sft);
+        });
+        return retorno;
+    }
+
 }

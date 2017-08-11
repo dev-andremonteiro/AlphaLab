@@ -34,7 +34,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author tcloss
  */
-public class ManutencaoSoftware implements Initializable{
+public class ManutencaoSoftware implements Initializable {
+
     @FXML
     Tab tabSoftware;
     @FXML
@@ -56,17 +57,17 @@ public class ManutencaoSoftware implements Initializable{
     @FXML
     TableView<SoftwareEntity> tblManutencaoSoftware;
     @FXML
-    TableColumn<SoftwareEntity,String> tbcDescricao;
+    TableColumn<SoftwareEntity, String> tbcDescricao;
     @FXML
-    TableColumn<SoftwareEntity,Long> tbcId;
+    TableColumn<SoftwareEntity, Long> tbcId;
     @FXML
-    TableColumn<SoftwareEntity,TipoSoftwareEnum> tbcTipo;
+    TableColumn<SoftwareEntity, TipoSoftwareEnum> tbcTipo;
     @FXML
-    TableColumn<SoftwareEntity,String> tbcObservacao;
+    TableColumn<SoftwareEntity, String> tbcObservacao;
     @FXML
-    TableColumn<SoftwareEntity,String> tbcLink;
+    TableColumn<SoftwareEntity, String> tbcLink;
     @FXML
-    TableColumn<SoftwareEntity,String> tbcVersao;
+    TableColumn<SoftwareEntity, String> tbcVersao;
     @FXML
     TextField txtSoftwareVersao;
     @FXML
@@ -79,14 +80,15 @@ public class ManutencaoSoftware implements Initializable{
     TextField txtManutencaoSoftware;
     @FXML
     TextArea txaSoftwareObservacao;
-    
+
     private ObservableList<SoftwareEntity> listaSoftwares;
     private Software negocio;
     private SoftwareEntity software;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        software=new SoftwareEntity();
-        negocio=new Software(DAOFactory.getDAOFactory().getSoftwareDAO());
+        software = new SoftwareEntity();
+        negocio = new Software(DAOFactory.getDAOFactory().getSoftwareDAO());
         tbcDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         tbcLink.setCellValueFactory(new PropertyValueFactory<>("link"));
         tbcId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -96,93 +98,99 @@ public class ManutencaoSoftware implements Initializable{
         cbxManutencaoTipoSoftware.getItems().addAll(TipoSoftwareEnum.values());
         cbxManutencaoTipoSoftware.getSelectionModel().selectFirst();
         cbxSoftwareTipo.getItems().addAll(TipoSoftwareEnum.values());
-        listaSoftwares=FXCollections.observableArrayList(negocio.buscarTodosSoftwares());
+        listaSoftwares = FXCollections.observableArrayList(negocio.buscarTodosSoftwares());
         tblManutencaoSoftware.setItems(listaSoftwares);
         tbpGerenciaSoftware.getSelectionModel().selectLast();
-        }
+    }
+
     @FXML
-    void btnManutencaoPesquisarOnAction(ActionEvent evt){
-        software=tblManutencaoSoftware.getSelectionModel().getSelectedItem();
+    void btnManutencaoPesquisarOnAction(ActionEvent evt) {
+        software = tblManutencaoSoftware.getSelectionModel().getSelectedItem();
         listaSoftwares.clear();
         System.out.println(software);
         listaSoftwares.addAll(negocio.buscarPorTipoNome(
                 cbxManutencaoTipoSoftware.getSelectionModel().getSelectedItem(),
                 txtManutencaoSoftware.getText()
         ));
-        
+
     }
-    
-    public void setSoftware(SoftwareEntity softwareEntity){
-        software=softwareEntity;
-            txtSoftwareId.setText(software.getId()!=null?software.getId().toString():"");
+
+    public void setSoftware(SoftwareEntity softwareEntity) {
+        software = softwareEntity;
+        txtSoftwareId.setText(software.getId() != null ? software.getId().toString() : "");
         txtSoftwareDescricao.setText(software.getDescricao());
         txtSoftwareLink.setText(software.getLink());
         txtSoftwareVersao.setText(software.getVersao());
         txaSoftwareObservacao.setText(software.getObservacaoInstalacao());
         cbxSoftwareTipo.getSelectionModel().select(software.getTipo());
     }
-    
-    private SoftwareEntity getSoftwareSelected(){
-        SoftwareEntity retorno=tblManutencaoSoftware.getSelectionModel().getSelectedItem();
-        if(retorno==null)
-             Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", "Selecione um software", "Nenhum software foi selecionado na tabela");
-        return  retorno;
-        
+
+    private SoftwareEntity getSoftwareSelected() {
+        SoftwareEntity retorno = tblManutencaoSoftware.getSelectionModel().getSelectedItem();
+        if (retorno == null) {
+            Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", "Selecione um software", "Nenhum software foi selecionado na tabela");
+        }
+        return retorno;
+
     }
-    
+
     @FXML
-    public void btnEditarOnAction(ActionEvent evt){
-        SoftwareEntity tmpSoftware=getSoftwareSelected();
-        if(tmpSoftware!=null)
-        {
+    public void btnEditarOnAction(ActionEvent evt) {
+        SoftwareEntity tmpSoftware = getSoftwareSelected();
+        if (tmpSoftware != null) {
             setSoftware(tmpSoftware);
             tbpGerenciaSoftware.getSelectionModel().select(tabSoftware);
         }
     }
-    
+
     @FXML
-    public void btnExcluirOnAction(ActionEvent evt){
-        SoftwareEntity tmpSoftware=getSoftwareSelected();
-        if(tmpSoftware!=null)
-        if(Alertas.exibirAlerta(Alert.AlertType.CONFIRMATION, "Excluir", "Confirmar exclusão?", "Deseja mesmo excluir o software "+tmpSoftware.getDescricao()+"?", Alertas.SIM_NAO_BOTOES).get()==ButtonType.YES){
-            SoftwareException delete = negocio.delete(software);
-            if(delete!=null){
-                Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao excluir o software", delete.getLocalizedMessage());
-            }
-            else{
-                listaSoftwares.remove(tmpSoftware);
+    public void btnExcluirOnAction(ActionEvent evt) {
+        SoftwareEntity tmpSoftware = getSoftwareSelected();
+        if (tmpSoftware != null) {
+            if (Alertas.exibirAlerta(Alert.AlertType.CONFIRMATION, "Excluir", "Confirmar exclusão?", "Deseja mesmo excluir o software " + tmpSoftware.getDescricao() + "?", Alertas.SIM_NAO_BOTOES).get() == ButtonType.YES) {
+                SoftwareException delete = negocio.delete(software);
+                if (delete != null) {
+                    Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao excluir o software", delete.getLocalizedMessage());
+                } else {
+                    listaSoftwares.remove(tmpSoftware);
+                }
             }
         }
-        
+
     }
-    public void limparSoftware(){
-        software=null;
+
+    public void limparSoftware() {
+        software = null;
         setSoftware(new SoftwareEntity());
     }
-    @FXML void btnSalvarOnAction(ActionEvent evt){
+
+    @FXML
+    void btnSalvarOnAction(ActionEvent evt) {
         software.setDescricao(txtSoftwareDescricao.getText());
         software.setLink(txtSoftwareLink.getText());
         software.setObservacaoInstalacao(txaSoftwareObservacao.getText());
         software.setVersao(txtSoftwareVersao.getText());
         software.setTipo(cbxSoftwareTipo.getSelectionModel().getSelectedItem());
         SoftwareException save = negocio.save(software);
-        if(save==null){
-        limparSoftware();
-        listaSoftwares.clear();
-        listaSoftwares.addAll(negocio.buscarTodosSoftwares());
-        tbpGerenciaSoftware.getSelectionModel().selectNext();
-        }
-        else{
+        if (save == null) {
+            limparSoftware();
+            listaSoftwares.clear();
+            listaSoftwares.addAll(negocio.buscarTodosSoftwares());
+            tbpGerenciaSoftware.getSelectionModel().selectNext();
+        } else {
             Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao inserir software", save.getLocalizedMessage());
         }
     }
-    @FXML void btnCancelar(ActionEvent evt){
+
+    @FXML
+    void btnCancelar(ActionEvent evt) {
         limparSoftware();
     }
-    @FXML 
-    void btnNovoOnAction(ActionEvent evt){
+
+    @FXML
+    void btnNovoOnAction(ActionEvent evt) {
         limparSoftware();
         tbpGerenciaSoftware.getSelectionModel().selectFirst();
     }
-    
+
 }
