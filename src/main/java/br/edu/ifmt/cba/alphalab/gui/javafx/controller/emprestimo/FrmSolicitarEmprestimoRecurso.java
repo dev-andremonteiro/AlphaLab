@@ -99,13 +99,13 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
     @FXML
     void btnAdicionarAction(ActionEvent event) {
       // preencherDadosTblPedido(listaPedido);
-       
+      AdicionarEquipamento();
        
     }
 
     @FXML
     void btnRemoverAction(ActionEvent event) {
-
+     RemoverEquipamento();
     }
 
     @FXML
@@ -126,7 +126,21 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
     @FXML
     void tblDisponivel_onMouseClicked(MouseEvent event) {
      if (event.getClickCount() >= 2) {
-			equipamentoSelecionado = tblRecursoDisponivel.getSelectionModel().getSelectedItem();
+	AdicionarEquipamento();		
+    }
+    }
+    
+    @FXML
+    void tblPedida_onMouseClicked(MouseEvent event) {
+      if (event.getClickCount() >= 2) {
+	RemoverEquipamento();	
+    }
+    
+    }
+    
+    private void AdicionarEquipamento(){
+        
+        equipamentoSelecionado = tblRecursoDisponivel.getSelectionModel().getSelectedItem();
 			if (equipamentoSelecionado != null) {
                               if(equipamentoSelecionado.getQtdeEstoque()!=0){
                                    equipamentoSelecionado.setQtdeEstoque( equipamentoSelecionado.getQtdeEstoque()-1L);
@@ -136,21 +150,18 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
 				 preencherDadosTblPedido(listaEquipamento);
 				
 			}
-    }
+        
     }
     
-    @FXML
-    void tblPedida_onMouseClicked(MouseEvent event) {
-      if (event.getClickCount() >= 2) {
-			equipamentoSelecionado = tblRecursoPedido.getSelectionModel().getSelectedItem();
+    private void RemoverEquipamento(){
+        equipamentoSelecionado = tblRecursoPedido.getSelectionModel().getSelectedItem();
 			if (equipamentoSelecionado != null) {
                                  
                                  listaEquipamento.remove(equipamentoSelecionado);
 				 preencherDadosTblPedido(listaEquipamento);
 				 
 			}
-    }
-    
+        
     }
     
     private void preencherDadosTblPedido(List<EquipamentoEntity>  listaPedida){
