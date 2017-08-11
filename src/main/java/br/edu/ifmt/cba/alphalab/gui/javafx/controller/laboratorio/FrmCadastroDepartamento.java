@@ -94,7 +94,7 @@ public class FrmCadastroDepartamento {
     private TextField txtNovoNomeDep;
 
     @FXML
-    private ChoiceBox<?> chbChefeDep;
+    private ChoiceBox<ServidorEntity> chbChefeDep;
 
     @FXML
     private Button btnNovoChefeDep;
@@ -251,15 +251,16 @@ public class FrmCadastroDepartamento {
 
     @FXML
     void tbvDepartamentos_onMouseClicked(MouseEvent event) {
-//       DepartamentoEntity ent = (DepartamentoEntity) tbvDepartamentos.getSelectionModel().getSelectedItem();
-//		if (ent != null) {
-//			txtNome.setText(ent.getNome());
-//			txtEmail.setText(ent.getEmail());
-//			txtTelefone.setText(ent.getTelefone());
-//			habilitarEdicao(false);
-//		}
-//		if (event.getClickCount() > 2)
-//			tbpCliente.getSelectionModel().select(tabEdicao);
+       DepartamentoEntity ent = (DepartamentoEntity) tbvDepartamentos.getSelectionModel().getSelectedItem();
+		if (ent != null) {
+			txtNovoNomeDep.setText(ent.getNome());
+			txtNovaSiglaDep.setText(ent.getSigla());
+                        chbChefeDep.setItems((ObservableList<ServidorEntity>) ent.getChefe());
+			//txtTelefone.setText(ent.getTelefone());
+			habilitarEdicao(false);
+		}
+		if (event.getClickCount() > 2)
+			tbpDepartamento.getSelectionModel().select(tabGerenciarDepartamento);
     }
     
     void habilitarEdicao(boolean sim) {
