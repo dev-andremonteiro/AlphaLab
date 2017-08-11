@@ -9,14 +9,13 @@ package br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio;
  *
  * @author harri
  */
-import br.edu.ifmt.cba.alphalab.business.Cliente;
 import br.edu.ifmt.cba.alphalab.business.laboratorio.Departamento;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
-import br.edu.ifmt.cba.alphalab.entity.ClienteEntity;
-import br.edu.ifmt.cba.alphalab.entity.exception.ClienteException;
+import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.entity.exception.DepartamentoException;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
+import br.edu.ifmt.cba.alphalab.gui.javafx.util.Alertas;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -24,6 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -36,12 +36,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import static javafx.scene.input.DataFormat.URL;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javax.print.DocFlavor.URL;
-import javax.swing.JOptionPane;
 
 public class FrmCadastroDepartamento implements Initializable {
     
@@ -121,8 +119,9 @@ public class FrmCadastroDepartamento implements Initializable {
     @FXML
     void btnAlterar_onAction(ActionEvent event) {
         if (tbvDepartamentos.getSelectionModel().getSelectedIndex() >= 0) {
-            
+            txtObs.setDisable(false);
             habilitarEdicao(true);
+            
             tbpDepartamento.getSelectionModel().select(tabGerenciarDepartamento);
             novo = false;
         } else {
@@ -172,8 +171,8 @@ public class FrmCadastroDepartamento implements Initializable {
     @FXML
     void btnExcluir_onAction(ActionEvent event) {
         if (tbvDepartamentos.getSelectionModel().getSelectedIndex() >= 0) {
-            dlgConfirmacao.setTitle("CONFIRMA√á√ÉO");
-            dlgConfirmacao.setContentText("Tem certeza que deseja excluir?\nEsta opera√ß√£o n√£o poder√° ser desfeita.");
+            dlgConfirmacao.setTitle("CONFIRMA«√O");
+            dlgConfirmacao.setContentText("Tem certeza que deseja excluir?\nEsta operaÁ„o n„o poder·  ser desfeita.");
             Optional<ButtonType> result = dlgConfirmacao.showAndWait();
             if (result.isPresent() && result.get() == bttSim) {
                 departamento.delete(tbvDepartamentos.getSelectionModel().getSelectedItem());
@@ -183,7 +182,7 @@ public class FrmCadastroDepartamento implements Initializable {
                 dlgMensagem.showAndWait();
             }
         } else {
-            dlgMensagem.setTitle("ERRO DE SELE√á√ÉO");
+            dlgMensagem.setTitle("ERRO DE SeleÁ„o");
             dlgMensagem.setContentText("… preciso selecionar um departamentoe da tabela para poder realizar a exclus√£o.");
             dlgMensagem.showAndWait();
         }
@@ -219,20 +218,21 @@ public class FrmCadastroDepartamento implements Initializable {
     
     @FXML
     void btnProcurar_onAction(ActionEvent event) {
-//        ObservableList<DepartamentoEntity> produtos;
-//        produtos = FXCollections
-//                .observableArrayList(departamento.getByNome(txtPesqNomeDep.getText()));
-//
-//		tbvDepartamentos.setItems(produtos);
-//
-//		
-//
-//		tbpDepartamento.getSelectionModel().select(tabConsultarDepartamento);
+      if(txtPesqNomeDep.getText().trim().equals("") && !txtPesqSiglaDep.getText().trim().equals("")){
+          tbvDepartamentos.setItems(FXCollections.observableArrayList(new Departamento(DAOFactory.getDAOFactory().getDepartamentoDAO()).getBySigla(txtPesqSiglaDep.getText())));
+      }else if(!txtPesqNomeDep.getText().trim().equals("") && txtPesqSiglaDep.getText().trim().equals("")){
+        tbvDepartamentos.setItems(FXCollections.observableArrayList(new Departamento(DAOFactory.getDAOFactory().getDepartamentoDAO()).getByNome(txtPesqNomeDep.getText())));
+      }else Alertas.exibirAlerta(Alert.AlertType.NONE, "Busca", "Pesquisa n„o pode ser vazio", "Digite a Sigla ou o Nome do Departamento para Prosseguir com a Busca");
+     // tbvDepartamentos.setItems(FXCollections.observableArrayList(new Departamento(DAOFactory.getDAOFactory().getDepartamentoDAO()).getBySigla("sigla")));
+
+		
+
+		tbpDepartamento.getSelectionModel().select(tabConsultarDepartamento);
     }
     
     @FXML
     void btnSair2_onAction(ActionEvent event) {
-        
+        limparFormulario();
     }
     
     @FXML
@@ -256,12 +256,22 @@ public class FrmCadastroDepartamento implements Initializable {
         if (ent != null) {
             txtNovoNomeDep.setText(ent.getNome());
             txtNovaSiglaDep.setText(ent.getSigla());
-            chbChefeDep.setItems((ObservableList<ServidorEntity>) ent.getChefe());
-            //txtTelefone.setText(ent.getTelefone());
-            habilitarEdicao(false);
+            chbChefeDep.getSelectionModel().select(ent.getChefe());
+            txtObs.setText(ent.getObservacao());
+            btnAlterar.setDisable(false);
+            btnExcluir.setDisable(false);
+            
         }
-        if (event.getClickCount() > 2) {
+        if (event.getClickCount() > 1) {
             tbpDepartamento.getSelectionModel().select(tabGerenciarDepartamento);
+            txtNovaSiglaDep.setDisable(true);
+            txtNovoNomeDep.setDisable(true);
+            chbChefeDep.setDisable(true);
+            txtObs.setDisable(true);
+            btnNovoChefeDep.setDisable(true);
+            btnConfirmar.setDisable(true);
+            
+            
         }
     }
     
@@ -283,16 +293,19 @@ public class FrmCadastroDepartamento implements Initializable {
         //txtTelefone.setText("");
     }
     
-    public void initialize(URL location, ResourceBundle resources) {
+    @Override
+    public void initialize(java.net.URL location, ResourceBundle resources) {
         tbcChefe.setCellValueFactory(new PropertyValueFactory<>("chefe"));
         tbcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tbcSigla.setCellValueFactory(new PropertyValueFactory<>("sigla"));
+        chbChefeDep.setItems(FXCollections.observableArrayList( MockServidorDAO.getInstance().buscarTodosServidores()));
         tbvDepartamentos.setItems(FXCollections.observableArrayList(new Departamento(DAOFactory.getDAOFactory().getDepartamentoDAO()).buscarTodos()));
-        
+        btnNovoDep.setDisable(false);
+        btnExcluir.setDisable(true);
+        btnAlterar.setDisable(true);
+        btnProcurar.setDisable(false);
+        btnSair.setDisable(false);
+        btnConfirmar.setDisable(false);
     }
 
-    @Override
-    public void initialize(java.net.URL location, ResourceBundle resources) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
