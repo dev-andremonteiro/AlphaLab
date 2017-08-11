@@ -81,7 +81,7 @@
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints maxHeight="-Infinity" minHeight="60.0" prefHeight="60.0" valignment="CENTER" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="556.0" minHeight="10.0" prefHeight="535.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="535.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="55.0" minHeight="55.0" prefHeight="55.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
