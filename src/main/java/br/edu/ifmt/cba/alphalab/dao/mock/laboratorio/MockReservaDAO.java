@@ -1,5 +1,6 @@
 package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -18,6 +19,7 @@ import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumTipoReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.EnumTipoServidor;
 
 /**
  * 
@@ -50,7 +52,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva1.setObservacao("");
 		reserva1.setTipo(EnumTipoReserva.SEMESTRAL);
 		try {
-			reserva1.setDataSolicitacao(sdf.parse("10/05/2017"));
+			reserva1.setDataSolicitacao((Date) sdf.parse("25/12/2010"));
 			reserva1.setDataInicio(sdf.parse("13/05/2017"));
 			reserva1.setDataFim(sdf.parse("13/09/2017"));
 			reserva1.setDataAprovacaoRecusa(sdf.parse("11/05/2017"));
@@ -239,6 +241,28 @@ public class MockReservaDAO implements IReservaDAO {
 			data = data.plusDays(1);
 		} while (!data.getDayOfWeek().equals(DayOfWeek.SUNDAY));
 
+		return resultado;
+	}
+
+	@Override
+	public List<ReservaEntity> getByTipo(EnumTipoReserva enumTipoReserva) {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+		for (ReservaEntity vo : reservas) {
+			if (vo.getTipo().equals(enumTipoReserva)) {
+				resultado.add(vo);
+			}
+		}
+		return resultado;
+	}
+
+	@Override
+	public List<ReservaEntity> getByServidor(EnumTipoServidor enumTipoServidor) {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+		for (ReservaEntity vo : reservas) {
+			if (vo.getSolicitante().equals(enumTipoServidor)) {
+				resultado.add(vo);
+			}
+		}
 		return resultado;
 	}
 }
