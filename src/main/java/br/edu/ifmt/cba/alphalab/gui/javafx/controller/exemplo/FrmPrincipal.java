@@ -161,7 +161,7 @@ public class FrmPrincipal {
         
         @FXML
         void mniConsultarDepartamento_onAction(ActionEvent event) {
-                loadPane("FrmGerenciarDepartamento");
+                loadPane("FrmCadastroDepartamento");
         }
         
         @FXML
