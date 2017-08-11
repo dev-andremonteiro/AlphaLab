@@ -301,4 +301,38 @@ public class MockReservaDAO implements IReservaDAO {
 		}
 		return resultado;
 	}
+
+	@Override
+	public List<ReservaEntity> getReservasEmAbertoNoDia(LocalDate data) {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+		for (ReservaEntity vo : reservas) {
+			if (data.getDayOfWeek().equals(
+					vo.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek())) {
+				if (!data.isBefore(vo.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
+						&& !data.isAfter(vo.getDataFim().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
+						&& vo.getStatus().equals(EnumReserva.PEDIDO)) {
+					resultado.add(vo);
+				}
+			}
+		}
+		return resultado;
+	}
+
+	@Override
+	public List<ReservaEntity> getReservasEmAbertoNaSemana(LocalDate data) {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+
+		if (!data.getDayOfWeek().equals(DayOfWeek.MONDAY))
+			data = data.minusDays(data.getDayOfWeek().getValue() - 1);
+		do {
+			resultado.addAll(getReservasEmAbertoNoDia(data));
+			data = data.plusDays(1);
+		} while (!data.getDayOfWeek().equals(DayOfWeek.SUNDAY));
+
+		for (ReservaEntity reservaEntity : resultado) {
+			System.out.println(reservaEntity.getDataSolicitacao() +" "+ reservaEntity.getStatus());
+		}
+		
+		return resultado;
+	}
 }

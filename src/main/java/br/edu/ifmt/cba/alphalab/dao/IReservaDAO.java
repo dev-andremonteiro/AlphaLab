@@ -33,4 +33,8 @@ public interface IReservaDAO extends IDAO<ReservaEntity> {
 	public List<ReservaEntity> buscarReservasPedidas();
 
 	public List<ReservaEntity> getByTipoEServidorEPedido(EnumTipoReserva enumTipoReserva, EnumTipoServidor enumTipoServidor);
+
+	public List<ReservaEntity> getReservasEmAbertoNoDia(LocalDate data);
+
+	public List<ReservaEntity> getReservasEmAbertoNaSemana(LocalDate data);
 }

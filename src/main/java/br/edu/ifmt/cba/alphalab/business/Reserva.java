@@ -57,4 +57,12 @@ public class Reserva extends ABusiness<ReservaEntity, ReservaException, IReserva
 			EnumTipoServidor enumTipoServidor) {
 		return ((IReservaDAO) dao).getByTipoEServidorEPedido(enumTipoReserva, enumTipoServidor);
 	}
+
+	public List<ReservaEntity> getReservasEmAbertoNoDia(LocalDate data) {
+		return ((IReservaDAO) dao).getReservasEmAbertoNoDia(data);
+	}
+	
+	public List<ReservaEntity> getReservasEmAbertNaSemana(LocalDate data) {
+		return ((IReservaDAO) dao).getReservasEmAbertoNaSemana(data);
+	}
 }
