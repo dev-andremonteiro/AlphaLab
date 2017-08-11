@@ -48,4 +48,8 @@ public class Reserva extends ABusiness<ReservaEntity, ReservaException, IReserva
 	public List<ReservaEntity> getByTipoEServidor(EnumTipoReserva enumTipoReserva, EnumTipoServidor enumTipoServidor) {
 		return ((IReservaDAO) dao).getByTipoEServidor(enumTipoReserva, enumTipoServidor);
 	}
+
+	public List<ReservaEntity> buscarReservasPedidas() {
+		return ((IReservaDAO) dao).buscarReservasPedidas();
+	}
 }

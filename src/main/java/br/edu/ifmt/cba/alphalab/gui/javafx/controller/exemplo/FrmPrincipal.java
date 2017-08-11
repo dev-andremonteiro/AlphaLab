@@ -74,6 +74,14 @@ public class FrmPrincipal {
         @FXML
         private MenuItem mniGerenciarDepartamento;
         
+        @FXML
+        private MenuItem mniSolicitarSoftware;
+        
+        @FXML
+        void mniSolicitarSoftwareOnAction(ActionEvent evt){
+            loadPane("TelaSoftware");
+        }
+        
         @FXML 
         void mniGerenciarSoftwareOnAction(ActionEvent event){
             loadPane("ManutencaoSoftware");

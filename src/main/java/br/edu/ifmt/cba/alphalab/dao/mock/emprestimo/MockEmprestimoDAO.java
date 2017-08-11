@@ -53,14 +53,14 @@ public class MockEmprestimoDAO implements IEmprestimoDAO {
         equipamentoEntity.setId(1L);
         equipamentoEntity.setDescricao("TEste1");
         equipamentoEntity.setQtdeEstoque(10L);
-        equipamentoEntity.setQtdeEmprestada(8L);
+        equipamentoEntity.setQtdeEmprestada(0L);
         listaEquipamento.add(equipamentoEntity);
         
         equipamentoEntity= new EquipamentoEntity();
         equipamentoEntity.setId(2L);
         equipamentoEntity.setDescricao("TEste2");
         equipamentoEntity.setQtdeEstoque(15L);
-        equipamentoEntity.setQtdeEmprestada(4L);
+        equipamentoEntity.setQtdeEmprestada(0L);
         listaEquipamento.add(equipamentoEntity);
         
         emprestimo1.setRecursos(listaEquipamento);

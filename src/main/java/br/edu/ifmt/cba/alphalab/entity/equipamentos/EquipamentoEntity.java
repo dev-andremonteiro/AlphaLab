@@ -146,4 +146,6 @@ public class EquipamentoEntity implements IEntity<EquipamentoException> {
     public void setQtdeEmprestada(Long qtdeEmprestada) {
         this.qtdeEmprestada = qtdeEmprestada;
     }
+    
+    
 }

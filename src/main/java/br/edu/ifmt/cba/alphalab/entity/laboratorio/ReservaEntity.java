@@ -40,7 +40,7 @@ public class ReservaEntity implements IEntity<ReservaException> {
 	private ServidorEntity aprovador;
 
 	private ArrayList<Horario> horarios;
-	// TODO Esse atributo deveria ser um único RequisitoEntity, não List
+
 	private RequisitoEntity requisitos;
 
 	public ReservaEntity() {
@@ -249,9 +249,12 @@ public class ReservaEntity implements IEntity<ReservaException> {
 				&& (dataAprovacaoRecusa != null && dataAprovacaoRecusa.before(dataSolicitacao)))
 			msg.append("Data de Aprovação ou Recusa deve ser maior do que a data de solicitação!\n");
 
-		if (dataInicio != null && dataFim != null && dataInicio.before(dataFim))
-			msg.append("Data de início precisa ser menor que a data de final da reserva");
-
+		if (dataInicio == null || dataFim == null || dataInicio.after(dataFim)){
+			System.out.println(dataInicio);
+			System.out.println(dataFim + "sd" + dataInicio.after(dataFim));
+			msg.append("Data de início precisa menor ou igual a data de final da reserva");
+		}
+			
 		if (msg.length() > 0)
 			return new ReservaException(msg.toString());
 		else

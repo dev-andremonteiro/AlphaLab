@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -15,6 +16,7 @@ import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumDisciplina;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumTipoReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
@@ -63,6 +65,7 @@ import javafx.scene.text.Text;
  */
 
 public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
+
 	ResourceBundle resources = ResourceBundle.getBundle(FrmPrincipal.LINGUA_PORTUGUES);
 
 	private Software software = new Software(DAOFactory.getDAOFactory().getSoftwareDAO());
@@ -172,7 +175,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		tbcHorario.setCellValueFactory(conteudo -> new SimpleStringProperty(conteudo.getValue().getEstampa()));
 		tblHorarioRequisitos.getItems().addAll(Horario.values());
 
-		// Especifica rotina de criaï¿½ï¿½o de cï¿½lulas para a coluna de botï¿½es
+		// Especifica rotina de criaï¿½ï¿½o de cï¿½lulas para a coluna de
+		// botï¿½es
 		tbcDiaSemana.setStyle(estilo);
 		tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, ToggleButton>() {
 			@Override
@@ -214,6 +218,12 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		tbcNome.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 		tbcTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
 
+		tblRequisitos.getItems().clear();
+		tblRequisitos.setItems(FXCollections.observableArrayList(listaSoftwareEntity));
+		tblRequisitos.refresh();
+	}
+
+	private void preencherTableViewRequisitos(List<SoftwareEntity> listaSoftwareEntity) {
 		tblRequisitos.getItems().clear();
 		tblRequisitos.setItems(FXCollections.observableArrayList(listaSoftwareEntity));
 		tblRequisitos.refresh();
@@ -316,9 +326,9 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	/**
 	 * Limpa os campos da tela.
 	 */
-	private void limparCampos() {		
+	private void limparCampos() {
 		txtNomeSoftware.setText("");
-		tblRequisitos.getItems().clear();		
+		tblRequisitos.getItems().clear();
 		txtNumMaxAlunos.setText("");
 		texRequisitos.setText("");
 		hbxHorarios.getChildren().remove(1, hbxHorarios.getChildren().size());
@@ -328,6 +338,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		txaObservacao.setText("");
 		ckbFixo.setSelected(false);
 		dtpData.setValue(null);
+		texRequisitos.setText("");
 	}
 
 	/**
@@ -388,7 +399,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		reservaEntity.setDepartamentoAula(cmbDepartamento.getSelectionModel().getSelectedItem());
 		reservaEntity.setTurma(txtTurma.getText());
 		reservaEntity.setObservacao(txaObservacao.getText());
-		//reservaEntity.setFixo(ckbFixo.isPressed());
+		// reservaEntity.setFixo(ckbFixo.isPressed());
 
 		return reservaEntity;
 	}
@@ -415,13 +426,22 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void btnBuscar_onAction(ActionEvent event) {
-		// buscarSoftwares();
+		if (txtNomeSoftware.getText().equals("")) {
+			preencherTableViewRequisitos(software.buscarTodosSoftwares());
+		} else {
+			preencherTableViewRequisitos(software.buscarPorNome(txtNomeSoftware.getText()));
+		}
 	}
 
 	@FXML
 	void btnBuscar_onKeyPressed(KeyEvent event) {
-		// if (event.getCode() == KeyCode.ENTER)
-		// buscarSoftwares();
+		if (event.getCode() == KeyCode.ENTER) {
+			if (txtNomeSoftware.getText().equals("")) {
+				preencherTableViewRequisitos(software.buscarTodosSoftwares());
+			} else {
+				preencherTableViewRequisitos(software.buscarPorNome(txtNomeSoftware.getText()));
+			}
+		}
 	}
 
 	@FXML
@@ -463,9 +483,27 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		alerta.showAndWait().ifPresent(option -> {
 			if (option == sim) {
 				ReservaEntity reserva = this.getDadosTabPreencherDados();
+				reserva.setId(Long.parseLong("" + (this.reserva.buscarTodasReservas().size() + 1)));
+				reserva.setStatus(EnumReserva.PEDIDO);
+				reserva.setDataInicio(Date.from(dtpData.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+				// TODO miss define default date of the end of the semester.
+				reserva.setDataFim(
+						Date.from(LocalDate.of(2017, 12, 23).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+				// TODO falta implementação de Login.
+				reserva.setSolicitante((DAOFactory.getDAOFactory().getServidorDAO().getById(4L)));
+				if (ckbFixo.isSelected()) {
+					reserva.setTipo(EnumTipoReserva.SEMESTRAL);
+				} else {
+					reserva.setTipo(EnumTipoReserva.UNICA);
+				}
+
 				if (reserva.validar() == null) {
 					Reserva salvarReserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
 					salvarReserva.save(reserva);
+
+					tabPaneDados.getSelectionModel().select(tabRequisitos);
+					tabPreencherDados.setDisable(true);
+					tabRequisitos.setDisable(false);
 				} else {
 					Alert alertaDadosInvalidos = new Alert(Alert.AlertType.INFORMATION);
 					alertaDadosInvalidos.setTitle("AlphaLab");
@@ -479,9 +517,6 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 				alerta.close();
 			}
 		});
-
-		tabPaneDados.getSelectionModel().select(tabRequisitos);
-		tabPreencherDados.setDisable(true);
 	}
 
 	@FXML
@@ -520,10 +555,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 					vbxSoftwares.getChildren().add(new Text(software.getDescricao()));
 				}
 			} else {
-				// TODO Cï¿½digo de teste. Remover todo o else quando a lista de
-				// software estiver
-				// implementada.
-				vbxSoftwares.getChildren().add(new Text("TESTE\nTESTE"));
+				vbxSoftwares.getChildren().add(new Text("Nenhum software\nsolicitado!"));
 			}
 			// TabPreencherDados
 		}
@@ -658,7 +690,13 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 
 	@FXML
 	void txtNomeSoftware_onKeyPressed(KeyEvent event) {
-		// buscarSoftwares();
+		if (event.getCode() == KeyCode.ENTER) {
+			if (txtNomeSoftware.getText().equals("")) {
+				preencherTableViewRequisitos(software.buscarTodosSoftwares());
+			} else {
+				preencherTableViewRequisitos(software.buscarPorNome(txtNomeSoftware.getText()));
+			}
+		}
 	}
 
 	@FXML

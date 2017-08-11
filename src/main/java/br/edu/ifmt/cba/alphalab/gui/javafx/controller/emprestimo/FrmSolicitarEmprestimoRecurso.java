@@ -7,6 +7,7 @@ package br.edu.ifmt.cba.alphalab.gui.javafx.controller.emprestimo;
  */
 import br.edu.ifmt.cba.alphalab.business.Emprestimo;
 import br.edu.ifmt.cba.alphalab.business.Equipamento;
+import br.edu.ifmt.cba.alphalab.business.Servidor;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EmprestimoEntity;
 import br.edu.ifmt.cba.alphalab.entity.equipamentos.EquipamentoEntity;
@@ -34,6 +35,7 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
     
   private Emprestimo Emprestimo = new Emprestimo(DAOFactory.getDAOFactory().getEmprestimoDAO());
   private Equipamento equipamento = new Equipamento(DAOFactory.getDAOFactory().getEquipamentoDAO());
+  private Servidor servidor = new Servidor(DAOFactory.getDAOFactory().getServidorDAO());
   
   private  ArrayList<EmprestimoEntity> listaPedido = new ArrayList<>();
   
@@ -143,7 +145,9 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
         equipamentoSelecionado = tblRecursoDisponivel.getSelectionModel().getSelectedItem();
 			if (equipamentoSelecionado != null) {
                               if(equipamentoSelecionado.getQtdeEstoque()!=0){
-                                   equipamentoSelecionado.setQtdeEstoque( equipamentoSelecionado.getQtdeEstoque()-1L);
+                               
+                                   equipamento.getById(equipamentoSelecionado.getId()).setQtdeEstoque(equipamento.getById(equipamentoSelecionado.getId()).getQtdeEstoque() - 1L);
+                                   equipamento.getById(equipamentoSelecionado.getId()).setQtdeEmprestada(equipamento.getById(equipamentoSelecionado.getId()).getQtdeEmprestada() + 1L);
                                    listaEquipamento.add(equipamentoSelecionado);
                               }
                                 
@@ -156,7 +160,9 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
     private void RemoverEquipamento(){
         equipamentoSelecionado = tblRecursoPedido.getSelectionModel().getSelectedItem();
 			if (equipamentoSelecionado != null) {
-                                 
+                              
+                                   equipamento.getById(equipamentoSelecionado.getId()).setQtdeEstoque(equipamento.getById(equipamentoSelecionado.getId()).getQtdeEstoque() + 1L);
+                                   equipamento.getById(equipamentoSelecionado.getId()).setQtdeEmprestada(equipamento.getById(equipamentoSelecionado.getId()).getQtdeEmprestada() - 1L);
                                  listaEquipamento.remove(equipamentoSelecionado);
 				 preencherDadosTblPedido(listaEquipamento);
 				 
@@ -196,7 +202,7 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
         GregorianCalendar calendar = new GregorianCalendar();
 			
         dtpData.setUserData(calendar.getTime());
-        
+        lblProfessor.setText(servidor.getByID(1L).getNome()); 
         
      //   preencherDadosTblPedido(equipamento.buscarEquipamentosDisponiveis());
 

@@ -64,7 +64,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva1.setJustificativa("Laboratório sem ar condicionado!");
 		reserva1.setLaboratorio(laboratorio.getById(1L));
 		reserva1.setDepartamentoAula(departamento.getById(1L));
-		reserva1.setSolicitante(servidor.getById(1L));
+		reserva1.setSolicitante(servidor.getById(4L));
 		reserva1.setAprovador(servidor.getById(1L));
 		reserva1.setRequisitos(requisito.getRequisitos(1));
 		reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.N1, Horario.N2, Horario.N3)));
@@ -87,7 +87,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva2.setJustificativa("");
 		reserva2.setLaboratorio(laboratorio.getById(1L));
 		reserva2.setDepartamentoAula(departamento.getById(1L));
-		reserva2.setSolicitante(servidor.getById(2L));
+		reserva2.setSolicitante(servidor.getById(4L));
 		reserva2.setAprovador(servidor.getById(1L));
 		reserva2.setRequisitos(requisito.getRequisitos(2));
 		reserva2.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M1, Horario.M2)));
@@ -110,13 +110,12 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva3.setJustificativa("");
 		reserva3.setLaboratorio(laboratorio.getById(1L));
 		reserva3.setDepartamentoAula(departamento.getById(1L));
-		reserva3.setSolicitante(servidor.getById(3L));
+		reserva3.setSolicitante(servidor.getById(4L));
 		reserva3.setAprovador(servidor.getById(1L));
 		reserva3.setRequisitos(requisito.getRequisitos(3));
 		reserva3.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.V3, Horario.V4)));
 
 		reserva4.setId(4L);
-		reserva4.setStatus(EnumReserva.CONFIRMADO);
 		reserva4.setDisciplina(EnumDisciplina.ALGORITMOS_I);
 		reserva4.setTurma("7844-2");
 		reserva4.setObservacao("Reserva para semestre letivo.");
@@ -156,7 +155,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva5.setJustificativa("");
 		reserva5.setLaboratorio(laboratorio.getById(1L));
 		reserva5.setDepartamentoAula(departamento.getById(1L));
-		reserva5.setSolicitante(servidor.getById(3L));
+		reserva5.setSolicitante(servidor.getById(4L));
 		reserva5.setAprovador(servidor.getById(1L));
 		reserva5.setRequisitos(requisito.getRequisitos(4));
 		reserva5.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.V4, Horario.V5, Horario.V6)));
@@ -275,6 +274,17 @@ public class MockReservaDAO implements IReservaDAO {
 			System.out.println(vo.getSolicitante() + " == " + enumTipoServidor);
 			System.out.println("********************************************\n\n");
 			if (vo.getTipo().equals(enumTipoReserva) && vo.getSolicitante().getTipo().equals(enumTipoServidor)) {
+				resultado.add(vo);
+			}
+		}
+		return resultado;
+	}
+
+	@Override
+	public List<ReservaEntity> buscarReservasPedidas() {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+		for (ReservaEntity vo : reservas) {
+			if (vo.getStatus() == (EnumReserva.PEDIDO)) {
 				resultado.add(vo);
 			}
 		}

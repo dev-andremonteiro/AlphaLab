@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -243,7 +242,11 @@
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <CheckBox fx:id="ckbFixo" mnemonicParsing="false" onAction="#cbkFixo_onAction" onMouseClicked="#ckbFixo_onMouseClicked" text="Fixo" GridPane.columnIndex="1" />
+                                                <Text fx:id="texTipoReserva" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="80.13671875" GridPane.columnIndex="1">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Text>
                                              </children>
                                           </GridPane>
                                        </children>

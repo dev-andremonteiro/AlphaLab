@@ -18,7 +18,7 @@ public class ReservaEntityTest {
     static DepartamentoEntity departamentoReserva;
     static ServidorEntity solicitanteReserva;
     static ServidorEntity aprovadorReserva;
-    static ArrayList<RequisitoEntity> requisitoReserva;
+    static RequisitoEntity requisitoReserva;
 
     @BeforeClass
     public static void initialize(){
@@ -26,7 +26,7 @@ public class ReservaEntityTest {
         departamentoReserva = new DepartamentoEntity();
         solicitanteReserva = new ServidorEntity();
         aprovadorReserva = new ServidorEntity();
-        requisitoReserva = new ArrayList<RequisitoEntity>();
+        requisitoReserva = new RequisitoEntity();
     }
     
     @Before
@@ -35,10 +35,9 @@ public class ReservaEntityTest {
         reserva.setId(Long.MIN_VALUE);
         reserva.setStatus(EnumReserva.PEDIDO);
         reserva.setDataSolicitacao(new java.util.Date());
-        reserva.setDisciplina("Eng Software");
+        reserva.setDisciplina(EnumDisciplina.COMUNICACAO_E_EXPRESSAO);
         reserva.setTurma("Eng da Computa��o");
         reserva.setObservacao("Aula 15");
-        reserva.setFixo(false);
         reserva.setDataInicio(new java.util.Date());
         reserva.setDataFim(new java.util.Date());
         reserva.setDataAprovacaoRecusa(new java.util.Date());
@@ -65,7 +64,7 @@ public class ReservaEntityTest {
         reserva.setDisciplina(null);
         assertNotNull(reserva.validar());
         
-        reserva.setDisciplina("    ");
+        reserva.setDisciplina(null);
         assertNotNull(reserva.validar());
         
         reserva.setTurma(null);
