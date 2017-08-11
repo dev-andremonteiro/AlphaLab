@@ -28,6 +28,7 @@
                   <items>
                         <Menu mnemonicParsing="false" text="%menu.consultar">
                           <items>
+                              <MenuItem fx:id="mniConsultarDepartamento" mnemonicParsing="false" onAction="#mniConsultarDepartamento_onAction" text="Departamento" />
                               <MenuItem fx:id="mniConsultarHorario" mnemonicParsing="false" onAction="#mniConsultarHorario_onAction" text="%menu.horario" />
                           </items>
                         </Menu>
@@ -35,7 +36,8 @@
                            <items>
                               <MenuItem fx:id="mniGerenciarHorario" mnemonicParsing="false" onAction="#mniGerenciarHorario_onAction" text="%menu.horario" />
                               <MenuItem fx:id="mniPedidosReservaHorario" mnemonicParsing="false" onAction="#mniPedidosReservaHorario" text="%menu.pedidoReservaHorario" />
-                              <MenuItem fx:id="mniGerenciarSoftware" mnemonicParsing="false" onAction="#mniGerenciarSoftwareOnAction" text="Software" />                              
+                              <MenuItem fx:id="mniGerenciarSoftware" mnemonicParsing="false" onAction="#mniGerenciarSoftwareOnAction" text="Software" />
+                              <MenuItem fx:id="mniGerenciarDepartamento" mnemonicParsing="false" onAction="#mniGerenciarDepartamento_onAction" text="Departamento" />                              
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="%menu.solicitar">

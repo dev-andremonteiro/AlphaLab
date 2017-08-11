@@ -67,6 +67,13 @@ public class FrmPrincipal {
         @FXML
         private MenuItem mniGerenciarSoftware;
         
+        @FXML
+        private MenuItem mniConsultarDepartamento;
+        
+        
+        @FXML
+        private MenuItem mniGerenciarDepartamento;
+        
         @FXML 
         void mniGerenciarSoftwareOnAction(ActionEvent event){
             loadPane("ManutencaoSoftware");
@@ -143,6 +150,16 @@ public class FrmPrincipal {
 	void mniDevolucaoRecursos_onAction(ActionEvent event) {
 		loadPane("FrmDevolucaoRecurso");
 	}
+        
+        @FXML
+        void mniConsultarDepartamento_onAction(ActionEvent event) {
+                loadPane("FrmGerenciarDepartamento");
+        }
+        
+        @FXML
+        void mniGerenciarDepartamento_onAction(ActionEvent event) {
+                loadPane("FrmGerenciarDepartamento");
+        }
 
 	@FXML
 	void mniSair_onAction(ActionEvent event) {

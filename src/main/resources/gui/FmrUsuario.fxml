@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label prefHeight="38.0" prefWidth="60.0" text="label" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="362.0" prefWidth="615.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Untitled Tab 1">
+               <content>
+                  <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <HBox prefHeight="40.0" prefWidth="300.0" spacing="10.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="Nome" />
+                              <TextField />
+                              <CheckBox mnemonicParsing="false" text="CheckBox" />
+                              <ChoiceBox prefWidth="150.0" />
+                              <ChoiceBox prefWidth="150.0" />
+                           </children>
+                           <BorderPane.margin>
+                              <Insets left="10.0" right="10.0" top="20.0" />
+                           </BorderPane.margin>
+                        </HBox>
+                     </top>
+                     <center>
+                        <TableView prefHeight="300.0" prefWidth="615.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn prefWidth="92.0" text="C1" />
+                            <TableColumn prefWidth="190.0" text="C2" />
+                              <TableColumn prefWidth="60.0" text="Column X" />
+                              <TableColumn prefWidth="153.0" text="Column X" />
+                              <TableColumn prefWidth="119.0" text="Column X" />
+                          </columns>
+                        </TableView>
+                     </center>
+                     <bottom>
+                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="BOTTOM_RIGHT">
+                           <children>
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                           </children>
+                           <padding>
+                              <Insets top="15.0" />
+                           </padding>
+                        </HBox>
+                     </bottom>
+                  </BorderPane>
+               </content>
+          </Tab>
+          <Tab text="Untitled Tab 2">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                 <children>
+                                    <Label text="Label" />
+                                    <TextField />
+                                    <Label text="Label" />
+                                    <TextField />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                 <children>
+                                    <Label text="Label" />
+                                    <TextField />
+                                    <Label text="Label" />
+                                    <TextField />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                 <children>
+                                    <Label text="Label" />
+                                    <TextField />
+                                    <Label text="Label" />
+                                    <TextField />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                 <children>
+                                    <ChoiceBox prefWidth="150.0" />
+                                    <ChoiceBox prefWidth="150.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets left="50.0" top="60.0" />
+                           </padding>
+                        </VBox>
+                     </center>
+                     <bottom>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="46.0" prefWidth="615.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                           </children>
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin>
+                        </HBox>
+                     </bottom>
+                  </BorderPane>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

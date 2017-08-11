@@ -23,6 +23,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -42,7 +43,7 @@ import javafx.scene.input.MouseEvent;
 import javax.print.DocFlavor.URL;
 import javax.swing.JOptionPane;
 
-public class FrmCadastroDepartamento {
+public class FrmCadastroDepartamento implements Initializable {
     
     @FXML
     private TabPane tbpDepartamento;
@@ -287,5 +288,10 @@ public class FrmCadastroDepartamento {
         tbcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tbcSigla.setCellValueFactory(new PropertyValueFactory<>("sigla"));
         
+    }
+
+    @Override
+    public void initialize(java.net.URL location, ResourceBundle resources) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
