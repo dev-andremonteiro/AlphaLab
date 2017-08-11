@@ -35,7 +35,7 @@
                            <children>
                               <DatePicker fx:id="dtpData" promptText="%dtp.data" />
                               <ComboBox fx:id="cmbTipo" onAction="#cmbTipo_onAction" prefWidth="150.0" promptText="%combo.tipo" />
-                              <ComboBox fx:id="cmbProfessor" onAction="#cmbProfessor_onAction" prefWidth="150.0" promptText="%combo.professor" />
+                              <ComboBox fx:id="cmbServidor" onAction="#cmbServidor_onAction" prefWidth="150.0" promptText="%combo.servidor" />
                            </children>
                            <BorderPane.margin>
                               <Insets bottom="20.0" left="50.0" top="20.0" />
@@ -48,10 +48,9 @@
                             <TableColumn fx:id="tbcID" editable="false" maxWidth="70.0" prefWidth="70.0" resizable="false" text="%column.id" />
                             <TableColumn fx:id="tbcHorario" editable="false" maxWidth="130.0" prefWidth="130.0" resizable="false" text="%column.horario" />
                               <TableColumn fx:id="tbcData" editable="false" maxWidth="130.0" prefWidth="130.0" resizable="false" text="%column.data" />
-                              <TableColumn fx:id="tbcTipo" editable="false" maxWidth="130.0" prefWidth="130.0" resizable="false" text="%column.tipo" />
-                              <TableColumn fx:id="tbcFixo" editable="false" maxWidth="70.0" prefWidth="70.0" resizable="false" text="%column.fixo" />
-                              <TableColumn fx:id="tbcDados" editable="false" maxWidth="182.0" minWidth="0.0" prefWidth="182.0" resizable="false" text="%column.dados" />
-                              <TableColumn fx:id="tbcDescricao" editable="false" maxWidth="200.0" prefWidth="200.0" resizable="false" text="%column.descricao" />
+                              <TableColumn fx:id="tbcTipo" editable="false" maxWidth="130.0" resizable="false" text="%column.tipo" />
+                              <TableColumn fx:id="tbcDados" editable="false" maxWidth="249.0" minWidth="0.0" prefWidth="247.0" resizable="false" text="%column.dados" />
+                              <TableColumn fx:id="tbcDescricao" editable="false" maxWidth="281.0" prefWidth="266.0" resizable="false" text="%column.descricao" />
                           </columns>
                            <BorderPane.margin>
                               <Insets bottom="50.0" left="50.0" right="50.0" />

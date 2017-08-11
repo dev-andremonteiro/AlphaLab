@@ -1,5 +1,6 @@
 package br.edu.ifmt.cba.alphalab.dao.mock.laboratorio;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -15,8 +16,11 @@ import br.edu.ifmt.cba.alphalab.dao.IReservaDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumDisciplina;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumTipoReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.EnumTipoServidor;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 
 /**
  * 
@@ -47,9 +51,9 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva1.setDisciplina(EnumDisciplina.COMUNICACAO_E_EXPRESSAO);
 		reserva1.setTurma("7844-1");
 		reserva1.setObservacao("");
-		reserva1.setFixo(false);
+		reserva1.setTipo(EnumTipoReserva.SEMESTRAL);
 		try {
-			reserva1.setDataSolicitacao(sdf.parse("10/05/2017"));
+			reserva1.setDataSolicitacao((Date) sdf.parse("25/12/2010"));
 			reserva1.setDataInicio(sdf.parse("13/05/2017"));
 			reserva1.setDataFim(sdf.parse("13/09/2017"));
 			reserva1.setDataAprovacaoRecusa(sdf.parse("11/05/2017"));
@@ -60,7 +64,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva1.setJustificativa("Laboratório sem ar condicionado!");
 		reserva1.setLaboratorio(laboratorio.getById(1L));
 		reserva1.setDepartamentoAula(departamento.getById(1L));
-		reserva1.setSolicitante(servidor.getById(4L));
+		reserva1.setSolicitante(servidor.getById(1L));
 		reserva1.setAprovador(servidor.getById(1L));
 		reserva1.setRequisitos(requisito.getRequisitos(1));
 		reserva1.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.N1, Horario.N2, Horario.N3)));
@@ -70,7 +74,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva2.setDisciplina(EnumDisciplina.ALGORITMOS_I);
 		reserva2.setTurma("7844-2");
 		reserva2.setObservacao("Reserva para semestre letivo.");
-		reserva2.setFixo(true);
+		reserva2.setTipo(EnumTipoReserva.UNICA);
 		try {
 			reserva2.setDataSolicitacao(sdf.parse("06/08/2017"));
 			reserva2.setDataInicio(sdf.parse("07/08/2017"));
@@ -83,7 +87,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva2.setJustificativa("");
 		reserva2.setLaboratorio(laboratorio.getById(1L));
 		reserva2.setDepartamentoAula(departamento.getById(1L));
-		reserva2.setSolicitante(servidor.getById(4L));
+		reserva2.setSolicitante(servidor.getById(2L));
 		reserva2.setAprovador(servidor.getById(1L));
 		reserva2.setRequisitos(requisito.getRequisitos(2));
 		reserva2.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.M1, Horario.M2)));
@@ -93,7 +97,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva3.setDisciplina(EnumDisciplina.CALCULO_I);
 		reserva3.setTurma("7844-5");
 		reserva3.setObservacao("Urgência!");
-		reserva3.setFixo(false);
+		reserva3.setTipo(EnumTipoReserva.SEMESTRAL);
 		try {
 			reserva3.setDataSolicitacao(sdf.parse("10/09/2017"));
 			reserva3.setDataInicio(sdf.parse("08/05/2017"));
@@ -106,7 +110,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva3.setJustificativa("");
 		reserva3.setLaboratorio(laboratorio.getById(1L));
 		reserva3.setDepartamentoAula(departamento.getById(1L));
-		reserva3.setSolicitante(servidor.getById(4L));
+		reserva3.setSolicitante(servidor.getById(3L));
 		reserva3.setAprovador(servidor.getById(1L));
 		reserva3.setRequisitos(requisito.getRequisitos(3));
 		reserva3.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.V3, Horario.V4)));
@@ -116,7 +120,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva4.setDisciplina(EnumDisciplina.ALGORITMOS_I);
 		reserva4.setTurma("7844-2");
 		reserva4.setObservacao("Reserva para semestre letivo.");
-		reserva4.setFixo(true);
+		reserva4.setTipo(EnumTipoReserva.UNICA);
 		try {
 			reserva4.setDataSolicitacao(sdf.parse("06/08/2017"));
 			reserva4.setDataInicio(sdf.parse("09/08/2017"));
@@ -139,7 +143,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva5.setDisciplina(EnumDisciplina.COMUNICACAO_E_EXPRESSAO);
 		reserva5.setTurma("7844-2");
 		reserva5.setObservacao("Minicurso de Arte para vender na praia");
-		reserva5.setFixo(true);
+		reserva5.setTipo(EnumTipoReserva.SEMESTRAL);
 		try {
 			reserva5.setDataSolicitacao(sdf.parse("06/08/2017"));
 			reserva5.setDataInicio(sdf.parse("10/08/2017"));
@@ -152,7 +156,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva5.setJustificativa("");
 		reserva5.setLaboratorio(laboratorio.getById(1L));
 		reserva5.setDepartamentoAula(departamento.getById(1L));
-		reserva5.setSolicitante(servidor.getById(4L));
+		reserva5.setSolicitante(servidor.getById(3L));
 		reserva5.setAprovador(servidor.getById(1L));
 		reserva5.setRequisitos(requisito.getRequisitos(4));
 		reserva5.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.V4, Horario.V5, Horario.V6)));
@@ -238,6 +242,42 @@ public class MockReservaDAO implements IReservaDAO {
 			data = data.plusDays(1);
 		} while (!data.getDayOfWeek().equals(DayOfWeek.SUNDAY));
 
+		return resultado;
+	}
+
+	@Override
+	public List<ReservaEntity> getByTipo(EnumTipoReserva enumTipoReserva) {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+		for (ReservaEntity vo : reservas) {
+			if (vo.getTipo().equals(enumTipoReserva)) {
+				resultado.add(vo);
+			}
+		}
+		return resultado;
+	}
+
+	@Override
+	public List<ReservaEntity> getByServidor(EnumTipoServidor enumTipoServidor) {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+		for (ReservaEntity vo : reservas) {
+			if (vo.getSolicitante().equals(enumTipoServidor)) {
+				resultado.add(vo);
+			}
+		}
+		return resultado;
+	}
+
+	@Override
+	public List<ReservaEntity> getByTipoEServidor(EnumTipoReserva enumTipoReserva, EnumTipoServidor enumTipoServidor) {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+		for (ReservaEntity vo : reservas) {
+			System.out.println(vo.getTipo() + " == " + enumTipoReserva);
+			System.out.println(vo.getSolicitante() + " == " + enumTipoServidor);
+			System.out.println("********************************************\n\n");
+			if (vo.getTipo().equals(enumTipoReserva) && vo.getSolicitante().getTipo().equals(enumTipoServidor)) {
+				resultado.add(vo);
+			}
+		}
 		return resultado;
 	}
 }

@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio.FrmGerenciarHorario">
+<VBox prefHeight="740.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio.FrmGerenciarHorario">
    <children>
       <StackPane prefHeight="50.0" prefWidth="1024.0">
          <children>
@@ -33,9 +33,9 @@
             </Label>
          </children>
       </StackPane>
-      <TabPane focusTraversable="false" prefHeight="600.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+      <TabPane fx:id="tbpDados" focusTraversable="false" prefHeight="600.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
         <tabs>
-          <Tab fx:id="tabVisualizar" closable="false" onSelectionChanged="#tabVisualizar_onSelectionChanged" text="%tab.visualizar">
+          <Tab fx:id="tabVisualizar" closable="false" text="%tab.visualizar">
                <content>
                   <VBox>
                      <children>
@@ -68,7 +68,7 @@
                   </VBox>
                </content>
           </Tab>
-          <Tab fx:id="tabPreencherDados" closable="false" onSelectionChanged="#tabPreencherDados_onSelectionChanged" text="%tab.preencherDados">
+          <Tab fx:id="tabPreencherDados" closable="false" text="%tab.preencherDados">
                <content>
                   <VBox>
                      <children>
@@ -94,8 +94,8 @@
                                     <ComboBox fx:id="cmbProfessor" onAction="#cmbProfessor_onAction" onKeyPressed="#cmbProfessor_onKeyPressed" prefWidth="390.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
-                              <Pane prefHeight="200.0" prefWidth="50.0" />
-                              <HBox fx:id="hbxHorario" prefHeight="200.0" prefWidth="440.0" />
+                              <Pane prefHeight="200.0" prefWidth="20.0" />
+                              <HBox fx:id="hbxHorarios" prefHeight="200.0" prefWidth="470.0" />
                            </children>
                         </HBox>
                         <StackPane prefHeight="10.0">
@@ -107,7 +107,6 @@
                            <children>
                               <VBox prefHeight="460.0" prefWidth="512.0">
                                  <children>
-                                    <Pane prefHeight="50.0" prefWidth="512.0" />
                                     <GridPane prefHeight="360.0" prefWidth="512.0">
                                       <columnConstraints>
                                         <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
@@ -124,17 +123,17 @@
                                           <Label text="%label.departamento" GridPane.rowIndex="1" />
                                           <Label text="%label.turma" GridPane.rowIndex="2" />
                                           <Label text="%label.observacoes" GridPane.rowIndex="3" />
+                                          <ComboBox fx:id="cmbDisciplina" onAction="#cmbDisciplina_onAction" prefWidth="390.0" GridPane.columnIndex="1" />
                                           <ComboBox fx:id="cmbDepartamento" onAction="#cmbDepartamento_onAction" prefWidth="390.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <TextField fx:id="txtTurma" onKeyPressed="#txtTurma_onKeyPressed" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                           <TextArea fx:id="txaObservacoes" editable="false" onKeyPressed="#txaObservacoes_onKeyPressed" prefHeight="100.0" prefWidth="256.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                          <ComboBox fx:id="cmbDisciplina" onAction="#cmbDisciplina_onAction" prefWidth="390.0" GridPane.columnIndex="1" />
                                        </children>
                                     </GridPane>
                                     <Pane prefHeight="50.0" prefWidth="512.0" />
                                  </children></VBox>
                               <VBox prefHeight="460.0" prefWidth="512.0">
                                  <children>
-                                    <Pane prefHeight="410.0" prefWidth="512.0" />
+                                    <Pane prefHeight="365.0" prefWidth="512.0" />
                                     <StackPane alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="512.0">
                                        <children>
                                           <Group>

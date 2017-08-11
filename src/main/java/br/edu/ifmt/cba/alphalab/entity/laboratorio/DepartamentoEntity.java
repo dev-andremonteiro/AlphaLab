@@ -33,9 +33,6 @@ public class DepartamentoEntity implements IEntity<DepartamentoException> {
 		return id;
 	}
 
-	
-        
-
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -71,23 +68,27 @@ public class DepartamentoEntity implements IEntity<DepartamentoException> {
 	public void setChefe(ServidorEntity chefe) {
 		this.chefe = chefe;
 	}
-        
-        @Override
-        public DepartamentoException validar() {
+
+	@Override
+	public DepartamentoException validar() {
 		StringBuilder msg = new StringBuilder();
 		if (nome == null)
 			msg.append("Nome do Departamento Deve Ser Informado!\n");
 
 		if (chefe == null)
 			msg.append("Nome do Chefe do Departamento Deve Ser Informado!\n");
-                
-                if (sigla == null)
+
+		if (sigla == null)
 			msg.append("Sigla do Departamento Deve Ser Informado!\n");
-               
 
 		if (msg.length() > 0)
 			return new DepartamentoException(msg.toString());
 		else
 			return null;
+	}
+
+	@Override
+	public String toString() {
+		return this.nome;
 	}
 }

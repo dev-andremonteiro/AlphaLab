@@ -26,7 +26,7 @@ public class MockDepartamentoDAO implements IDepartamentoDAO {
 
 		departamento2.setId(1L);
 		departamento2.setSigla("DACC");
-		departamento2.setNome("Departamento da Área de Constação Civil");
+		departamento2.setNome("Departamento da Área de Construção Civil");
 		departamento2.setObservacao("Construção Civil");
 		departamento2.setChefe(servidor.getById((long) 2));
 
