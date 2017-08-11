@@ -24,19 +24,19 @@
       </Label>
    </top>
    <center>
-      <TabPane prefHeight="730.0" prefWidth="1037.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tbpDepartamento" prefHeight="730.0" prefWidth="1037.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="%tab.consultar_departamento">
+          <Tab fx:id="tabConsultarDepartamento" text="%tab.consultar_departamento">
                <content>
                   <BorderPane prefHeight="701.0" prefWidth="1029.0">
                      <top>
                         <HBox prefHeight="47.0" prefWidth="400.0" spacing="10.0" BorderPane.alignment="CENTER">
                            <children>
                               <Label prefHeight="17.0" prefWidth="50.0" text="%label.sigla" />
-                              <TextField prefHeight="25.0" prefWidth="72.0" />
+                              <TextField fx:id="txtPesqSiglaDep" prefHeight="25.0" prefWidth="72.0" />
                               <Label prefHeight="17.0" prefWidth="56.0" text="%label.nome" />
-                              <TextField />
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="142.0" text="%button.procurar" />
+                              <TextField fx:id="txtPesqNomeDep" />
+                              <Button fx:id="btnProcurar" mnemonicParsing="false" onAction="#btnProcurar_onAction" prefHeight="25.0" prefWidth="142.0" text="%button.procurar" />
                            </children>
                            <padding>
                               <Insets left="10.0" top="10.0" />
@@ -50,11 +50,11 @@
                         </HBox>
                      </top>
                      <center>
-                        <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="604.0" prefWidth="997.0">
+                        <TableView fx:id="tbvDepartamentos" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#tbvDepartamentos_onMouseClicked" prefHeight="604.0" prefWidth="997.0">
                           <columns>
-                            <TableColumn prefWidth="106.0" text="%label.sigla" />
-                            <TableColumn prefWidth="455.0" text="%label.nome" />
-                              <TableColumn prefWidth="461.0" text="%text.coordenador" />
+                            <TableColumn fx:id="tbcSigla" prefWidth="106.0" text="%label.sigla" />
+                            <TableColumn fx:id="tbcNome" prefWidth="455.0" text="%label.nome" />
+                              <TableColumn fx:id="tbcChefe" prefWidth="461.0" text="%text.coordenador" />
                           </columns>
                            <opaqueInsets>
                               <Insets />
@@ -70,15 +70,15 @@
                               <Insets />
                            </BorderPane.margin>
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="%button.novo" />
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="%button.editar" />
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="%button.excluir" />
+                              <Button fx:id="btnNovoDep" mnemonicParsing="false" onAction="#btnNovoDep_onAction" onKeyPressed="#btnNovoDep_onKeyPressed" prefHeight="25.0" prefWidth="93.0" text="%button.novo" />
+                              <Button fx:id="btnAlterar" mnemonicParsing="false" onAction="#btnAlterar_onAction" onKeyPressed="#btnAlterar_onKeyPressed" prefHeight="25.0" prefWidth="93.0" text="%button.editar" />
+                              <Button fx:id="btnExcluir" mnemonicParsing="false" onAction="#btnExcluir_onAction" onKeyPressed="#btnExcluir_onKeyPressed" prefHeight="25.0" prefWidth="93.0" text="%button.excluir" />
                               <HBox alignment="BOTTOM_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="88.0">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                                  <children>
-                                    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="%button.sair">
+                                    <Button fx:id="btnSair" alignment="CENTER" mnemonicParsing="false" onAction="#btnSair_onAction" onKeyPressed="#btnSair_onKeyPressed" prefHeight="25.0" prefWidth="93.0" text="%button.sair">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -97,7 +97,7 @@
                   </BorderPane>
                </content>
           </Tab>
-          <Tab text="%tab.gerenciar_departamento">
+          <Tab fx:id="tabGerenciarDepartamento" text="%tab.gerenciar_departamento">
                <content>
                   <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="331.0" prefWidth="600.0">
                      <children>
@@ -108,7 +108,7 @@
                                     <Insets bottom="10.0" right="10.0" />
                                  </padding>
                               </Label>
-                              <TextField />
+                              <TextField fx:id="txtNovaSiglaDep" />
                            </children>
                            <padding>
                               <Insets left="10.0" />
@@ -124,7 +124,7 @@
                                     <Insets bottom="10.0" right="10.0" />
                                  </padding>
                               </Label>
-                              <TextField />
+                              <TextField fx:id="txtNovoNomeDep" />
                            </children>
                            <padding>
                               <Insets left="10.0" />
@@ -137,8 +137,8 @@
                                     <Insets bottom="60.0" />
                                  </padding>
                               </Label>
-                              <ChoiceBox prefWidth="150.0" />
-                              <Button mnemonicParsing="false" text="%button.novo" />
+                              <ChoiceBox fx:id="chbChefeDep" prefWidth="150.0" />
+                              <Button fx:id="btnNovoChefeDep" mnemonicParsing="false" onAction="#btnNovoChefeDep_onAction" onKeyPressed="#btnNovoChefeDep_onKeyPressed" text="%button.novo" />
                            </children>
                            <padding>
                               <Insets left="10.0" />
@@ -147,7 +147,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
                               <Label text="%label.observaçao" />
-                              <TextArea maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="200.0" />
+                              <TextArea fx:id="txtObs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="200.0" />
                            </children>
                            <padding>
                               <Insets left="10.0" />
@@ -155,8 +155,8 @@
                         </HBox>
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="41.0" prefWidth="600.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" text="%button.confirmar" />
-                              <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="%button.confirmar" />
+                              <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#btnConfirmar_onAction" onKeyPressed="#btnConfirmar_onKeyPressed" text="%button.confirmar" />
+                              <Button fx:id="btnSair2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSair2_onAction" onKeyPressed="#btnSair2_onKeyPressed" text="%button.sair" />
                            </children>
                            <VBox.margin>
                               <Insets top="40.0" />
