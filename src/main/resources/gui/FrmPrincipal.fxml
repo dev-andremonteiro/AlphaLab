@@ -48,6 +48,7 @@
                                   <MenuItem fx:id="mniReservaPorRequisito" mnemonicParsing="false" onAction="#mniReservaPorRequisito_onAction" text="%menu.porRequisito" />
                                 </items>
                               </Menu>
+                              <MenuItem fx:id="mniSolicitarSoftware" mnemonicParsing="false" onAction="#mniSolicitarSoftwareOnAction" text="Solicitar Software" />
                            </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="%menu.emprestimo">
