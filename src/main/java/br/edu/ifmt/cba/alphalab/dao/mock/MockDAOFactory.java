@@ -10,6 +10,7 @@ import br.edu.ifmt.cba.alphalab.dao.IRequisitoDAO;
 import br.edu.ifmt.cba.alphalab.dao.IReservaDAO;
 import br.edu.ifmt.cba.alphalab.dao.IServidorDAO;
 import br.edu.ifmt.cba.alphalab.dao.ISoftwareDAO;
+import br.edu.ifmt.cba.alphalab.dao.ISolicitacaoSoftware;
 import br.edu.ifmt.cba.alphalab.dao.mock.emprestimo.MockEmprestimoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.equipamentos.MockEquipamentoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockDepartamentoDAO;
@@ -18,6 +19,7 @@ import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockRequisitoDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockReservaDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.servidor.MockServidorDAO;
 import br.edu.ifmt.cba.alphalab.dao.mock.software.MockSoftwareDAO;
+import br.edu.ifmt.cba.alphalab.dao.mock.software.MockSolicitacaoSoftware;
 
 public class MockDAOFactory implements DAOFactory {
 
@@ -81,4 +83,9 @@ public class MockDAOFactory implements DAOFactory {
 	 * 
 	 * }
 	 */
+
+    @Override
+    public ISolicitacaoSoftware getSolicitacaoSoftwareDAO() {
+        return MockSolicitacaoSoftware.getInstance();
+    }
 }
