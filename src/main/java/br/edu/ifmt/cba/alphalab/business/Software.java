@@ -1,5 +1,6 @@
 package br.edu.ifmt.cba.alphalab.business;
 
+import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.dao.IDAO;

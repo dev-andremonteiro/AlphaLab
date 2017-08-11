@@ -19,7 +19,6 @@ import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.RequisitoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.EnumTipoServidor;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -73,7 +72,7 @@ public class FrmPedidosReserva implements Initializable {
 	private ComboBox<EnumTipoReserva> cmbTipo;
 
 	@FXML
-	private ComboBox<EnumTipoServidor> cmbProfessor;
+	private ComboBox<EnumTipoServidor> cmbServidor;
 
 	@FXML
 	private TableView<ReservaEntity> tblPedidos;
@@ -162,7 +161,7 @@ public class FrmPedidosReserva implements Initializable {
 
 		ObservableList<EnumTipoServidor> servidores = FXCollections.observableArrayList(EnumTipoServidor.ESTAGIARIO,
 				EnumTipoServidor.PROFESSOR, EnumTipoServidor.TEC_ADM, EnumTipoServidor.TEC_LABORATORIO);
-		cmbProfessor.setItems(servidores);
+		cmbServidor.setItems(servidores);
 
 		preencherDadosTblPedidos(reserva.buscarTodasReservas());
 	}
@@ -174,7 +173,7 @@ public class FrmPedidosReserva implements Initializable {
 		dtpData.setValue(null);
 		dtpData.setPromptText("Data");
 		cmbTipo.getSelectionModel().select(-1);
-		cmbProfessor.getSelectionModel().select(-1);
+		cmbServidor.getSelectionModel().select(-1);
 		tblPedidos.setItems(null);
 		texID.setText("");
 		txtDataPedido.setText("");
@@ -240,10 +239,6 @@ public class FrmPedidosReserva implements Initializable {
 
 		tblPedidos.setItems(FXCollections.observableArrayList(listaReserva));
 		tblPedidos.refresh();
-	}
-
-	private void atualizaTableViewPorProfessor(EnumTipoServidor servidor) {
-
 	}
 
 	private StackPane buildBoxRequisitos(RequisitoEntity requisito) {
@@ -415,25 +410,36 @@ public class FrmPedidosReserva implements Initializable {
 	}
 
 	@FXML
-	void cmbProfessor_onAction(ActionEvent event) {
-		if (cmbProfessor.getSelectionModel().getSelectedItem() != null)
-			atualizaTableViewPorProfessor(cmbProfessor.getSelectionModel().getSelectedItem());
+	void cmbServidor_onAction(ActionEvent event) {
+		if (cmbServidor.getSelectionModel().getSelectedItem() != null) {
+			preencherDadosTblPedidos(reserva.getByServidor(cmbServidor.getSelectionModel().getSelectedItem()));
+
+			if (cmbServidor.getSelectionModel().getSelectedItem() != null
+					&& cmbTipo.getSelectionModel().getSelectedItem() != null) {
+				preencherDadosTblPedidos(reserva.getByTipoEServidor(cmbTipo.getSelectionModel().getSelectedItem(),
+						cmbServidor.getSelectionModel().getSelectedItem()));
+			}
+		}
 	}
 
 	@FXML
 	void cmbTipo_onAction(ActionEvent event) {
 		if (cmbTipo.getSelectionModel().getSelectedItem() != null) {
-			// buscar reserva por tipo
+			preencherDadosTblPedidos(reserva.getByTipo(cmbTipo.getSelectionModel().getSelectedItem()));
 
+			if (cmbServidor.getSelectionModel().getSelectedItem() != null
+					&& cmbTipo.getSelectionModel().getSelectedItem() != null) {
+				preencherDadosTblPedidos(reserva.getByTipoEServidor(cmbTipo.getSelectionModel().getSelectedItem(),
+						cmbServidor.getSelectionModel().getSelectedItem()));
+			}
 		}
-
 	}
 
 	@FXML
 	void cmdLaboratorio_onKeyPressed(KeyEvent event) {
-		if (cmbLaboratorio.getSelectionModel().getSelectedItem() != null) {
-			// buscar reserva por laboratorio
-		}
+		// if (cmbLaboratorio.getSelectionModel().getSelectedItem() != null) {
+		// preencherDadosTblPedidos(reserva.getByTipo(cmbTipo.getSelectionModel().getSelectedItem()));
+		// }
 	}
 
 	@FXML

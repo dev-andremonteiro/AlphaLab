@@ -35,7 +35,7 @@
                            <children>
                               <DatePicker fx:id="dtpData" promptText="%dtp.data" />
                               <ComboBox fx:id="cmbTipo" onAction="#cmbTipo_onAction" prefWidth="150.0" promptText="%combo.tipo" />
-                              <ComboBox fx:id="cmbProfessor" onAction="#cmbProfessor_onAction" prefWidth="150.0" promptText="%combo.professor" />
+                              <ComboBox fx:id="cmbServidor" onAction="#cmbServidor_onAction" prefWidth="150.0" promptText="%combo.servidor" />
                            </children>
                            <BorderPane.margin>
                               <Insets bottom="20.0" left="50.0" top="20.0" />

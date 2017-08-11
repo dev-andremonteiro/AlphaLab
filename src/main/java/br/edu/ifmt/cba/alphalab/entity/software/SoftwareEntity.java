@@ -4,6 +4,7 @@ import br.edu.ifmt.cba.alphalab.entity.IEntity;
 import br.edu.ifmt.cba.alphalab.entity.exception.SoftwareException;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 import java.util.Objects;
+import javafx.beans.property.SimpleStringProperty;
 
 public class SoftwareEntity implements IEntity<SoftwareException> {
 
@@ -26,7 +27,13 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
     }
 
     public SoftwareEntity() {
-       
+       descricao="";
+       tipo=null;
+       versao="";
+       link="";
+       observacaoInstalacao="";
+       solicitante=null;
+       concluinte=null;
     }
        
     
@@ -39,6 +46,7 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
     public SoftwareException validar() {
        StringBuilder msg = new StringBuilder();
         if(descricao.trim().length()==0) msg.append("Descricao nao pode ser vazio\n");
+        if(tipo==null) msg.append("O tipo de software deve ser informado\n");
         
         if( msg.length() >0) {
             return new SoftwareException(msg.toString());
@@ -77,11 +85,11 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
         this.tipo = tipo;
     }
 
-    public String getObservacao_Instalacao() {
+    public String getObservacaoInstalacao() {
         return observacaoInstalacao;
     }
 
-    public void setObservacao_Instalacao(String observacaoInstalacao) {
+    public void setObservacaoInstalacao(String observacaoInstalacao) {
         this.observacaoInstalacao = observacaoInstalacao;
     }
 
@@ -108,12 +116,11 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
     public void setConcluinte(ServidorEntity concluinte) {
         this.concluinte = concluinte;
     }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
+        int hash = 3;
         hash = 53 * hash + Objects.hashCode(this.descricao);
-        hash = 53 * hash + Objects.hashCode(this.link);
         hash = 53 * hash + Objects.hashCode(this.tipo);
         hash = 53 * hash + Objects.hashCode(this.versao);
         return hash;
@@ -134,9 +141,6 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
         if (!Objects.equals(this.descricao, other.descricao)) {
             return false;
         }
-        if (!Objects.equals(this.link, other.link)) {
-            return false;
-        }
         if (!Objects.equals(this.versao, other.versao)) {
             return false;
         }
@@ -145,4 +149,6 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
         }
         return true;
     }
+    
+
 }

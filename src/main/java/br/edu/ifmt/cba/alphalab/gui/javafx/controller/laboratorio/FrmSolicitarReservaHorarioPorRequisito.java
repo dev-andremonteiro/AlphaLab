@@ -58,7 +58,7 @@ import javafx.scene.text.Text;
 
 /**
  * 
- * @author Stévillis Sousa & Yuri Nalin
+ * @author Stï¿½villis Sousa & Yuri Nalin
  * 
  */
 
@@ -167,12 +167,12 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	private void fillColumns() {
 		String estilo = new String("-fx-alignment: CENTER;");
 
-		// Inicializa coluna de horários
+		// Inicializa coluna de horï¿½rios
 		tbcHorario.setStyle(estilo);
 		tbcHorario.setCellValueFactory(conteudo -> new SimpleStringProperty(conteudo.getValue().getEstampa()));
 		tblHorarioRequisitos.getItems().addAll(Horario.values());
 
-		// Especifica rotina de criação de células para a coluna de botões
+		// Especifica rotina de criaï¿½ï¿½o de cï¿½lulas para a coluna de botï¿½es
 		tbcDiaSemana.setStyle(estilo);
 		tbcDiaSemana.setCellFactory(col -> new TableCell<Horario, ToggleButton>() {
 			@Override
@@ -184,7 +184,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 				} else if (listaBotoes.size() < 17) {
 					btn = new ToggleButton(resources.getString("button.selecionar"));
 					listaBotoes.add(btn);
-					// Adiciona/retira botões selecionados na lista
+					// Adiciona/retira botï¿½es selecionados na lista
 					// listaBotoesSelecionados
 					btn.setOnAction(new EventHandler<ActionEvent>() {
 						@Override
@@ -220,9 +220,9 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	}
 
 	/**
-	 * Limpa e atualiza coluna de botões selecionáveis. Recebe uma lista das
-	 * <b>reservas</b> existentes no dia escolhido para determinar horários
-	 * indisponíveis.
+	 * Limpa e atualiza coluna de botï¿½es selecionï¿½veis. Recebe uma lista das
+	 * <b>reservas</b> existentes no dia escolhido para determinar horï¿½rios
+	 * indisponï¿½veis.
 	 * 
 	 * @param reservas
 	 */
@@ -256,7 +256,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	}
 
 	/**
-	 * Constroi a caixa de horário exibida na tabPreencherDados
+	 * Constroi a caixa de horï¿½rio exibida na tabPreencherDados
 	 * 
 	 * @return
 	 */
@@ -282,7 +282,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	}
 
 	/**
-	 * Id relacionado à cada software selecionado na lista de tblRequisitos.
+	 * Id relacionado ï¿½ cada software selecionado na lista de tblRequisitos.
 	 * 
 	 * @return um ID do objeto selecionado.
 	 */
@@ -292,16 +292,16 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	}
 
 	/**
-	 * Mostra uma caixa de diálogo perguntando se o usuário realmente deseja
-	 * cancelar a solicitação de reserva de horário.
+	 * Mostra uma caixa de diï¿½logo perguntando se o usuï¿½rio realmente deseja
+	 * cancelar a solicitaï¿½ï¿½o de reserva de horï¿½rio.
 	 */
 	private void recusarPedidoReserva() {
 		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
 		ButtonType sim = new ButtonType("Sim");
-		ButtonType nao = new ButtonType("Não");
+		ButtonType nao = new ButtonType("Nï¿½o");
 		alerta.setTitle("AlphaLab");
-		alerta.setHeaderText("Cancelar pedido de Reserva de Horário");
-		alerta.setContentText("Deseja cancelar o pedido de Reserva de Horário?");
+		alerta.setHeaderText("Cancelar pedido de Reserva de Horï¿½rio");
+		alerta.setContentText("Deseja cancelar o pedido de Reserva de Horï¿½rio?");
 		alerta.getButtonTypes().setAll(sim, nao);
 
 		alerta.showAndWait().ifPresent(opcao -> {
@@ -331,8 +331,8 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	}
 
 	/**
-	 * Guarda os dados selecionados pelo usuário na Tab tabRequisitos.<br>
-	 * <b>Dados:</b> Data, Horário, Softwares e Número Máximo de Alunos.
+	 * Guarda os dados selecionados pelo usuï¿½rio na Tab tabRequisitos.<br>
+	 * <b>Dados:</b> Data, Horï¿½rio, Softwares e Nï¿½mero Mï¿½ximo de Alunos.
 	 */
 	private String getDadosTabRequisitos() {
 		StringBuilder string = new StringBuilder();
@@ -344,7 +344,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		}
 
 		if (listaBotoesSelecionados.isEmpty()) {
-			string.append("Ao menos um horário disponível deve ser selecionado.\n");
+			string.append("Ao menos um horï¿½rio disponï¿½vel deve ser selecionado.\n");
 		} else {
 			listaHorariosSelecionados.clear();
 			for (ToggleButton btn : listaBotoesSelecionados) {
@@ -355,16 +355,16 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		// lista de softwares selecionados
 
 		if (txtNumMaxAlunos.getText() == null || txtNumMaxAlunos.getText() == "") {
-			string.append("Número máx. de alunos precisa ser informado.\n");
+			string.append("Nï¿½mero mï¿½x. de alunos precisa ser informado.\n");
 		} else {
 			try {
 				numMaxAlunos = Integer.parseInt(txtNumMaxAlunos.getText());
 
 				if (numMaxAlunos < 0) {
-					string.append("Número máx. de alunos inválido.\n");
+					string.append("Nï¿½mero mï¿½x. de alunos invï¿½lido.\n");
 				}
 			} catch (NumberFormatException nfe) {
-				string.append("Número máx. de alunos inteiro precisa ser informado.\n");
+				string.append("Nï¿½mero mï¿½x. de alunos inteiro precisa ser informado.\n");
 			}
 		}
 
@@ -394,16 +394,16 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	}
 
 	/**
-	 * Caixa de diálogo Alert.
+	 * Caixa de diï¿½logo Alert.
 	 * 
 	 * @param alertType
-	 *            é o tipo to alerta.
+	 *            ï¿½ o tipo to alerta.
 	 * @param titulo
-	 *            é o título da caixa de diálogo.
+	 *            ï¿½ o tï¿½tulo da caixa de diï¿½logo.
 	 * @param headerText
-	 *            é o cabeçalho da caixa de diálogo.
+	 *            ï¿½ o cabeï¿½alho da caixa de diï¿½logo.
 	 * @param contentText
-	 *            é o conteúdo da caixa de diálogo.
+	 *            ï¿½ o conteï¿½do da caixa de diï¿½logo.
 	 */
 	private void caixaAlerta(AlertType alertType, String titulo, String headerText, String contentText) {
 		Alert alerta = new Alert(alertType);
@@ -454,10 +454,10 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	void btnConfirmar_onAction(ActionEvent event) {
 		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
 		ButtonType sim = new ButtonType("Sim");
-		ButtonType nao = new ButtonType("Não");
+		ButtonType nao = new ButtonType("Nï¿½o");
 		alerta.setTitle("AlphaLab");
-		alerta.setHeaderText("Confirmar Reserva de Horário");
-		alerta.setContentText("Deseja confirmar a Reserva de Horário?");
+		alerta.setHeaderText("Confirmar Reserva de Horï¿½rio");
+		alerta.setContentText("Deseja confirmar a Reserva de Horï¿½rio?");
 		alerta.getButtonTypes().setAll(sim, nao);
 
 		alerta.showAndWait().ifPresent(option -> {
@@ -520,7 +520,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 					vbxSoftwares.getChildren().add(new Text(software.getDescricao()));
 				}
 			} else {
-				// TODO Código de teste. Remover todo o else quando a lista de
+				// TODO Cï¿½digo de teste. Remover todo o else quando a lista de
 				// software estiver
 				// implementada.
 				vbxSoftwares.getChildren().add(new Text("TESTE\nTESTE"));
@@ -608,7 +608,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	void tblRequisitos_onMouseClicked(MouseEvent event) {
 		if (event.getClickCount() >= 2) {
 			if (tblRequisitos.getSelectionModel().getSelectedItem() == null) {
-				caixaAlerta(AlertType.INFORMATION, "AlphaLab", "Seleção de softwares",
+				caixaAlerta(AlertType.INFORMATION, "AlphaLab", "Seleï¿½ï¿½o de softwares",
 						"Selecione um software na lista de requisitos!");
 			} else {
 				SoftwareEntity softwareSelecionado = this.tblRequisitos.getSelectionModel().getSelectedItem();
@@ -619,17 +619,17 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 				softwareEntity.setTipo(softwareSelecionado.getTipo());
 				softwareEntity.setConcluinte(softwareSelecionado.getConcluinte());
 				softwareEntity.setLink(softwareSelecionado.getLink());
-				softwareEntity.setObservacao_Instalacao(softwareSelecionado.getObservacao_Instalacao());
+				softwareEntity.setObservacaoInstalacao(softwareSelecionado.getObservacaoInstalacao());
 				softwareEntity.setSolicitante(softwareSelecionado.getSolicitante());
 				softwareEntity.setVersao(softwareSelecionado.getVersao());
 
 				if (listaSoftwaresSelecionados.indexOf(softwareEntity) < 0) {
 					listaSoftwaresSelecionados.add(softwareEntity);
-					caixaAlerta(AlertType.INFORMATION, "AlphaLab", "Seleção de softwares",
-							softwareEntity.getDescricao() + " adicionado à lista de requisitos");
+					caixaAlerta(AlertType.INFORMATION, "AlphaLab", "Seleï¿½ï¿½o de softwares",
+							softwareEntity.getDescricao() + " adicionado ï¿½ lista de requisitos");
 				} else {
 					listaSoftwaresSelecionados.remove(listaSoftwaresSelecionados.indexOf(softwareEntity));
-					caixaAlerta(AlertType.INFORMATION, "AlphaLab", "Seleção de softwares",
+					caixaAlerta(AlertType.INFORMATION, "AlphaLab", "Seleï¿½ï¿½o de softwares",
 							softwareEntity.getDescricao() + " removido da lista de requisitos");
 				}
 			}

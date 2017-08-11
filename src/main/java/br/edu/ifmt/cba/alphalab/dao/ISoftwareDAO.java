@@ -19,6 +19,7 @@ import java.util.List;
 public interface ISoftwareDAO extends IDAO<SoftwareEntity> {
     public List<SoftwareEntity> buscarTodos();
     public List<SoftwareEntity> buscarPorNome(String nome);
+    public List<SoftwareEntity> buscarPorTipo(TipoSoftwareEnum tipoSoftwareEnum);
     public List<SoftwareEntity> buscarPorTipoNome(TipoSoftwareEnum tipo, String nome);
 
 }

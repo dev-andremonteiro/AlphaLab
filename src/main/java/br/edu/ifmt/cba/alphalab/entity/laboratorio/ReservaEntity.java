@@ -2,7 +2,6 @@ package br.edu.ifmt.cba.alphalab.entity.laboratorio;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import br.edu.ifmt.cba.alphalab.entity.IEntity;
 import br.edu.ifmt.cba.alphalab.entity.exception.ReservaException;
