@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class MockSoftwareDAO implements ISoftwareDAO {
 	private static MockSoftwareDAO instance;
-	private static final List<SoftwareEntity> listaSoftware = new ArrayList<>();
+	private static  List<SoftwareEntity> listaSoftware = new ArrayList<>();
 	private static MockServidorDAO servidor = new MockServidorDAO();
 
 	private static final SoftwareEntity software1 = new SoftwareEntity();
@@ -31,7 +31,7 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 		software1.setTipo(TipoSoftwareEnum.EDITOR_TEXTO);
 		software1.setVersao("2.0");
 		software1.setLink("http://www.microsoft.com.br");
-		software1.setObservacao_Instalacao("Instalado");
+		software1.setObservacaoInstalacao("Instalado");
 		software1.setSolicitante(servidor.getById(1L));
 		software1.setConcluinte(servidor.getById(2L));
 
@@ -40,7 +40,7 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 		software2.setTipo(TipoSoftwareEnum.EDITOR_TEXTO);
 		software2.setVersao("3.0");
 		software2.setLink("http://www.jetbrains.com");
-		software2.setObservacao_Instalacao("Instalado");
+		software2.setObservacaoInstalacao("Instalado");
 		software2.setSolicitante(servidor.getById(2L));
 		software2.setConcluinte(servidor.getById(1L));
 
@@ -60,7 +60,9 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 
 	@Override
 	public void save(SoftwareEntity entity) {
+                
 		if (listaSoftware.indexOf(entity) < 0) {
+                    entity.setId((long)listaSoftware.size()+1);
 			listaSoftware.add(entity);
 		}
                 else
@@ -71,7 +73,8 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 
 	@Override
 	public void delete(SoftwareEntity entity) {
-		listaSoftware.remove(entity);
+            listaSoftware.remove(entity);
+            System.out.println("removendo");
 
 	}
 
