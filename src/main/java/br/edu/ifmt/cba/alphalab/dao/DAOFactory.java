@@ -26,6 +26,8 @@ public interface DAOFactory {
         public abstract IEmprestimoDAO getEmprestimoDAO();
 
 	public abstract IServidorDAO getServidorDAO();
+        
+        public abstract ISolicitacaoSoftware getSolicitacaoSoftwareDAO();
 
 	public static DAOFactory getDAOFactory() {
 		if (props.isEmpty()) {
