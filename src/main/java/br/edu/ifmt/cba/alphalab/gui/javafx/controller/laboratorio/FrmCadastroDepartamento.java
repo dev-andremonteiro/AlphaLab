@@ -287,11 +287,12 @@ public class FrmCadastroDepartamento implements Initializable {
         tbcChefe.setCellValueFactory(new PropertyValueFactory<>("chefe"));
         tbcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tbcSigla.setCellValueFactory(new PropertyValueFactory<>("sigla"));
+        tbvDepartamentos.setItems(FXCollections.observableArrayList(new Departamento(DAOFactory.getDAOFactory().getDepartamentoDAO()).buscarTodos()));
         
     }
 
     @Override
     public void initialize(java.net.URL location, ResourceBundle resources) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
