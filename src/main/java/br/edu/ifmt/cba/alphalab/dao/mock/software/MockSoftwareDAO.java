@@ -60,8 +60,7 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 
 	@Override
 	public void save(SoftwareEntity entity) {
-                
-		if (listaSoftware.indexOf(entity) < 0) {
+           	if (listaSoftware.indexOf(entity) < 0) {
                     entity.setId((long)listaSoftware.size()+1);
 			listaSoftware.add(entity);
 		}
@@ -73,10 +72,8 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 
 	@Override
 	public void delete(SoftwareEntity entity) {
-            listaSoftware.remove(entity);
-            System.out.println("removendo");
-
-	}
+            listaSoftware.remove(listaSoftware.indexOf(entity));
+        }
 
 	@Override
 	public SoftwareEntity getById(Long id) {

@@ -27,7 +27,13 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
     }
 
     public SoftwareEntity() {
-       
+       descricao="";
+       tipo=null;
+       versao="";
+       link="";
+       observacaoInstalacao="";
+       solicitante=null;
+       concluinte=null;
     }
        
     
@@ -40,6 +46,7 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
     public SoftwareException validar() {
        StringBuilder msg = new StringBuilder();
         if(descricao.trim().length()==0) msg.append("Descricao nao pode ser vazio\n");
+        if(tipo==null) msg.append("O tipo de software deve ser informado\n");
         
         if( msg.length() >0) {
             return new SoftwareException(msg.toString());

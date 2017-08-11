@@ -98,6 +98,7 @@ public class ManutencaoSoftware implements Initializable{
         cbxSoftwareTipo.getItems().addAll(TipoSoftwareEnum.values());
         listaSoftwares=FXCollections.observableArrayList(negocio.buscarTodosSoftwares());
         tblManutencaoSoftware.setItems(listaSoftwares);
+        tbpGerenciaSoftware.getSelectionModel().selectLast();
         }
     @FXML
     void btnManutencaoPesquisarOnAction(ActionEvent evt){
@@ -156,8 +157,7 @@ public class ManutencaoSoftware implements Initializable{
     }
     public void limparSoftware(){
         software=null;
-        software=new SoftwareEntity();
-        setSoftware(software);
+        setSoftware(new SoftwareEntity());
     }
     @FXML void btnSalvarOnAction(ActionEvent evt){
         software.setDescricao(txtSoftwareDescricao.getText());
@@ -165,14 +165,24 @@ public class ManutencaoSoftware implements Initializable{
         software.setObservacaoInstalacao(txaSoftwareObservacao.getText());
         software.setVersao(txtSoftwareVersao.getText());
         software.setTipo(cbxSoftwareTipo.getSelectionModel().getSelectedItem());
-        negocio.save(software);
+        SoftwareException save = negocio.save(software);
+        if(save==null){
         limparSoftware();
         listaSoftwares.clear();
         listaSoftwares.addAll(negocio.buscarTodosSoftwares());
         tbpGerenciaSoftware.getSelectionModel().selectNext();
+        }
+        else{
+            Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao inserir software", save.getLocalizedMessage());
+        }
     }
     @FXML void btnCancelar(ActionEvent evt){
         limparSoftware();
+    }
+    @FXML 
+    void btnNovoOnAction(ActionEvent evt){
+        limparSoftware();
+        tbpGerenciaSoftware.getSelectionModel().selectFirst();
     }
     
 }
