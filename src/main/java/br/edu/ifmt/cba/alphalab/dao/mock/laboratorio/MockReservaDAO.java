@@ -116,6 +116,7 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva3.setHorarios(new ArrayList<Horario>(Arrays.asList(Horario.V3, Horario.V4)));
 
 		reserva4.setId(4L);
+		reserva4.setStatus(EnumReserva.CONFIRMADO);
 		reserva4.setDisciplina(EnumDisciplina.ALGORITMOS_I);
 		reserva4.setTurma("7844-2");
 		reserva4.setObservacao("Reserva para semestre letivo.");

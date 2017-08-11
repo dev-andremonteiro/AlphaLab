@@ -67,8 +67,7 @@ public class FrmConsultarHorario implements Initializable {
 	@FXML
 	private Button btnReset;
 
-	private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>(
-			DAOFactory.getDAOFactory().getReservaDAO().getAtivosNaSemana(LocalDate.now()));
+	private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>(DAOFactory.getDAOFactory().getReservaDAO().getAtivosNaSemana(LocalDate.now()));
 
 	private List<ReservaEntity> reservasFiltradas = new ArrayList<>();
 
