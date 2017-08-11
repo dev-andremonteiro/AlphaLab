@@ -39,15 +39,33 @@ public class EmprestimoEntity implements IEntity<EmprestimoException> {
     public EmprestimoException validar() {
         StringBuilder msg = new StringBuilder();
         
-        if (status == null)
-        msg.append("Status da recurso deve ser informado!\n");
-        if (this.solicitante==null && this.status.CONFIRMADO==EnumEmprestimo.CONFIRMADO)
-            msg.append("Precisa informar servidor solicitante");
-        if (dataSolicitacao == null && this.status.CONFIRMADO==EnumEmprestimo.CONFIRMADO)
-        msg.append("Data de solicitação do recurso deve ser informado!\n");
         
-        if (dataDevolucao == null)
-        msg.append("Data de solicitação do recurso deve ser informado!\n");
+        if (this.solicitante==null && this.status.PEDIDO==EnumEmprestimo.PEDIDO){
+            msg.append("Precisa informar servidor solicitante");
+        }
+        
+        if (this.aprovador==null && this.status.EMPRESTADO==EnumEmprestimo.EMPRESTADO){
+            msg.append("Precisa informar servidor aprovador");
+        }
+        
+        if (this.recebedor==null && this.status.DEVOLVIDO==EnumEmprestimo.DEVOLVIDO){
+            msg.append("Precisa informar servidor recebedor");
+        }
+        
+        if (dataSolicitacao == null && this.status.PEDIDO==EnumEmprestimo.PEDIDO){
+           msg.append("Data de solicitação do recurso deve ser informada!\n");   
+        }
+        
+        if (dataEmprestimo == null && this.status.EMPRESTADO==EnumEmprestimo.EMPRESTADO){
+           msg.append("Data do emprestimo do recurso deve ser informada!\n");   
+        }
+        
+         if (dataDevolucao == null && this.status.DEVOLVIDO==EnumEmprestimo.DEVOLVIDO){
+           msg.append("Data de devolução do recurso deve ser informada!\n");   
+        }
+        
+        
+       
         
         
         

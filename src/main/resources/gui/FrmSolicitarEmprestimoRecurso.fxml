@@ -75,7 +75,7 @@
                               <Insets top="20.0" />
                            </padding>
                         </HBox>
-                        <TableView fx:id="tblRecursoDisponivel" onKeyPressed="#tblDisponivel_onKeyPressed" prefHeight="364.0" prefWidth="227.0">
+                        <TableView fx:id="tblRecursoDisponivel" onKeyPressed="#tblDisponivel_onKeyPressed" onMouseClicked="#tblDisponivel_onMouseClicked" prefHeight="364.0" prefWidth="227.0">
                            <columns>
                               <TableColumn fx:id="tbcDescricao" prefWidth="87.0" text="%column.descricao" />
                               <TableColumn fx:id="tbcQtdeDisponivel" minWidth="9.0" prefWidth="190.0" text="%column.qtdeDisponivel" />
@@ -103,7 +103,7 @@
                         <Insets top="250.0" />
                      </padding>
                   </VBox>
-                  <TableView fx:id="tblRecursoPedido" onKeyPressed="#tblPedidos_onKeyPressed" prefHeight="364.0" prefWidth="312.0">
+                  <TableView fx:id="tblRecursoPedido" onKeyPressed="#tblPedidos_onKeyPressed" onMouseClicked="#tblPedida_onMouseClicked" prefHeight="364.0" prefWidth="312.0">
                     <columns>
                       <TableColumn fx:id="tbcDescricao2" prefWidth="172.0" text="%column.descricao" />
                       <TableColumn fx:id="tbcQtdePedida" minWidth="9.0" prefWidth="139.0" text="%column.qtdePedida" />

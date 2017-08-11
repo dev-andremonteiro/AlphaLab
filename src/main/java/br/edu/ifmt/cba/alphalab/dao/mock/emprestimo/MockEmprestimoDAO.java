@@ -36,8 +36,8 @@ public class MockEmprestimoDAO implements IEmprestimoDAO {
         emprestimo1.setStatus(EnumEmprestimo.PEDIDO);
         try {
             emprestimo1.setDataSolicitacao(sdf.parse("09/05/2017"));
-            emprestimo1.setDataEmprestimo(sdf.parse("09/05/2017"));
-            emprestimo1.setDataDevolucao(sdf.parse("10/05/2017"));
+           // emprestimo1.setDataEmprestimo(sdf.parse("09/05/2017"));
+           //emprestimo1.setDataDevolucao(sdf.parse("10/05/2017"));
             
             
         } catch (ParseException ex) {
@@ -46,8 +46,8 @@ public class MockEmprestimoDAO implements IEmprestimoDAO {
         emprestimo1.setObservacaoEmprestimo("Equipamento em perfeito estado");
         emprestimo1.setObservacaoDevolucao("Equipamento devolvido em perfeito estado");
         emprestimo1.setSolicitante(servidor.getById(1L));
-        emprestimo1.setAprovador(servidor.getById(1L));
-        emprestimo1.setRecebedor(servidor.getById(1L));
+       // emprestimo1.setAprovador(servidor.getById(1L));
+       //emprestimo1.setRecebedor(servidor.getById(1L));
        
         equipamentoEntity= new EquipamentoEntity();
         equipamentoEntity.setId(1L);
