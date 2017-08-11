@@ -75,7 +75,11 @@ public class FrmPrincipal {
         private MenuItem mniGerenciarDepartamento;
         
         @FXML
-        private MenuItem mniSolicitarSoftware;
+        private MenuItem mniSolicitarSoftware,mniGerenciarSolicitacaoSoftware;
+        @FXML
+        void mniGerenciarSolicitacaoSoftwareOnAction(ActionEvent e){
+            loadPane("GerenciarInstalacaoSoftware");
+        }
         
         @FXML
         void mniSolicitarSoftwareOnAction(ActionEvent evt){
