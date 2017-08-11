@@ -20,6 +20,7 @@ import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumTipoReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.EnumTipoServidor;
+import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 
 /**
  * 
@@ -260,6 +261,20 @@ public class MockReservaDAO implements IReservaDAO {
 		ArrayList<ReservaEntity> resultado = new ArrayList<>();
 		for (ReservaEntity vo : reservas) {
 			if (vo.getSolicitante().equals(enumTipoServidor)) {
+				resultado.add(vo);
+			}
+		}
+		return resultado;
+	}
+
+	@Override
+	public List<ReservaEntity> getByTipoEServidor(EnumTipoReserva enumTipoReserva, EnumTipoServidor enumTipoServidor) {
+		ArrayList<ReservaEntity> resultado = new ArrayList<>();
+		for (ReservaEntity vo : reservas) {
+			System.out.println(vo.getTipo() + " == " + enumTipoReserva);
+			System.out.println(vo.getSolicitante() + " == " + enumTipoServidor);
+			System.out.println("********************************************\n\n");
+			if (vo.getTipo().equals(enumTipoReserva) && vo.getSolicitante().getTipo().equals(enumTipoServidor)) {
 				resultado.add(vo);
 			}
 		}

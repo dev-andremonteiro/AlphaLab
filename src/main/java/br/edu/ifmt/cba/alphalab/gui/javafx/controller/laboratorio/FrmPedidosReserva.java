@@ -411,14 +411,27 @@ public class FrmPedidosReserva implements Initializable {
 
 	@FXML
 	void cmbServidor_onAction(ActionEvent event) {
-		if (cmbServidor.getSelectionModel().getSelectedItem() != null)
+		if (cmbServidor.getSelectionModel().getSelectedItem() != null) {
 			preencherDadosTblPedidos(reserva.getByServidor(cmbServidor.getSelectionModel().getSelectedItem()));
+
+			if (cmbServidor.getSelectionModel().getSelectedItem() != null
+					&& cmbTipo.getSelectionModel().getSelectedItem() != null) {
+				preencherDadosTblPedidos(reserva.getByTipoEServidor(cmbTipo.getSelectionModel().getSelectedItem(),
+						cmbServidor.getSelectionModel().getSelectedItem()));
+			}
+		}
 	}
 
 	@FXML
 	void cmbTipo_onAction(ActionEvent event) {
 		if (cmbTipo.getSelectionModel().getSelectedItem() != null) {
 			preencherDadosTblPedidos(reserva.getByTipo(cmbTipo.getSelectionModel().getSelectedItem()));
+
+			if (cmbServidor.getSelectionModel().getSelectedItem() != null
+					&& cmbTipo.getSelectionModel().getSelectedItem() != null) {
+				preencherDadosTblPedidos(reserva.getByTipoEServidor(cmbTipo.getSelectionModel().getSelectedItem(),
+						cmbServidor.getSelectionModel().getSelectedItem()));
+			}
 		}
 	}
 
