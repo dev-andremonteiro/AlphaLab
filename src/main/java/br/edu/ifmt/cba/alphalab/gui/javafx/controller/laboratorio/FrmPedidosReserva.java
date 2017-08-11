@@ -288,26 +288,6 @@ public class FrmPedidosReserva implements Initializable {
 		preencherDadosTblPedidos(reserva.getReservasEmAbertNaSemana(LocalDate.now()));
 	}
 
-	private void permitirPedidoReserva() {
-		if (reservaSelecionada != null) {
-			Locale locale = new Locale("pt", "BR");
-			GregorianCalendar calendar = new GregorianCalendar();
-			SimpleDateFormat formato = new SimpleDateFormat("dd' de 'MMMMM' de 'yyyy' - 'HH':'mm'h'", locale);
-			System.out.println(formato.format(calendar.getTime()));
-
-			reservaSelecionada.setStatus(EnumReserva.CONFIRMADO);
-			reservaSelecionada.setDataAprovacaoRecusa(calendar.getTime());
-
-			Reserva salvarReserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
-			salvarReserva.save(reservaSelecionada);
-		}
-		limparDados();
-		tabPedidos.setDisable(false);
-		tabDados.setDisable(true);
-		tbpDados.getSelectionModel().select(tabPedidos);
-		preencherDadosTblPedidos(reserva.buscarReservasPedidas());
-	}
-
 	/**
 	 * Caixa de diálogo Alert.
 	 * 
@@ -341,17 +321,23 @@ public class FrmPedidosReserva implements Initializable {
 		alerta.showAndWait().ifPresent(p -> {
 			if (p == sim) {
 				if (reservaSelecionada != null && cmbLaboratorio.getSelectionModel().getSelectedItem() != null) {
-					Locale locale = new Locale("pt", "BR");
-					GregorianCalendar calendar = new GregorianCalendar();
-					SimpleDateFormat formato = new SimpleDateFormat("dd' de 'MMMMM' de 'yyyy' - 'HH':'mm'h'", locale);
-					System.out.println(formato.format(calendar.getTime()));
 
-					reservaSelecionada.setStatus(EnumReserva.CONFIRMADO);
-					reservaSelecionada.setDataAprovacaoRecusa(calendar.getTime());
-					alerta.close();
+					if (reservaSelecionada.getTipo() == EnumTipoReserva.UNICA) {
+						Locale locale = new Locale("pt", "BR");
+						GregorianCalendar calendar = new GregorianCalendar();
+						SimpleDateFormat formato = new SimpleDateFormat("dd' de 'MMMMM' de 'yyyy' - 'HH':'mm'h'",
+								locale);
+						System.out.println(formato.format(calendar.getTime()));
 
-					Reserva salvarReserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
-					salvarReserva.save(reservaSelecionada);
+						reservaSelecionada.setStatus(EnumReserva.CONFIRMADO);
+						reservaSelecionada.setDataAprovacaoRecusa(calendar.getTime());
+						alerta.close();
+
+						Reserva salvarReserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
+						salvarReserva.save(reservaSelecionada);
+					} else {
+						// TODO Gerar reservas para o semestre inteiro.
+					}
 
 					limparDados();
 					tabPedidos.setDisable(false);

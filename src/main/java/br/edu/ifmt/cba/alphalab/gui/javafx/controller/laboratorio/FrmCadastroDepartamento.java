@@ -222,7 +222,7 @@ public class FrmCadastroDepartamento implements Initializable {
           tbvDepartamentos.setItems(FXCollections.observableArrayList(new Departamento(DAOFactory.getDAOFactory().getDepartamentoDAO()).getBySigla(txtPesqSiglaDep.getText())));
       }else if(!txtPesqNomeDep.getText().trim().equals("") && txtPesqSiglaDep.getText().trim().equals("")){
         tbvDepartamentos.setItems(FXCollections.observableArrayList(new Departamento(DAOFactory.getDAOFactory().getDepartamentoDAO()).getByNome(txtPesqNomeDep.getText())));
-      }else Alertas.exibirAlerta(Alert.AlertType.NONE, "Busca", "Pesquisa não pode ser vazio", "Digite a Sigla ou o Nome do Departamento para Prosseguir com a Busca");
+      }else Alertas.exibirAlerta(Alert.AlertType.INFORMATION, "Busca", "Pesquisa não pode ser vazio", "Digite a Sigla ou o Nome do Departamento para Prosseguir com a Busca");
      // tbvDepartamentos.setItems(FXCollections.observableArrayList(new Departamento(DAOFactory.getDAOFactory().getDepartamentoDAO()).getBySigla("sigla")));
 
 		
