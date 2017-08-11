@@ -57,7 +57,6 @@ public class MockReservaDAO implements IReservaDAO {
 			reserva1.setDataInicio(sdf.parse("13/05/2017"));
 			reserva1.setDataFim(sdf.parse("13/09/2017"));
 			reserva1.setDataAprovacaoRecusa(sdf.parse("11/05/2017"));
-			// System.out.println(sdf.format(sdf.parse("25/08/1979")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -80,7 +79,6 @@ public class MockReservaDAO implements IReservaDAO {
 			reserva2.setDataInicio(sdf.parse("07/08/2017"));
 			reserva2.setDataFim(sdf.parse("12/12/2017"));
 			reserva2.setDataAprovacaoRecusa(sdf.parse("07/08/2017"));
-			// System.out.println(sdf.format(sdf.parse("07/08/2017")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -103,7 +101,6 @@ public class MockReservaDAO implements IReservaDAO {
 			reserva3.setDataInicio(sdf.parse("08/05/2017"));
 			reserva3.setDataFim(sdf.parse("28/09/2017"));
 			reserva3.setDataAprovacaoRecusa(sdf.parse("11/09/2017"));
-			// System.out.print(sdf.format(sdf.parse("11/09/2017")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -126,7 +123,6 @@ public class MockReservaDAO implements IReservaDAO {
 			reserva4.setDataInicio(sdf.parse("09/08/2017"));
 			reserva4.setDataFim(sdf.parse("12/12/2017"));
 			reserva4.setDataAprovacaoRecusa(sdf.parse("07/08/2017"));
-			// System.out.println(sdf.format(sdf.parse("07/08/2017")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -149,12 +145,11 @@ public class MockReservaDAO implements IReservaDAO {
 			reserva5.setDataInicio(sdf.parse("10/08/2017"));
 			reserva5.setDataFim(sdf.parse("12/12/2017"));
 			reserva5.setDataAprovacaoRecusa(sdf.parse("07/08/2017"));
-			// System.out.println(sdf.format(sdf.parse("07/08/2017")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		reserva5.setJustificativa("");
-		reserva5.setLaboratorio(laboratorio.getById(1L));
+		reserva5.setLaboratorio(laboratorio.getById(3L));
 		reserva5.setDepartamentoAula(departamento.getById(1L));
 		reserva5.setSolicitante(servidor.getById(4L));
 		reserva5.setAprovador(servidor.getById(1L));

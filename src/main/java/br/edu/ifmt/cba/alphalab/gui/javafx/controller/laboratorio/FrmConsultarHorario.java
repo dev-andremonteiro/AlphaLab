@@ -214,8 +214,7 @@ public class FrmConsultarHorario implements Initializable {
 							.getValue() == celula.getTableView().getColumns().indexOf(celula.getTableColumn()))
 						for (Horario horario : reservaEntity.getHorarios()) {
 							if (horario.ordinal() == celula.getIndex())
-								txt.setText(reservaEntity.getDepartamentoAula().getSigla() + " "
-										+ reservaEntity.getTurma());
+								txt.setText(criarLabel(reservaEntity) + "\n" + reservaEntity.getTurma());
 						}
 				}
 			}
@@ -243,5 +242,17 @@ public class FrmConsultarHorario implements Initializable {
 				if (reservaEntity.getSolicitante().equals(cmbProfessor.getSelectionModel().getSelectedItem()))
 					reservasFiltradas.add(reservaEntity);
 			}
+	}
+	
+	private String criarLabel(ReservaEntity reservaEntity) {
+		if (!cmbDisciplina.getSelectionModel().isEmpty()) {
+			return new String(reservaEntity.getSolicitante().getNome() + "\n" + reservaEntity.getLaboratorio().getNome());
+		} else if (!cmbLaboratorio.getSelectionModel().isEmpty()){
+			return new String(reservaEntity.getSolicitante().getNome() + "\n" + reservaEntity.getDisciplina().toString());
+		} else if (!cmbProfessor.getSelectionModel().isEmpty()) {
+			return new String(reservaEntity.getDisciplina().toString() + "\n" + reservaEntity.getLaboratorio().getNome());
+		}
+		
+		return null;
 	}
 }
