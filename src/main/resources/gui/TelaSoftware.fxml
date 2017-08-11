@@ -27,7 +27,7 @@
       <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Text fx:id="textTitulo" strokeType="OUTSIDE" strokeWidth="0.0" text="%text.tituloGerenciaSoftware" wrappingWidth="200.423828125" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Text fx:id="textTitulo" strokeType="OUTSIDE" strokeWidth="0.0" text="%text.tituloGerenciaSoftware" textAlignment="CENTER" wrappingWidth="1014.423828125" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="1024.0" spacing="15.0" GridPane.rowIndex="1">
          <children>
             <Label fx:id="lblLaboratorio" text="%label.laboratorio" />
