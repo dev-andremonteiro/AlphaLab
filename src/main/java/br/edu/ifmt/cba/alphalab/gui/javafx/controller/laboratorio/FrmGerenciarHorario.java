@@ -137,17 +137,17 @@ public class FrmGerenciarHorario implements Initializable {
 	private ArrayList<HorarioAdapter> matriz = new ArrayList<>();
 
 	private ArrayList<StackPane> listaSelecionados = new ArrayList<>();
-	
+
 	private Set<TableColumn<Horario, HorarioAdapter>> diasAReservar = new HashSet<>();
 
 	private List<ReservaEntity> novasReservas = new ArrayList<>();
-	
+
 	static final Comparator<ReservaEntity> DATA_INICIO = new Comparator<ReservaEntity>() {
 		public int compare(ReservaEntity r1, ReservaEntity r2) {
 			return r1.getDataInicio().compareTo(r2.getDataInicio());
 		}
 	};
-	
+
 	@FXML
 	void btnConfirmar_onAction(ActionEvent event) {
 		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -175,13 +175,12 @@ public class FrmGerenciarHorario implements Initializable {
 						alertaDadosInvalidos.show();
 						break;
 					}
-					
-					tbpDados.getSelectionModel().select(tabVisualizar);
-					tabPreencherDados.setDisable(true);
-					tabVisualizar.setDisable(false);
-					atualizarReservas();
-					tblGerenciarHorario.refresh();
 				}
+				tbpDados.getSelectionModel().select(tabVisualizar);
+				tabPreencherDados.setDisable(true);
+				tabVisualizar.setDisable(false);
+				atualizarReservas();
+				cmbLaboratorio_onAction(new ActionEvent());
 			} else {
 				alerta.close();
 			}
@@ -218,7 +217,10 @@ public class FrmGerenciarHorario implements Initializable {
 
 	@FXML
 	void btnVoltar_onAction(ActionEvent event) {
-
+		tabPreencherDados.setDisable(true);
+		tabVisualizar.setDisable(false);
+		tbpDados.getSelectionModel().select(tabVisualizar);
+		cmbLaboratorio.requestFocus();
 	}
 
 	@FXML
@@ -233,6 +235,8 @@ public class FrmGerenciarHorario implements Initializable {
 
 	@FXML
 	void cmbLaboratorio_onAction(ActionEvent event) {
+		if (!listaSelecionados.isEmpty())
+			listaSelecionados.clear();
 		filtrarReservas();
 		tblGerenciarHorario.refresh();
 	}
@@ -427,7 +431,9 @@ public class FrmGerenciarHorario implements Initializable {
 										}
 									});
 
-									adapter.addNode(new Text(reservaEntity.getDepartamentoAula().getSigla() + " "
+									adapter.addNode(new Text(reservaEntity.getSolicitante().getNome() + "\n"
+											+ reservaEntity.getDisciplina().toString() + "\n"
+											+ reservaEntity.getDepartamentoAula().getSigla() + " "
 											+ reservaEntity.getTurma()));
 									adapter.addNode(btn);
 									StackPane.setAlignment(btn, Pos.CENTER_RIGHT);
@@ -485,9 +491,9 @@ public class FrmGerenciarHorario implements Initializable {
 
 	private List<StackPane> buildBoxHorario() {
 		List<StackPane> boxHorarios = new ArrayList<>();
-		
+
 		for (ReservaEntity reservaEntity : novasReservas) {
-			
+
 			VBox vbox = new VBox(7);
 			vbox.setAlignment(Pos.CENTER);
 
@@ -517,31 +523,35 @@ public class FrmGerenciarHorario implements Initializable {
 		diasAReservar.clear();
 		for (StackPane pane : listaSelecionados) {
 			for (HorarioAdapter adapter : matriz) {
-				if(adapter.getPane().equals(pane))
-					diasAReservar.add((TableColumn<Horario, HorarioAdapter>) tblGerenciarHorario.getColumns().get(adapter.getColuna()));
+				if (adapter.getPane().equals(pane))
+					diasAReservar.add((TableColumn<Horario, HorarioAdapter>) tblGerenciarHorario.getColumns()
+							.get(adapter.getColuna()));
 			}
 		}
-		
+
 		LocalDate dtAux = LocalDate.now();
-		if(!dtAux.getDayOfWeek().equals(DayOfWeek.MONDAY))
+		if (!dtAux.getDayOfWeek().equals(DayOfWeek.MONDAY))
 			dtAux = dtAux.minusDays((long) dtAux.getDayOfWeek().getValue() - 1);
-		
+
 		novasReservas.clear();
 		for (TableColumn<Horario, HorarioAdapter> tableColumn : diasAReservar) {
 			ReservaEntity novaReserva = new ReservaEntity();
-			novaReserva.setDataInicio(Date.from((dtAux.plusDays(tblGerenciarHorario.getColumns().indexOf(tableColumn) - 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
+			novaReserva
+					.setDataInicio(Date.from((dtAux.plusDays(tblGerenciarHorario.getColumns().indexOf(tableColumn) - 1)
+							.atStartOfDay(ZoneId.systemDefault()).toInstant())));
 			novasReservas.add(novaReserva);
 		}
-		
+
 		for (ReservaEntity reserva : novasReservas) {
-			
-			int k = ((reserva.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek().getValue() - 1) << 4);
-			if(reserva.getHorarios() != null) {
+
+			int k = ((reserva.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek()
+					.getValue() - 1) << 4);
+			if (reserva.getHorarios() != null) {
 				reserva.getHorarios().clear();
 			} else {
 				reserva.setHorarios(new ArrayList<>());
 			}
-			
+
 			for (int i = k; i < (k + 16); i++) {
 				if (listaSelecionados.contains(matriz.get(i).getPane()))
 					reserva.getHorarios().add(Horario.values()[matriz.get(i).getLinha()]);
@@ -549,9 +559,10 @@ public class FrmGerenciarHorario implements Initializable {
 		}
 		Collections.sort(novasReservas, DATA_INICIO);
 	}
-	
+
 	private void setDados(ReservaEntity reserva) {
-		reserva.setId(Long.parseLong("" + (DAOFactory.getDAOFactory().getReservaDAO().buscarTodasReservas().size() + 1)));
+		reserva.setId(
+				Long.parseLong("" + (DAOFactory.getDAOFactory().getReservaDAO().buscarTodasReservas().size() + 1)));
 		reserva.setSolicitante(cmbProfessor.getValue());
 		reserva.setDisciplina(cmbDisciplina.getValue());
 		reserva.setDepartamentoAula(cmbDepartamento.getValue());
@@ -561,7 +572,8 @@ public class FrmGerenciarHorario implements Initializable {
 		reserva.setDataFim(reserva.getDataInicio());
 		reserva.setDataAprovacaoRecusa(reserva.getDataInicio());
 		reserva.setLaboratorio(cmbLaboratorio.getValue());
-		// TODO Aprovador deve ser obtido automaticamente quando a funcionalidade de login for implementada
+		// TODO Aprovador deve ser obtido automaticamente quando a funcionalidade de
+		// login for implementada
 		reserva.setAprovador(DAOFactory.getDAOFactory().getServidorDAO().getById(1L));
 		reserva.setStatus(EnumReserva.CONFIRMADO);
 		reserva.setTipo(EnumTipoReserva.UNICA);
@@ -572,7 +584,7 @@ public class FrmGerenciarHorario implements Initializable {
 		reservas.addAll(DAOFactory.getDAOFactory().getReservaDAO().getAtivosNaSemana(LocalDate.now()));
 		filtrarReservas();
 	}
-	
+
 	private class HorarioAdapter {
 		private int coluna, linha;
 		private StackPane pane;
