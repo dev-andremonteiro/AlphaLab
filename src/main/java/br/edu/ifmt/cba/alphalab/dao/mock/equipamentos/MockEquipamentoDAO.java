@@ -114,6 +114,8 @@ public class MockEquipamentoDAO implements IEquipamentoDAO {
             }
 		return resultado;
 	}
+        
+        
         public void removerEquipamento(){
             
         }
@@ -121,4 +123,20 @@ public class MockEquipamentoDAO implements IEquipamentoDAO {
         public void AdicionarEquipamento(){
             
         }
+
+        
+    @Override
+    public void RemoverEstoqueEquipamento(Long a, EquipamentoEntity equipamento) {
+        
+            
+            for(EquipamentoEntity vo : equipamentos){
+              if(vo.getId().equals(equipamento.getId())){
+                  vo.setQtdeEstoque(vo.getQtdeEstoque() - 1L);
+              }
+               
+            }
+       
+    }
+
+    
 }
