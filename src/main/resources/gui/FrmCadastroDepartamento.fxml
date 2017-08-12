@@ -124,7 +124,7 @@
                                     <Insets bottom="10.0" right="10.0" />
                                  </padding>
                               </Label>
-                              <TextField fx:id="txtNovoNomeDep" />
+                              <TextField fx:id="txtNovoNomeDep" prefHeight="25.0" prefWidth="235.0" />
                            </children>
                            <padding>
                               <Insets left="10.0" />
@@ -156,7 +156,7 @@
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="41.0" prefWidth="600.0" spacing="10.0">
                            <children>
                               <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#btnConfirmar_onAction" onKeyPressed="#btnConfirmar_onKeyPressed" text="%button.confirmar" />
-                              <Button fx:id="btnSair2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSair2_onAction" onKeyPressed="#btnSair2_onKeyPressed" text="%button.sair" />
+                              <Button fx:id="btnSair2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSair2_onAction" onKeyPressed="#btnSair2_onKeyPressed" text="%button.cancelar" />
                            </children>
                            <VBox.margin>
                               <Insets top="40.0" />
