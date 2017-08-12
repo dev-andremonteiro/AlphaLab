@@ -138,10 +138,10 @@ public class SoftwareEntity implements IEntity<SoftwareException> {
             return false;
         }
         final SoftwareEntity other = (SoftwareEntity) obj;
-        if (!Objects.equals(this.descricao, other.descricao)) {
+        if (!Objects.equals(this.descricao.trim().toLowerCase(), other.descricao.trim().toLowerCase())) {
             return false;
         }
-        if (!Objects.equals(this.versao, other.versao)) {
+        if (!Objects.equals(this.versao.trim().toLowerCase(), other.versao.trim().toLowerCase())) {
             return false;
         }
         if (this.tipo != other.tipo) {

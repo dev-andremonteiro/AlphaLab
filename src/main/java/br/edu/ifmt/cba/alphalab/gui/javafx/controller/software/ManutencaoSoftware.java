@@ -98,7 +98,8 @@ public class ManutencaoSoftware implements Initializable {
         cbxManutencaoTipoSoftware.getItems().addAll(TipoSoftwareEnum.values());
         cbxManutencaoTipoSoftware.getSelectionModel().selectFirst();
         cbxSoftwareTipo.getItems().addAll(TipoSoftwareEnum.values());
-        listaSoftwares = FXCollections.observableArrayList(negocio.buscarTodosSoftwares());
+        listaSoftwares = FXCollections.observableArrayList();
+        listaSoftwares.addAll(negocio.buscarTodosSoftwares());
         tblManutencaoSoftware.setItems(listaSoftwares);
         tbpGerenciaSoftware.getSelectionModel().selectLast();
     }
@@ -107,7 +108,6 @@ public class ManutencaoSoftware implements Initializable {
     void btnManutencaoPesquisarOnAction(ActionEvent evt) {
         software = tblManutencaoSoftware.getSelectionModel().getSelectedItem();
         listaSoftwares.clear();
-        System.out.println(software);
         listaSoftwares.addAll(negocio.buscarPorTipoNome(
                 cbxManutencaoTipoSoftware.getSelectionModel().getSelectedItem(),
                 txtManutencaoSoftware.getText()

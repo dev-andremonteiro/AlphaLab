@@ -23,16 +23,22 @@
     <RowConstraints maxHeight="1.7976931348623157E308" minHeight="619.0" prefHeight="619.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TableView fx:id="tblSolicitacao" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+      <TableView fx:id="tblSolicitacao" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
         <columns>
-          <TableColumn fx:id="tbcProfessor" prefWidth="166.0" text="%label.professor" />
-          <TableColumn fx:id="tbcTipo" prefWidth="101.0" text="%lbl.tipo" />
-            <TableColumn fx:id="tbcSoftware" prefWidth="92.0" text="%lbl.software" />
+            <TableColumn fx:id="tbcId" prefWidth="75.0" text="%lbl.id" />
+          <TableColumn fx:id="tbcProfessor" prefWidth="117.0" text="%label.professor" />
+          <TableColumn fx:id="tbcTipo" prefWidth="124.0" text="%lbl.tipo" />
+            <TableColumn fx:id="tbcSoftware" prefWidth="118.0" text="%lbl.software" />
             <TableColumn fx:id="tbcVersao" prefWidth="130.0" text="%lbl.versao" />
             <TableColumn fx:id="tbcObservacaoInstalacao" prefWidth="211.0" text="%lbl.observacaoInstalacao" />
             <TableColumn fx:id="tbcLaboratorio" prefWidth="148.0" text="%label.laboratorio" />
             <TableColumn fx:id="tbcSituacao" prefWidth="169.0" text="%lbl.situacao" />
+            <TableColumn fx:id="tbcDataSolicitacao" prefWidth="75.0" text="%label.data" />
+            <TableColumn fx:id="tbcInstalado" editable="false" prefWidth="75.0" text="Instalado?" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
       <GridPane hgap="10.0" vgap="10.0" GridPane.rowIndex="1">
         <columnConstraints>
@@ -53,7 +59,7 @@
             <Label fx:id="lblDataPedido" text="%lbl.dataPedido" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
             <Label fx:id="lblLaboratorio" text="%label.laboratorio" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#btnPesquisarOnAction" text="%button.buscar" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-            <Button fx:id="btnInstalacao" mnemonicParsing="false" text="%button.instalcao" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Button fx:id="btnInstalacao" mnemonicParsing="false" onAction="#btnInstalarOnAction" text="%button.instalcao" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <TextField fx:id="txtProfessor" GridPane.columnIndex="1" />
             <DatePicker fx:id="dtpDataPedido" maxWidth="1.7976931348623157E308" GridPane.columnIndex="3" />
             <ComboBox fx:id="cbxSituacao" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />

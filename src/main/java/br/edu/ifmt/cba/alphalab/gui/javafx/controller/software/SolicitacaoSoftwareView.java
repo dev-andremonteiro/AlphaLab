@@ -11,6 +11,7 @@ import br.edu.ifmt.cba.alphalab.entity.software.SituacaoSolicitacaoEnum;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareSolicitacaoEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SolicitacaoSoftwareEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.TipoSoftwareEnum;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,25 @@ public class SolicitacaoSoftwareView {
     public SolicitacaoSoftwareView() {
         lista=new ArrayList<>();
     }
+    public String getIdSolicitacao(){
+        return solicitacao.getId().toString();
+    }
+    
+    public String getDataSolicitacao(){
+        return new SimpleDateFormat("dd/M/Y").format(solicitacao.getDataPedido().getTime());
+    }
+    public boolean isInstalado(){
+        return software.isInstalado();
+    }
+
+    public SolicitacaoSoftwareEntity getSolicitacao() {
+        return solicitacao;
+    }
+
+    public SoftwareSolicitacaoEntity getSoftware() {
+        return software;
+    }
+    
 
     public String getDescricao() {
         return software.getDescricao();
