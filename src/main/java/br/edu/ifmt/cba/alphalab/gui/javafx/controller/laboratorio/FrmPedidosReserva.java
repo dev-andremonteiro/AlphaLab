@@ -109,6 +109,9 @@ public class FrmPedidosReserva implements Initializable {
 	private ComboBox<LaboratorioEntity> cmbLaboratorio;
 
 	@FXML
+	private Button btnReiniciarPesquisa;
+
+	@FXML
 	private HBox hbxRequisitos;
 
 	@FXML
@@ -163,7 +166,15 @@ public class FrmPedidosReserva implements Initializable {
 		ObservableList<EnumTipoServidor> servidores = FXCollections.observableArrayList(EnumTipoServidor.PROFESSOR);
 		cmbServidor.setItems(servidores);
 
-		preencherDadosTblPedidos(reserva.getReservasEmAbertNaSemana(LocalDate.now()));
+		tbcID.setCellValueFactory(new PropertyValueFactory<>("id"));
+		tbcHorario.setCellValueFactory(new PropertyValueFactory<>("horarios"));
+		tbcData.setCellValueFactory(new PropertyValueFactory<>("dataSolicitacao"));
+		tbcTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+		tbcDados.setCellValueFactory(new PropertyValueFactory<>("solicitante"));
+		tbcDescricao.setCellValueFactory(new PropertyValueFactory<>("observacao"));
+
+		// preencherDadosTblPedidos(reserva.getReservasEmAbertNaSemana(LocalDate.now()));
+		preencherDadosTblPedidos(reserva.buscarReservasPedidas());
 	}
 
 	/**
@@ -197,7 +208,8 @@ public class FrmPedidosReserva implements Initializable {
 		tabDados.setDisable(true);
 		tabPedidos.setDisable(false);
 		tbpDados.getSelectionModel().select(tabPedidos);
-		preencherDadosTblPedidos(reserva.getReservasEmAbertNaSemana(LocalDate.now()));
+		// preencherDadosTblPedidos(reserva.getReservasEmAbertNaSemana(LocalDate.now()));
+		preencherDadosTblPedidos(reserva.buscarReservasPedidas());
 	}
 
 	/**
@@ -229,14 +241,6 @@ public class FrmPedidosReserva implements Initializable {
 	}
 
 	private void preencherDadosTblPedidos(List<ReservaEntity> listaReserva) {
-
-		tbcID.setCellValueFactory(new PropertyValueFactory<>("id"));
-		tbcHorario.setCellValueFactory(new PropertyValueFactory<>("horarios"));
-		tbcData.setCellValueFactory(new PropertyValueFactory<>("dataSolicitacao"));
-		tbcTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-		tbcDados.setCellValueFactory(new PropertyValueFactory<>("solicitante"));
-		tbcDescricao.setCellValueFactory(new PropertyValueFactory<>("observacao"));
-
 		tblPedidos.setItems(FXCollections.observableArrayList(listaReserva));
 		tblPedidos.refresh();
 	}
@@ -285,7 +289,8 @@ public class FrmPedidosReserva implements Initializable {
 		tabPedidos.setDisable(false);
 		tabDados.setDisable(true);
 		tbpDados.getSelectionModel().select(tabPedidos);
-		preencherDadosTblPedidos(reserva.getReservasEmAbertNaSemana(LocalDate.now()));
+		// preencherDadosTblPedidos(reserva.getReservasEmAbertNaSemana(LocalDate.now()));
+		preencherDadosTblPedidos(reserva.buscarReservasPedidas());
 	}
 
 	/**
@@ -343,7 +348,8 @@ public class FrmPedidosReserva implements Initializable {
 					tabPedidos.setDisable(false);
 					tabDados.setDisable(true);
 					tbpDados.getSelectionModel().select(tabPedidos);
-					preencherDadosTblPedidos(reserva.getReservasEmAbertNaSemana(LocalDate.now()));
+					// preencherDadosTblPedidos(reserva.getReservasEmAbertNaSemana(LocalDate.now()));
+					preencherDadosTblPedidos(reserva.buscarReservasPedidas());
 				} else if (reservaSelecionada != null && cmbLaboratorio.getSelectionModel().getSelectedItem() == null) {
 					caixaAlerta(AlertType.INFORMATION, "AlphaLab", "Permitir Reserva de Horário",
 							"É preciso selecionar um laboratório para a reserva!");
@@ -427,37 +433,72 @@ public class FrmPedidosReserva implements Initializable {
 
 	@FXML
 	void cmbServidor_onAction(ActionEvent event) {
+		System.out.println("cmbServidor_onAction");
 		if (cmbServidor.getSelectionModel().getSelectedItem() != null) {
+			// TODO Por algum motivo a lista é preenchida, mas o tableView não é
+			// preenchido.
 			preencherDadosTblPedidos(reserva.getByServidor(cmbServidor.getSelectionModel().getSelectedItem()));
+		}
 
-			if (cmbServidor.getSelectionModel().getSelectedItem() != null
-					&& cmbTipo.getSelectionModel().getSelectedItem() != null) {
-				preencherDadosTblPedidos(
-						reserva.getByTipoEServidorEPedido(cmbTipo.getSelectionModel().getSelectedItem(),
-								cmbServidor.getSelectionModel().getSelectedItem()));
-			}
+		if (cmbServidor.getSelectionModel().getSelectedItem() != null
+				&& cmbTipo.getSelectionModel().getSelectedItem() != null) {
+			preencherDadosTblPedidos(reserva.getByTipoEServidorEPedido(cmbTipo.getSelectionModel().getSelectedItem(),
+					cmbServidor.getSelectionModel().getSelectedItem()));
+		}
+
+		if (cmbServidor.getSelectionModel().getSelectedItem() != null
+				&& cmbTipo.getSelectionModel().getSelectedItem() != null && dtpData.getValue() != null) {
+			// preencherDadosTblPedidos(
+			// reserva.getByTipoEServidorEPedidoEData(cmbTipo.getSelectionModel().getSelectedItem(),
+			// cmbServidor.getSelectionModel().getSelectedItem()),
+			// java.sql.Date.valueOf(dtpData.getValue()));
 		}
 	}
 
 	@FXML
 	void cmbTipo_onAction(ActionEvent event) {
+		System.out.println("cmbTipo_onAction");
 		if (cmbTipo.getSelectionModel().getSelectedItem() != null) {
 			preencherDadosTblPedidos(reserva.getByTipo(cmbTipo.getSelectionModel().getSelectedItem()));
+		}
 
-			if (cmbServidor.getSelectionModel().getSelectedItem() != null
-					&& cmbTipo.getSelectionModel().getSelectedItem() != null) {
-				preencherDadosTblPedidos(
-						reserva.getByTipoEServidorEPedido(cmbTipo.getSelectionModel().getSelectedItem(),
-								cmbServidor.getSelectionModel().getSelectedItem()));
-			}
+		if (cmbTipo.getSelectionModel().getSelectedItem() != null
+				&& cmbServidor.getSelectionModel().getSelectedItem() != null) {
+			preencherDadosTblPedidos(reserva.getByTipoEServidorEPedido(cmbTipo.getSelectionModel().getSelectedItem(),
+					cmbServidor.getSelectionModel().getSelectedItem()));
+		}
+
+		if (cmbTipo.getSelectionModel().getSelectedItem() != null
+				&& cmbServidor.getSelectionModel().getSelectedItem() != null && dtpData.getValue() != null) {
+			// preencherDadosTblPedidos(reserva.getByTipoEServidorEPedidoEData(
+			// cmbTipo.getSelectionModel().getSelectedItem(),
+			// cmbServidor.getSelectionModel().getSelectedItem(),
+			// java.sql.Date.valueOf(dtpData.getValue())));
 		}
 	}
 
 	@FXML
 	void dtpData_onAction(ActionEvent event) {
 		if (dtpData.getValue() != null) {
-			System.out.println("Entrou OnAction");
 			preencherDadosTblPedidos(reserva.getByData(java.sql.Date.valueOf(dtpData.getValue())));
+		}
+
+		if (dtpData.getValue() != null && cmbTipo.getSelectionModel().getSelectedItem() != null) {
+			// preencherDadosTblPedidos(reserva.getByDataETipo(java.sql.Date.valueOf(dtpData.getValue()),
+			// cmbTipo.getSelectionModel().getSelectedItem()));
+		}
+
+		if (dtpData.getValue() != null && cmbServidor.getSelectionModel().getSelectedItem() != null) {
+			// preencherDadosTblPedidos(reserva.getByDataEServidor(java.sql.Date.valueOf(dtpData.getValue()),
+			// cmbServidor.getSelectionModel().getSelectedItem()));
+		}
+
+		if (dtpData.getValue() != null && cmbTipo.getSelectionModel().getSelectedItem() != null
+				&& cmbServidor.getSelectionModel().getSelectedItem() != null) {
+			// preencherDadosTblPedidos(reserva.getByTipoEServidorEPedidoEData(
+			// cmbTipo.getSelectionModel().getSelectedItem(),
+			// cmbServidor.getSelectionModel().getSelectedItem(),
+			// java.sql.Date.valueOf(dtpData.getValue())));
 		}
 	}
 
@@ -480,5 +521,12 @@ public class FrmPedidosReserva implements Initializable {
 				tbpDados.getSelectionModel().select(tabDados);
 			}
 		}
+	}
+
+	@FXML
+	void btnReiniciarPesquisa_onAction(ActionEvent event) {
+		limparDados();
+		// preencherDadosTblPedidos(reserva.getReservasEmAbertNaSemana(LocalDate.now()));
+		preencherDadosTblPedidos(reserva.buscarReservasPedidas());
 	}
 }

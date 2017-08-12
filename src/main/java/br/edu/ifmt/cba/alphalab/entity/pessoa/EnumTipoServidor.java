@@ -7,5 +7,16 @@ package br.edu.ifmt.cba.alphalab.entity.pessoa;
  */
 
 public enum EnumTipoServidor {
-	PROFESSOR, ESTAGIARIO, TEC_LABORATORIO, TEC_ADM
+	PROFESSOR("Professor"), ESTAGIARIO("Estagiário"), TEC_LABORATORIO("Técnico de Laboratório"), TEC_ADM(
+			"Técnico Administrativo");
+
+	private final String descricao;
+
+	private EnumTipoServidor(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
 }

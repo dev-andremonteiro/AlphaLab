@@ -3,36 +3,47 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.login.FrmLogin">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Text layoutX="318.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AlphaLab">
-               <font>
-                  <Font size="40.0" />
-               </font>
-            </Text>
-            <Text layoutX="212.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+            <Text layoutX="191.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
                <font>
                   <Font size="36.0" />
                </font>
             </Text>
-            <Text layoutX="208.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha">
+            <Text layoutX="181.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha">
                <font>
                   <Font size="36.0" />
                </font>
             </Text>
-            <TextField fx:id="txtLogin" layoutX="331.0" layoutY="201.0" onAction="#txtLogin_onAction" onKeyPressed="#txtLogin_onKeyPressed" prefHeight="25.0" prefWidth="240.0" />
-            <PasswordField fx:id="pswSenha" layoutX="331.0" layoutY="264.0" onAction="#pswSenha_onAction" onKeyPressed="#pswSenha_onKeyPressed" prefHeight="25.0" prefWidth="240.0" />
-            <Button fx:id="btnSair" layoutX="519.0" layoutY="331.0" mnemonicParsing="false" onAction="#btnSair_onAction" onKeyPressed="#btnSair_onKeyPressed" onMouseClicked="#btnSair_onMouseClicked" prefWidth="70.0" text="Sair" />
-            <Button fx:id="btnEntrar" layoutX="425.0" layoutY="331.0" mnemonicParsing="false" onAction="#btnEntrar_onAction" onKeyPressed="#btnEntrar_onKeyPressed" onMouseClicked="#btnEntrar_onMousecClicked" prefWidth="70.0" text="Entrar" />
-            <Button fx:id="btnCadastrar" layoutX="331.0" layoutY="331.0" mnemonicParsing="false" onAction="#btnCadastrar_onAction" onKeyPressed="#btnCadastrar_onKeyPressed" onMouseClicked="#btnCdastrar_onMouseClicked" prefWidth="70.0" text="Cadastrar" />
+            <TextField fx:id="txtLogin" layoutX="292.0" layoutY="203.0" onKeyPressed="#txtLogin_onKeyPressed" prefHeight="34.0" prefWidth="240.0" />
+            <PasswordField fx:id="pswSenha" layoutX="292.0" layoutY="258.0" onKeyPressed="#pswSenha_onKeyPressed" prefHeight="34.0" prefWidth="240.0" />
+            <Button fx:id="btnSair" layoutX="459.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnSair_onAction" onKeyPressed="#btnSair_onKeyPressed" onMouseClicked="#btnSair_onMouseClicked" prefWidth="70.0" text="Sair" />
+            <Button fx:id="btnEntrar" layoutX="365.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnEntrar_onAction" onKeyPressed="#btnEntrar_onKeyPressed" onMouseClicked="#btnEntrar_onMousecClicked" prefWidth="70.0" text="Entrar" />
+            <Button fx:id="btnCadastrar" layoutX="271.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnCadastrar_onAction" onKeyPressed="#btnCadastrar_onKeyPressed" onMouseClicked="#btnCdastrar_onMouseClicked" prefWidth="70.0" text="Cadastrar" />
+            <ImageView fitHeight="168.0" fitWidth="198.0" layoutX="14.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@computers.jpg" />
+               </image>
+            </ImageView>
+            <Text layoutX="252.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A melhor ferramenta para gestão de laboratórios." wrappingWidth="366.13671875">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="88.0" fitWidth="240.0" layoutX="280.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

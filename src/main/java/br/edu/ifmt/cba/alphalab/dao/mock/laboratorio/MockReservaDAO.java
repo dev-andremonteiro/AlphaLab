@@ -94,10 +94,10 @@ public class MockReservaDAO implements IReservaDAO {
 		reserva3.setObservacao("Urgência!");
 		reserva3.setTipo(EnumTipoReserva.SEMESTRAL);
 		try {
-			reserva3.setDataSolicitacao(sdf.parse("10/09/2017"));
-			reserva3.setDataInicio(sdf.parse("08/05/2017"));
-			reserva3.setDataFim(sdf.parse("28/09/2017"));
-			reserva3.setDataAprovacaoRecusa(sdf.parse("11/09/2017"));
+			reserva3.setDataSolicitacao(sdf.parse("14/08/2017"));
+			reserva3.setDataInicio(sdf.parse("15/08/2017"));
+			reserva3.setDataFim(sdf.parse("16/08/2017"));
+			reserva3.setDataAprovacaoRecusa(sdf.parse("14/08/2017"));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -254,10 +254,11 @@ public class MockReservaDAO implements IReservaDAO {
 	public List<ReservaEntity> getByServidor(EnumTipoServidor enumTipoServidor) {
 		ArrayList<ReservaEntity> resultado = new ArrayList<>();
 		for (ReservaEntity vo : reservas) {
-			if (vo.getSolicitante().equals(enumTipoServidor) && vo.getStatus() == EnumReserva.PEDIDO) {
+			if (vo.getSolicitante().getTipo().equals(enumTipoServidor) && vo.getStatus() == EnumReserva.PEDIDO) {
 				resultado.add(vo);
 			}
 		}
+		System.out.println("Tamanho da lista: " + resultado.size());
 		return resultado;
 	}
 
@@ -330,9 +331,9 @@ public class MockReservaDAO implements IReservaDAO {
 		} while (!data.getDayOfWeek().equals(DayOfWeek.SUNDAY));
 
 		for (ReservaEntity reservaEntity : resultado) {
-			System.out.println(reservaEntity.getDataSolicitacao() +" "+ reservaEntity.getStatus());
+			System.out.println(reservaEntity.getDataSolicitacao() + " " + reservaEntity.getStatus());
 		}
-		
+
 		return resultado;
 	}
 }

@@ -32,9 +32,30 @@
                      <top>
                         <HBox prefHeight="30.0" prefWidth="719.0" spacing="80.0" BorderPane.alignment="CENTER">
                            <children>
-                              <DatePicker fx:id="dtpData" onAction="#dtpData_onAction" promptText="%dtp.data" />
-                              <ComboBox fx:id="cmbTipo" onAction="#cmbTipo_onAction" prefWidth="150.0" promptText="%combo.tipo" />
-                              <ComboBox fx:id="cmbServidor" onAction="#cmbServidor_onAction" prefWidth="150.0" promptText="%combo.servidor" />
+                              <VBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="174.0" spacing="2.0">
+                                 <children>
+                                    <Label />
+                                    <DatePicker fx:id="dtpData" onAction="#dtpData_onAction" promptText="%dtp.data" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="174.0" spacing="2.0">
+                                 <children>
+                                    <Label text="%label.tipoReserva" />
+                                    <ComboBox fx:id="cmbTipo" onAction="#cmbTipo_onAction" prefWidth="150.0" promptText="%combo.tipo" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="174.0" spacing="2.0">
+                                 <children>
+                                    <Label text="%label.servidor" />
+                                    <ComboBox fx:id="cmbServidor" onAction="#cmbServidor_onAction" prefWidth="150.0" promptText="%combo.servidor" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="174.0">
+                                 <children>
+                                    <Label />
+                                    <Button fx:id="btnReiniciarPesquisa" mnemonicParsing="false" onAction="#btnReiniciarPesquisa_onAction" text="%button.reiniciarPesquisa" />
+                                 </children>
+                              </VBox>
                            </children>
                            <BorderPane.margin>
                               <Insets bottom="20.0" left="50.0" top="20.0" />
