@@ -302,6 +302,7 @@ public class FrmCadastroDepartamento implements Initializable {
         btnSair.setDisable(false);
         btnConfirmar.setDisable(false);
 
+        
     }
 
     private void limparFormulario() {
