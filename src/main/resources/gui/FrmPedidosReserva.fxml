@@ -32,7 +32,7 @@
                      <top>
                         <HBox prefHeight="30.0" prefWidth="719.0" spacing="80.0" BorderPane.alignment="CENTER">
                            <children>
-                              <DatePicker fx:id="dtpData" promptText="%dtp.data" />
+                              <DatePicker fx:id="dtpData" onAction="#dtpData_onAction" promptText="%dtp.data" />
                               <ComboBox fx:id="cmbTipo" onAction="#cmbTipo_onAction" prefWidth="150.0" promptText="%combo.tipo" />
                               <ComboBox fx:id="cmbServidor" onAction="#cmbServidor_onAction" prefWidth="150.0" promptText="%combo.servidor" />
                            </children>
@@ -92,7 +92,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Text fx:id="txtDataPedido" strokeType="OUTSIDE" strokeWidth="0.0" text="20/10/2018" wrappingWidth="100.826171875">
+                                    <Text fx:id="texDataPedido" strokeType="OUTSIDE" strokeWidth="0.0" text="20/10/2018" wrappingWidth="100.826171875">
                                        <font>
                                           <Font size="14.0" />
                                        </font>

@@ -21,4 +21,6 @@ public class Equipamento extends ABusiness<EquipamentoEntity, EquipamentoExcepti
 		return ((IEquipamentoDAO) dao).buscarDisponivel();
 	}
     
+   // public  RemoverEstoqueEquipamento(Long a, EquipamentoEntity equipamento);
+      
 }

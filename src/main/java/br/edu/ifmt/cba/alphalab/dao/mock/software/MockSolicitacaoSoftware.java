@@ -7,11 +7,15 @@ package br.edu.ifmt.cba.alphalab.dao.mock.software;
 
 import br.edu.ifmt.cba.alphalab.dao.ISolicitacaoSoftware;
 import br.edu.ifmt.cba.alphalab.dao.mock.exception.MockSolicitacaoSoftwareException;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
+import br.edu.ifmt.cba.alphalab.entity.software.SituacaoSolicitacaoEnum;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SoftwareSolicitacaoEntity;
 import br.edu.ifmt.cba.alphalab.entity.software.SolicitacaoSoftwareEntity;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  *
@@ -20,7 +24,9 @@ import java.util.ArrayList;
 public class MockSolicitacaoSoftware implements ISolicitacaoSoftware {
     private static MockSolicitacaoSoftware instancia;
     private static final ArrayList<SolicitacaoSoftwareEntity> listaSolicitacao = new ArrayList<>();
-    
+    {
+        
+    }
     private MockSolicitacaoSoftware(){}
     
     public static MockSolicitacaoSoftware getInstance(){
@@ -74,6 +80,59 @@ public class MockSolicitacaoSoftware implements ISolicitacaoSoftware {
            }
            
         }
+    }
+
+    @Override
+    public List<SolicitacaoSoftwareEntity> buscarTodos() {
+        return listaSolicitacao;
+    }
+
+    @Override
+    public List<SolicitacaoSoftwareEntity> buscarPorData(Calendar data) {
+        ArrayList<SolicitacaoSoftwareEntity> retorno=new ArrayList<>();
+        listaSolicitacao.forEach(solicitacao->{
+            if(((SolicitacaoSoftwareEntity) solicitacao).getDataPedido().compareTo(data)==0)
+                {
+                    retorno.add(solicitacao);
+                }
+        });
+        return retorno;
+    }
+
+    @Override
+    public List<SolicitacaoSoftwareEntity> buscaPorServidor(String servidor) {
+        ArrayList<SolicitacaoSoftwareEntity> retorno=new ArrayList<>();
+        listaSolicitacao.forEach(solicitacao->{
+            if(((SolicitacaoSoftwareEntity) solicitacao).getSolicitante().getNome().toLowerCase().contains(servidor))
+                {
+                    retorno.add(solicitacao);
+                }
+        });
+        return retorno;
+    }
+
+    @Override
+    public List<SolicitacaoSoftwareEntity> buscaPorSituacao(SituacaoSolicitacaoEnum situacaoSolicitacaoEnum) {
+        ArrayList<SolicitacaoSoftwareEntity> retorno=new ArrayList<>();
+        listaSolicitacao.forEach(solicitacao->{
+            if(((SolicitacaoSoftwareEntity) solicitacao).getSituacaoInstalacao().equals(situacaoSolicitacaoEnum))
+                {
+                    retorno.add(solicitacao);
+                }
+        });
+        return retorno;
+    }
+
+    @Override
+    public List<SolicitacaoSoftwareEntity> buscaPorLaboratorio(String laboratorio) {
+        ArrayList<SolicitacaoSoftwareEntity> retorno=new ArrayList<>();
+        listaSolicitacao.forEach(solicitacao->{
+            if(((SolicitacaoSoftwareEntity) solicitacao).getLaboratorio().getNome().toLowerCase().equals(laboratorio))
+                {
+                    retorno.add(solicitacao);
+                }
+        });
+        return retorno;
     }
     
 }

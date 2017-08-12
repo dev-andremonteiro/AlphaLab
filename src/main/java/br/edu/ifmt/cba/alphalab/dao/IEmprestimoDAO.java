@@ -12,4 +12,5 @@ public interface IEmprestimoDAO extends IDAO<EmprestimoEntity> {
     
     EmprestimoEntity getByNome(String nome);
     public List<EmprestimoEntity> buscarTodos();
+    public List<EmprestimoEntity> BuscarPedidosEmprestimo();
 }

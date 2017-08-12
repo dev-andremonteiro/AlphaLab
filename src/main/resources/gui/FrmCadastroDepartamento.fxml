@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio.FrmCadastroDepartamento">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="572.0" minWidth="-Infinity" prefHeight="572.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio.FrmCadastroDepartamento">
    <top>
       <Label text="%label.gerenciarDep" BorderPane.alignment="CENTER">
          <font>
@@ -24,13 +24,13 @@
       </Label>
    </top>
    <center>
-      <TabPane fx:id="tbpDepartamento" prefHeight="730.0" prefWidth="1037.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tbpDepartamento" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="300.0" prefHeight="399.0" prefWidth="1024.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab fx:id="tabConsultarDepartamento" text="%tab.consultar_departamento">
                <content>
-                  <BorderPane prefHeight="701.0" prefWidth="1029.0">
+                  <BorderPane minHeight="300.0" prefHeight="448.0" prefWidth="1024.0">
                      <top>
-                        <HBox prefHeight="47.0" prefWidth="400.0" spacing="10.0" BorderPane.alignment="CENTER">
+                        <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="400.0" spacing="10.0" BorderPane.alignment="CENTER">
                            <children>
                               <Label prefHeight="17.0" prefWidth="50.0" text="%label.sigla" />
                               <TextField fx:id="txtPesqSiglaDep" prefHeight="25.0" prefWidth="72.0" />
@@ -50,7 +50,7 @@
                         </HBox>
                      </top>
                      <center>
-                        <TableView fx:id="tbvDepartamentos" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#tbvDepartamentos_onMouseClicked" prefHeight="604.0" prefWidth="997.0">
+                        <TableView fx:id="tbvDepartamentos" maxHeight="225.0" maxWidth="1024.0" minHeight="200.0" onMouseClicked="#tbvDepartamentos_onMouseClicked" prefHeight="225.0" prefWidth="1024.0">
                           <columns>
                             <TableColumn fx:id="tbcSigla" prefWidth="106.0" text="%label.sigla" />
                             <TableColumn fx:id="tbcNome" prefWidth="455.0" text="%label.nome" />
@@ -65,7 +65,7 @@
                         <Insets />
                      </opaqueInsets>
                      <bottom>
-                        <HBox alignment="BOTTOM_LEFT" prefHeight="50.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="CENTER">
+                        <HBox maxHeight="107.0" minHeight="56.0" prefHeight="107.0" prefWidth="1024.0" spacing="10.0" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
                               <Insets />
                            </BorderPane.margin>
@@ -73,7 +73,7 @@
                               <Button fx:id="btnNovoDep" mnemonicParsing="false" onAction="#btnNovoDep_onAction" onKeyPressed="#btnNovoDep_onKeyPressed" prefHeight="25.0" prefWidth="93.0" text="%button.novo" />
                               <Button fx:id="btnAlterar" mnemonicParsing="false" onAction="#btnAlterar_onAction" onKeyPressed="#btnAlterar_onKeyPressed" prefHeight="25.0" prefWidth="93.0" text="%button.editar" />
                               <Button fx:id="btnExcluir" mnemonicParsing="false" onAction="#btnExcluir_onAction" onKeyPressed="#btnExcluir_onKeyPressed" prefHeight="25.0" prefWidth="93.0" text="%button.excluir" />
-                              <HBox alignment="BOTTOM_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="88.0">
+                              <HBox alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="88.0">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -99,7 +99,7 @@
           </Tab>
           <Tab fx:id="tabGerenciarDepartamento" text="%tab.gerenciar_departamento">
                <content>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="331.0" prefWidth="600.0">
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="600.0">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
@@ -124,7 +124,7 @@
                                     <Insets bottom="10.0" right="10.0" />
                                  </padding>
                               </Label>
-                              <TextField fx:id="txtNovoNomeDep" />
+                              <TextField fx:id="txtNovoNomeDep" prefHeight="25.0" prefWidth="235.0" />
                            </children>
                            <padding>
                               <Insets left="10.0" />
@@ -156,7 +156,7 @@
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="41.0" prefWidth="600.0" spacing="10.0">
                            <children>
                               <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#btnConfirmar_onAction" onKeyPressed="#btnConfirmar_onKeyPressed" text="%button.confirmar" />
-                              <Button fx:id="btnSair2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSair2_onAction" onKeyPressed="#btnSair2_onKeyPressed" text="%button.sair" />
+                              <Button fx:id="btnSair2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSair2_onAction" onKeyPressed="#btnSair2_onKeyPressed" text="%button.cancelar" />
                            </children>
                            <VBox.margin>
                               <Insets top="40.0" />

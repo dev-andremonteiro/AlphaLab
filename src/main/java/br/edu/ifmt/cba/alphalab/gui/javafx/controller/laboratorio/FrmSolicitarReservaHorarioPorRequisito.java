@@ -160,7 +160,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		iniciarTableViewRequisitos();
 		tabPreencherDados.setDisable(true);
 		cmbDepartamento.getItems().setAll(DAOFactory.getDAOFactory().getDepartamentoDAO().buscarTodos());
-		cmbDisciplina.getItems().setAll(EnumDisciplina.values());
+		cmbDisciplina.getItems().setAll(EnumDisciplina.values());	
 		dtpData.requestFocus();
 	}
 
@@ -499,7 +499,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 				if (reserva.validar() == null) {
 					Reserva salvarReserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
 					salvarReserva.save(reserva);
-
+					
 					tabPaneDados.getSelectionModel().select(tabRequisitos);
 					tabPreencherDados.setDisable(true);
 					tabRequisitos.setDisable(false);
