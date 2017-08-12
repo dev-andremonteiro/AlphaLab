@@ -26,5 +26,5 @@ public interface ISolicitacaoSoftware extends IDAO<SolicitacaoSoftwareEntity>{
     public List<SolicitacaoSoftwareEntity> buscarPorData(Calendar data);
     public List<SolicitacaoSoftwareEntity> buscaPorServidor(String servidory);
     public List<SolicitacaoSoftwareEntity> buscaPorSituacao(SituacaoSolicitacaoEnum situacaoSolicitacaoEnum);
-    public List<SolicitacaoSoftwareEntity> buscaPorLaboratorio(String laboratorio);
+    public List<SolicitacaoSoftwareEntity> buscaPorLaboratorio(LaboratorioEntity laboratorio);
 }

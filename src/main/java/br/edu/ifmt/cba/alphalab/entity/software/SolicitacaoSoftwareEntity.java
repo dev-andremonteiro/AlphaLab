@@ -11,6 +11,7 @@ import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.pessoa.ServidorEntity;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -19,13 +20,13 @@ import java.util.Objects;
  */
 public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareException>{
     private long id;
-    private ArrayList<SoftwareSolicitacaoEntity> softwares;
+    private List<SoftwareSolicitacaoEntity> softwares;
     private LaboratorioEntity laboratorio;
     private Calendar dataPedido;
     private SituacaoSolicitacaoEnum situacaoSolicitacao;
     private ServidorEntity solicitante, concluinte;
 
-    public SolicitacaoSoftwareEntity(ArrayList<SoftwareSolicitacaoEntity> softwares, LaboratorioEntity laboratorio, Calendar dataPedido, SituacaoSolicitacaoEnum situacaoSolicitacao, ServidorEntity solicitante, ServidorEntity concluinte) {
+    public SolicitacaoSoftwareEntity(List<SoftwareSolicitacaoEntity> softwares, LaboratorioEntity laboratorio, Calendar dataPedido, SituacaoSolicitacaoEnum situacaoSolicitacao, ServidorEntity solicitante, ServidorEntity concluinte) {
         this.softwares = softwares;
         this.laboratorio = laboratorio;
         this.dataPedido = dataPedido;
@@ -34,7 +35,16 @@ public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareExc
         this.concluinte = concluinte;
     }
 
-    public SolicitacaoSoftwareEntity(long id, ArrayList<SoftwareSolicitacaoEntity> softwares, LaboratorioEntity laboratorio, Calendar dataPedido, SituacaoSolicitacaoEnum situacaoSolicitacao, ServidorEntity solicitante, ServidorEntity concluinte) {
+    public SolicitacaoSoftwareEntity(long id, List<SoftwareSolicitacaoEntity> softwares, LaboratorioEntity laboratorio, Calendar dataPedido, SituacaoSolicitacaoEnum situacaoSolicitacao) {
+        this.id = id;
+        this.softwares = softwares;
+        this.laboratorio = laboratorio;
+        this.dataPedido = dataPedido;
+        this.situacaoSolicitacao = situacaoSolicitacao;
+    }
+    
+
+    public SolicitacaoSoftwareEntity(long id, List<SoftwareSolicitacaoEntity> softwares, LaboratorioEntity laboratorio, Calendar dataPedido, SituacaoSolicitacaoEnum situacaoSolicitacao, ServidorEntity solicitante, ServidorEntity concluinte) {
         this.id = id;
         this.softwares = softwares;
         this.laboratorio = laboratorio;
@@ -66,7 +76,7 @@ public class SolicitacaoSoftwareEntity implements IEntity<SolicitacaoSoftwareExc
         this.id = id;
     }
 
-    public ArrayList<SoftwareSolicitacaoEntity> getSoftwares() {
+    public List<SoftwareSolicitacaoEntity> getSoftwares() {
         return softwares;
     }
 

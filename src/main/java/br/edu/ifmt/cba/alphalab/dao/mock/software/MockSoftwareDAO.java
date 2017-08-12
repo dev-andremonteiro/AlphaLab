@@ -72,7 +72,7 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 
 	@Override
 	public void delete(SoftwareEntity entity) {
-            listaSoftware.remove(listaSoftware.indexOf(entity));
+            System.out.println(listaSoftware.remove(entity));
         }
 
 	@Override
@@ -107,7 +107,7 @@ public class MockSoftwareDAO implements ISoftwareDAO {
 
 	@Override
 	public List<SoftwareEntity> buscarTodos() {
-		return listaSoftware;
+                return listaSoftware;
 	}
 
     @Override
