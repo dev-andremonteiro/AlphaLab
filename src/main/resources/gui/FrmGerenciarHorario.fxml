@@ -95,7 +95,14 @@
                                  </children>
                               </GridPane>
                               <Pane prefHeight="200.0" prefWidth="20.0" />
-                              <HBox fx:id="hbxHorarios" prefHeight="200.0" prefWidth="470.0" />
+                              <HBox fx:id="hbxHorarios" prefHeight="200.0" prefWidth="470.0" spacing="5.0">
+                                 <children>
+                                    <Separator orientation="VERTICAL" prefHeight="180.0">
+                                       <padding>
+                                          <Insets bottom="5.0" left="2.0" top="5.0" />
+                                       </padding>
+                                    </Separator>
+                                 </children></HBox>
                            </children>
                         </HBox>
                         <StackPane prefHeight="10.0">

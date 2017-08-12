@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
@@ -28,15 +26,6 @@
             <ComboBox fx:id="cmbLaboratorio" onAction="#cmbLaboratorio_onAction" prefWidth="150.0" promptText="%combo.laboratorio" />
             <ComboBox fx:id="cmbProfessor" onAction="#cmbProfessor_onAction" prefWidth="150.0" promptText="%combo.professor" />
             <ComboBox fx:id="cmbDisciplina" onAction="#cmbDisciplina_onAction" prefWidth="150.0" promptText="%combo.disciplina" />
-            <StackPane alignment="CENTER_LEFT" prefWidth="150.0">
-               <children>
-                  <Button fx:id="btnReset" mnemonicParsing="false" onAction="#btnReset_onAction" text="%button.reiniciar">
-                     <tooltip>
-                        <Tooltip text="%tooltip.reiniciarFiltros" />
-                     </tooltip>
-                  </Button>
-               </children>
-            </StackPane>
          </children>
       </HBox>
       <Pane prefHeight="600.0" prefWidth="980.0" VBox.vgrow="ALWAYS">

@@ -64,9 +64,6 @@ public class FrmConsultarHorario implements Initializable {
 	@FXML
 	private TableColumn<ReservaEntity, Text> tbcDomingo;
 
-	@FXML
-	private Button btnReset;
-
 	private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>(DAOFactory.getDAOFactory().getReservaDAO().getAtivosNaSemana(LocalDate.now()));
 
 	private List<ReservaEntity> reservasFiltradas = new ArrayList<>();
@@ -101,22 +98,10 @@ public class FrmConsultarHorario implements Initializable {
 		}
 	}
 
-	@FXML
-	void btnReset_onAction(ActionEvent event) {
-		cmbDisciplina.getSelectionModel().select(-1);
-		cmbLaboratorio.getSelectionModel().select(-1);
-		cmbProfessor.getSelectionModel().select(-1);
-		filtrarReservas();
-		tblConsultarHorario.refresh();
-	}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		cmbDisciplina.getItems().setAll(EnumDisciplina.values());
-		MockLaboratorioDAO laboratorio = new MockLaboratorioDAO();
-		cmbLaboratorio.getItems().setAll(laboratorio.buscarTodos());
-		// TODO Camada de negocio para Laboratorio ainda não foi implementada...
-		// cmbLaboratorio.getItems().setAll(DAOFactory.getDAOFactory().getLaboratorioDAO().buscarTodos());
+		cmbLaboratorio.getItems().setAll(DAOFactory.getDAOFactory().getLaboratorioDAO().buscarTodos());
 		cmbProfessor.getItems().setAll(DAOFactory.getDAOFactory().getServidorDAO().buscarTodosProfessores());
 
 		fillColumns();

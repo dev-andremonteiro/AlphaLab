@@ -292,7 +292,7 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	}
 
 	/**
-	 * Id relacionado ï¿½ cada software selecionado na lista de tblRequisitos.
+	 * Id relacionado a cada software selecionado na lista de tblRequisitos.
 	 * 
 	 * @return um ID do objeto selecionado.
 	 */
@@ -399,7 +399,6 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 		reservaEntity.setDepartamentoAula(cmbDepartamento.getSelectionModel().getSelectedItem());
 		reservaEntity.setTurma(txtTurma.getText());
 		reservaEntity.setObservacao(txaObservacao.getText());
-		// reservaEntity.setFixo(ckbFixo.isPressed());
 
 		return reservaEntity;
 	}
@@ -474,10 +473,10 @@ public class FrmSolicitarReservaHorarioPorRequisito implements Initializable {
 	void btnConfirmar_onAction(ActionEvent event) {
 		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
 		ButtonType sim = new ButtonType("Sim");
-		ButtonType nao = new ButtonType("Nï¿½o");
+		ButtonType nao = new ButtonType("Não");
 		alerta.setTitle("AlphaLab");
-		alerta.setHeaderText("Confirmar Reserva de Horï¿½rio");
-		alerta.setContentText("Deseja confirmar a Reserva de Horï¿½rio?");
+		alerta.setHeaderText("Confirmar Reserva de Horário");
+		alerta.setContentText("Deseja confirmar a Reserva de Horário?");
 		alerta.getButtonTypes().setAll(sim, nao);
 
 		alerta.showAndWait().ifPresent(option -> {
