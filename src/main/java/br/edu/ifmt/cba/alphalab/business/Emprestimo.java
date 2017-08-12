@@ -16,4 +16,8 @@ public class Emprestimo extends ABusiness<EmprestimoEntity, EmprestimoException,
     public List<EmprestimoEntity> buscarTodosEmprestimos(){
      return   ((IEmprestimoDAO) dao).buscarTodos();
     }
+    
+    public List<EmprestimoEntity> BuscarPedidosEmprestimo(){
+     return   ((IEmprestimoDAO) dao).BuscarPedidosEmprestimo();
+    }
 }

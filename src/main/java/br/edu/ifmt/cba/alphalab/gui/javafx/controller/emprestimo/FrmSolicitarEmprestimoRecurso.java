@@ -145,7 +145,7 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
         equipamentoSelecionado = tblRecursoDisponivel.getSelectionModel().getSelectedItem();
 			if (equipamentoSelecionado != null) {
                               if(equipamentoSelecionado.getQtdeEstoque()!=0){
-                               
+                                  
                                    equipamento.getById(equipamentoSelecionado.getId()).setQtdeEstoque(equipamento.getById(equipamentoSelecionado.getId()).getQtdeEstoque() - 1L);
                                    equipamento.getById(equipamentoSelecionado.getId()).setQtdeEmprestada(equipamento.getById(equipamentoSelecionado.getId()).getQtdeEmprestada() + 1L);
                                    listaEquipamento.add(equipamentoSelecionado);
@@ -165,6 +165,7 @@ public class FrmSolicitarEmprestimoRecurso implements Initializable {
                                    equipamento.getById(equipamentoSelecionado.getId()).setQtdeEmprestada(equipamento.getById(equipamentoSelecionado.getId()).getQtdeEmprestada() - 1L);
                                  listaEquipamento.remove(equipamentoSelecionado);
 				 preencherDadosTblPedido(listaEquipamento);
+                                 
 				 
 			}
         

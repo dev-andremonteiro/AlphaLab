@@ -15,4 +15,5 @@ public interface IEquipamentoDAO extends IDAO<EquipamentoEntity> {
         public List<EquipamentoEntity> buscarDisponivel();
         public void removerEquipamento();
         public void AdicionarEquipamento();
+        public void RemoverEstoqueEquipamento(Long a,EquipamentoEntity equipamento );
 }

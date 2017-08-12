@@ -1,18 +1,26 @@
 package br.edu.ifmt.cba.alphalab.gui.javafx.controller.laboratorio;
 
 import java.net.URL;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
+import br.edu.ifmt.cba.alphalab.business.Reserva;
 import br.edu.ifmt.cba.alphalab.dao.DAOFactory;
 import br.edu.ifmt.cba.alphalab.dao.mock.laboratorio.MockLaboratorioDAO;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.DepartamentoEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumDisciplina;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumReserva;
+import br.edu.ifmt.cba.alphalab.entity.laboratorio.EnumTipoReserva;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.Horario;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.LaboratorioEntity;
 import br.edu.ifmt.cba.alphalab.entity.laboratorio.ReservaEntity;
@@ -41,7 +49,11 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class FrmGerenciarHorario implements Initializable {
@@ -125,10 +137,55 @@ public class FrmGerenciarHorario implements Initializable {
 	private ArrayList<HorarioAdapter> matriz = new ArrayList<>();
 
 	private ArrayList<StackPane> listaSelecionados = new ArrayList<>();
+	
+	private Set<TableColumn<Horario, HorarioAdapter>> diasAReservar = new HashSet<>();
 
+	private List<ReservaEntity> novasReservas = new ArrayList<>();
+	
+	static final Comparator<ReservaEntity> DATA_INICIO = new Comparator<ReservaEntity>() {
+		public int compare(ReservaEntity r1, ReservaEntity r2) {
+			return r1.getDataInicio().compareTo(r2.getDataInicio());
+		}
+	};
+	
 	@FXML
 	void btnConfirmar_onAction(ActionEvent event) {
+		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+		ButtonType sim = new ButtonType("Sim");
+		ButtonType nao = new ButtonType("Não");
+		alerta.setTitle("AlphaLab");
+		alerta.setHeaderText("Confirmar Reserva de Horário");
+		alerta.setContentText("Deseja confirmar as Reservas de Horário?");
+		alerta.getButtonTypes().setAll(sim, nao);
 
+		alerta.showAndWait().ifPresent(option -> {
+			if (option == sim) {
+				Reserva salvarReserva = new Reserva(DAOFactory.getDAOFactory().getReservaDAO());
+				for (ReservaEntity reserva : novasReservas) {
+					setDados(reserva);
+
+					if (reserva.validar() == null) {
+						salvarReserva.save(reserva);
+					} else {
+						Alert alertaDadosInvalidos = new Alert(Alert.AlertType.INFORMATION);
+						alertaDadosInvalidos.setTitle("AlphaLab");
+						alertaDadosInvalidos.setHeaderText("Dados inconsistentes!");
+						alertaDadosInvalidos.setContentText(reserva.validar().getMessage());
+
+						alertaDadosInvalidos.show();
+						break;
+					}
+					
+					tbpDados.getSelectionModel().select(tabVisualizar);
+					tabPreencherDados.setDisable(true);
+					tabVisualizar.setDisable(false);
+					atualizarReservas();
+					tblGerenciarHorario.refresh();
+				}
+			} else {
+				alerta.close();
+			}
+		});
 	}
 
 	@FXML
@@ -146,6 +203,9 @@ public class FrmGerenciarHorario implements Initializable {
 			tabPreencherDados.setDisable(false);
 			tbpDados.getSelectionModel().select(tabPreencherDados);
 			texLaboratorio.setText(cmbLaboratorio.getValue().getNome());
+			if (hbxHorarios.getChildren() != null)
+				hbxHorarios.getChildren().clear();
+			criarNovasReservas();
 			hbxHorarios.getChildren().addAll(buildBoxHorario());
 			cmbProfessor.requestFocus();
 		}
@@ -204,7 +264,7 @@ public class FrmGerenciarHorario implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		for (int i = 0; i < 7; i++) {
+		for (int i = 1; i < 8; i++) {
 			for (int j = 0; j < 16; j++) {
 				matriz.add(new HorarioAdapter(i, j, new StackPane(), null));
 			}
@@ -212,10 +272,7 @@ public class FrmGerenciarHorario implements Initializable {
 		tabPreencherDados.setDisable(true);
 
 		cmbDisciplina.getItems().setAll(EnumDisciplina.values());
-		MockLaboratorioDAO laboratorio = new MockLaboratorioDAO();
-		cmbLaboratorio.getItems().setAll(laboratorio.buscarTodos());
-		// TODO Camada de negocio para Laboratorio ainda não foi implementada...
-		// cmbLaboratorio.getItems().setAll(DAOFactory.getDAOFactory().getLaboratorioDAO().buscarTodos());
+		cmbLaboratorio.getItems().setAll(DAOFactory.getDAOFactory().getLaboratorioDAO().buscarTodos());
 		cmbProfessor.getItems().setAll(DAOFactory.getDAOFactory().getServidorDAO().buscarTodosProfessores());
 		cmbDepartamento.getItems().setAll(DAOFactory.getDAOFactory().getDepartamentoDAO().buscarTodos());
 
@@ -355,12 +412,10 @@ public class FrmGerenciarHorario implements Initializable {
 
 											alerta.showAndWait().ifPresent(opcao -> {
 												if (opcao == confirmar) {
-													// TODO Concluir implementação
 													for (HorarioAdapter hAdapter : matriz) {
 														if (hAdapter.getPane().equals(btn.getParent())) {
 															hAdapter.getReserva().setStatus(EnumReserva.CANCELADA);
-															reservas.clear();
-															reservas.addAll(DAOFactory.getDAOFactory().getReservaDAO().getAtivosNaSemana(LocalDate.now()));
+															atualizarReservas();
 															tblGerenciarHorario.refresh();
 															break;
 														}
@@ -429,25 +484,95 @@ public class FrmGerenciarHorario implements Initializable {
 	}
 
 	private List<StackPane> buildBoxHorario() {
-		// TODO Corrigir implementação
-		/*
-		 * VBox vbox = new VBox(7); vbox.setAlignment(Pos.CENTER);
-		 * 
-		 * Rectangle rect = new Rectangle(200, 150); rect.setStroke(Color.BLACK);
-		 * rect.setStrokeWidth(2); rect.setFill(Color.TRANSPARENT);
-		 * 
-		 * Text data = new Text(new
-		 * SimpleDateFormat("dd/MM/yyyy").format(dtSolicitacaoReserva));
-		 * data.setFont(Font.font("Verdana", FontWeight.BOLD, 12.0));
-		 * vbox.getChildren().add(data);
-		 * 
-		 * for (Horario horario : listaHorariosSelecionados) {
-		 * vbox.getChildren().add(new Text(horario.getEstampa())); }
-		 * 
-		 * StackPane caixa = new StackPane(rect, vbox); return caixa;
-		 */return null;
+		List<StackPane> boxHorarios = new ArrayList<>();
+		
+		for (ReservaEntity reservaEntity : novasReservas) {
+			
+			VBox vbox = new VBox(7);
+			vbox.setAlignment(Pos.CENTER);
+
+			Rectangle rect = new Rectangle(100, 150);
+			rect.setStroke(Color.BLACK);
+			rect.setStrokeWidth(2);
+			rect.setFill(Color.TRANSPARENT);
+
+			Text data = new Text(new SimpleDateFormat("dd/MM/yyyy").format(reservaEntity.getDataInicio()));
+			data.setFont(Font.font("Verdana", FontWeight.BOLD, 12.0));
+			vbox.getChildren().add(data);
+
+			for (Horario horario : reservaEntity.getHorarios()) {
+				vbox.getChildren().add(new Text(horario.getEstampa()));
+			}
+
+			boxHorarios.add(new StackPane(rect, vbox));
+		}
+
+		return boxHorarios;
 	}
 
+	/**
+	 * Inicializa as reservas para cada dia selecionado
+	 */
+	private void criarNovasReservas() {
+		diasAReservar.clear();
+		for (StackPane pane : listaSelecionados) {
+			for (HorarioAdapter adapter : matriz) {
+				if(adapter.getPane().equals(pane))
+					diasAReservar.add((TableColumn<Horario, HorarioAdapter>) tblGerenciarHorario.getColumns().get(adapter.getColuna()));
+			}
+		}
+		
+		LocalDate dtAux = LocalDate.now();
+		if(!dtAux.getDayOfWeek().equals(DayOfWeek.MONDAY))
+			dtAux = dtAux.minusDays((long) dtAux.getDayOfWeek().getValue() - 1);
+		
+		novasReservas.clear();
+		for (TableColumn<Horario, HorarioAdapter> tableColumn : diasAReservar) {
+			ReservaEntity novaReserva = new ReservaEntity();
+			novaReserva.setDataInicio(Date.from((dtAux.plusDays(tblGerenciarHorario.getColumns().indexOf(tableColumn) - 1).atStartOfDay(ZoneId.systemDefault()).toInstant())));
+			novasReservas.add(novaReserva);
+		}
+		
+		for (ReservaEntity reserva : novasReservas) {
+			
+			int k = ((reserva.getDataInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfWeek().getValue() - 1) << 4);
+			if(reserva.getHorarios() != null) {
+				reserva.getHorarios().clear();
+			} else {
+				reserva.setHorarios(new ArrayList<>());
+			}
+			
+			for (int i = k; i < (k + 16); i++) {
+				if (listaSelecionados.contains(matriz.get(i).getPane()))
+					reserva.getHorarios().add(Horario.values()[matriz.get(i).getLinha()]);
+			}
+		}
+		Collections.sort(novasReservas, DATA_INICIO);
+	}
+	
+	private void setDados(ReservaEntity reserva) {
+		reserva.setId(Long.parseLong("" + (DAOFactory.getDAOFactory().getReservaDAO().buscarTodasReservas().size() + 1)));
+		reserva.setSolicitante(cmbProfessor.getValue());
+		reserva.setDisciplina(cmbDisciplina.getValue());
+		reserva.setDepartamentoAula(cmbDepartamento.getValue());
+		reserva.setTurma(txtTurma.getText());
+		reserva.setObservacao(txaObservacoes.getText());
+		reserva.setDataSolicitacao(reserva.getDataInicio());
+		reserva.setDataFim(reserva.getDataInicio());
+		reserva.setDataAprovacaoRecusa(reserva.getDataInicio());
+		reserva.setLaboratorio(cmbLaboratorio.getValue());
+		// TODO Aprovador deve ser obtido automaticamente quando a funcionalidade de login for implementada
+		reserva.setAprovador(DAOFactory.getDAOFactory().getServidorDAO().getById(1L));
+		reserva.setStatus(EnumReserva.CONFIRMADO);
+		reserva.setTipo(EnumTipoReserva.UNICA);
+	}
+
+	private void atualizarReservas() {
+		reservas.clear();
+		reservas.addAll(DAOFactory.getDAOFactory().getReservaDAO().getAtivosNaSemana(LocalDate.now()));
+		filtrarReservas();
+	}
+	
 	private class HorarioAdapter {
 		private int coluna, linha;
 		private StackPane pane;
